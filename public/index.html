@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabela de Crops - SunflowerLand</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Combo Maker - 0.0.1</h1>
+  
+  <header class="header">
+    <!-- Selecionar Idioma -->
+    <div class="select-idioma">
+        <label for="opcao-idioma">
+          <span id="selecione-idioma">Language:</span>
+        </label>
+        <select id="opcao-idioma">
+          <option value="portugues">Português</option>
+          <option value="ingles">English</option>
+        </select>
+    </div><br>
+    <div class="input-numero-da-farm">
+      <label id="labelNumeroFarm" for="numeroFarm">Inserir Farm:</label>
+      <input id="numeroFarm" type="number" placeholder="Ex: 3661">
+      <button id="procurarFarm" onclick="numeroDaFarm()">Pesquisar</button> 
+    </div>
+  </header>
+  <br>
+
+  <!-- Container flex: Tabs + Card -->
+  <main class="items-row">
+
+    <!-- Tabs -->
+    <div class="tab-container">
+      <div class="tabs-buttons-container">
+        <button class="tab-btn active" data-tab="skills-tab">Skills</button>
+        <button class="tab-btn" data-tab="collectibles-tab">Collectibles</button>
+        <button class="tab-btn" data-tab="wearables-tab">Wearables</button>
+      </div>
+
+      <!-- Skills Tab -->
+      <section id="skills-tab" class="tab-content active skills-block">
+        <h2 id="total-pontos-gastos-em-skills">Skills</h2>
+        
+        <div class="sub-tabs-buttons-container">
+          <button class="sub-tab-btn active" data-sub-tab="skills-legacy-sub">Legacy</button>
+          <button class="sub-tab-btn" data-sub-tab="skills-crops-sub">
+            <img src="./icones/skillCrop.png" alt="Ícone Crops" class="icon-btn"> Crops
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="skills-fruit-sub">
+            <img src="./icones/skillFruit.png" alt="Ícone Fruit" class="icon-btn"> Fruit Patch
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="skills-greenhouse-sub">
+            <img src="./icones/skillGreenhouse.png" alt="Ícone Greenhouse" class="icon-btn"> Greenhouse
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="skills-trees-sub">
+            <img src="./icones/skillTree.png" alt="Ícone Tree" class="icon-btn"> Trees
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="skills-minerals-sub">
+            <img src="./icones/skillMineral.png" alt="Ícone Mineral" class="icon-btn"> Minerals
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="skills-machinery-sub">
+            <img src="./icones/skillMachinery.png" alt="Ícone Machinery" class="icon-btn"> Machinery
+          </button>
+        </div>
+        
+        <div class="sub-tab-content active" id="skills-legacy-sub">
+          <div id="skills-legacy-container" class="skill-container"></div>
+        </div>
+        <div class="sub-tab-content" id="skills-crops-sub">
+          <span id="tab-skill-crops">Crops</span> 
+          <div id="skills-crop-tier1-container" class="skill-container"></div>
+          <div id="skills-crop-tier2-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-crops-tier2"></p>
+          </div>
+          <div id="skills-crop-tier3-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-crops-tier3"></p>
+          </div>
+        </div>
+        <div class="sub-tab-content" id="skills-fruit-sub">
+          <span id="tab-skill-fruit">Fruit Patch</span>
+          <div id="skills-fruit-tier1-container" class="skill-container"></div>
+          <div id="skills-fruit-tier2-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-fruit-tier2"></p>
+          </div>
+          <div id="skills-fruit-tier3-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-fruit-tier3"></p>
+          </div>
+        </div>
+        <div class="sub-tab-content" id="skills-greenhouse-sub">
+          <span id="tab-skill-greenhouse">Greenhouse</span>
+          <div id="skills-greenhouse-tier1-container" class="skill-container"></div>
+          <div id="skills-greenhouse-tier2-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-greenhouse-tier2"></p>
+          </div>
+          <div id="skills-greenhouse-tier3-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-greenhouse-tier3"></p>
+          </div>
+        </div>
+        <div class="sub-tab-content" id="skills-trees-sub">
+          <span id="tab-skill-tree">Trees</span>
+          <div id="skills-tree-tier1-container" class="skill-container"></div>
+          <div id="skills-tree-tier2-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-tree-tier2"></p>
+          </div>
+          <div id="skills-tree-tier3-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-tree-tier3"></p>
+          </div>
+        </div>
+        <div class="sub-tab-content" id="skills-minerals-sub">
+          <span id="tab-skill-mineral">Minerals</span>
+          <div id="skills-mineral-tier1-container" class="skill-container"></div>
+          <div id="skills-mineral-tier2-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-mineral-tier2"></p>
+          </div>
+          <div id="skills-mineral-tier3-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-mineral-tier3"></p>
+          </div>
+        </div>
+        <div class="sub-tab-content" id="skills-machinery-sub">
+          <span id="tab-skill-machinery">Machinery</span>
+          <div id="skills-machinery-tier1-container" class="skill-container"></div>
+          <div id="skills-machinery-tier2-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-machinery-tier2"></p>
+          </div>
+          <div id="skills-machinery-tier3-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-machinery-tier3"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Collectibles Tab -->
+      <section id="collectibles-tab" class="tab-content collectibles-block">
+        <h2 id="total-valor-em-collectibles">Collectibles</h2>
+        <div class="sub-tabs-buttons-container">
+          <button class="sub-tab-btn active" data-sub-tab="collectibles-ferreiro-sub">
+            <img src="./icones/ferreiro.png" alt="Ícone Crops" class="icon-btn">Blacksmith
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="collectibles-crops-sub">
+            <img src="./icones/skillCrop.png" alt="Ícone Crops" class="icon-btn">Crops - CM
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="collectibles-fruits-sub">
+            <img src="./icones/skillFruit.png" alt="Ícone Fruit" class="icon-btn">Fruits
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="collectibles-greenhouse-sub">
+            <img src="./icones/skillGreenhouse.png" alt="Ícone Greenhouse" class="icon-btn">Greenhouse
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="collectibles-minerals-sub">
+            <img src="./icones/skillTree.png" alt="Ícone Tree" class="icon-btn">Tree
+            <img src="./icones/skillMineral.png" alt="Ícone Mineral" class="icon-btn">Minerals
+          </button>
+        </div>
+
+        <div class="sub-tab-content active" id="collectibles-ferreiro-sub">
+          <div id="collectibles-container-ferreiro" class="nft-container"></div>
+        </div>
+        <div class="sub-tab-content" id="collectibles-crops-sub">
+          <div id="collectibles-container-crops" class="nft-container"></div>
+        </div>
+        <div class="sub-tab-content" id="collectibles-fruits-sub">
+          <div id="collectibles-container-fruits" class="nft-container"></div>
+        </div>
+        <div class="sub-tab-content" id="collectibles-greenhouse-sub">
+          <div id="collectibles-container-greenhouse" class="nft-container"></div>
+        </div>
+        <div class="sub-tab-content" id="collectibles-minerals-sub">
+          <div id="collectibles-container-trees-minerals" class="nft-container"></div>
+        </div>
+      </section>
+
+      <!-- Wearables Tab -->
+      <section id="wearables-tab" class="tab-content wearables-block">
+        <h2 id="total-valor-em-wearables">Wearables</h2>
+        <div class="sub-tabs-buttons-container">
+          <button class="sub-tab-btn active" data-sub-tab="wearables-crops-sub">
+            <img src="./icones/skillCrop.png" alt="Ícone Crops" class="icon-btn">Crops
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="wearables-fruits-sub">
+            <img src="./icones/skillFruit.png" alt="Ícone Fruit" class="icon-btn">Fruits
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="wearables-greenhouse-sub">
+            <img src="./icones/skillGreenhouse.png" alt="Ícone Greenhouse" class="icon-btn">Greenhouse
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="wearables-minerals-sub">
+            <img src="./icones/skillMineral.png" alt="Ícone Mineral" class="icon-btn">Minerals
+          </button>
+        </div>
+
+        <div class="sub-tab-content active" id="wearables-crops-sub">
+          <div id="wearables-container-crops" class="nft-container"></div>
+        </div>
+        <div class="sub-tab-content" id="wearables-fruits-sub">
+          <div id="wearables-container-fruits" class="nft-container"></div>
+        </div>
+        <div class="sub-tab-content" id="wearables-greenhouse-sub">
+          <div id="wearables-container-greenhouse" class="nft-container"></div>
+        </div>
+        <div class="sub-tab-content" id="wearables-minerals-sub">
+          <div id="wearables-container-minerals" class="nft-container"></div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Card para buffs -->
+    <div id="info-card" class="card">
+      <img src="" alt="" class="card-img">
+      <h3 class="card-titulo" id="titulo-buff"></h3>
+      <p class="card-descricao" id="descricao-do-buff"></p>
+      <h4 class="card-preco" id="preco-atual"></h4>
+      <h4 class="card-preco" id="ultima-venda"></h4>
+    </div>
+
+  </main><br>
+
+
+  <section class="linha-selects">
+    <div class="select-group">
+      <label id="ilhaAtual" for="ilhaSelect">Tipo de Ilha:</label>
+      <select id="ilhaSelect">
+        <option value="Basic">Basic</option>
+        <option value="Petal">Petal</option>
+        <option value="Desert">Desert</option>
+        <option value="Vulcano">Vulcano</option>
+      </select>
+    </div>
+
+    <!-- Selecionar Estação -->
+    <div class="select-group">
+      <label for="estacaoSelect">
+        <span id="texto-estacao">Estação:</span>
+      </label>
+      <select id="estacaoSelect">
+        <option value="Spring">Primavera</option>
+        <option value="Summer">Verão</option>
+        <option value="Autumn">Outono</option>
+        <option value="Winter">Inverno</option>
+      </select>
+    </div>
+
+    <div class="select-group">
+      <label for="vipSelect">VIP?</label>
+      <select id="vipSelect">
+        <option value="Sim">Sim</option>
+        <option value="Não">Não</option>
+      </select>
+    </div>
+
+    <div class="select-group">
+      <label id="flowerPorCoins" for="flower-em-coins">Flower por coins:</label>
+      <input id="flower-em-coins" type="number" placeholder="Ex: 320">
+    </div>
+  </section>
+
+
+  <section class="linha-selects">
+    <div class="select-group"> 
+      <label id="modoDeCalcularCrops" for="tipo-de-calculo">Modo de calcular as Crops:</label>
+      <select id="tipo-de-calculo-crop">
+        <option value="manual">Quantidade de Sementes</option>
+        <option value="rodada">Quantidade de Ciclos</option>
+      </select>
+    </div>
+
+    <div class="select-group">
+      <label id="cropPlotsQuePossui" for="plotsPossuidos">Qtd. de Crop Plots</label>
+      <input id="plotsPossuidos" type="number" placeholder="Ex: 70">
+    </div>
+    <button id="salvarInfos" onclick="salvarInformacoes()">Salvar</button>
+  </section>
+
+
+  <!-- Área onde a tabela será inserida -->
+  <div id="saida-das-crops"></div>
+
+  <!-- Scripts -->
+  <script src="./recursos.js"></script>
+  <script src="./skills.js"></script>
+  <script src="./nfts.js"></script>
+  <script src="./minhasApi.js"></script>
+  <script src="./formatarTempo.js"></script>
+  <script src="./calculos.js"></script>
+  <script src="./desbloquearSkills.js"></script>
+  <script src="./pontosSkillsEValorDasNfts.js"></script>
+  <script src="./opcoesSelects.js"></script>
+  <script src="./tabelas.js"></script>
+  <script src="./statusFarm.js"></script>
+  <script src="./checkbox.js"></script>
+  <script src="./tabs.js"></script>
+  <script src="./inputs.js"></script>
+</body>
+</html>

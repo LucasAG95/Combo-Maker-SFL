@@ -1,0 +1,314 @@
+const crops = [
+    //Crops Basicas
+    { name: 'Sunflower',   tempo: 60_000,     custoSemente: 0.01, valorDeVenda: 0.02, valorDoMarket: 0, estoque: 800, seedPlantadas: '', estacao: ['Spring', 'Summer'] },
+    { name: 'Potato',      tempo: 300_000,    custoSemente: 0.1,  valorDeVenda: 0.14, valorDoMarket: 0, estoque: 400, seedPlantadas: '', estacao: ['Summer', 'Autumn', 'Winter'] },
+    { name: 'Rhubarb',     tempo: 600_000,    custoSemente: 0.15, valorDeVenda: 0.24, valorDoMarket: 0, estoque: 400, seedPlantadas: '', estacao: ['Spring'] },
+    { name: 'Pumpkin',     tempo: 1_800_000,  custoSemente: 0.2,  valorDeVenda: 0.4,  valorDoMarket: 0, estoque: 300, seedPlantadas: '', estacao: ['Autumn'] },
+    { name: 'Zucchini',    tempo: 1_800_000,  custoSemente: 0.2,  valorDeVenda: 0.4,  valorDoMarket: 0, estoque: 400, seedPlantadas: '', estacao: ['Summer'] },
+    //Crops Médias
+    { name: 'Carrot',      tempo: 3_600_000,   custoSemente: 0.5, valorDeVenda: 0.8,  valorDoMarket: 0, estoque: 200, seedPlantadas: '', estacao: ['Spring', 'Autumn'] },
+    { name: 'Yam',         tempo: 3_600_000,   custoSemente: 0.5, valorDeVenda: 0.8,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', estacao: ['Autumn'] },
+    { name: 'Cabbage',     tempo: 7_200_000,   custoSemente: 1,   valorDeVenda: 1.5,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', estacao: ['Spring', 'Winter'] },
+    { name: 'Broccoli',    tempo: 7_200_000,   custoSemente: 1,   valorDeVenda: 1.5,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', estacao: ['Autumn'] },
+    { name: 'Soybean',     tempo: 10_800_000,  custoSemente: 1.5, valorDeVenda: 2.3,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', estacao: ['Spring', 'Autumn'] },
+    { name: 'Pepper',      tempo: 14_400_000,  custoSemente: 2,   valorDeVenda: 3,    valorDoMarket: 0, estoque: 160, seedPlantadas: '', estacao: ['Summer'] },
+    { name: 'Beetroot',    tempo: 14_400_000,  custoSemente: 2,   valorDeVenda: 2.8,  valorDoMarket: 0, estoque: 160, seedPlantadas: '', estacao: ['Summer', 'Winter'] },
+    { name: 'Cauliflower', tempo: 28_800_000,  custoSemente: 3,   valorDeVenda: 4.25, valorDoMarket: 0, estoque: 160, seedPlantadas: '', estacao: ['Summer', 'Winter'] },
+    { name: 'Parsnip',     tempo: 43_200_000,  custoSemente: 5,   valorDeVenda: 6.5,  valorDoMarket: 0, estoque: 120, seedPlantadas: '', estacao: ['Winter'] },
+    //Crops Avançadas
+    { name: 'Eggplant',    tempo: 57_600_000,  custoSemente: 6,   valorDeVenda: 8,    valorDoMarket: 0, estoque: 100, seedPlantadas: '', estacao: ['Summer'] },
+    { name: 'Corn',        tempo: 72_000_000,  custoSemente: 7,   valorDeVenda: 9,    valorDoMarket: 0, estoque: 100, seedPlantadas: '', estacao: ['Spring'] },
+    { name: 'Onion',       tempo: 72_000_000,  custoSemente: 7,   valorDeVenda: 10,   valorDoMarket: 0, estoque: 100, seedPlantadas: '', estacao: ['Winter'] },
+    { name: 'Turnip',      tempo: 86_400_000,  custoSemente: 5,   valorDeVenda: 8,    valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['Winter'] },
+    { name: 'Radish',      tempo: 86_400_000,  custoSemente: 7,   valorDeVenda: 9.5,  valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['Summer'] },
+    { name: 'Wheat',       tempo: 86_400_000,  custoSemente: 5,   valorDeVenda: 7,    valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['Spring', 'Summer', 'Autumn', 'Winter'] },
+    { name: 'Kale',        tempo: 129_600_000, custoSemente: 7,   valorDeVenda: 10,   valorDoMarket: 0, estoque: 60,  seedPlantadas: '', estacao: ['Spring', 'Winter'] },
+    { name: 'Artichoke',   tempo: 129_600_000, custoSemente: 7,   valorDeVenda: 12,   valorDoMarket: 0, estoque: 60,  seedPlantadas: '', estacao: ['Autumn'] },
+    { name: 'Barley',      tempo: 172_800_000, custoSemente: 10,  valorDeVenda: 12,   valorDoMarket: 0, estoque: 60,  seedPlantadas: '', estacao: ['Spring', 'Autumn'] },
+];
+
+const cropMachine = [
+    { name: 'Sunflower',   tempo: 60_000,     custoSemente: 0.01, valorDeVenda: 0.02, valorDoMarket: 0, estoque: 800, seedPlantadas: '', permitido: true},
+    { name: 'Potato',      tempo: 300_000,    custoSemente: 0.1,  valorDeVenda: 0.14, valorDoMarket: 0, estoque: 400, seedPlantadas: '', permitido: true},
+    { name: 'Rhubarb',     tempo: 600_000,    custoSemente: 0.15, valorDeVenda: 0.24, valorDoMarket: 0, estoque: 400, seedPlantadas: '', permitido: false},
+    { name: 'Pumpkin',     tempo: 1_800_000,  custoSemente: 0.2,  valorDeVenda: 0.4,  valorDoMarket: 0, estoque: 300, seedPlantadas: '', permitido: true},
+    { name: 'Zucchini',    tempo: 1_800_000,  custoSemente: 0.2,  valorDeVenda: 0.4,  valorDoMarket: 0, estoque: 400, seedPlantadas: '', permitido: false},
+    { name: 'Carrot',      tempo: 3_600_000,   custoSemente: 0.5, valorDeVenda: 0.8,  valorDoMarket: 0, estoque: 200, seedPlantadas: '', permitido: false},
+    { name: 'Yam',         tempo: 3_600_000,   custoSemente: 0.5, valorDeVenda: 0.8,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', permitido: false},
+    { name: 'Cabbage',     tempo: 7_200_000,   custoSemente: 1,   valorDeVenda: 1.5,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', permitido: false},
+    { name: 'Broccoli',    tempo: 7_200_000,   custoSemente: 1,   valorDeVenda: 1.5,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', permitido: false},
+];
+
+const fruits = [
+    //Frutas Basicas
+    { name: 'Tomato',    tempo: 7_200_000,  custoSemente: 5,  valorDeVenda: 2,  valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['Spring', 'Autumn'] },
+    { name: 'Lemon',     tempo: 14_400_000, custoSemente: 15, valorDeVenda: 6,  valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['Summer', 'Winter'] },
+    //Frutas Médias
+    { name: 'Blueberry', tempo: 21_600_000, custoSemente: 30, valorDeVenda: 12, valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['Spring', 'Winter'] },
+    { name: 'Orange',    tempo: 28_800_000, custoSemente: 50, valorDeVenda: 18, valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['Spring', 'Summer'] },
+    //Frutas Avançadas
+    { name: 'Apple',     tempo: 43_200_000, custoSemente: 70, valorDeVenda: 25, valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['Autumn', 'Winter'] },
+    { name: 'Banana',    tempo: 43_200_000, custoSemente: 70, valorDeVenda: 25, valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['Summer', 'Autumn'] },
+];
+
+const greenhouse = [
+    { name: 'Grape', tempo: 43_200_000,  custoSemente: 160, valorDeVenda: 240, valorDoMarket: 0, estoque: 10, seedPlantadas: '', oil: 3 },
+    { name: 'Rice',  tempo: 115_200_000, custoSemente: 240, valorDeVenda: 320, valorDoMarket: 0, estoque: 10, seedPlantadas: '', oil: 4 },
+    { name: 'Olive', tempo: 158_400_000, custoSemente: 320, valorDeVenda: 400, valorDoMarket: 0, estoque: 10, seedPlantadas: '', oil: 6 },
+];
+
+//==============================================================================================================================================================================
+
+const minerals = [
+    {
+        id: 'wood',
+        name: 'Wood',
+        tempo: 7_200_000,
+        mediaDeCustoCoins: '',
+        mediaDeCustoFlower: '',
+        valorDoMarket: 0,
+        qtdNodes: {
+            t1: 1,
+            t2: 0,
+            t3: 0,
+        },
+        qtdMediaPorNode: 1, 
+    },
+    {
+        id: 'stone',
+        name: 'Stone',
+        tempo: 14_400_000,
+        mediaDeCustoCoins: '',
+        mediaDeCustoFlower: '',
+        valorDoMarket: 0,
+        qtdNodes: {
+            t1: 1,
+            t2: 0,
+            t3: 0,
+        },
+        qtdMediaPorNode: 1, 
+    },
+    {
+        id: 'iron',
+        name: 'Iron',
+        tempo: 28_800_000,
+        mediaDeCustoCoins: '',
+        mediaDeCustoFlower: '',
+        valorDoMarket: 0,
+        qtdNodes: {
+            t1: 1,
+            t2: 0,
+            t3: 0,
+        },
+        qtdMediaPorNode: 1, 
+    },
+    {
+        id: 'gold',
+        name: 'Gold',
+        tempo: 86_400_000,
+        mediaDeCustoCoins: '',
+        mediaDeCustoFlower: '',
+        valorDoMarket: 0,
+        qtdNodes: {
+            t1: 1,
+            t2: 0,
+            t3: 0,
+        },
+        qtdMediaPorNode: 1, 
+    },
+    {
+        id: 'crimstone',
+        name: 'Crimstone',
+        tempo: 86_400_000,
+        mediaDeCustoCoins: '',
+        mediaDeCustoFlower: '',
+        valorDoMarket: 0,
+        qtdNodes: {
+            t1: 1,
+            t2: 0,
+            t3: 0,
+        },
+        qtdMediaPorNode: 1.4, 
+    },
+    {
+        id: 'oil',
+        name: 'Oil',
+        tempo: 72_000_000,
+        mediaDeCustoCoins: '',
+        mediaDeCustoFlower: '',
+        valorDoMarket: 0,
+        qtdNodes: {
+            t1: 1,
+            t2: 0,
+            t3: 0,
+        },
+        qtdMediaPorNode: 16.66666667, 
+    },
+];
+
+const ferramentas = [
+    {
+        id: 'axe',
+        name: 'Axe',
+        recursoObtido: 'wood',
+        estoque: 200,
+        recursosNecessarios: {
+            coins: 20
+        },
+        custoEmCoins: ''
+    },
+    {
+        id: 'pickaxe',
+        name: 'Pickaxe',
+        recursoObtido: 'stone',
+        estoque: 60,
+        recursosNecessarios: {
+            coins: 20,
+            wood: 3
+        },
+        custoEmCoins: ''
+    },
+    {
+        id: 'ironPickaxe',
+        name: 'Iron Pickaxe',
+        recursoObtido: 'gold',
+        estoque: 5,
+        recursosNecessarios: {
+            coins: 80,
+            wood: 3,
+            iron: 5
+        },
+        custoEmCoins: ''
+    },
+    {
+        id: 'goldPickaxe',
+        name: 'Gold Pickaxe',
+        recursoObtido: 'crimstone',
+        estoque: 5,
+        recursosNecessarios: {
+            coins: 100,
+            wood: 3,
+            gold: 3
+        },
+        custoEmCoins: ''
+    },
+    {
+        id: 'oilDrill',
+        name: 'Oil Drill',
+        recursoObtido: 'oil',
+        estoque: 5,
+        recursosNecessarios: {
+            coins: 100,
+            wood: 20,
+            iron: 9,
+            leather: 10, 
+            wool: 20
+        },
+        custoEmCoins: ''
+    },
+];
+
+const ferramentasSecundarias = [
+    {
+        id: 'rod',
+        name: 'Rod',
+        recursoObtido: 'peixe',
+        estoque: 50,
+        recursosNecessarios: {
+            coins: 20,
+            wood: 3,
+            stone: 1
+        },
+        custoEmCoins: ''
+    },
+    {
+        id: 'sandShovel',
+        name: 'Sand Shovel',
+        recursoObtido: 'escavacao',
+        estoque: 50,
+        recursosNecessarios: {
+            coins: 20,
+            wood: 2,
+            stone: 1
+        },
+        custoEmCoins: ''
+    },
+    {
+        id: 'sandDrill',
+        name: 'Sand Drill',
+        recursoObtido: 'escavacao',
+        estoque: 10,
+        recursosNecessarios: {
+            coins: 40,
+            wood: 3,
+            crimstone: 1,
+            oil: 1,
+            leather: 1
+        },
+        custoEmCoins: ''
+    },
+];
+
+//==============================================================================================================================================================================
+
+const valorDosRecursosMarket = [
+    //Crops
+    { id: 'sunflower',   name: 'Sunflower',   valor: '' },
+    { id: 'potato',      name: 'Potato',      valor: '' },
+    { id: 'rhubarb',     name: 'Rhubarb',     valor: '' },
+    { id: 'pumpkin',     name: 'Pumpkin',     valor: '' },
+    { id: 'zucchini',    name: 'Zucchini',    valor: '' },
+    { id: 'carrot',      name: 'Carrot',      valor: '' },
+    { id: 'yam',         name: 'Yam',         valor: '' },
+    { id: 'cabbage',     name: 'Cabbage',     valor: '' },
+    { id: 'broccoli',    name: 'Broccoli',    valor: '' },
+    { id: 'soybean',     name: 'Soybean',     valor: '' },
+    { id: 'pepper',      name: 'Pepper',      valor: '' },
+    { id: 'beetroot',    name: 'Beetroot',    valor: '' },
+    { id: 'cauliflower', name: 'Cauliflower', valor: '' },
+    { id: 'parsnip',     name: 'Parsnip',     valor: '' },
+    { id: 'eggplant',    name: 'Eggplant',    valor: '' },
+    { id: 'corn',        name: 'Corn',        valor: '' },
+    { id: 'onion',       name: 'Onion',       valor: '' },
+    { id: 'turnip',      name: 'Turnip',      valor: '' },
+    { id: 'radish',      name: 'Radish',      valor: '' },
+    { id: 'wheat',       name: 'Wheat',       valor: '' },
+    { id: 'kale',        name: 'Kale',        valor: '' },
+    { id: 'artichoke',   name: 'Artichoke',   valor: '' },
+    { id: 'barley',      name: 'Barley',      valor: '' },
+
+    //Frutas
+    { id: 'tomato',      name: 'Tomato',      valor: '' },
+    { id: 'lemon',       name: 'Lemon',       valor: '' },
+    { id: 'chestnut',    name: 'Chestnut',    valor: '' },
+    { id: 'blueberry',   name: 'Blueberry',   valor: '' },
+    { id: 'starfruit',   name: 'Starfruit',   valor: '' },
+    { id: 'orange',      name: 'Orange',      valor: '' },
+    { id: 'apple',       name: 'Apple',       valor: '' },
+    { id: 'banana',      name: 'Banana',      valor: '' },
+    { id: 'coconut',     name: 'Coconut',     valor: '' },
+    { id: 'celestine',   name: 'Celestine',   valor: '' },
+    { id: 'lunara',      name: 'Lunara',      valor: '' },
+    { id: 'duskberry',   name: 'Duskberry',   valor: '' },
+
+    //GH
+    { id: 'grape',       name: 'Grape',       valor: '' },
+    { id: 'rice',        name: 'Rice',        valor: '' },
+    { id: 'olive',       name: 'Olive',       valor: '' },
+
+    //Minerios
+    { id: 'wood',        name: 'Wood',        valor: '' },
+    { id: 'stone',       name: 'Stone',       valor: '' },
+    { id: 'iron',        name: 'Iron',        valor: '' },
+    { id: 'gold',        name: 'Gold',        valor: '' },
+    { id: 'crimstone',   name: 'Crimstone',   valor: '' },
+
+    //Animais
+    { id: 'egg',         name: 'Egg',         valor: '' },
+    { id: 'feather',     name: 'Feather',     valor: '' },
+    { id: 'honey',       name: 'Honey',       valor: '' },
+    { id: 'milk',        name: 'Milk',        valor: '' },
+    { id: 'leather',     name: 'Leather',     valor: '' },
+    { id: 'wool',        name: 'Wool',        valor: '' },
+    { id: 'merinoWool',  name: 'Merino Wool', valor: '' },
+];
