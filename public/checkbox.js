@@ -58,6 +58,21 @@ function configurarCheckbox() {
         };
     });
 
+    //todos buffs temporarios
+    todosTemporarios.forEach(temporario => {
+        let checkbox = document.getElementById(temporario.idName);
+
+        if(checkbox) {
+            temporario.possui = checkbox.checked;
+
+            checkbox.addEventListener('change', function() {
+                temporario.possui = checkbox.checked;
+                buffsAdicionadosCrops();
+                ativarBonusDasNftsESkills();
+            });
+        };
+    });
+
 }
 //==============================================================================================================================================
 
@@ -177,6 +192,10 @@ window.onload = function () {
     renderNFTs(wearables.fruits, 'wearables-container-fruits', './wearables');
     renderNFTs(wearables.minerals, 'wearables-container-minerals', './wearables');
     renderNFTs(wearables.greenhouse, 'wearables-container-greenhouse', './wearables');
+
+    //Shrines e Totems
+    renderNFTs(shrines, 'shrines-container', './shrines');
+    renderNFTs(totems, 'totems-container', './shrines');
 
     //chamando funções
     mudarIdioma();

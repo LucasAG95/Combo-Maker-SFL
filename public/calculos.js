@@ -112,7 +112,9 @@ function buffsAdicionadosCrops() {
             skillsCrops.tier3,
             collectibles.ferreiro,
             collectibles.crops,
-            wearables.crops
+            wearables.crops,
+            shrines,
+            totems
         ]);
         
         crop.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai + (buffs.qtdArea / plots)) * buffs.qtdInsta;

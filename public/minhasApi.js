@@ -17,12 +17,13 @@ function numeroDaFarm() {
             //=====================================================================================================================================================
 
             //infos para marcar skills e NFTs
-            const skillsLegacyQuePossui = data.farm.inventory;
+            const skillsLegacyQuePossui =    data.farm.inventory;
             const skillQuePossui = data.farm.bumpkin.skills;
             const collectiblesQuePossui = data.farm.inventory;
             const wearablesQuePossui = data.farm.wardrobe;
+            const shrinesQuePossui = data.farm.inventory;
             
-            marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui);
+            marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui, shrinesQuePossui);
 
             //=====================================================================================================================================================
 
@@ -42,7 +43,7 @@ function numeroDaFarm() {
             console.error('Erro ao puxar a API da farm:', err); // Caso dê erro na requisição, mostra a mensagem de erro no console.
         });
 
-    function marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui) {
+    function marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui, shrinesQuePossui) {
         //Todas skills legacy que possuir vai ser marcada
         skillsLegacy.forEach(legacy => {
             let checkbox = document.getElementById(legacy.idName);
@@ -79,7 +80,7 @@ function numeroDaFarm() {
             };    
         });
 
-        //vai marcar todos collectibles que você possuir!
+        //vai marcar todos wearables que você possuir!
         todosWearables.forEach(wearables => {
             let checkbox = document.getElementById(wearables.idName);
             if (wearablesQuePossui[wearables.name]) {
@@ -90,6 +91,19 @@ function numeroDaFarm() {
                 wearables.possui = false;
             };    
         });
+
+        //vai marcar todos collectibles que você possuir!
+        shrines.forEach(shrine => {
+            let checkbox = document.getElementById(shrine.idName);
+            if (shrinesQuePossui[shrine.name]) {
+                checkbox.checked = true;
+                shrine.possui = true;
+            } else {
+                checkbox.checked = false;
+                shrine.possui = false;
+            };    
+        });
+        
         buffsAdicionadosCrops();
         chamadorDeDesbloquearSkills();
         ativarBonusDasNftsESkills();
