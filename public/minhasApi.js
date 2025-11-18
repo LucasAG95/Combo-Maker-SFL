@@ -83,7 +83,12 @@ function numeroDaFarm() {
         //vai marcar todos wearables que você possuir!
         todosWearables.forEach(wearables => {
             let checkbox = document.getElementById(wearables.idName);
-            if (wearablesQuePossui[wearables.name]) {
+            if (wearablesQuePossui[wearables.name] ||
+                wearablesQuePossui[wearables.fac1] ||
+                wearablesQuePossui[wearables.fac2] ||
+                wearablesQuePossui[wearables.fac3] ||
+                wearablesQuePossui[wearables.fac4]
+            ) {
                 checkbox.checked = true;
                 wearables.possui = true;
             } else {

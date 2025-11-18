@@ -188,6 +188,7 @@ window.onload = function () {
     renderNFTs(collectibles.greenhouse, 'collectibles-container-greenhouse', './collectibles');
 
     // Wearables
+    renderNFTs(wearables.factions, 'wearables-container-factions', './wearables');
     renderNFTs(wearables.crops, 'wearables-container-crops', './wearables');
     renderNFTs(wearables.fruits, 'wearables-container-fruits', './wearables');
     renderNFTs(wearables.minerals, 'wearables-container-minerals', './wearables');

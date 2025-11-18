@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Combo Maker - 0.0.1</h1>
+  <h1>Combo Maker - 0.1.1</h1>
   
   <header class="header">
     <!-- Selecionar Idioma -->
@@ -173,7 +173,10 @@
       <section id="wearables-tab" class="tab-content wearables-block">
         <h2 id="total-valor-em-wearables">Wearables</h2>
         <div class="sub-tabs-buttons-container">
-          <button class="sub-tab-btn active" data-sub-tab="wearables-crops-sub">
+          <button class="sub-tab-btn active" data-sub-tab="wearables-factions-sub">
+            <img src="./icones/faction.png" alt="Ícone Crops" class="icon-btn">Factions
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="wearables-crops-sub">
             <img src="./icones/skillCrop.png" alt="Ícone Crops" class="icon-btn">Crops
           </button>
           <button class="sub-tab-btn" data-sub-tab="wearables-fruits-sub">
@@ -187,7 +190,10 @@
           </button>
         </div>
 
-        <div class="sub-tab-content active" id="wearables-crops-sub">
+        <div class="sub-tab-content active" id="wearables-factions-sub">
+          <div id="wearables-container-factions" class="nft-container"></div>
+        </div>
+        <div class="sub-tab-content" id="wearables-crops-sub">
           <div id="wearables-container-crops" class="nft-container"></div>
         </div>
         <div class="sub-tab-content" id="wearables-fruits-sub">

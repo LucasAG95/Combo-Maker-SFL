@@ -112,6 +112,7 @@ function buffsAdicionadosCrops() {
             skillsCrops.tier3,
             collectibles.ferreiro,
             collectibles.crops,
+            wearables.factions,
             wearables.crops,
             shrines,
             totems

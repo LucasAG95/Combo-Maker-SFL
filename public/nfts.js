@@ -1736,6 +1736,90 @@ console.log(mapaDeTodosCollectibles)
 //=============================================================================================================================================================================
 
 let wearables = {
+    factions: [
+        {
+            idName: 'factionQuiver',
+            name: '"Faction" Quiver',
+            fac1: 'Bumpkin Quiver',
+            fac2: 'Goblin Quiver',
+            fac3: 'Nightshade Quiver',
+            fac4: 'Sunflorian Quiver',
+            descricao: {
+                portugues: '+0.25 Crops & Frutas',
+                ingles: '+0.25 Crops & Fruits'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.25,
+                    recursoAfetado: ['Sunflower', 'Potato', 'Rhubarb', 'Pumpkin', 'Zucchini', 'Carrot', 'Yam', 'Cabbage', 'Broccoli', 'Soybean', 'Pepper', 'Beetroot', 
+                        'Cauliflower', 'Parsnip', 'Eggplant', 'Corn', 'Onion', 'Turnip', 'Radish', 'Wheat', 'Kale', 'Artichoke', 'Barley', 'Tomato', 'Lemon', 'Blueberry',
+                        'Orange', 'Apple', 'Banana', 'Grape', 'Rice', 'Olive'],
+                }
+            ]
+        },
+        {
+            idName: 'factionCrown',
+            name: '"Faction" Crown',
+            fac1: 'Bumpkin Crown',
+            fac2: 'Goblin Crown',
+            fac3: 'Nightshade Crown',
+            fac4: 'Sunflorian Crown',
+            descricao: {
+                portugues: '+25% FLOWER e Coin Deliveries / +10% Marks',
+                ingles: '+25% FLOWER and Coin Deliveries / +10% Marks'
+            },
+            possui: false,
+            delivery: [
+                {
+                    sinal: '+',
+                    buff: 0.25,
+                    recursoAfetado: [''],
+                }
+            ]
+        },
+        {
+            idName: 'factionShield',
+            name: '"Faction" Shield',
+            fac1: 'Bumpkin Shield',
+            fac2: 'Goblin Shield',
+            fac3: 'Nightshade Shield',
+            fac4: 'Sunflorian Shield',
+            descricao: {
+                portugues: '+0.25 de madeira e minerais',
+                ingles: '+0.25 Wood and Minerals'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.25,
+                    recursoAfetado: ['Tree', 'Stone', 'Iron', 'Gold'],
+                }
+            ]
+        },
+        {
+            idName: 'factionMedallion',
+            name: '"Faction" Medallion',
+            fac1: 'Bumpkin Medallion',
+            fac2: 'Goblin Medallion',
+            fac3: 'Nightshade Medallion',
+            fac4: 'Sunflorian Medallion',
+            descricao: {
+                portugues: '-25% no Tempo de Cozimento',
+                ingles: '-25% Cooking Time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.75,
+                    recursoAfetado: [''],
+                }
+            ]
+        },
+    ],
     crops: [
         {
             idNumber: 30,
@@ -2483,6 +2567,7 @@ let wearables = {
 }
 
 let todosWearables = [
+    ...wearables.factions,
     ...wearables.crops,
     ...wearables.fruits,
     ...wearables.greenhouse,
