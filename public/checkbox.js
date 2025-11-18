@@ -194,15 +194,8 @@ function mostrarInfoCard(item, imgPath) {
     const card = document.getElementById("info-card");
 
     //Mudar texto dependendo do idioma!
-    let textoUltimaVenda = 'Ultima Venda:';
-    let textoPrecoAtual = 'Preço Atual:';
-    if(idioma === 'portugues') {
-        textoUltimaVenda = 'Ultima Venda: '
-        textoPrecoAtual = 'Preço Atual:';
-    } else if(idioma === 'ingles') {
-        textoUltimaVenda = 'Last Sale: '
-        textoPrecoAtual = 'Current Price:';
-    }
+    let textoUltimaVenda = idioma === 'ingles' ? 'Last Sale:' : 'Ultima Venda:';
+    let textoPrecoAtual = idioma === 'ingles' ? 'Current Price:' : 'Preço Atual:';
 
     let ultimavenda;
     if (!item.preco || item.preco === 0 || item.preco === '') {
@@ -210,7 +203,7 @@ function mostrarInfoCard(item, imgPath) {
     } else {
         ultimavenda = `${textoUltimaVenda} <img src="./icones/flower.png" class="crop-img">${item.preco}`;
     }
-
+    
     let precoAtual;
     if (!item.precoAtual || item.precoAtual === 0 || item.precoAtual === '') {
         precoAtual = '';
@@ -218,7 +211,7 @@ function mostrarInfoCard(item, imgPath) {
         precoAtual = `${textoPrecoAtual} <img src="./icones/flower.png" class="crop-img">${item.precoAtual}`;
     }
 
-    document.querySelector(".card-img").src = imgPath;
+    document.querySelector(".card-img").src = imgPath || "./icones/flower.png";
     document.getElementById("titulo-buff").textContent = item.name;
     document.getElementById("descricao-do-buff").textContent = item.descricao[idioma] || "Sem descrição";
     document.getElementById("preco-atual").innerHTML = precoAtual;
