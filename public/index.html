@@ -9,7 +9,7 @@
   
 
   <header class="header">
-    <h1>Combo Maker - 0.1.2</h1>
+    <h1>Combo Maker - 0.1.3</h1>
     <!-- Selecionar Idioma -->
     <div class="select-idioma">
         <label for="opcao-idioma">
@@ -26,9 +26,14 @@
     <div class="input-numero-da-farm">
       <label id="labelNumeroFarm" for="numeroFarm">Inserir Farm:</label>
       <input id="numeroFarm" type="number" placeholder="Ex: 3661">
-      <button id="procurarFarm" onclick="numeroDaFarm()">Pesquisar</button> 
+      <button id="procurarFarm" onclick="numeroDaFarm()">Pesquisar</button>
+
+      <!-- Loader -->
+      <div id="loader" class="loader" style="display: none;"></div>
+      <h3 id="donoDaFarm"></h3>
     </div>
   </section>
+
 
   <section class="linha-selects">
 
@@ -296,7 +301,10 @@
       <h4 class="card-preco" id="ultima-venda"></h4>
     </div>
 
-  </main><br>
+  </main>
+
+  <!-- Colocar o total de valor que possui em NFTs -->
+  <h4 id="valor-total-em-NFTs"></h4>
 
   <section class="linha-selects">
     <div class="select-group"> 
@@ -335,5 +343,6 @@
   <script src="./checkbox.js"></script>
   <script src="./tabs.js"></script>
   <script src="./inputs.js"></script>
+  <script src="./traducoes.js"></script>
 </body>
 </html>

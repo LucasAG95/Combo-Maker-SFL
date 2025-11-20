@@ -148,6 +148,9 @@ td input.quantidade-input-cm {
   margin: 0;        /* <-- remove a margem inferior */
   color: #ffa726;
   white-space: nowrap; /* evita quebrar linha */
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /* ====================
@@ -555,4 +558,19 @@ input[type="checkbox"]:disabled + .nft-img:hover {
 
 .header h1 {
   margin: 0;                /* remove margem padrão do h1 */
+}
+
+.loader {
+  width: 22px;
+  height: 22px;
+  border: 3px solid #ffffff33;
+  border-top: 3px solid #ffa726;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

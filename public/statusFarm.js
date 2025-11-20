@@ -54,7 +54,6 @@ function ilhaPrestigioAtual() { // Função central que lê o <select>, calcula 
 };
 //registra um ouvinte de evento no <select id="ilhaSelect">.
 document.getElementById('ilhaSelect').addEventListener('change', ilhaPrestigioAtual);
-document.getElementById('ilhaSelect').addEventListener('change', sePossuiVipOuNao); //para que quando eu mude de ilha ele chame a função para mudar autimaticamente o vip e mostrar o resultado corretamente
 console.log(ilha)
 
 //================================================================================================================================================

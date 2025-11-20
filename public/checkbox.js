@@ -24,6 +24,7 @@ function configurarCheckbox() {
                 buffsAdicionadosCrops();
                 chamadorDeDesbloquearSkills();
                 ativarBonusDasNftsESkills();
+                pontosGastosEmSkills();
             });
         };
     });
@@ -40,6 +41,7 @@ function configurarCheckbox() {
                 buffsAdicionadosCrops();
                 ativarBonusDasNftsESkills();
                 nftsDeTierQuePossuemBuffDoAntecessor();
+                valorTotalEmNfts();
             });
         };
     });
@@ -54,6 +56,7 @@ function configurarCheckbox() {
                 wearables.possui = checkbox.checked;
                 buffsAdicionadosCrops();
                 ativarBonusDasNftsESkills();
+                valorTotalEmNfts();
             });
         };
     });

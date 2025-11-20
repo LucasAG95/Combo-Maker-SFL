@@ -1,23 +1,33 @@
+let donoDaFarm = '';
 //Puxar e marca dados da farm!
 function numeroDaFarm() {
+    const loader = document.getElementById("loader");
+    const botao = document.getElementById("procurarFarm");
+
+    // Pegando valor
     let numeroFarmId = document.getElementById('numeroFarm').value;
     console.log("🔎 Buscando farm ID:", numeroFarmId);
-    // Faz uma requisição para a API do Sunflower Land, pegando os dados da farm pelo número (numeroFarm).
-    
-    if (!numeroFarmId) {
-        console.error('Por favor, digite o numero da farm para pesquisar!');
-        return; // Sai da função se o campo estiver vazio
-    }
 
-    //reponsavel por puxar dados da api
+    // Se vazio, não busca
+    if (!numeroFarmId) {
+        console.error('Por favor, digite o número da farm para pesquisar!');
+        return;
+    }
+    
+    // Ativa loading
+    let idiomaProLoading = idioma === 'portugues' ? 'Carregando...' : 'Loading...'
+    loader.style.display = 'block';
+    botao.disabled = true;
+    botao.innerText = idiomaProLoading;
+
+    //================ BUSCA DADOS =====================
     fetch(`https://script.google.com/macros/s/AKfycbwl5QWyLTaB1S4GXOQaZhf2NNYLntfWb9wto02fbBaBBKTrud64w3SrpFtqJCv8LZaiag/exec?farmid=${numeroFarmId}`)
-        .then(res => res.json()) // Quando a resposta chegar, converte o conteúdo dela para JSON.
+        .then(res => res.json())
         .then(data => {
-            
             //=====================================================================================================================================================
 
             //infos para marcar skills e NFTs
-            const skillsLegacyQuePossui =    data.farm.inventory;
+            const skillsLegacyQuePossui = data.farm.inventory;
             const skillQuePossui = data.farm.bumpkin.skills;
             const collectiblesQuePossui = data.farm.inventory;
             const wearablesQuePossui = data.farm.wardrobe;
@@ -26,25 +36,35 @@ function numeroDaFarm() {
             marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui, shrinesQuePossui);
 
             //=====================================================================================================================================================
-
-            //infos para preencher plots/nodes que possue na farm
+            
             const cropPlotsQuePossui = data.farm.inventory['Crop Plot'];
-
             preencherInformacoesDaFarm(cropPlotsQuePossui);
 
             //=====================================================================================================================================================
-
-            //infos para preencher o prestigio de Farm em que esta
+            
             const ilhaQueEsta = data.farm.inventory;
             ilhaPrestigioQueEsta(ilhaQueEsta);
 
+            //=====================================================================================================================================================
+            
+            donoDaFarm = data.farm.username;
+            mudarIdioma();
+
         })
         .catch(err => {
-            console.error('Erro ao puxar a API da farm:', err); // Caso dê erro na requisição, mostra a mensagem de erro no console.
+            console.error('Erro ao puxar a API da farm:', err);
+
+        })
+        .finally(() => {
+            // DESLIGA O LOADING sempre, mesmo se der erro
+            let idiomaPósPesquisar = idioma === 'portugues' ? 'Pesquisar' : 'Search';
+            loader.style.display = 'none';
+            botao.disabled = false;
+            botao.innerText = idiomaPósPesquisar;
         });
 
+    //funções no qual a API vai fazer suas marcações de acordo com a farm pesquisada!
     function marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui, shrinesQuePossui) {
-        //Todas skills legacy que possuir vai ser marcada
         skillsLegacy.forEach(legacy => {
             let checkbox = document.getElementById(legacy.idName);
             if (skillsLegacyQuePossui[legacy.name]) {
@@ -56,7 +76,6 @@ function numeroDaFarm() {
             };      
         });
 
-        //vai marcar todas skills que você possuir na arvore de skills!
         todasSkillsComTier.forEach(skill => {
             let checkbox = document.getElementById(skill.idName);
             if (skillQuePossui[skill.name]) {
@@ -68,7 +87,6 @@ function numeroDaFarm() {
             };    
         });
 
-        //vai marcar todos collectibles que você possuir!
         todosCollectibles.forEach(collectibles => {
             let checkbox = document.getElementById(collectibles.idName);
             if (collectiblesQuePossui[collectibles.name]) {
@@ -80,7 +98,6 @@ function numeroDaFarm() {
             };    
         });
 
-        //vai marcar todos wearables que você possuir!
         todosWearables.forEach(wearables => {
             let checkbox = document.getElementById(wearables.idName);
             if (wearablesQuePossui[wearables.name] ||
@@ -97,7 +114,6 @@ function numeroDaFarm() {
             };    
         });
 
-        //vai marcar todos collectibles que você possuir!
         shrines.forEach(shrine => {
             let checkbox = document.getElementById(shrine.idName);
             if (shrinesQuePossui[shrine.name]) {
@@ -113,21 +129,16 @@ function numeroDaFarm() {
         chamadorDeDesbloquearSkills();
         ativarBonusDasNftsESkills();
         nftsDeTierQuePossuemBuffDoAntecessor();
-    };
-
-    //==================================================================================================================================================================
+        pontosGastosEmSkills();
+        valorTotalEmNfts();
+    }
 
     function preencherInformacoesDaFarm(cropPlotsQuePossui) {
-        //Plots Crops
         plots = cropPlotsQuePossui;
         document.getElementById('plotsPossuidos').value = cropPlotsQuePossui;
-
         salvarInformacoes();
-    };
+    }
 
-    //==================================================================================================================================================================
-
-    //função responsavel por selecionar a ilha prestigio em que esta!
     function ilhaPrestigioQueEsta(ilhaQueEsta) {
         if (ilhaQueEsta['Lava Pit']) {
             ilha = 'Vulcano';
@@ -143,10 +154,9 @@ function numeroDaFarm() {
             document.getElementById('ilhaSelect').value = 'Basic';            
         }
         ilhaPrestigioAtual();
-        sePossuiVipOuNao();
-    };
+    }
+}
 
-};
 
 //======================================================================================================================================================================
 
