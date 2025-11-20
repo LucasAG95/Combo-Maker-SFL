@@ -54,8 +54,8 @@ function valorTotalEmNfts() {
     });
     document.getElementById('total-valor-em-wearables').innerHTML = `Wearables:
         <h3>
-            ${idiomaPrecoAtual}: <img src="./icones/flower.png" class="crop-img">${valorEmWearablesPrecoAtual.toFixed(2)} ~ <img src="./icones/usdc.png" class="crop-img">$${(valorEmCollectiblesPrecoAtual * precoDoFlower).toFixed(2)}<br>
-            ${idiomaUltimaVenda}: <img src="./icones/flower.png" class="crop-img">${valorEmWearablesUltimaVenda.toFixed(2)} ~ <img src="./icones/usdc.png" class="crop-img">$${(valorEmCollectiblesUltimaVenda * precoDoFlower).toFixed(2)}
+            ${idiomaPrecoAtual}: <img src="./icones/flower.png" class="crop-img">${valorEmWearablesPrecoAtual.toFixed(2)} ~ <img src="./icones/usdc.png" class="crop-img">$${(valorEmWearablesPrecoAtual * precoDoFlower).toFixed(2)}<br>
+            ${idiomaUltimaVenda}: <img src="./icones/flower.png" class="crop-img">${valorEmWearablesUltimaVenda.toFixed(2)} ~ <img src="./icones/usdc.png" class="crop-img">$${(valorEmWearablesUltimaVenda * precoDoFlower).toFixed(2)}
         </h3>`;
 
     //========================================================================================================================================================================
