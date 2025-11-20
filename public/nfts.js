@@ -2693,8 +2693,8 @@ let shrines = [
         idName: 'mothShrine',
         name: 'Moth Shrine',
         descricao: {
-            portugues: `-25% no tempo de crescimento das flores / 10% de chance de receber +1 flor - Dura por 7 dias`,
-            ingles: `-25% Flower Growth Time / 10% chance to get +1 Flower - Lasts for 7days`
+            portugues: `-25% no tempo de crescimento das flores / 20% de chance de receber +1 flor - Dura por 7 dias`,
+            ingles: `-25% Flower Growth Time / 20% chance to get +1 Flower - Lasts for 7days`
         },
         possui: false,
         tempo: [
@@ -2707,7 +2707,7 @@ let shrines = [
         quantidade: [
             {
                 sinal: 'x',
-                buff: 1.1,
+                buff: 1.2,
                 recursoAfetado: [''],
             }
         ]
@@ -2748,14 +2748,14 @@ let shrines = [
         idName: 'tortoiseShrine',
         name: 'Tortoise Shrine',
         descricao: {
-            portugues: `-25% no tempo da Greenhouse / -10% no tempo da Crop Machine - Dura por 7 dias`,
-            ingles: `-25% Greenhouse Growth Time / -10% Crop Machine Growth Time - Lasts for 7days`
+            portugues: `-33% no tempo da Greenhouse / -10% no tempo da Crop Machine - Dura por 7 dias`,
+            ingles: `-33% Greenhouse Growth Time / -10% Crop Machine Growth Time - Lasts for 7days`
         },
         possui: false,
         tempo: [
             {
                 sinal: 'x',
-                buff: 0.75,
+                buff: 0.67,
                 recursoAfetado: ['Grape', 'Rice', 'Olive'],
             }
         ],
@@ -2771,8 +2771,8 @@ let shrines = [
         idName: 'stagShrine',
         name: 'Stag Shrine',
         descricao: {
-            portugues: `-25% no tempo de recuperação do Oil - Dura por 7 dias`,
-            ingles: `-25% Oil Recovery Time - Lasts for 7days`
+            portugues: `-25% no tempo de recuperação do Oil / +15 Oil every 3rd drill - Dura por 7 dias`,
+            ingles: `-25% Oil Recovery Time / +15 Óleo a cada 3 perfurações - Lasts for 7days`
         },
         possui: false,
         tempo: [
@@ -2782,13 +2782,20 @@ let shrines = [
                 recursoAfetado: ['Oil'],
             }
         ],
+        quantidade: [
+            {
+                sinal: '+',
+                buff: 15 / 3,
+                recursoAfetado: ['Oil'],
+            }
+        ],
     },
     {
         idName: 'bearShrine',
         name: 'Bear Shrine',
         descricao: {
-            portugues: `+0.5 na velocidade de produção de mel / +10% de chance de enxame de abelhas - Dura por 7 dias`,
-            ingles: `+0.5 Honey Production Speed / +10% chance of bee swarm - Lasts for 7days`
+            portugues: `+0.5 na velocidade de produção de mel / +20% de chance de enxame de abelhas - Dura por 7 dias`,
+            ingles: `+0.5 Honey Production Speed / +20% chance of bee swarm - Lasts for 7days`
         },
         possui: false,
         tempo: [
@@ -2801,7 +2808,7 @@ let shrines = [
         quantidade: [
             {
                 sinal: 'x',
-                buff: 1.1, // talvez rever, pq isso funciona nas crops
+                buff: 1.2, // talvez rever, pq isso funciona nas crops
                 recursoAfetado: [''],
             }
         ],
@@ -2864,9 +2871,9 @@ let shrines = [
         possui: false,
         taxa: [
             {
-                sinal: '-',
-                buff: 2.5,
-                recursoAfetado: [''],
+                sinal: '+',
+                buff: 0.025,
+                recursoAfetado: ['taxa'],
             }
         ],
     },
@@ -2913,5 +2920,11 @@ let todosTemporarios = [
     ...shrines,
     ...totems
 ];
+
+let mapaDeBuffsTemporarios = {}
+todosTemporarios.forEach(temporario => { 
+    mapaDeBuffsTemporarios[temporario.idName] = temporario; 
+});
+console.log(mapaDeBuffsTemporarios)
 
 //=============================================================================================================================================================================

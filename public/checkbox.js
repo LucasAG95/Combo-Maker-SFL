@@ -69,6 +69,7 @@ function configurarCheckbox() {
                 temporario.possui = checkbox.checked;
                 buffsAdicionadosCrops();
                 ativarBonusDasNftsESkills();
+                ilhaPrestigioAtual();
             });
         };
     });
@@ -199,6 +200,8 @@ window.onload = function () {
     renderNFTs(totems, 'totems-container', './shrines');
 
     //chamando funções
+    valoresDasGems();
+    valorDoFlowerEmDolar();
     mudarIdioma();
     configurarCheckbox();
     numeroDaFarm();
@@ -221,14 +224,16 @@ function mostrarInfoCard(item, imgPath) {
     if (!item.preco || item.preco === 0 || item.preco === '') {
         ultimavenda = '';
     } else {
-        ultimavenda = `${textoUltimaVenda} <img src="./icones/flower.png" class="crop-img">${item.preco}`;
+        ultimavenda = `${textoUltimaVenda}<img src="./icones/flower.png" class="crop-img">${item.preco} ~
+            <img src="./icones/usdc.png" class="crop-img">${Number(item.preco * precoDoFlower).toFixed(2)}`;
     }
     
     let precoAtual;
     if (!item.precoAtual || item.precoAtual === 0 || item.precoAtual === '') {
         precoAtual = '';
     } else {
-        precoAtual = `${textoPrecoAtual} <img src="./icones/flower.png" class="crop-img">${item.precoAtual}`;
+        precoAtual = `${textoPrecoAtual} <img src="./icones/flower.png" class="crop-img">${item.precoAtual} ~ 
+            <img src="./icones/usdc.png" class="crop-img">${Number(item.precoAtual * precoDoFlower).toFixed(2)}`;
     }
 
     document.querySelector(".card-img").src = imgPath || "./icones/flower.png";

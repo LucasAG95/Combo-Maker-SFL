@@ -26,3 +26,24 @@ function selecionarModoDeCalculo() {
 
 };
 document.getElementById('tipo-de-calculo-crop').addEventListener('change', selecionarModoDeCalculo);
+
+//=======================================================================================================================================================================
+
+//Responsavel por dar valor a cada Gem dependendo do pack
+let precoPorGem = 0.9 / 100; //valor do primeiro pack dividido pelas gems
+let precoDaGemEmFlower;
+function valoresDasGems() {
+    let packGemsSelecionado = document.getElementById('pack-gems').value;
+    let quantidadeGems = parseFloat(packGemsSelecionado.split('-')[0]); // Pega a primeira parte antes do '-'
+    let custoDoPack = parseFloat(packGemsSelecionado.split('-')[1]); // Pega tudo depois do '-'
+    precoPorGem = custoDoPack / quantidadeGems;
+    //conversao do valor de cada gem pra flower
+    precoDaGemEmFlower = precoPorGem / precoDoFlower;
+    console.log(precoDaGemEmFlower + `esse é o valor`);
+
+    //funções chamadas
+    buffsAdicionadosCrops();
+    mudarIdioma();
+
+}
+document.getElementById('pack-gems').addEventListener('change', valoresDasGems);

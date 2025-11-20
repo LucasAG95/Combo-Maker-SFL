@@ -25,7 +25,7 @@ function tabelaDeCrops() {
             <th>Sementes Usadas<br>Total de Crops</th>      
             <th>Lucro<br>em Coins</th>
             <th>Valor de Venda <br> Market P2P</th>
-            <th>Lucro no Market P2P<br>Taxa:${(taxa * 100) * desconto}%</th>
+            <th>Lucro no Market P2P<br>Taxa: ${(taxa * 100).toFixed(2)}%</th>
         </tr>`
     let tabelaIngles =  `
         <tr>   
@@ -37,7 +37,7 @@ function tabelaDeCrops() {
             <th>Seeds Used<br>Total Crops</th>      
             <th>Profit<br>in Coins</th>
             <th>Sale Value <br> Market P2P</th>
-            <th>Profit on Market P2P<br>Fee:${(taxa * 100) * desconto}%</th>
+            <th>Profit on Market P2P<br>Fee: ${(taxa * 100).toFixed(2)}%</th>
         </tr>`
     
     //selecionando a tabela que vai usar!
@@ -86,7 +86,7 @@ function tabelaDeCrops() {
         //Resultado em Flower
         let valorPorCropEmFlower = Number(crop.valorDoMarket);
         let GastoComSementeEmFlower = Number(((1 / flowerEmCoins) * custoPorSemente) * sementesUsadas);
-        let lucroFlower = crop.seedsPlantadas == 0 || ilha === 'Basic' ? 0 : Number((valorPorCropEmFlower * qtdTotal) * (1 - (taxa * desconto)) - GastoComSementeEmFlower);
+        let lucroFlower = crop.seedsPlantadas == 0 || ilha === 'Basic' ? 0 : Number((valorPorCropEmFlower * qtdTotal) * (1 - taxa) - GastoComSementeEmFlower);
         
         //estoque
         let estoque = Number(crop.estoqueTotal);
@@ -117,87 +117,90 @@ function tabelaDeCrops() {
 
     //=====================================================================================================================================================================
     
+    //ver o gasto com restock, cada restock de semente é 15 gems
     let gemsGastasComRestock = restockDoCombo * 15;
-    let lucroDoComboEm24h = (vinteQuatroHoras / tempoTotalDoCombo) * lucroTotalDoComboFlower || 0;
+
+    //calculo dos valores de restock do combo montado e seu desconto no lucro
+    let custoRestockDoComboFlower = Number(gemsGastasComRestock * precoDaGemEmFlower);
+    let custoRestockDoComboDolar = Number(gemsGastasComRestock * precoPorGem);
+    lucroTotalDoComboFlower -= custoRestockDoComboFlower;
+
+    //média em de restock e seu custo em 24h e desconto no lucro medio em 24h
     let mediaRestock24h = (vinteQuatroHoras / tempoTotalDoCombo) * restockDoCombo || 0;
-    let mediaGemsGastasRestock = mediaRestock24h * 15;
+    let mediaGemsGastasRestock24h = mediaRestock24h * 15;
+    let mediaCustoRestock24hFlower = Number(mediaGemsGastasRestock24h * precoDaGemEmFlower);
+    let mediaCustoRestock24hDolar = Number(mediaGemsGastasRestock24h * precoPorGem)
+    let lucroDoComboEm24h = ((vinteQuatroHoras / tempoTotalDoCombo) * lucroTotalDoComboFlower) - mediaCustoRestock24hFlower || 0;
 
+    
     //idioma dos Cards
-    let cardPortugues = `
+    let idiomaCardTempoTotal = idioma === 'portugues' ? 'Tempo Total' : 'Total Time';
+    let idiomaCardQtdRestock = idioma === 'portugues' ? 'Média de Restock' : 'Average Restock';
+    let idiomaCardCustoRestock = idioma === 'portugues' ? 'Gasto Médio com Restocks' : 'Average Cost of Restocks';
+    let idiomaCardLucroDoCombo = idioma === 'portugues' ? 'Lucro do Combo' : 'Combo Profit';
+    let idiomaCardQtdRestock24h = idioma === 'portugues' ? 'Média de Restock em 24h' : 'Average Restock in 24h';
+    let idiomaCardCustoRestock24h = idioma === 'portugues' ? 'Custo Médio em Restock (24h)' : 'Average Restock Cost (24h)';
+    let idiomaCardLucroEm24h = idioma === 'portugues' ? 'Média de Lucro em 24h' : 'Average Profit in 24h';
+
+    let cardResultados = `
         <div class="cards-totais">
 
             <div class="card-total">
-                <h3><img src="./icones/tempo.png" class="crop-img">Tempo Total</h3>
+                <h3><img src="./icones/tempo.png" class="crop-img">${idiomaCardTempoTotal}</h3>
                 <p>${formatarTempoTotalDoDia(tempoTotalDoCombo)}</p>
             </div>
-
+            <h1>-</h1> 
             <div class="card-total">
-                <h3>Quantidade de Restock</h3>
+                <h3>${idiomaCardQtdRestock}</h3>
                 <p><img src="./icones/reestock.png" class="crop-img">${restockDoCombo.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestock.toFixed(2)}</p>
             </div>
 
             <div class="card-total">
-                <h3>Lucro Total</h3>
-                <p><img src="./icones/flower.png" class="crop-img">${lucroTotalDoComboFlower.toFixed(2)}</p>
+                <h3>${idiomaCardCustoRestock}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${custoRestockDoComboFlower.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${custoRestockDoComboDolar.toFixed(2)}
+                </p>
             </div>
 
             <div class="card-total">
-                <h3>Média de Restock em 24h</h3>
-                <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24h.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${mediaGemsGastasRestock.toFixed(2)}</p>
+                <h3>${idiomaCardLucroDoCombo}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroTotalDoComboFlower.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${Number(lucroTotalDoComboFlower * precoDoFlower).toFixed(2)}
+                </p>
+            </div>
+            <h1>-</h1> 
+            <div class="card-total">
+                <h3>${idiomaCardQtdRestock24h}</h3>
+                <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24h.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${mediaGemsGastasRestock24h.toFixed(2)}</p>
             </div>
 
             <div class="card-total">
-                <h3>Média de Lucro em 24h</h3>
-                <p><img src="./icones/flower.png" class="crop-img">${lucroDoComboEm24h.toFixed(2)}</p>
+                <h3>${idiomaCardCustoRestock24h}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${mediaCustoRestock24hFlower.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${mediaCustoRestock24hDolar.toFixed(2)}
+                </p>
+            </div>
+
+            <div class="card-total">
+                <h3>${idiomaCardLucroEm24h}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroDoComboEm24h.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${Number(lucroDoComboEm24h * precoDoFlower).toFixed(2)}    
+                </p>
             </div>
 
         </div>
         `;
-
-        let cardIngles = `
-        <div class="cards-totais">
-
-            <div class="card-total">
-                <h3><img src="./icones/tempo.png" class="crop-img">Total Time</h3>
-                <p>${formatarTempoTotalDoDia(tempoTotalDoCombo)}</p>
-            </div>
-
-            <div class="card-total">
-                <h3>Restock Quantity</h3>
-                <p><img src="./icones/reestock.png" class="crop-img">${restockDoCombo.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestock.toFixed(2)}</p>
-            </div>
-
-            <div class="card-total">
-                <h3>Total Profit</h3>
-                <p><img src="./icones/flower.png" class="crop-img">${lucroTotalDoComboFlower.toFixed(2)}</p>
-            </div>
-
-            <div class="card-total">
-                <h3>Average Restock in 24h</h3>
-                <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24h.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${mediaGemsGastasRestock.toFixed(2)}</p>
-            </div>
-
-            <div class="card-total">
-                <h3>Average Profit in 24h</h3>
-                <p><img src="./icones/flower.png" class="crop-img">${lucroDoComboEm24h.toFixed(2)}</p>
-            </div>
-
-        </div>
-        `;
-
-    let cardEscolhido = cardPortugues;
-    if (idioma === 'portugues') {
-        cardEscolhido = cardPortugues;
-    } else if (idioma === 'ingles') {
-        cardEscolhido = cardIngles;
-    };
 
     //=====================================================================================================================================================================
 
     // renderiza tudo
     mostrarResultadoCrops.innerHTML = `
         <div class="tabelas-em-ordem">
-            ${cardEscolhido}
+            ${cardResultados}
             ${tabelaCrops}
         </div>
     `;

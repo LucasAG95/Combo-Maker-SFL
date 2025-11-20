@@ -215,3 +215,23 @@ function atualizarValoresDasNfts(apiCollectibles, apiWearables) {
     });
     mostrarInfoCard();
 };
+
+//======================================================================================================================================================================
+
+//api para puxar o valor do flower
+fetch(`/api/proxy?url=https://sfl.world/api/v1.1/exchange`)
+  .then(res => res.json())
+  .then(data => {  
+    valorDoFlowerEmDolar(data.sfl.usd);
+  })
+  .catch(err => {
+    console.error('Erro ao puxar a planilha:', err);
+  });
+
+let precoDoFlower;
+function valorDoFlowerEmDolar(valor) {
+    precoDoFlower = valor;
+    console.log(`$${precoDoFlower}`);
+    
+    valoresDasGems();
+};

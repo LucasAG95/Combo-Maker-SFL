@@ -6,9 +6,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Combo Maker - 0.1.1</h1>
   
+
   <header class="header">
+    <h1>Combo Maker - 0.1.2</h1>
     <!-- Selecionar Idioma -->
     <div class="select-idioma">
         <label for="opcao-idioma">
@@ -18,14 +19,71 @@
           <option value="portugues">Português</option>
           <option value="ingles">English</option>
         </select>
-    </div><br>
+    </div>
+  </header>
+
+  <section class="linha-selects">
     <div class="input-numero-da-farm">
       <label id="labelNumeroFarm" for="numeroFarm">Inserir Farm:</label>
       <input id="numeroFarm" type="number" placeholder="Ex: 3661">
       <button id="procurarFarm" onclick="numeroDaFarm()">Pesquisar</button> 
     </div>
-  </header>
-  <br>
+  </section>
+
+  <section class="linha-selects">
+
+    <div class="select-group">
+      <label id="ilhaAtual" for="ilhaSelect">Tipo de Ilha:</label>
+      <select id="ilhaSelect">
+        <option value="Basic">Basic</option>
+        <option value="Petal">Petal</option>
+        <option value="Desert">Desert</option>
+        <option value="Vulcano">Vulcano</option>
+      </select>
+    </div>
+
+    <!-- Selecionar Estação -->
+    <div class="select-group">
+      <label for="estacaoSelect">
+        <span id="texto-estacao">Estação:</span>
+      </label>
+      <select id="estacaoSelect">
+        <option value="Spring">Primavera</option>
+        <option value="Summer">Verão</option>
+        <option value="Autumn">Outono</option>
+        <option value="Winter">Inverno</option>
+      </select>
+    </div>
+
+    <div class="select-group">
+      <label for="vipSelect">VIP?</label>
+      <select id="vipSelect">
+        <option value="Sim">Sim</option>
+        <option value="Não">Não</option>
+      </select>
+    </div>
+
+    <div class="select-group">
+      <label id="flowerPorCoins" for="flower-em-coins">Flower por coins:</label>
+      <input id="flower-em-coins" type="number" placeholder="Ex: 320">
+    </div>
+    
+    <div class="select-group"> 
+      <label id="pacoteDeGems" for="pack-gems">Pacote de Gems:</label>
+      <select id="pack-gems">
+        <option value="100-0.90">100 Gems - $0.90</option>
+        <option value="650-4.54">650 Gems - $4.54</option>
+        <option value="1350-9.09">1350 Gems - $9.09</option>
+        <option value="2800-18.19">2800 Gems - $18.19</option>
+        <option value="7400-45.49">7400 Gems - $45.49</option>
+        <option value="15500-90.99">15500 Gems - $90.99</option>
+        <option value="200000-909.99">200000 Gems - $909.99</option>
+      </select>
+    </div>
+
+  </section>
+
+  <h4 id="valor-do-flower"></h4>
 
   <!-- Container flex: Tabs + Card -->
   <main class="items-row">
@@ -240,46 +298,6 @@
 
   </main><br>
 
-
-  <section class="linha-selects">
-    <div class="select-group">
-      <label id="ilhaAtual" for="ilhaSelect">Tipo de Ilha:</label>
-      <select id="ilhaSelect">
-        <option value="Basic">Basic</option>
-        <option value="Petal">Petal</option>
-        <option value="Desert">Desert</option>
-        <option value="Vulcano">Vulcano</option>
-      </select>
-    </div>
-
-    <!-- Selecionar Estação -->
-    <div class="select-group">
-      <label for="estacaoSelect">
-        <span id="texto-estacao">Estação:</span>
-      </label>
-      <select id="estacaoSelect">
-        <option value="Spring">Primavera</option>
-        <option value="Summer">Verão</option>
-        <option value="Autumn">Outono</option>
-        <option value="Winter">Inverno</option>
-      </select>
-    </div>
-
-    <div class="select-group">
-      <label for="vipSelect">VIP?</label>
-      <select id="vipSelect">
-        <option value="Sim">Sim</option>
-        <option value="Não">Não</option>
-      </select>
-    </div>
-
-    <div class="select-group">
-      <label id="flowerPorCoins" for="flower-em-coins">Flower por coins:</label>
-      <input id="flower-em-coins" type="number" placeholder="Ex: 320">
-    </div>
-  </section>
-
-
   <section class="linha-selects">
     <div class="select-group"> 
       <label id="modoDeCalcularCrops" for="tipo-de-calculo">Modo de calcular as Crops:</label>
@@ -293,9 +311,11 @@
       <label id="cropPlotsQuePossui" for="plotsPossuidos">Qtd. de Crop Plots</label>
       <input id="plotsPossuidos" type="number" placeholder="Ex: 70">
     </div>
+
     <button id="salvarInfos" onclick="salvarInformacoes()">Salvar</button>
   </section>
 
+  <h3 id="mensagemDeAviso">* Tanto o 'Lucro do Combo' quanto a 'Média de Lucro em 24h' já mostram o resultado final, com todos os custos descontados (taxas, custo das sementes e gems).</h3>
 
   <!-- Área onde a tabela será inserida -->
   <div id="saida-das-crops"></div>

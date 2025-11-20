@@ -32,6 +32,7 @@ function salvarInformacoes() {
 //Prestigio em que a pessoa está e calculo da taxa
 let ilha = 'Basic'; // guarda o nome da ilha selecionada
 let taxa = 1; // guarda a taxa calculada para a ilha
+let vip = 'Sim'; //Se a pessoa possui VIP ou não e desconto que recebe na taxa
 
 function ilhaPrestigioAtual() { // Função central que lê o <select>, calcula a taxa e atualiza a UI
     ilha = document.getElementById('ilhaSelect').value; //ela pega o <select id="ilhaSelect"> no HTML e guarda o valor escolhido dentro de ilha.
@@ -40,10 +41,15 @@ function ilhaPrestigioAtual() { // Função central que lê o <select>, calcula 
     } else if (ilha === 'Petal') {
         taxa = 0.5;
     } else if (ilha === 'Desert') {
-        taxa = 0.2
+        taxa = 0.2;
     } else if (ilha === 'Vulcano') {
-        taxa = 0.15
+        taxa = 0.15;
     };
+
+    if (vip === 'Sim') taxa *= 0.5;
+
+    if (mapaDeBuffsTemporarios['tradingShrine'].possui) taxa -= mapaDeBuffsTemporarios['tradingShrine'].taxa[0].buff;
+    
     buffsAdicionadosCrops();
 };
 //registra um ouvinte de evento no <select id="ilhaSelect">.
@@ -52,18 +58,3 @@ document.getElementById('ilhaSelect').addEventListener('change', sePossuiVipOuNa
 console.log(ilha)
 
 //================================================================================================================================================
-
-//Se a pessoa possui VIP ou não e desconto que recebe na taxa
-let vip = 'Sim';
-let desconto = 1;
-
-function sePossuiVipOuNao() {
-    vip = document.getElementById('vipSelect').value;
-    if (vip === 'Sim' && ilha !== 'Basic') {
-        desconto = 0.5;
-    } else {
-        desconto = 1;
-    }
-    ilhaPrestigioAtual();
-}
-document.getElementById('vipSelect').addEventListener('change', sePossuiVipOuNao);
