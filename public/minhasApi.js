@@ -25,31 +25,45 @@ function numeroDaFarm() {
         .then(res => res.json())
         .then(data => {
             //=====================================================================================================================================================
+            
+            // Une todos os collectibles colocados na Land e na Casa em um único objeto. Usa espalhamento com nullish coalescing (?? {}) para evitar erros caso alguma das partes venha undefined, null ou vazia na API.
+            const todosCollectiblesColocados = {
+                ...(data.farm.home?.collectibles ?? {}),
+                ...(data.farm.collectibles ?? {}),
+                ...(data.farm.buildings ?? {})
+            };
 
             //infos para marcar skills e NFTs
             const skillsLegacyQuePossui = data.farm.inventory;
             const skillQuePossui = data.farm.bumpkin.skills;
             const collectiblesQuePossui = data.farm.inventory;
             const wearablesQuePossui = data.farm.wardrobe;
-            const shrinesQuePossui = data.farm.inventory;
+            const buffsTemporariosQuePossui = todosCollectiblesColocados;
             
-            marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui, shrinesQuePossui);
+            marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui, buffsTemporariosQuePossui);
 
             //=====================================================================================================================================================
             
+            //preencher quantos plots você possui na farm
             const cropPlotsQuePossui = data.farm.inventory['Crop Plot'];
             preencherInformacoesDaFarm(cropPlotsQuePossui);
 
             //=====================================================================================================================================================
             
-            const ilhaQueEsta = data.farm.inventory;
-            ilhaPrestigioQueEsta(ilhaQueEsta);
+            //trocar a ilha em que esta automaticamente
+            ilha = data.farm.island.type;
+            document.getElementById('ilhaSelect').value = data.farm.island.type;
+            ilhaPrestigioAtual();
 
             //=====================================================================================================================================================
             
+            //mostrar de quem é a farm!
             donoDaFarm = data.farm.username;
             mudarIdioma();
 
+            //=====================================================================================================================================================
+
+            //mudar a estação automaticamente para a q esta no game!
             document.getElementById('estacaoSelect').value = data.farm.season.season;
             selecionandoEstacao();
 
@@ -67,7 +81,7 @@ function numeroDaFarm() {
         });
 
     //funções no qual a API vai fazer suas marcações de acordo com a farm pesquisada!
-    function marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui, shrinesQuePossui) {
+    function marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui, buffsTemporariosQuePossui) {
         skillsLegacy.forEach(legacy => {
             let checkbox = document.getElementById(legacy.idName);
             if (skillsLegacyQuePossui[legacy.name]) {
@@ -117,14 +131,14 @@ function numeroDaFarm() {
             };    
         });
 
-        shrines.forEach(shrine => {
-            let checkbox = document.getElementById(shrine.idName);
-            if (shrinesQuePossui[shrine.name]) {
+        todosTemporarios.forEach(temporarios => {
+            let checkbox = document.getElementById(temporarios.idName);
+            if (buffsTemporariosQuePossui[temporarios.name]) {
                 checkbox.checked = true;
-                shrine.possui = true;
+                temporarios.possui = true;
             } else {
                 checkbox.checked = false;
-                shrine.possui = false;
+                temporarios.possui = false;
             };    
         });
         
@@ -141,24 +155,7 @@ function numeroDaFarm() {
         document.getElementById('plotsPossuidos').value = cropPlotsQuePossui;
         salvarInformacoes();
     }
-
-    function ilhaPrestigioQueEsta(ilhaQueEsta) {
-        if (ilhaQueEsta['Lava Pit']) {
-            ilha = 'Vulcano';
-            document.getElementById('ilhaSelect').value = 'Vulcano';
-        } else if (ilhaQueEsta['Oil Reserve']) {
-            ilha = 'Desert';
-            document.getElementById('ilhaSelect').value = 'Desert';
-        } else if (ilhaQueEsta['Crimstone Rock']) {
-            ilha = 'Petal';
-            document.getElementById('ilhaSelect').value = 'Petal';
-        } else {
-            ilha = 'Basic';
-            document.getElementById('ilhaSelect').value = 'Basic';            
-        }
-        ilhaPrestigioAtual();
-    }
-}
+};
 
 
 //======================================================================================================================================================================

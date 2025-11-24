@@ -30,19 +30,19 @@ function salvarInformacoes() {
 //================================================================================================================================================
 
 //Prestigio em que a pessoa está e calculo da taxa
-let ilha = 'Basic'; // guarda o nome da ilha selecionada
+let ilha = 'basic'; // guarda o nome da ilha selecionada
 let taxa = 1; // guarda a taxa calculada para a ilha
 let vip = 'Sim'; //Se a pessoa possui VIP ou não e desconto que recebe na taxa
 
 function ilhaPrestigioAtual() { // Função central que lê o <select>, calcula a taxa e atualiza a UI
     ilha = document.getElementById('ilhaSelect').value; //ela pega o <select id="ilhaSelect"> no HTML e guarda o valor escolhido dentro de ilha.
-    if (ilha === 'Basic') {
+    if (ilha === 'basic') {
         taxa = 'Não pode vender';
-    } else if (ilha === 'Petal') {
+    } else if (ilha === 'petal') {
         taxa = 0.5;
-    } else if (ilha === 'Desert') {
+    } else if (ilha === 'desert') {
         taxa = 0.2;
-    } else if (ilha === 'Vulcano') {
+    } else if (ilha === 'volcano') {
         taxa = 0.15;
     };
 
