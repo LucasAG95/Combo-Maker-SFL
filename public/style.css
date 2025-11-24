@@ -532,7 +532,7 @@ input[type="checkbox"]:disabled + .nft-img:hover {
     border: 1px solid #444;
     padding: 15px 20px;
     border-radius: 12px;
-    min-width: 160px;
+    min-width: 120px;
     text-align: center;
     color: #ffa726;
     box-shadow: 0 0 10px #0005;
@@ -544,7 +544,7 @@ input[type="checkbox"]:disabled + .nft-img:hover {
 }
 
 .card-total p {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     color: #fff;
 }

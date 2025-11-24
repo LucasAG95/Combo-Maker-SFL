@@ -1,30 +1,30 @@
 const crops = [
     //Crops Basicas
-    { name: 'Sunflower',   tempo: 60_000,     custoSemente: 0.01, valorDeVenda: 0.02, valorDoMarket: 0, estoque: 800, seedPlantadas: '', estacao: ['Spring', 'Summer'] },
-    { name: 'Potato',      tempo: 300_000,    custoSemente: 0.1,  valorDeVenda: 0.14, valorDoMarket: 0, estoque: 400, seedPlantadas: '', estacao: ['Summer', 'Autumn', 'Winter'] },
-    { name: 'Rhubarb',     tempo: 600_000,    custoSemente: 0.15, valorDeVenda: 0.24, valorDoMarket: 0, estoque: 400, seedPlantadas: '', estacao: ['Spring'] },
-    { name: 'Pumpkin',     tempo: 1_800_000,  custoSemente: 0.2,  valorDeVenda: 0.4,  valorDoMarket: 0, estoque: 300, seedPlantadas: '', estacao: ['Autumn'] },
-    { name: 'Zucchini',    tempo: 1_800_000,  custoSemente: 0.2,  valorDeVenda: 0.4,  valorDoMarket: 0, estoque: 400, seedPlantadas: '', estacao: ['Summer'] },
+    { name: 'Sunflower',   tempo: 60_000,     custoSemente: 0.01, valorDeVenda: 0.02, valorDoMarket: 0, estoque: 800, seedPlantadas: '', estacao: ['spring', 'summer'] },
+    { name: 'Potato',      tempo: 300_000,    custoSemente: 0.1,  valorDeVenda: 0.14, valorDoMarket: 0, estoque: 400, seedPlantadas: '', estacao: ['summer', 'autumn', 'winter'] },
+    { name: 'Rhubarb',     tempo: 600_000,    custoSemente: 0.15, valorDeVenda: 0.24, valorDoMarket: 0, estoque: 400, seedPlantadas: '', estacao: ['spring'] },
+    { name: 'Pumpkin',     tempo: 1_800_000,  custoSemente: 0.2,  valorDeVenda: 0.4,  valorDoMarket: 0, estoque: 300, seedPlantadas: '', estacao: ['autumn'] },
+    { name: 'Zucchini',    tempo: 1_800_000,  custoSemente: 0.2,  valorDeVenda: 0.4,  valorDoMarket: 0, estoque: 400, seedPlantadas: '', estacao: ['summer'] },
     //Crops Médias
-    { name: 'Carrot',      tempo: 3_600_000,   custoSemente: 0.5, valorDeVenda: 0.8,  valorDoMarket: 0, estoque: 200, seedPlantadas: '', estacao: ['Spring', 'Autumn'] },
-    { name: 'Yam',         tempo: 3_600_000,   custoSemente: 0.5, valorDeVenda: 0.8,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', estacao: ['Autumn'] },
-    { name: 'Cabbage',     tempo: 7_200_000,   custoSemente: 1,   valorDeVenda: 1.5,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', estacao: ['Spring', 'Winter'] },
-    { name: 'Broccoli',    tempo: 7_200_000,   custoSemente: 1,   valorDeVenda: 1.5,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', estacao: ['Autumn'] },
-    { name: 'Soybean',     tempo: 10_800_000,  custoSemente: 1.5, valorDeVenda: 2.3,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', estacao: ['Spring', 'Autumn'] },
-    { name: 'Pepper',      tempo: 14_400_000,  custoSemente: 2,   valorDeVenda: 3,    valorDoMarket: 0, estoque: 160, seedPlantadas: '', estacao: ['Summer'] },
-    { name: 'Beetroot',    tempo: 14_400_000,  custoSemente: 2,   valorDeVenda: 2.8,  valorDoMarket: 0, estoque: 160, seedPlantadas: '', estacao: ['Summer', 'Winter'] },
-    { name: 'Cauliflower', tempo: 28_800_000,  custoSemente: 3,   valorDeVenda: 4.25, valorDoMarket: 0, estoque: 160, seedPlantadas: '', estacao: ['Summer', 'Winter'] },
-    { name: 'Parsnip',     tempo: 43_200_000,  custoSemente: 5,   valorDeVenda: 6.5,  valorDoMarket: 0, estoque: 120, seedPlantadas: '', estacao: ['Winter'] },
+    { name: 'Carrot',      tempo: 3_600_000,   custoSemente: 0.5, valorDeVenda: 0.8,  valorDoMarket: 0, estoque: 200, seedPlantadas: '', estacao: ['spring', 'autumn'] },
+    { name: 'Yam',         tempo: 3_600_000,   custoSemente: 0.5, valorDeVenda: 0.8,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', estacao: ['autumn'] },
+    { name: 'Cabbage',     tempo: 7_200_000,   custoSemente: 1,   valorDeVenda: 1.5,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', estacao: ['spring', 'winter'] },
+    { name: 'Broccoli',    tempo: 7_200_000,   custoSemente: 1,   valorDeVenda: 1.5,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', estacao: ['autumn'] },
+    { name: 'Soybean',     tempo: 10_800_000,  custoSemente: 1.5, valorDeVenda: 2.3,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', estacao: ['spring', 'autumn'] },
+    { name: 'Pepper',      tempo: 14_400_000,  custoSemente: 2,   valorDeVenda: 3,    valorDoMarket: 0, estoque: 160, seedPlantadas: '', estacao: ['summer'] },
+    { name: 'Beetroot',    tempo: 14_400_000,  custoSemente: 2,   valorDeVenda: 2.8,  valorDoMarket: 0, estoque: 160, seedPlantadas: '', estacao: ['summer', 'winter'] },
+    { name: 'Cauliflower', tempo: 28_800_000,  custoSemente: 3,   valorDeVenda: 4.25, valorDoMarket: 0, estoque: 160, seedPlantadas: '', estacao: ['summer', 'winter'] },
+    { name: 'Parsnip',     tempo: 43_200_000,  custoSemente: 5,   valorDeVenda: 6.5,  valorDoMarket: 0, estoque: 120, seedPlantadas: '', estacao: ['winter'] },
     //Crops Avançadas
-    { name: 'Eggplant',    tempo: 57_600_000,  custoSemente: 6,   valorDeVenda: 8,    valorDoMarket: 0, estoque: 100, seedPlantadas: '', estacao: ['Summer'] },
-    { name: 'Corn',        tempo: 72_000_000,  custoSemente: 7,   valorDeVenda: 9,    valorDoMarket: 0, estoque: 100, seedPlantadas: '', estacao: ['Spring'] },
-    { name: 'Onion',       tempo: 72_000_000,  custoSemente: 7,   valorDeVenda: 10,   valorDoMarket: 0, estoque: 100, seedPlantadas: '', estacao: ['Winter'] },
-    { name: 'Turnip',      tempo: 86_400_000,  custoSemente: 5,   valorDeVenda: 8,    valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['Winter'] },
-    { name: 'Radish',      tempo: 86_400_000,  custoSemente: 7,   valorDeVenda: 9.5,  valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['Summer'] },
-    { name: 'Wheat',       tempo: 86_400_000,  custoSemente: 5,   valorDeVenda: 7,    valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['Spring', 'Summer', 'Autumn', 'Winter'] },
-    { name: 'Kale',        tempo: 129_600_000, custoSemente: 7,   valorDeVenda: 10,   valorDoMarket: 0, estoque: 60,  seedPlantadas: '', estacao: ['Spring', 'Winter'] },
-    { name: 'Artichoke',   tempo: 129_600_000, custoSemente: 7,   valorDeVenda: 12,   valorDoMarket: 0, estoque: 60,  seedPlantadas: '', estacao: ['Autumn'] },
-    { name: 'Barley',      tempo: 172_800_000, custoSemente: 10,  valorDeVenda: 12,   valorDoMarket: 0, estoque: 60,  seedPlantadas: '', estacao: ['Spring', 'Autumn'] },
+    { name: 'Eggplant',    tempo: 57_600_000,  custoSemente: 6,   valorDeVenda: 8,    valorDoMarket: 0, estoque: 100, seedPlantadas: '', estacao: ['summer'] },
+    { name: 'Corn',        tempo: 72_000_000,  custoSemente: 7,   valorDeVenda: 9,    valorDoMarket: 0, estoque: 100, seedPlantadas: '', estacao: ['spring'] },
+    { name: 'Onion',       tempo: 72_000_000,  custoSemente: 7,   valorDeVenda: 10,   valorDoMarket: 0, estoque: 100, seedPlantadas: '', estacao: ['winter'] },
+    { name: 'Turnip',      tempo: 86_400_000,  custoSemente: 5,   valorDeVenda: 8,    valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['winter'] },
+    { name: 'Radish',      tempo: 86_400_000,  custoSemente: 7,   valorDeVenda: 9.5,  valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['summer'] },
+    { name: 'Wheat',       tempo: 86_400_000,  custoSemente: 5,   valorDeVenda: 7,    valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['spring', 'summer', 'autumn', 'Winter'] },
+    { name: 'Kale',        tempo: 129_600_000, custoSemente: 7,   valorDeVenda: 10,   valorDoMarket: 0, estoque: 60,  seedPlantadas: '', estacao: ['spring', 'winter'] },
+    { name: 'Artichoke',   tempo: 129_600_000, custoSemente: 7,   valorDeVenda: 12,   valorDoMarket: 0, estoque: 60,  seedPlantadas: '', estacao: ['autumn'] },
+    { name: 'Barley',      tempo: 172_800_000, custoSemente: 10,  valorDeVenda: 12,   valorDoMarket: 0, estoque: 60,  seedPlantadas: '', estacao: ['spring', 'autumn'] },
 ];
 
 const cropMachine = [
@@ -41,14 +41,14 @@ const cropMachine = [
 
 const fruits = [
     //Frutas Basicas
-    { name: 'Tomato',    tempo: 7_200_000,  custoSemente: 5,  valorDeVenda: 2,  valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['Spring', 'Autumn'] },
-    { name: 'Lemon',     tempo: 14_400_000, custoSemente: 15, valorDeVenda: 6,  valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['Summer', 'Winter'] },
+    { name: 'Tomato',    tempo: 7_200_000,  custoSemente: 5,  valorDeVenda: 2,  valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['spring', 'autumn'] },
+    { name: 'Lemon',     tempo: 14_400_000, custoSemente: 15, valorDeVenda: 6,  valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['summer', 'winter'] },
     //Frutas Médias
-    { name: 'Blueberry', tempo: 21_600_000, custoSemente: 30, valorDeVenda: 12, valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['Spring', 'Winter'] },
-    { name: 'Orange',    tempo: 28_800_000, custoSemente: 50, valorDeVenda: 18, valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['Spring', 'Summer'] },
+    { name: 'Blueberry', tempo: 21_600_000, custoSemente: 30, valorDeVenda: 12, valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['spring', 'winter'] },
+    { name: 'Orange',    tempo: 28_800_000, custoSemente: 50, valorDeVenda: 18, valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['spring', 'summer'] },
     //Frutas Avançadas
-    { name: 'Apple',     tempo: 43_200_000, custoSemente: 70, valorDeVenda: 25, valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['Autumn', 'Winter'] },
-    { name: 'Banana',    tempo: 43_200_000, custoSemente: 70, valorDeVenda: 25, valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['Summer', 'Autumn'] },
+    { name: 'Apple',     tempo: 43_200_000, custoSemente: 70, valorDeVenda: 25, valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['autumn', 'winter'] },
+    { name: 'Banana',    tempo: 43_200_000, custoSemente: 70, valorDeVenda: 25, valorDoMarket: 0, estoque: 20, seedPlantadas: '', estacao: ['summer', 'autumn'] },
 ];
 
 const greenhouse = [

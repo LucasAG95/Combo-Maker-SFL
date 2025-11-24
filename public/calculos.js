@@ -113,7 +113,9 @@ function buffsAdicionadosCrops() {
             wearables.factions,
             wearables.crops,
             shrines,
-            totems
+            totems,
+            fertilizantes.rapidRoot,
+            fertilizantes.sproutMix
         ]);
         
         crop.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai + (buffs.qtdArea / plots)) * buffs.qtdInsta;
@@ -230,3 +232,5 @@ function nftsDeTierQuePossuemBuffDoAntecessor() {
     
     buffsAdicionadosCrops();
 };
+
+//==================================================================================================================================================================

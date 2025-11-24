@@ -73,6 +73,7 @@ function configurarCheckbox() {
                 buffsAdicionadosCrops();
                 ativarBonusDasNftsESkills();
                 ilhaPrestigioAtual();
+                BuffFertilizantes();
             });
         };
     });
@@ -198,9 +199,11 @@ window.onload = function () {
     renderNFTs(wearables.minerals, 'wearables-container-minerals', './wearables');
     renderNFTs(wearables.greenhouse, 'wearables-container-greenhouse', './wearables');
 
-    //Shrines e Totems
+    //Shrines, Totems e buffs temporarios
     renderNFTs(shrines, 'shrines-container', './shrines');
     renderNFTs(totems, 'totems-container', './shrines');
+    renderNFTs(fertilizantes.sproutMix, 'sproutMix-container', './fertilizantes');
+    renderNFTs(fertilizantes.rapidRoot, 'rapidRoot-container', './fertilizantes');
 
     //chamando funções
     valoresDasGems();
@@ -241,7 +244,7 @@ function mostrarInfoCard(item, imgPath) {
 
     document.querySelector(".card-img").src = imgPath || "./icones/flower.png";
     document.getElementById("titulo-buff").textContent = item.name;
-    document.getElementById("descricao-do-buff").textContent = item.descricao[idioma] || "Sem descrição";
+    document.getElementById("descricao-do-buff").textContent = item.descricao[idioma] || "";
     document.getElementById("preco-atual").innerHTML = precoAtual;
     document.getElementById("ultima-venda").innerHTML = ultimavenda;
 

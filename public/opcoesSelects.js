@@ -10,7 +10,7 @@ document.getElementById('opcao-idioma').addEventListener('change', selecionandoI
 //=======================================================================================================================================================================
 
 //Estação
-let estacao = 'Spring';
+let estacao = 'spring';
 function selecionandoEstacao() {
     estacao = document.getElementById('estacaoSelect').value;
     buffsAdicionadosCrops();//dps mudar qual chamar

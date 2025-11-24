@@ -50,6 +50,9 @@ function numeroDaFarm() {
             donoDaFarm = data.farm.username;
             mudarIdioma();
 
+            document.getElementById('estacaoSelect').value = data.farm.season.season;
+            selecionandoEstacao();
+
         })
         .catch(err => {
             console.error('Erro ao puxar a API da farm:', err);

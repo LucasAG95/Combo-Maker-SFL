@@ -131,16 +131,17 @@ function tabelaDeCrops() {
     let mediaCustoRestock24hFlower = Number(mediaGemsGastasRestock24h * precoDaGemEmFlower);
     let mediaCustoRestock24hDolar = Number(mediaGemsGastasRestock24h * precoPorGem)
     let lucroDoComboEm24h = ((vinteQuatroHoras / tempoTotalDoCombo) * lucroTotalDoComboFlower) - mediaCustoRestock24hFlower || 0;
-
+    let lucroDoComboSemanal = lucroDoComboEm24h * 7;
     
     //idioma dos Cards
     let idiomaCardTempoTotal = idioma === 'portugues' ? 'Tempo Total' : 'Total Time';
     let idiomaCardQtdRestock = idioma === 'portugues' ? 'Média de Restock' : 'Average Restock';
-    let idiomaCardCustoRestock = idioma === 'portugues' ? 'Gasto Médio com Restocks' : 'Average Cost of Restocks';
+    let idiomaCardCustoRestock = idioma === 'portugues' ? 'Gasto com Restocks' : 'Average Cost of Restocks';
     let idiomaCardLucroDoCombo = idioma === 'portugues' ? 'Lucro do Combo' : 'Combo Profit';
-    let idiomaCardQtdRestock24h = idioma === 'portugues' ? 'Média de Restock em 24h' : 'Average Restock in 24h';
-    let idiomaCardCustoRestock24h = idioma === 'portugues' ? 'Custo Médio em Restock (24h)' : 'Average Restock Cost (24h)';
+    let idiomaCardQtdRestock24h = idioma === 'portugues' ? 'Restock em 24h' : 'Average Restock in 24h';
+    let idiomaCardCustoRestock24h = idioma === 'portugues' ? 'Custo em Restock (24h)' : 'Restock Cost (24h)';
     let idiomaCardLucroEm24h = idioma === 'portugues' ? 'Média de Lucro em 24h' : 'Average Profit in 24h';
+    let idiomaCardLucroSemanal = idioma === 'portugues' ? 'Média de Lucro Semanal' : 'Weekly Average Profit';
 
     let cardResultados = `
         <div class="cards-totais">
@@ -189,6 +190,14 @@ function tabelaDeCrops() {
                 <p>
                     <img src="./icones/flower.png" class="crop-img">${lucroDoComboEm24h.toFixed(2)} ~ 
                     <img src="./icones/usdc.png" class="crop-img">${Number(lucroDoComboEm24h * precoDoFlower).toFixed(2)}    
+                </p>
+            </div>
+            <h1>-</h1>
+            <div class="card-total">
+                <h3>${idiomaCardLucroSemanal}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroDoComboSemanal.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${Number(lucroDoComboSemanal * precoDoFlower).toFixed(2)}    
                 </p>
             </div>
 

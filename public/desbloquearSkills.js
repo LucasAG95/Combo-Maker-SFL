@@ -275,25 +275,31 @@ function skillsMachineryBloqueadas() {
 };
 
 //função que vai ser responsavel por mudar os textos que mostram a quantidade de pontos faltantes para desbloquear skill!
-    function textoParaDesbloquearSkill(pontosProNivel2, pontosProNivel3, totalPontosGastos, aroveDeAbilidades, tituloDoAcordion) {
-        //mostrar texto no accordion com o total de pontos gastos na arvore de crops
-        document.getElementById(`tab-skill-${aroveDeAbilidades}`).innerHTML = `<h5>${tituloDoAcordion}: ${totalPontosGastos} Pontos usados</h5>`;
+function textoParaDesbloquearSkill(pontosProNivel2, pontosProNivel3, totalPontosGastos, aroveDeAbilidades, tituloDoAcordion) {
 
-        //mostrar pontos necessários para desbloquear o nivel 2
-        if (totalPontosGastos < pontosProNivel2) {
-            document.getElementById(`tab-skill-${aroveDeAbilidades}-tier2`).innerHTML = `Nivel 2 - Pontos para desbloquear: ${pontosProNivel2 - totalPontosGastos}`;
-        } else {
-            document.getElementById(`tab-skill-${aroveDeAbilidades}-tier2`).innerHTML = ``;
-        }
+    //tradução
+    let pontosUsados = idioma === 'portugues' ? 'Pontos usados' : 'Points Used';
+    let desbloquearN2 = idioma === 'portugues' ? 'Nivel 2 - Pontos para desbloquear' : 'Level 2 – Points to Unlock';
+    let desbloquearN3 = idioma === 'portugues' ? 'Nivel 3 - Pontos para desbloquear' : 'Level 3 – Points to Unlock';
 
-        //mostrar pontos necessários para desbloquear o nivel 3
-        if (totalPontosGastos < pontosProNivel3) {
-            document.getElementById(`tab-skill-${aroveDeAbilidades}-tier3`).innerHTML = `Nivel 3 - Pontos para desbloquear: ${pontosProNivel3 - totalPontosGastos}`;
-        } else {
-            document.getElementById(`tab-skill-${aroveDeAbilidades}-tier3`).innerHTML = ``
-        }
-        
-    };
+    //mostrar texto no accordion com o total de pontos gastos na arvore de crops
+    document.getElementById(`tab-skill-${aroveDeAbilidades}`).innerHTML = `<h5>${tituloDoAcordion}: ${totalPontosGastos} ${pontosUsados}</h5>`;
+
+    //mostrar pontos necessários para desbloquear o nivel 2
+    if (totalPontosGastos < pontosProNivel2) {
+        document.getElementById(`tab-skill-${aroveDeAbilidades}-tier2`).innerHTML = `${desbloquearN2}: ${pontosProNivel2 - totalPontosGastos}`;
+    } else {
+        document.getElementById(`tab-skill-${aroveDeAbilidades}-tier2`).innerHTML = ``;
+    }
+
+    //mostrar pontos necessários para desbloquear o nivel 3
+    if (totalPontosGastos < pontosProNivel3) {
+        document.getElementById(`tab-skill-${aroveDeAbilidades}-tier3`).innerHTML = `${desbloquearN3}: ${pontosProNivel3 - totalPontosGastos}`;
+    } else {
+        document.getElementById(`tab-skill-${aroveDeAbilidades}-tier3`).innerHTML = ``
+    }
+    
+};
 
 function chamadorDeDesbloquearSkills() {
     skillsCropsBloqueadas();

@@ -9,7 +9,7 @@
   
 
   <header class="header">
-    <h1>Combo Maker - 0.1.3</h1>
+    <h1>Combo Maker - 0.1.4</h1>
     <!-- Selecionar Idioma -->
     <div class="select-idioma">
         <label for="opcao-idioma">
@@ -53,10 +53,10 @@
         <span id="texto-estacao">Estação:</span>
       </label>
       <select id="estacaoSelect">
-        <option value="Spring">Primavera</option>
-        <option value="Summer">Verão</option>
-        <option value="Autumn">Outono</option>
-        <option value="Winter">Inverno</option>
+        <option value="spring">Primavera</option>
+        <option value="summer">Verão</option>
+        <option value="autumn">Outono</option>
+        <option value="winter">Inverno</option>
       </select>
     </div>
 
@@ -99,7 +99,7 @@
         <button class="tab-btn active" data-tab="skills-tab">Skills</button>
         <button class="tab-btn" data-tab="collectibles-tab">Collectibles</button>
         <button class="tab-btn" data-tab="wearables-tab">Wearables</button>
-        <button class="tab-btn" data-tab="shrinesTotems-tab">Shrines-Totems</button>
+        <button id="buffs-temporarios" class="tab-btn" data-tab="shrinesTotems-tab">Buffs Temporários</button><!-- mudar nome data-tab, pois nao tem apenas shrines e totens -->
       </div>
 
       <!-- Skills Tab -->
@@ -272,13 +272,19 @@
 
       <!-- Shrines Tab -->
       <section id="shrinesTotems-tab" class="tab-content shrines-block">
-        <h2 id="total-valor-em-shrines">Shrines - Totems</h2>
+        <h2 id="total-valor-em-shrines"></h2>
         <div class="sub-tabs-buttons-container">
           <button class="sub-tab-btn active" data-sub-tab="shrines-sub">
             <img src="./icones/shrine.png" alt="Ícone Crops" class="icon-btn">Shrines
           </button>
           <button class="sub-tab-btn" data-sub-tab="totems-sub">
             <img src="./icones/totem.png" alt="Ícone Crops" class="icon-btn">Totems
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="sproutMix-sub">
+            <img src="./icones/sproutMix.png" alt="Ícone Crops" class="icon-btn">Sprout Mix
+          </button>
+          <button class="sub-tab-btn" data-sub-tab="rapidRoot-sub">
+            <img src="./icones/rapidRoot.png" alt="Ícone Crops" class="icon-btn">Rapid Root
           </button>
         </div>
 
@@ -287,6 +293,14 @@
         </div>
         <div class="sub-tab-content" id="totems-sub">
           <div id="totems-container" class="nft-container"></div>
+        </div>
+        <div class="sub-tab-content" id="sproutMix-sub">
+          <div id="sproutMix-container" class="nft-container"></div>
+          <h4 id="tab-sprout-mix"></h4>
+        </div>
+        <div class="sub-tab-content" id="rapidRoot-sub">
+          <div id="rapidRoot-container" class="nft-container"></div>
+          <h4 id="tab-rapid-root"></h4>
         </div>
       </section>
 
@@ -332,6 +346,7 @@
   <script src="./recursos.js"></script>
   <script src="./skills.js"></script>
   <script src="./nfts.js"></script>
+  <script src="./buffsTemporarios.js"></script>
   <script src="./minhasApi.js"></script>
   <script src="./formatarTempo.js"></script>
   <script src="./calculos.js"></script>
