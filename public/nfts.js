@@ -326,7 +326,7 @@ let collectibles = {
                 {
                     sinal: 'x',
                     buff: 2,
-                    recursoAfetado: ['Summer'],
+                    recursoAfetado: ['summer'],
                 },
             ],
             estacao: ['Summer']
@@ -348,7 +348,7 @@ let collectibles = {
                     recursoAfetado: ['autumn'],  
                 },
             ],
-            estacao: ['Autumn']
+            estacao: ['autumn']
         },
         {
             idNumber: 2261,
@@ -367,7 +367,7 @@ let collectibles = {
                     recursoAfetado: ['winter'],
                 },
             ],
-            estacao: ['Winter']
+            estacao: ['winter']
         },
         //encerra guardiões (ajustar eles)
         {
@@ -1930,7 +1930,7 @@ let wearables = {
                         'Wheat', 'Kale', 'Artichoke', 'Barley'],
                 },
             ],
-            estacao: ['Summer']
+            estacao: ['summer']
         },
         {
             idNumber: 433,
@@ -1951,7 +1951,7 @@ let wearables = {
                         'Wheat', 'Kale', 'Artichoke', 'Barley'],
                 },
             ],
-            estacao: ['Autumn']
+            estacao: ['autumn']
         },
         {
             idNumber: 434,
@@ -1972,7 +1972,7 @@ let wearables = {
                         'Wheat', 'Kale', 'Artichoke', 'Barley'],
                 },
             ],
-            estacao: ['Winter']
+            estacao: ['winter']
         },
         {
             idNumber: 31,
@@ -2573,5 +2573,6 @@ let todosWearables = [
     ...wearables.greenhouse,
     ...wearables.minerals
 ];
+
 
 //=============================================================================================================================================================================
