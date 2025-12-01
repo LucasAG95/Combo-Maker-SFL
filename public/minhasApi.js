@@ -46,7 +46,37 @@ function numeroDaFarm() {
             
             //preencher quantos plots você possui na farm
             const cropPlotsQuePossui = data.farm.inventory['Crop Plot'];
-            preencherInformacoesDaFarm(cropPlotsQuePossui);
+
+            //Preencher quantas Arvores você possui.
+            const treeT1QuePossui = data.farm.inventory['Tree'];
+            const treeT2QuePossui = data.farm.inventory['Ancient Tree'];
+            const treeT3QuePossui = data.farm.inventory['Sacred Tree'];
+
+            const stoneT1QuePossui = data.farm.inventory['Stone Rock'];
+            const stoneT2QuePossui = data.farm.inventory['Fused Stone Rock'];
+            const stoneT3QuePossui = data.farm.inventory['Reinforced Stone Rock'];
+
+            const ironT1QuePossui = data.farm.inventory['Iron Rock'];
+            const ironT2QuePossui = data.farm.inventory['Refined Iron Rock'];
+            const ironT3QuePossui = data.farm.inventory['Tempered Iron Rock'];
+
+            const goldT1QuePossui = data.farm.inventory['Gold Rock'];
+            const goldT2QuePossui = data.farm.inventory['Pure Gold Rock'];
+            const goldT3QuePossui = data.farm.inventory['Prime Gold Rock'];
+
+            const crimstoneQuePossui = data.farm.inventory['Crimstone Rock'];
+
+            const oilQuePossui = data.farm.inventory['Oil Reserve'];
+
+
+            
+
+            preencherInformacoesDaFarm(cropPlotsQuePossui, 
+                treeT1QuePossui, treeT2QuePossui, treeT3QuePossui,
+                stoneT1QuePossui, stoneT2QuePossui, stoneT3QuePossui,
+                ironT1QuePossui, ironT2QuePossui, ironT3QuePossui,
+                goldT1QuePossui, goldT2QuePossui, goldT3QuePossui,
+                crimstoneQuePossui, oilQuePossui);
 
             //=====================================================================================================================================================
             
@@ -142,7 +172,7 @@ function numeroDaFarm() {
             };    
         });
         
-        buffsAdicionadosCrops();
+        chamadorDeBuffs();
         chamadorDeDesbloquearSkills();
         ativarBonusDasNftsESkills();
         nftsDeTierQuePossuemBuffDoAntecessor();
@@ -150,9 +180,66 @@ function numeroDaFarm() {
         valorTotalEmNfts();
     }
 
-    function preencherInformacoesDaFarm(cropPlotsQuePossui) {
+    function preencherInformacoesDaFarm(cropPlotsQuePossui, 
+        treeT1QuePossui, treeT2QuePossui, treeT3QuePossui,
+        stoneT1QuePossui, stoneT2QuePossui, stoneT3QuePossui,
+        ironT1QuePossui, ironT2QuePossui, ironT3QuePossui,
+        goldT1QuePossui, goldT2QuePossui, goldT3QuePossui,
+        crimstoneQuePossui, oilQuePossui) {
+        
+        //Crop Plots
         plots = cropPlotsQuePossui;
         document.getElementById('plotsPossuidos').value = cropPlotsQuePossui;
+
+        //Arvores - Wood
+        mapaDeMinerals['wood'].qtdNodes.t1 = treeT1QuePossui;
+        document.getElementById('woodT1').value = mapaDeMinerals['wood'].qtdNodes.t1;
+
+        mapaDeMinerals['wood'].qtdNodes.t2 = treeT2QuePossui;
+        document.getElementById('woodT2').value = mapaDeMinerals['wood'].qtdNodes.t2;
+
+        mapaDeMinerals['wood'].qtdNodes.t3 = treeT3QuePossui;
+        document.getElementById('woodT3').value = mapaDeMinerals['wood'].qtdNodes.t3;
+        
+        //Stones
+        mapaDeMinerals['stone'].qtdNodes.t1 = stoneT1QuePossui;
+        document.getElementById('stoneT1').value = mapaDeMinerals['stone'].qtdNodes.t1;
+
+        mapaDeMinerals['stone'].qtdNodes.t2 = stoneT2QuePossui;
+        document.getElementById('stoneT2').value = mapaDeMinerals['stone'].qtdNodes.t2;
+
+        mapaDeMinerals['stone'].qtdNodes.t3 = stoneT3QuePossui;
+        document.getElementById('stoneT3').value = mapaDeMinerals['stone'].qtdNodes.t3;
+
+        //irons
+        mapaDeMinerals['iron'].qtdNodes.t1 = ironT1QuePossui;
+        document.getElementById('ironT1').value = mapaDeMinerals['iron'].qtdNodes.t1;
+
+        mapaDeMinerals['iron'].qtdNodes.t2 = ironT2QuePossui;
+        document.getElementById('ironT2').value = mapaDeMinerals['iron'].qtdNodes.t2;
+
+        mapaDeMinerals['iron'].qtdNodes.t3 = ironT3QuePossui;
+        document.getElementById('ironT3').value = mapaDeMinerals['iron'].qtdNodes.t3;
+
+        //Golds
+        mapaDeMinerals['gold'].qtdNodes.t1 = goldT1QuePossui;
+        document.getElementById('goldT1').value = mapaDeMinerals['gold'].qtdNodes.t1;
+
+        mapaDeMinerals['gold'].qtdNodes.t2 = goldT2QuePossui;
+        document.getElementById('goldT2').value = mapaDeMinerals['gold'].qtdNodes.t2;
+
+        mapaDeMinerals['gold'].qtdNodes.t3 = goldT3QuePossui;
+        document.getElementById('goldT3').value = mapaDeMinerals['gold'].qtdNodes.t3;
+
+        //Crimstone
+        mapaDeMinerals['crimstone'].qtdNodes.t1 = crimstoneQuePossui;
+        document.getElementById('crimstoneRock').value = mapaDeMinerals['crimstone'].qtdNodes.t1;
+        
+        //Oil
+        mapaDeMinerals['oil'].qtdNodes.t1 = oilQuePossui;
+        document.getElementById('oilReserve').value = mapaDeMinerals['oil'].qtdNodes.t1;
+
+
         salvarInformacoes();
     }
 };
@@ -180,7 +267,22 @@ function atualizarValoresDeVendaPorFlower(apiValores) {
             console.log(`Crop: ${crop.name} Valor: ${crop.valorDoMarket}`);
         };
     });
-    buffsAdicionadosCrops();
+
+    minerals.forEach(mineral => {
+        if (apiValores[mineral.name]) {
+            mineral.valorDoMarket = apiValores[mineral.name];
+            console.log(`Mineral: ${mineral.name} Valor: ${mineral.valorDoMarket}`);
+        };
+    });
+
+    valorDosRecursosMarket.forEach(marketRecursos => {
+        if (apiValores[marketRecursos.name]) {
+            marketRecursos.valor = apiValores[marketRecursos.name];
+            console.log(`Market: ${marketRecursos.name}: ${marketRecursos.valor}`);
+        };
+    })
+
+    chamadorDeBuffs();
 };
 
 //======================================================================================================================================================================

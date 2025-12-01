@@ -1,5 +1,4 @@
-function calcularBuff(recurso, listasDeBuffs) {
-    //variaveis aonde os valores vão ser acumulados
+function calcularBuff(recurso, listasDeBuffs) { 
     
     //variaveis que sao afetas pelos buffs de quantidade, qquantidade em Area e insta
     let qtdMulti = 1;       //sinal === 'x'
@@ -68,7 +67,7 @@ function calcularBuff(recurso, listasDeBuffs) {
                 nftOuSkill.estoque.forEach(estoque => {                              
                     if (estoque.recursoAfetado?.includes(recurso.name)) {               
                         if (estoque.sinal === 'x') estoqueMulti *= estoque.buff;
-                        if (estoque.sinal === '+') estoqueSoma *= estoque.buff;                
+                        if (estoque.sinal === '+') estoqueSoma += estoque.buff;                
                     }
                 });
             };
@@ -144,6 +143,160 @@ function buffsAdicionadosCrops() {
 
 //======================================================================================================================================================================
 
+function buffsAdicionadosMinerais() {
+
+    minerals.forEach(mineral => {
+        const buffs = calcularBuff(mineral, [
+            skillsLegacy,
+            skillsTrees.tier1,
+            skillsTrees.tier2,
+            skillsTrees.tier3,
+            skillsMinerals.tier1,
+            skillsMinerals.tier2,
+            skillsMinerals.tier3,
+            skillsMachinery.tier1,
+            skillsMachinery.tier2,
+            skillsMachinery.tier3,
+            collectibles.ferreiro,
+            collectibles.trees,
+            collectibles.minerals,
+            wearables.factions,
+            wearables.minerals,
+            shrines,
+            totems
+        ]);
+        //buff que todas lands possuem!
+        let buffMineralLand = (mineral.name.includes('Wood') || mineral.name.includes('Stone') || mineral.name.includes('Iron') ||  mineral.name.includes('Gold')) ? 0.2 : 0;
+        
+        //quantidade total de nodes sem a fusao!
+        mineral.qtdNodes.total = Number(mineral.qtdNodes.t1) + Number(mineral.qtdNodes.t2 * 4) + Number(mineral.qtdNodes.t3 * 16);
+
+        let buffDosTiers = 0;
+        if (mineral.qtdNodes.t2 > 0 || mineral.qtdNodes.t3 > 0) buffDosTiers = (mineral.qtdNodes.t2 * 0.5 / mineral.qtdNodes.total) + (mineral.qtdNodes.t3 * 2.5 / mineral.qtdNodes.total);
+
+        mineral.mediaPorNode = ((mineral.qtdMediaPorNode * buffs.qtdMulti) + buffMineralLand + buffDosTiers + buffs.qtdSoma - buffs.qtdSubtrai) * buffs.qtdInsta;        
+        mineral.tempoFinal = (mineral.tempo * buffs.tempoMulti) - buffs.tempoSubtrai;
+
+    });
+
+    ferramentas.forEach(ferramenta => {
+        // chama a função genérica, passando todas as listas que afetam crops
+        const buffs = calcularBuff(ferramenta, [
+            skillsLegacy,
+            skillsTrees.tier1,
+            skillsTrees.tier2,
+            skillsTrees.tier3,
+            skillsMinerals.tier1,
+            skillsMinerals.tier2,
+            skillsMinerals.tier3,
+            skillsMachinery.tier1,
+            skillsMachinery.tier2,
+            skillsMachinery.tier3,
+            collectibles.ferreiro,
+            collectibles.trees,
+            collectibles.minerals,
+            wearables.factions,
+            wearables.minerals,
+            shrines,
+            totems
+        ]);
+        
+        ferramenta.qtdPrecisaPorNode = (1 * buffs.qtdMulti);
+        ferramenta.estoqueFinal = Math.ceil((ferramenta.estoque * buffs.estoqueMulti) + buffs.estoqueSoma);
+        ferramenta.recursosNecessarios.coins = ferramenta.recursosNecessarios.coinsOriginal * buffs.multiCusto;
+        
+
+        //Calculo para o tipo de conta que a pessoa quer fazer
+        if (modoDeCalcularMinerios === 'manual') {
+            ferramenta.quantidade = (ferramenta.qtdUsada * buffs.qtdMulti) * buffs.qtdInsta;
+            //Tempo Total gastando as ferramentos no recurso obtido (isso vai criar o "save" dentro de minerals e nao ferramentas)
+            mapaDeMinerals[ferramenta.recursoObtido].tempoTotal = (ferramenta.qtdUsada / mapaDeMinerals[ferramenta.recursoObtido].qtdNodes.total) * mapaDeMinerals[ferramenta.recursoObtido].tempoFinal;
+            mapaDeMinerals[ferramenta.recursoObtido].totalDoRecurso = (ferramenta.qtdUsada * mapaDeMinerals[ferramenta.recursoObtido].mediaPorNode);
+
+        } else if (modoDeCalcularMinerios === 'rodada') {
+            ferramenta.quantidade = ((ferramenta.qtdUsada * buffs.qtdMulti) * buffs.qtdInsta) * mapaDeMinerals[ferramenta.recursoObtido].qtdNodes.total;
+            mapaDeMinerals[ferramenta.recursoObtido].tempoTotal = ferramenta.qtdUsada * mapaDeMinerals[ferramenta.recursoObtido].tempoFinal;
+            mapaDeMinerals[ferramenta.recursoObtido].totalDoRecurso = ((ferramenta.qtdUsada * mapaDeMinerals[ferramenta.recursoObtido].qtdNodes.total) * mapaDeMinerals[ferramenta.recursoObtido].mediaPorNode);
+
+        } else if (modoDeCalcularMinerios === 'hora') {
+            if (ferramenta.qtdUsada > 24) {
+                let linguagemDoAlerta = idioma === 'portugues' ? 'Para fim de calculos melhores, você não pode colocar mais que 24 horas!' : 'For better calculation results, you can\'t set more than 24 hours!'
+                alert(linguagemDoAlerta);
+                return;
+            }
+            ferramenta.quantidade = (((ferramenta.qtdUsada * umaHora) / mapaDeMinerals[ferramenta.recursoObtido].tempoFinal) * buffs.qtdMulti * buffs.qtdInsta) * mapaDeMinerals[ferramenta.recursoObtido].qtdNodes.total;
+            //nesse caso vai mostrar quantas rodadas se faz pela hora colocada
+            mapaDeMinerals[ferramenta.recursoObtido].tempoTotal = (ferramenta.qtdUsada * umaHora) / mapaDeMinerals[ferramenta.recursoObtido].tempoFinal;
+            mapaDeMinerals[ferramenta.recursoObtido].totalDoRecurso = ((ferramenta.qtdUsada * umaHora) / mapaDeMinerals[ferramenta.recursoObtido].tempoFinal * mapaDeMinerals[ferramenta.recursoObtido].qtdNodes.total) * mapaDeMinerals[ferramenta.recursoObtido].mediaPorNode;
+        };
+
+    });
+    mediaDeValorDasFerramentasEMinerais();
+};
+
+function mediaDeValorDasFerramentasEMinerais() {
+
+    //para criar a "variavel" dentro de minerals
+    mapaDeMinerals['wood'].woodGastas = Number(0);
+    mapaDeMinerals['stone'].stoneGastas = Number(0);
+    mapaDeMinerals['iron'].ironGastas = Number(0);
+    mapaDeMinerals['gold'].goldGastas = Number(0);
+    mapaDeMinerals['crimstone'].crimstoneGastas = Number(0);
+    mapaDeMinerals['oil'].oilGastas = Number(0);
+    mapaDeMinerals.coinsGastas = Number(0);
+    mapaDeMinerals.leatherGastas = Number(0);
+    mapaDeMinerals.woolGastas = Number(0);
+
+    todasFerramentas.forEach(ferramenta => {
+
+        let oilLaOuCouro = 'leather';
+        if (mapaDeTodasSkillsComTier['oilRig'].possui) oilLaOuCouro = 'wool';
+
+        //Calcular media de custo em coins da ferramenta!
+        ferramenta.custoEmCoins = ferramenta.recursosNecessarios['coins'] + 
+            ((ferramenta.recursosNecessarios['wood'] ?? 0) * (mapaDeMinerals['wood']?.mediaDeCustoCoins ?? 0)) +
+            ((ferramenta.recursosNecessarios['stone'] ?? 0) * (mapaDeMinerals['stone']?.mediaDeCustoCoins ?? 0)) +
+            ((ferramenta.recursosNecessarios['iron'] ?? 0) * (mapaDeMinerals['iron']?.mediaDeCustoCoins ?? 0)) + 
+            ((ferramenta.recursosNecessarios['gold'] ?? 0) * (mapaDeMinerals['gold']?.mediaDeCustoCoins ?? 0)) +
+            ((ferramenta.recursosNecessarios['crimstone'] ?? 0) * (mapaDeMinerals['crimstone']?.mediaDeCustoCoins ?? 0)) +
+            ((ferramenta.recursosNecessarios['oil'] ?? 0) * (mapaDeMinerals['oil']?.mediaDeCustoCoins ?? 0)) +
+            ((ferramenta.recursosNecessarios[oilLaOuCouro] ?? 0) * (mapaDosValoresDoMarket[oilLaOuCouro]?.valor ?? 0) * flowerEmCoins);
+        
+        const mineral = mapaDeMinerals[ferramenta.recursoObtido];
+
+        //se n tiver o recurso obtido, isso vai mostrar qual não possui(provavelmente peixe e escavações)
+        if (!mineral) {
+            console.warn("Recurso não encontrado:", ferramenta.recursoObtido);
+            return;
+        }
+
+        //calcular média em coins que cada mineral sai!
+        mineral.mediaDeCustoCoins = (ferramenta.custoEmCoins * (ferramenta.qtdPrecisaPorNode || 1)) / (mineral.mediaPorNode || 1);
+        mineral.mediaDeCustoFlower = mineral.mediaDeCustoCoins / flowerEmCoins;
+
+        //feito para somar os gastos com as ferramentas
+        mapaDeMinerals['wood'].woodGastas += Number((ferramenta.recursosNecessarios['wood'] ?? 0) * ferramenta.quantidade);
+        mapaDeMinerals['stone'].stoneGastas += Number((ferramenta.recursosNecessarios['stone'] ?? 0) * ferramenta.quantidade);
+        mapaDeMinerals['iron'].ironGastas += Number((ferramenta.recursosNecessarios['iron'] ?? 0) * ferramenta.quantidade);
+        mapaDeMinerals['gold'].goldGastas += Number((ferramenta.recursosNecessarios['gold'] ?? 0) * ferramenta.quantidade);
+        mapaDeMinerals['crimstone'].crimstoneGastas += Number((ferramenta.recursosNecessarios['crimstone'] ?? 0) * ferramenta.quantidade);
+        mapaDeMinerals['oil'].oilGastas += Number((ferramenta.recursosNecessarios['oil'] ?? 0) * ferramenta.quantidade);
+
+        //essas 3 abaixo foi criado dentro de minerais, apenas com intuito de somar quanto foi gasto nas ferramentas!
+        mapaDeMinerals.coinsGastas += Number((ferramenta.recursosNecessarios['coins'] ?? 0) * ferramenta.quantidade);
+        
+        mapaDeMinerals.leatherGastas += oilLaOuCouro === 'leather' ? Number((ferramenta.recursosNecessarios['leather'] ?? 0) * ferramenta.quantidade) : 0;
+        mapaDeMinerals.woolGastas += oilLaOuCouro === 'wool' ? Number((ferramenta.recursosNecessarios['wool'] ?? 0) * ferramenta.quantidade) : 0;
+
+        console.log(`${mineral.name}: ${mineral.mediaDeCustoCoins} coins`);
+
+    });
+    tabelaMinerios();
+};
+
+
+//======================================================================================================================================================================
+
 const chavesPossiveis = [
     'estoque',
     'tempo',
@@ -196,7 +349,7 @@ function ativarBonusDasNftsESkills() {
         });
 
     } while (mudouBuff);
-    buffsAdicionadosCrops();
+    chamadorDeBuffs();
 };
 
 //==================================================================================================================================================================
@@ -230,7 +383,12 @@ function nftsDeTierQuePossuemBuffDoAntecessor() {
         mapaDeTodosCollectibles['apprenticeBeaver'].possui = false;
     }
     
-    buffsAdicionadosCrops();
+    chamadorDeBuffs();
 };
 
 //==================================================================================================================================================================
+
+function chamadorDeBuffs() {
+    buffsAdicionadosCrops();
+    buffsAdicionadosMinerais();
+}

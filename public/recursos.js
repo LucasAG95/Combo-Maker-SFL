@@ -147,12 +147,14 @@ const minerals = [
 ];
 
 const ferramentas = [
+    //coinsOriginal é só pra poder fazer a conta de desconta das coins nas ferramentas!
     {
         id: 'axe',
         name: 'Axe',
         recursoObtido: 'wood',
         estoque: 200,
         recursosNecessarios: {
+            coinsOriginal: 20,
             coins: 20
         },
         custoEmCoins: ''
@@ -163,8 +165,22 @@ const ferramentas = [
         recursoObtido: 'stone',
         estoque: 60,
         recursosNecessarios: {
+            coinsOriginal: 20,
             coins: 20,
             wood: 3
+        },
+        custoEmCoins: ''
+    },
+    {
+        id: 'stonePickaxe',
+        name: 'Stone Pickaxe',
+        recursoObtido: 'iron',
+        estoque: 20,
+        recursosNecessarios: {
+            coinsOriginal: 20,
+            coins: 20,
+            wood: 3,
+            stone: 5
         },
         custoEmCoins: ''
     },
@@ -174,6 +190,7 @@ const ferramentas = [
         recursoObtido: 'gold',
         estoque: 5,
         recursosNecessarios: {
+            coinsOriginal: 80,
             coins: 80,
             wood: 3,
             iron: 5
@@ -186,6 +203,7 @@ const ferramentas = [
         recursoObtido: 'crimstone',
         estoque: 5,
         recursosNecessarios: {
+            coinsOriginal: 100,
             coins: 100,
             wood: 3,
             gold: 3
@@ -198,6 +216,7 @@ const ferramentas = [
         recursoObtido: 'oil',
         estoque: 5,
         recursosNecessarios: {
+            coinsOriginal: 100,
             coins: 100,
             wood: 20,
             iron: 9,
@@ -215,6 +234,7 @@ const ferramentasSecundarias = [
         recursoObtido: 'peixe',
         estoque: 50,
         recursosNecessarios: {
+            coinsOriginal: 20,
             coins: 20,
             wood: 3,
             stone: 1
@@ -227,6 +247,7 @@ const ferramentasSecundarias = [
         recursoObtido: 'escavacao',
         estoque: 50,
         recursosNecessarios: {
+            coinsOriginal: 20,
             coins: 20,
             wood: 2,
             stone: 1
@@ -239,6 +260,7 @@ const ferramentasSecundarias = [
         recursoObtido: 'escavacao',
         estoque: 10,
         recursosNecessarios: {
+            coinsOriginal: 40,
             coins: 40,
             wood: 3,
             crimstone: 1,
@@ -248,6 +270,17 @@ const ferramentasSecundarias = [
         custoEmCoins: ''
     },
 ];
+
+let mapaDeMinerals = {}; // cria objeto vazio para guardar NFTs por id
+minerals.forEach(mineral => { //vai verificar e organizar por id das NFTs no mapaDeCollectibles, foi oque entendi
+    mapaDeMinerals[mineral.id] = mineral; // adiciona cada NFT no objeto usando o id como chave
+});
+
+const todasFerramentas = [...ferramentas, ...ferramentasSecundarias]
+let mapaDeFerramentas = {}; // cria objeto vazio para guardar NFTs por id
+todasFerramentas.forEach(ferramenta => { //vai verificar e organizar por id das NFTs no mapaDeCollectibles, foi oque entendi
+    mapaDeFerramentas[ferramenta.id] = ferramenta; // adiciona cada NFT no objeto usando o id como chave
+});
 
 //==============================================================================================================================================================================
 
@@ -312,3 +345,43 @@ const valorDosRecursosMarket = [
     { id: 'wool',        name: 'Wool',        valor: '' },
     { id: 'merinoWool',  name: 'Merino Wool', valor: '' },
 ];
+
+let mapaDosValoresDoMarket = {}; // cria objeto vazio para guardar NFTs por id
+valorDosRecursosMarket.forEach(valorDoMarket => { //vai verificar e organizar por id das NFTs no mapaDeCollectibles, foi oque entendi
+    mapaDosValoresDoMarket[valorDoMarket.id] = valorDoMarket; // adiciona cada NFT no objeto usando o id como chave
+});
+
+//==============================================================================================================================================================================    
+
+/*function mediaDeValorDasFerramentasEMinerais() {
+    ferramentas.forEach(ferramenta => {
+
+        // Começa com o custo base em coins
+        ferramenta.custoEmCoins = ferramenta.recursosNecessarios['coins'] ?? 0;
+
+        // Soma custo dos recursos (wood, stone, iron, gold...)
+        for (const recurso in ferramenta.recursosNecessarios) {
+
+            if (recurso === 'coins') continue; // coins é custo direto, não multiplica
+
+            const qtd = ferramenta.recursosNecessarios[recurso] ?? 0;
+
+            // Se o mineral existir no mapa, multiplica pelo seu custo médio
+            if (mapaDeMinerals[recurso]) {
+                ferramenta.custoEmCoins += qtd * (mapaDeMinerals[recurso].mediaDeCustoCoins ?? 0);
+            }
+        }
+
+        // Calcular custo médio do mineral obtido pela ferramenta
+        mapaDeMinerals[ferramenta.recursoObtido].mediaDeCustoCoins =
+            ferramenta.custoEmCoins / mapaDeMinerals[ferramenta.recursoObtido].mediaPorNode;
+
+        console.log(
+            `${mapaDeMinerals[ferramenta.recursoObtido].name}: ` +
+            mapaDeMinerals[ferramenta.recursoObtido].mediaDeCustoCoins +
+            ` coins`
+        );
+
+    });
+}
+*/

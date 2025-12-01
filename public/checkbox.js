@@ -7,7 +7,7 @@ function configurarCheckbox() {
 
             checkbox.addEventListener('change', function() {
                 skill.possui = checkbox.checked;
-                buffsAdicionadosCrops();
+                chamadorDeBuffs();
                 ativarBonusDasNftsESkills();
             });
         };
@@ -21,7 +21,7 @@ function configurarCheckbox() {
 
             checkbox.addEventListener('change', function() {
                 skill.possui = checkbox.checked;
-                buffsAdicionadosCrops();
+                chamadorDeBuffs();
                 chamadorDeDesbloquearSkills();
                 ativarBonusDasNftsESkills();
                 pontosGastosEmSkills();
@@ -38,7 +38,7 @@ function configurarCheckbox() {
 
             checkbox.addEventListener('change', function() {
                 collectibles.possui = checkbox.checked;
-                buffsAdicionadosCrops();
+                chamadorDeBuffs();
                 ativarBonusDasNftsESkills();
                 nftsDeTierQuePossuemBuffDoAntecessor();
                 valorTotalEmNfts();
@@ -54,7 +54,7 @@ function configurarCheckbox() {
 
             checkbox.addEventListener('change', function() {
                 wearables.possui = checkbox.checked;
-                buffsAdicionadosCrops();
+                chamadorDeBuffs();
                 ativarBonusDasNftsESkills();
                 valorTotalEmNfts();
             });
@@ -70,7 +70,7 @@ function configurarCheckbox() {
 
             checkbox.addEventListener('change', function() {
                 temporario.possui = checkbox.checked;
-                buffsAdicionadosCrops();
+                chamadorDeBuffs();
                 ativarBonusDasNftsESkills();
                 ilhaPrestigioAtual();
                 BuffFertilizantes();
@@ -211,9 +211,10 @@ window.onload = function () {
     mudarIdioma();
     configurarCheckbox();
     numeroDaFarm();
-    buffsAdicionadosCrops();
+    chamadorDeBuffs();
     chamadorDeDesbloquearSkills();
     nftsDeTierQuePossuemBuffDoAntecessor();
+
 };
 
 //================================================================================================================================================================

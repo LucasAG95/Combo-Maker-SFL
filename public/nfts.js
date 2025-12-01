@@ -329,7 +329,7 @@ let collectibles = {
                     recursoAfetado: ['summer'],
                 },
             ],
-            estacao: ['Summer']
+            estacao: ['summer']
         },
         {
             idNumber: 2264,
@@ -1795,7 +1795,7 @@ let wearables = {
                 {
                     sinal: '+',
                     buff: 0.25,
-                    recursoAfetado: ['Tree', 'Stone', 'Iron', 'Gold'],
+                    recursoAfetado: ['Wood', 'Stone', 'Iron', 'Gold'],
                 }
             ]
         },
@@ -2573,6 +2573,5 @@ let todosWearables = [
     ...wearables.greenhouse,
     ...wearables.minerals
 ];
-
 
 //=============================================================================================================================================================================

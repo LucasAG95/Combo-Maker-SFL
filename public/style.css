@@ -60,6 +60,17 @@ h5 {
   color: #ffffff;
 }
 
+#saida-dos-minerios {
+  padding: 20px;
+  border-radius: 14px;
+  margin-top: 2px;
+  box-shadow: 0 4px 12px rgba(17, 16, 16, 0.4);
+  font-size: 1px;
+  font-weight: bold;
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
 /* ====================
    TABELA DE CROPS
 ======================= */
@@ -517,36 +528,78 @@ input[type="checkbox"]:disabled + .nft-img:hover {
   box-shadow: none;
 }
 
-.cards-totais {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    justify-content: center; /* centraliza horizontalmente */
-    align-items: center;     /* centraliza verticalmente */
+.cards-totais-crops {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center;     /* centraliza verticalmente */
 }
 
 
-.card-total {
-    background: #222;
-    border: 1px solid #444;
-    padding: 15px 20px;
-    border-radius: 12px;
-    min-width: 120px;
-    text-align: center;
-    color: #ffa726;
-    box-shadow: 0 0 10px #0005;
+.card-total-crops {
+  background: #222;
+  border: 1px solid #444;
+  padding: 15px 20px;
+  border-radius: 12px;
+  min-width: 120px;
+  text-align: center;
+  color: #ffa726;
+  box-shadow: 0 0 10px #0005;
 }
 
-.card-total h3 {
-    font-size: 14px;
-    margin-bottom: 8px;
+.card-total-crops h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
 }
 
-.card-total p {
-    font-size: 15px;
-    font-weight: bold;
-    color: #fff;
+.card-total-crops p {
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+}
+
+
+/* CARDS DOS MINERAIS */
+.cards-totais-minerais {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-total-mineral {
+  background: #222;
+  border: 1px solid #444;
+  padding: 15px 20px;
+  border-radius: 12px;
+
+  height: 110px;        /* 🔥 altura fixa */
+  min-width: 120px;     /* 🔥 largura mínima */
+  width: auto;          /* 🔥 largura flexível */
+
+  display: flex;             /* para centralizar conteúdo */
+  flex-direction: column;
+  justify-content: center;   /* centraliza verticalmente */
+  align-items: center;       /* centraliza horizontalmente */
+
+  text-align: center;
+  color: #ffa726;
+  box-shadow: 0 0 10px #0005;
+}
+
+.card-total-mineral h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.card-total-mineral p {
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
 }
 
 .header {
@@ -573,4 +626,61 @@ input[type="checkbox"]:disabled + .nft-img:hover {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* ====================
+   TABELA DE MINERIOS
+======================= */
+.tabela-minerios {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 30px;
+  font-size: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #333;
+}
+
+.tabela-minerios th, .tabela-minerios td {
+  padding: 5px 1px;
+  text-align: center;
+}
+
+.tabela-minerios th {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.tabela-minerios tr:nth-child(even) {
+  background-color: #2c2c2c;
+}
+
+.tabela-minerios tr:nth-child(odd) {
+  background-color: #242424;
+}
+
+/* ====================
+   IMPUT DOS ICONES DE PREENCHIMENTO DOS MINERIOS
+======================= */
+.input-icon {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  margin-right: 6px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+
+/* Afasta todos os títulos (labels) dos grupos de minerais para a direita,
+   deixando espaço antes do texto sem mexer nos inputs */
+#qtdDeArvores,
+#qtdDePedras,
+#qtdDeFerros,
+#qtdDeOuros,
+#qtdDeCrimstones,
+#qtdDeOils {
+  margin-left: 35px; 
+  display: block;
 }

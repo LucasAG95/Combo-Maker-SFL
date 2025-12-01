@@ -146,7 +146,7 @@ let shrines = [
             {
                 sinal: 'x',
                 buff: 0.75,
-                recursoAfetado: ['Tree', 'Stone'],
+                recursoAfetado: ['Wood', 'Stone'],
             }
         ],
     },
@@ -272,7 +272,7 @@ let shrines = [
                 buff: 1,
                 recursoAfetado: ['Sunflower', 'Potato', 'Rhubarb', 'Pumpkin', 'Zucchini',  'Carrot', 'Yam', 'Cabbage', 'Broccoli', 'Soybean',
                     'Pepper', 'Beetroot', 'Cauliflower', 'Parsnip', 'Eggplant', 'Corn', 'Onion', 'Turnip', 'Radish', 'Wheat', 'Kale',
-                    'Artichoke', 'Barley', 'Tomato', 'Lemon', 'Blueberry', 'Orange', 'Apple', 'Banana', 'Tree', 'Stone', 'Flower'],
+                    'Artichoke', 'Barley', 'Tomato', 'Lemon', 'Blueberry', 'Orange', 'Apple', 'Banana', 'Wood', 'Stone', 'Flower'],
             }
         ],
         tempo: [
@@ -334,7 +334,7 @@ let totems = [
                 buff: 0.5,
                 recursoAfetado: ['Sunflower', 'Potato', 'Rhubarb', 'Pumpkin', 'Zucchini',  'Carrot', 'Yam', 'Cabbage', 'Broccoli', 'Soybean',
                     'Pepper', 'Beetroot', 'Cauliflower', 'Parsnip', 'Eggplant', 'Corn', 'Onion', 'Turnip', 'Radish', 'Wheat', 'Kale',
-                    'Artichoke', 'Barley', 'Tomato', 'Lemon', 'Blueberry', 'Orange', 'Apple', 'Banana', 'Tree', 'Stone', 'Iron', 'Gold'],
+                    'Artichoke', 'Barley', 'Tomato', 'Lemon', 'Blueberry', 'Orange', 'Apple', 'Banana', 'Wood', 'Stone', 'Iron', 'Gold'],
             }
         ]
     },

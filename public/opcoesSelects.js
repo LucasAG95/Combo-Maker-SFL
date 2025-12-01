@@ -13,19 +13,27 @@ document.getElementById('opcao-idioma').addEventListener('change', selecionandoI
 let estacao = 'spring';
 function selecionandoEstacao() {
     estacao = document.getElementById('estacaoSelect').value;
-    buffsAdicionadosCrops();//dps mudar qual chamar
+    chamadorDeBuffs();//dps mudar qual chamar
 };
 document.getElementById('estacaoSelect').addEventListener('change', selecionandoEstacao);
 
 //=======================================================================================================================================================================
 
-let modoDeCalularCrops = `manual`; //valor da opção inicial
+//valor da opção inicial
+let modoDeCalularCrops = `manual`; 
+let modoDeCalcularMinerios = 'hora';
+
 function selecionarModoDeCalculo() {
+
     modoDeCalularCrops = document.getElementById(`tipo-de-calculo-crop`).value;
-    buffsAdicionadosCrops();
+    
+    modoDeCalcularMinerios = document.getElementById(`tipo-de-calculo-mineral`).value;
+    
+    chamadorDeBuffs();
 
 };
 document.getElementById('tipo-de-calculo-crop').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('tipo-de-calculo-mineral').addEventListener('change', selecionarModoDeCalculo);
 
 //=======================================================================================================================================================================
 
@@ -42,7 +50,7 @@ function valoresDasGems() {
     console.log(precoDaGemEmFlower + `esse é o valor`);
 
     //funções chamadas
-    buffsAdicionadosCrops();
+    chamadorDeBuffs();
     mudarIdioma();
 
 }
