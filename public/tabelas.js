@@ -303,11 +303,12 @@ function tabelaMinerios() {
         let lucroNoMarket = recursoRestante > 0 ? (recursoRestante * valorDoRecurso) * (1 - taxa) : recursoRestante * valorDoRecurso;
 
         let tempoOuRodadas; //Caso a pessoa preencha os dados por hora, vai mostrar quantas radadas fara nesse tempo, caso contrario mostrará quantas horas será gasta!
-        if (textoDoTituloTempoOuRodadas === ('Média de<br>Ciclos' || 'Average<br>Cycles')) {
-            tempoOuRodadas = `<img src="./icones/ciclo.png" class="crop-img">${Number(tempoTotal.toFixed(2)) || 0}`
+        if (textoDoTituloTempoOuRodadas === 'Média de<br>Ciclos' || textoDoTituloTempoOuRodadas === 'Average<br>Cycles') {
+            tempoOuRodadas = `<img src="./icones/ciclo.png" class="crop-img">${Number(tempoTotal.toFixed(2)) || 0}`;
         } else {
             tempoOuRodadas = `<img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoTotal || 0)}`;
         }
+
 
         //variaveis das ferramentas
         let ferramentasUsadas = Number(ferramenta.quantidade.toFixed(2)) || '';

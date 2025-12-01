@@ -45,13 +45,18 @@ function mudarIdioma() {
         document.getElementById('estacaoSelect').options[2].innerHTML = 'Outono';
         document.getElementById('estacaoSelect').options[3].innerHTML = 'Inverno';
 
+        document.getElementById('tipo-de-calculo-mineral').options[0].innerHTML = 'Por Hora';
+        document.getElementById('tipo-de-calculo-mineral').options[1].innerHTML = 'Por Rodada';
+        document.getElementById('tipo-de-calculo-mineral').options[2].innerHTML = 'Por Ferramenta';
+        
+
         //atualizações feitas
         document.getElementById('avisos-atualizacoes').innerHTML = 'Atualizações Feitas'; //titulo da aba
-        document.getElementById('atualizacao-feita').innerHTML = `Ultima Atualização — v0.1.5`; //subtitulo
-        document.getElementById('v015').innerHTML = `Nesta atualização, corrigimos o problema em que o VIP não atualizava corretamente quando o jogador selecionava que não o possuía. Também ajustamos o desconto de gems nas crops, que estava sendo aplicado duas vezes e resultava em valores incorretos.<br><br>
+        document.getElementById('atualizacao-feita').innerHTML = `Ultima Atualização — v0.1.6`; //subtitulo
+        document.getElementById('v015').innerHTML = `v0.1.5 ➜ Nesta atualização, corrigimos o problema em que o VIP não atualizava corretamente quando o jogador selecionava que não o possuía. Também ajustamos o desconto de gems nas crops, que estava sendo aplicado duas vezes e resultava em valores incorretos.<br><br>
             Como novidade, adicionamos — ainda em fase de testes — parte do sistema de minérios, permitindo visualizar seus gastos e o possível lucro obtido!<br><br>
             Aproveitem e enviem seu feedback. Caso encontrem algo errado ou tenham sugestões de melhoria, podem me reportar no fórum do Discord ou me marcar no Discord do SunflowerLand: LucasAG95.`; 
-        
+        document.getElementById('v016').innerHTML = `v0.1.6 ➜ Quando o idioma era alterado para inglês, a tabela de minérios não estava sendo atualizada corretamente no cálculo por hora. Esse problema foi corrigido e agora está funcionando corretamente!`
 
     } else if (idioma === 'ingles') {
 
@@ -96,13 +101,17 @@ function mudarIdioma() {
         document.getElementById('estacaoSelect').options[2].innerHTML = 'Autumn';
         document.getElementById('estacaoSelect').options[3].innerHTML = 'Winter';
 
+        document.getElementById('tipo-de-calculo-mineral').options[0].innerHTML = 'Per Hour';
+        document.getElementById('tipo-de-calculo-mineral').options[1].innerHTML = 'Per Round';
+        document.getElementById('tipo-de-calculo-mineral').options[2].innerHTML = 'Per Tool';
+
         //atualizações feitas
         document.getElementById('avisos-atualizacoes').innerHTML = 'Updates Made';
-        document.getElementById('atualizacao-feita').innerHTML = `Latest Update — v0.1.5`
+        document.getElementById('atualizacao-feita').innerHTML = `Latest Update — v0.1.6`
         document.getElementById('v015').innerHTML = `In this update, we fixed the issue where the VIP was not updating correctly when the player selected that they didn’t have it. We also adjusted the gem discount on crops, which was being applied twice and resulting in incorrect values.<br><br>
             As a new feature — still in testing — we added part of the mining system, allowing you to view your expenses and potential profit!<br><br>
-            Enjoy and share your feedback. If you find anything wrong or have suggestions for improvement, you can report it on the Discord forum or tag me on the SunflowerLand Discord: LucasAG95.`; 
-        
+            Enjoy and share your feedback. If you find anything wrong or have suggestions for improvement, you can report it on the Discord forum or tag me on the SunflowerLand Discord: LucasAG95.<br>`; 
+        document.getElementById('v016').innerHTML = `v0.1.6 ➜ When switching the language to English, the mining table was not updating correctly in the per-hour calculation. This issue has been fixed and is now working properly!`
 
     }
     pontosGastosEmSkills();
