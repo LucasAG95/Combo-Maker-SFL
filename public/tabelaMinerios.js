@@ -161,6 +161,7 @@ function tabelaMinerios() {
         <tbody>
     `;
 
+
     let restockDoCombo = 0;
     let ganhoDoCombo = 0;
 
@@ -213,6 +214,44 @@ function tabelaMinerios() {
 
     });
     tabelaMinerios += `</tbody></table>`;
+
+    //=====================================================================================================================================================================
+
+
+    let tabelaTitulosFerramentas2 = `
+        <tr>   
+            <th>${idiomaDoTextoMinerais.ferramenta}<br>${idiomaDoTextoMinerais.estoque}</th>
+            <th>${idiomaDoTextoMinerais.calculoPorFerramenta} <br><button onclick="ferramentasUsadas()">${idiomaDoTextoMinerais.botaoSalvar}</button></th>
+            <th>${idiomaDoTextoMinerais.ferramentasUsadas}<br>${idiomaDoTextoMinerais.gastoTotal}</th>
+        </tr>`
+    
+    let tabelaFerramentas2 = `
+    <table class="tabela-minerios-secundaria">
+            <thead>
+                ${tabelaTitulosFerramentas2}
+            </thead>
+        <tbody>
+    `;
+
+    ferramentasSecundarias.forEach(ferramenta => { 
+
+        //variaveis das ferramentas
+        let ferramentasUsadas = Number(ferramenta.quantidade) || '';
+        let ferramentaCustoEmCoins = ferramenta.custoEmCoins * ferramentasUsadas;
+        let ferramentaCustoEmFlower = ferramentaCustoEmCoins / flowerEmCoins;
+
+        let qtdDeRestock = ferramentasUsadas / ferramenta.estoqueFinal;
+
+        tabelaFerramentas2 += `
+        <tr>
+            <td><img src="./minerais/${ferramenta.id}.png" class="crop-img">${ferramenta.name} <br> <img src="./icones/reestock.png" class="crop-img">${ferramenta.estoqueFinal}</td>
+            <td><input type="number" placeholder="" data-name="${ferramenta.id}" class="quantidade-input minerios-input" value="${ferramenta.qtdUsada}"></td>
+            <td><img src="./minerais/${ferramenta.id}.png" class="crop-img">${ferramentasUsadas}<br><img src="./icones/flower.png" class="crop-img">${ferramentaCustoEmFlower.toFixed(4)}</td>
+        </tr>
+        `;
+
+        if (qtdDeRestock > restockDoCombo) restockDoCombo = qtdDeRestock;
+    });
 
     //=====================================================================================================================================================================
 
@@ -308,6 +347,7 @@ function tabelaMinerios() {
         <div class="tabelas-em-ordem">
             ${cardResultados}
             ${tabelaMinerios}
+            ${tabelaFerramentas2}
         </div>
     `;
 };

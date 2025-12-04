@@ -19,7 +19,7 @@ function ferramentasUsadas() {
         let id = input.dataset.name;
         let valor = Number(input.value);
 
-        let ferramenta = ferramentas.find(fer => fer.id === id); // <-- CORRIGIDO
+        let ferramenta = todasFerramentas.find(fer => fer.id === id); // <-- CORRIGIDO
         if (ferramenta) ferramenta.qtdUsada = valor || '';
     });
 

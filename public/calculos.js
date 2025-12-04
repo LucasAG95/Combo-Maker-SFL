@@ -231,6 +231,34 @@ function buffsAdicionadosMinerais() {
         };
 
     });
+
+    //para pesca e escavação ate o momento
+    ferramentasSecundarias.forEach(ferramenta => {
+        const buffs = calcularBuff(ferramenta, [
+            skillsLegacy,
+            skillsTrees.tier1,
+            skillsTrees.tier2,
+            skillsTrees.tier3,
+            skillsMinerals.tier1,
+            skillsMinerals.tier2,
+            skillsMinerals.tier3,
+            skillsMachinery.tier1,
+            skillsMachinery.tier2,
+            skillsMachinery.tier3,
+            collectibles.ferreiro,
+            collectibles.trees,
+            collectibles.minerals,
+            wearables.factions,
+            wearables.minerals,
+            shrines,
+            totems
+        ]);
+
+        ferramenta.quantidade = Number(ferramenta.qtdUsada);
+        ferramenta.estoqueFinal = Math.ceil((ferramenta.estoque * buffs.estoqueMulti) + buffs.estoqueSoma);
+
+    });
+
     mediaDeValorDasFerramentasEMinerais();
 };
 
@@ -250,7 +278,9 @@ function mediaDeValorDasFerramentasEMinerais() {
     todasFerramentas.forEach(ferramenta => {
 
         let oilLaOuCouro = 'leather';
-        if (mapaDeTodasSkillsComTier['oilRig'].possui) oilLaOuCouro = 'wool';
+        if (mapaDeTodasSkillsComTier['oilRig'].possui && ferramenta.name === 'Oil Drill') {
+            oilLaOuCouro = 'wool';
+        } 
 
         //Calcular media de custo em coins da ferramenta!
         ferramenta.custoEmCoins = ferramenta.recursosNecessarios['coins'] + 
@@ -261,20 +291,9 @@ function mediaDeValorDasFerramentasEMinerais() {
             ((ferramenta.recursosNecessarios['crimstone'] ?? 0) * (mapaDeMinerals['crimstone']?.mediaDeCustoCoins ?? 0)) +
             ((ferramenta.recursosNecessarios['oil'] ?? 0) * (mapaDeMinerals['oil']?.mediaDeCustoCoins ?? 0)) +
             ((ferramenta.recursosNecessarios[oilLaOuCouro] ?? 0) * (mapaDosValoresDoMarket[oilLaOuCouro]?.valor ?? 0) * flowerEmCoins);
-        
-        const mineral = mapaDeMinerals[ferramenta.recursoObtido];
 
-        //se n tiver o recurso obtido, isso vai mostrar qual não possui(provavelmente peixe e escavações)
-        if (!mineral) {
-            console.warn("Recurso não encontrado:", ferramenta.recursoObtido);
-            return;
-        }
-
-        //calcular média em coins que cada mineral sai!
-        mineral.mediaDeCustoCoins = (ferramenta.custoEmCoins * (ferramenta.qtdPrecisaPorNode || 1)) / (mineral.mediaPorNode || 1);
-        mineral.mediaDeCustoFlower = mineral.mediaDeCustoCoins / flowerEmCoins;
-
-        //feito para somar os gastos com as ferramentas
+            
+        //feito para mostrar os gastos com as ferramentas
         mapaDeMinerals['wood'].woodGastas += Number((ferramenta.recursosNecessarios['wood'] ?? 0) * ferramenta.quantidade);
         mapaDeMinerals['stone'].stoneGastas += Number((ferramenta.recursosNecessarios['stone'] ?? 0) * ferramenta.quantidade);
         mapaDeMinerals['iron'].ironGastas += Number((ferramenta.recursosNecessarios['iron'] ?? 0) * ferramenta.quantidade);
@@ -284,12 +303,19 @@ function mediaDeValorDasFerramentasEMinerais() {
 
         //essas 3 abaixo foi criado dentro de minerais, apenas com intuito de somar quanto foi gasto nas ferramentas!
         mapaDeMinerals.coinsGastas += Number((ferramenta.recursosNecessarios['coins'] ?? 0) * ferramenta.quantidade);
-        
         mapaDeMinerals.leatherGastas += oilLaOuCouro === 'leather' ? Number((ferramenta.recursosNecessarios['leather'] ?? 0) * ferramenta.quantidade) : 0;
         mapaDeMinerals.woolGastas += oilLaOuCouro === 'wool' ? Number((ferramenta.recursosNecessarios['wool'] ?? 0) * ferramenta.quantidade) : 0;
 
-        console.log(`${mineral.name}: ${mineral.mediaDeCustoCoins} coins`);
+        //para calcular o custo médio que sai cada mineral
+        const mineral = mapaDeMinerals[ferramenta.recursoObtido];
+        if (!mineral) {
+            console.warn("Recurso não encontrado:", ferramenta.recursoObtido);
+            return;
+        }
 
+        //calcular média em coins que cada mineral sai!
+        mineral.mediaDeCustoCoins = (ferramenta.custoEmCoins * (ferramenta.qtdPrecisaPorNode || 1)) / (mineral.mediaPorNode || 1);
+        mineral.mediaDeCustoFlower = mineral.mediaDeCustoCoins / flowerEmCoins;
     });
     tabelaMinerios();
 };

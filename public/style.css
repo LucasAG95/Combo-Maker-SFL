@@ -661,6 +661,42 @@ input[type="checkbox"]:disabled + .nft-img:hover {
 }
 
 /* ====================
+   TABELA SECUNDÁRIA COM TAMANHO FIXO
+======================= */
+.tabela-minerios-secundaria {
+  width: 600px;        /* 🔧 ajuste como quiser */
+  height: 220px;       /* 🔧 ajuste como quiser */
+  overflow-y: auto;    /* adiciona scroll interno */
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 30px;
+  font-size: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #333;
+}
+
+.tabela-minerios-secundaria th,
+.tabela-minerios-secundaria td {
+  padding: 5px 1px;
+  text-align: center;
+}
+
+.tabela-minerios-secundaria th {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.tabela-minerios-secundaria tr:nth-child(even) {
+  background-color: #2c2c2c;
+}
+
+.tabela-minerios-secundaria tr:nth-child(odd) {
+  background-color: #242424;
+}
+
+
+/* ====================
    IMPUT DOS ICONES DE PREENCHIMENTO DOS MINERIOS
 ======================= */
 .input-icon {

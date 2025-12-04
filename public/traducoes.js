@@ -42,17 +42,21 @@ function mudarIdioma() {
     //NFTs, Skills e Buffs Temporarios
     document.getElementById('buffs-temporarios').innerHTML = `${opcaoDeIdiomas.abaBuffsTemporarios}`;
     document.getElementById('total-valor-em-shrines').innerHTML = `${opcaoDeIdiomas.tituloDentroDaAbaBuffsTemporarios}`;
-    //Avisos sobre os fertilizantes
+
+    //Avisos
+    document.getElementById('aviso-de-manter-horas').innerHTML = `* ${opcaoDeIdiomas.avisoCalculosMinerais}`
     document.getElementById('tab-sprout-mix').innerHTML = `* ${opcaoDeIdiomas.avisoSproutMix}`;
     document.getElementById('tab-rapid-root').innerHTML = `* ${opcaoDeIdiomas.avisoRapidRoot}`;
 
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.1.7`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.1.8`;
     document.getElementById('v015').innerHTML = `${atualizacoesFeitas.atualizacaoV015}`;
     document.getElementById('v016').innerHTML = `${atualizacoesFeitas.atualizacaoV016}`;
     document.getElementById('v017').innerHTML = `${atualizacoesFeitas.atualizacaoV017}`;
+    document.getElementById('v018').innerHTML = `${atualizacoesFeitas.atualizacaoV018}`;
+
 
     pontosGastosEmSkills();
     chamadorDeDesbloquearSkills();
@@ -100,7 +104,9 @@ const idiomaEscolhido = {
         //nome das abas de NFTs/Skills quando precisa de tradução
         abaBuffsTemporarios: 'Buffs Temporários',
         tituloDentroDaAbaBuffsTemporarios: 'Buffs Temporários', //tirar talvez
+
         //mensagem de avisos
+        avisoCalculosMinerais: 'Se você optar por calcular por ferramenta ou por ciclo, tente manter o Tempo Total em, no máximo, 24 horas para obter resultados mais precisos. Caso ultrapasse esse limite, desconsidere a média de lucro diário e semanal.',
         avisoSproutMix: 'Ao selecionar qualquer crop, ela ganhará +0.2 por plot, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
         avisoRapidRoot: 'Ao selecionar qualquer crop, ela terá seu tempo reduzido pela metade, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
     },
@@ -145,6 +151,7 @@ const idiomaEscolhido = {
         tituloDentroDaAbaBuffsTemporarios: 'Temporary Buffs',
 
         //mensagem de avisos
+        avisoCalculosMinerais: 'If you choose to calculate by tool or by cycle, try to keep the Total Time at a maximum of 24 hours to obtain more accurate results. If this limit is exceeded, disregard the daily and weekly profit averages.',
         avisoSproutMix: 'When selecting any crop, it will gain +0.2 per plot, but remember that fertilizers are temporary buffs and you use one per seed. When you select it, the system will assume you’ll use the fertilizer on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
         avisoRapidRoot: 'When selecting any crop, its time will be reduced by half, but remember that fertilizers are temporary buffs and you use one per seed. When you select it, the system will assume you’re using it on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
     }
@@ -165,6 +172,11 @@ const idiomaDasAtualizacoes = {
         
         atualizacaoV017: `v0.1.7 ➜ As tabelas de simulação agora estão organizadas em Tabs, permitindo navegar entre elas de forma muito mais rápida e prática. Essa melhoria deixa o uso bem mais fluido e reduz o tempo para alternar entre diferentes cálculos.
             <br>Espero que gostem dessa atualização!`,
+
+        atualizacaoV018: `v0.1.8<br>
+            • Correção no cálculo de minerais por ciclos: o aviso de limite de 24 horas estava impedindo o cálculo da madeira quando ultrapassado — esse aviso foi removido!<br>
+            • Adicionado um aviso em texto para orientar o usuário a manter os tempos abaixo de 24 horas, caso queira resultados mais precisos.<br>
+            • Inclusão das ferramentas secundárias (Rod, Sand Shovel e Sand Drill), permitindo calcular seus custos e exibir de forma mais clara o lucro diário!`,
     },
     ingles: {
         nomeDaAbaAtualizacao: 'Updates Made',
@@ -179,5 +191,9 @@ const idiomaDasAtualizacoes = {
         atualizacaoV017: `v0.1.7 ➜ The simulation tables are now organized into Tabs, allowing you to navigate between them much faster and more easily. This improvement makes the experience much smoother and reduces the time needed to switch between different calculations.
             <br>I hope you enjoy this update!`,
 
+        atualizacaoV018: `v0.1.8<br>
+            • Fix in mineral-per-cycle calculations: the 24-hour limit warning was preventing wood from being calculated when exceeded — this warning has been removed!<br>
+            • Added a text warning to inform users to keep times below 24 hours if they want more accurate results.<br>
+            • Added secondary tools (Rod, Sand Shovel and Sand Drill), allowing you to calculate their costs and better display your daily profit!`,
     }
 }

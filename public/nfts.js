@@ -35,7 +35,7 @@ let collectibles = {
                 {
                     sinal: 'x',
                     buff: 1.5,
-                    recursoAfetado: ['Axe', 'Pickaxe', 'Stone Pickaxe', 'Iron Pickaxe', 'Gold Pickaxe', 'Oil Drill', 'Fishing Rod', 'Sand Shovel', 'Sand Drill'],
+                    recursoAfetado: ['Axe', 'Pickaxe', 'Stone Pickaxe', 'Iron Pickaxe', 'Gold Pickaxe', 'Oil Drill', 'Rod'],
                 }
             ],
         },
