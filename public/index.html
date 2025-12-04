@@ -9,7 +9,7 @@
   
 
   <header class="header">
-    <h1>Combo Maker - v0.1.6 (Beta)</h1>
+    <h1>Combo Maker - v0.1.7 (Beta)</h1>
     <!-- Selecionar Idioma -->
     <div class="select-idioma">
         <label for="opcao-idioma">
@@ -306,8 +306,11 @@
       </section>
 
       <!-- Atualizações Tab -->
-      <section id="avisoDasAtualizacoes" class="tab-content wearables-block">
-        <h2 id="atualizacao-feita">Ultima Atualização - v0.1.6</h2>
+      <section id="avisoDasAtualizacoes" class="tab-content atualizacoes-block">
+        <h2 id="atualizacao-feita">Ultima Atualização - v0.1.7</h2>
+
+        <h4 id="v017"></h4>
+        ------------------------------------------------------------------------------------------------------------------------------------
         <h4 id="v016"></h4>
         ------------------------------------------------------------------------------------------------------------------------------------
         <h4 id="v015"></h4>
@@ -332,165 +335,176 @@
   <!-- Colocar o total de valor que possui em NFTs -->
   <h4 id="valor-total-em-NFTs"></h4>
 
-  <!-- ================================================================Crops================================================================================ -->
-  <section class="linha-selects">
-    <div class="select-group"> 
-      <label id="modoDeCalcularCrops" for="tipo-de-calculo">Modo de calcular as Crops:</label>
-      <select id="tipo-de-calculo-crop">
-        <option value="manual">Quantidade de Sementes</option>
-        <option value="rodada">Quantidade de Ciclos</option>
-      </select>
+  <!-- ========================= TABS DAS TABELAS ========================= -->
+
+  <div class="tabs-secundarias">
+
+    <div class="tabs-secundarias-buttons">
+      <button class="tab2-btn active" data-tab2="crops-tab2">Crops</button>
+      <button class="tab2-btn" data-tab2="minerios-tab2">Minerals</button>
     </div>
 
-    <div class="select-group">
-      <label id="cropPlotsQuePossui" for="plotsPossuidos">Qtd. de Crop Plots</label>
-      <input id="plotsPossuidos" type="number" placeholder="Ex: 70">
-    </div>
+    <!-- ===================================================================== -->
+    <!-- ===============================  CROPS  =============================== -->
+    <!-- ===================================================================== -->
 
-    <button id="salvarInfos" onclick="salvarInformacoes()">Salvar</button>
-  </section>
+    <section id="crops-tab2" class="tab2-content active">
 
-  <h3 id="mensagemDeAviso">* Tanto o 'Lucro do Combo' quanto a 'Média de Lucro em 24h' já mostram o resultado final, com todos os custos descontados (taxas, custo das sementes e gems).</h3>
+      <!-- ======================= SELECTS DE CROPS ======================= -->
+      <section class="linha-selects">
+        <div class="select-group"> 
+          <label id="modoDeCalcularCrops" for="tipo-de-calculo-crop">Modo de calcular as Crops:</label>
+          <select id="tipo-de-calculo-crop">
+            <option value="manual">Quantidade de Sementes</option>
+            <option value="rodada">Quantidade de Ciclos</option>
+          </select>
+        </div>
 
-  <!-- Área onde a tabela será inserida -->
-  <div id="saida-das-crops"></div>
+        <div class="select-group">
+          <label id="cropPlotsQuePossui" for="plotsPossuidos">Qtd. de Crop Plots</label>
+          <input id="plotsPossuidos" type="number" placeholder="Ex: 70">
+        </div>
 
-  <!-- ================================================================Minerals================================================================================ --> 
-  <section class="linha-selects">
+        <button id="salvarInfos" onclick="salvarInformacoes()">Salvar</button>
+      </section>
 
-    <!-- ============================
-        GRUPO DE ÁRVORES
-    ============================= -->
-    <div class="select-group">
-      <label id="qtdDeArvores">Quantidade de Árvores:</label>
+      <!-- Área onde a tabela de crops será inserida -->
+      <div id="saida-das-crops"></div>
 
-      <div class="input-wrap">
-        <img src="./minerais/treeT1.png" class="input-icon">
-        <input id="woodT1" type="number" placeholder="Tree - Tier1">
-      </div>
+    </section>
 
-      <div class="input-wrap">
-        <img src="./minerais/treeT2.png" class="input-icon">
-        <input id="woodT2" type="number" placeholder="Ancient Tree - Tier2">
-      </div>
+    <!-- ===================================================================== -->
+    <!-- ============================== MINERIOS ============================== -->
+    <!-- ===================================================================== -->
 
-      <div class="input-wrap">
-        <img src="./minerais/treeT3.png" class="input-icon">
-        <input id="woodT3" type="number" placeholder="Sacred Tree - Tier3">
-      </div>
-    </div>
+    <section id="minerios-tab2" class="tab2-content">
 
-    <!-- ============================
-        GRUPO DE PEDRAS
-    ============================= -->
-    <div class="select-group">
-      <label id="qtdDePedras">Quantidade de Pedras:</label>
+      <!-- ======================= SELECTS DE MINERIOS ======================= -->
+      <section class="linha-selects">
 
-      <div class="input-wrap">
-        <img src="./minerais/pedraT1.png" class="input-icon">
-        <input id="stoneT1" type="number" placeholder="Stone Rock - Tier1">
-      </div>
+        <!-- ========================= ÁRVORES ========================= -->
+        <div class="select-group">
+          <label id="qtdDeArvores">Quantidade de Árvores:</label>
 
-      <div class="input-wrap">
-        <img src="./minerais/pedraT2.png" class="input-icon">
-        <input id="stoneT2" type="number" placeholder="Fused Stone - Tier2">
-      </div>
+          <div class="input-wrap">
+            <img src="./minerais/treeT1.png" class="input-icon">
+            <input id="woodT1" type="number" placeholder="Tree - Tier1">
+          </div>
 
-      <div class="input-wrap">
-        <img src="./minerais/pedraT3.png" class="input-icon">
-        <input id="stoneT3" type="number" placeholder="Reinforced Stone - Tier3">
-      </div>
-    </div>
+          <div class="input-wrap">
+            <img src="./minerais/treeT2.png" class="input-icon">
+            <input id="woodT2" type="number" placeholder="Ancient Tree - Tier2">
+          </div>
 
-    <!-- ============================
-        GRUPO DE FERROS
-    ============================= -->
-    <div class="select-group">
-      <label id="qtdDeFerros">Quantidade de Ferros:</label>
+          <div class="input-wrap">
+            <img src="./minerais/treeT3.png" class="input-icon">
+            <input id="woodT3" type="number" placeholder="Sacred Tree - Tier3">
+          </div>
+        </div>
 
-      <div class="input-wrap">
-        <img src="./minerais/ferroT1.png" class="input-icon">
-        <input id="ironT1" type="number" placeholder="Iron Rock - Tier1">
-      </div>
+        <!-- ========================= PEDRAS ========================= -->
+        <div class="select-group">
+          <label id="qtdDePedras">Quantidade de Pedras:</label>
 
-      <div class="input-wrap">
-        <img src="./minerais/ferroT2.png" class="input-icon">
-        <input id="ironT2" type="number" placeholder="Refined Iron - Tier2">
-      </div>
+          <div class="input-wrap">
+            <img src="./minerais/pedraT1.png" class="input-icon">
+            <input id="stoneT1" type="number" placeholder="Stone Rock - Tier1">
+          </div>
 
-      <div class="input-wrap">
-        <img src="./minerais/ferroT3.png" class="input-icon">
-        <input id="ironT3" type="number" placeholder="Tempered Iron - Tier3">
-      </div>
-    </div>
+          <div class="input-wrap">
+            <img src="./minerais/pedraT2.png" class="input-icon">
+            <input id="stoneT2" type="number" placeholder="Fused Stone - Tier2">
+          </div>
 
-    <!-- ============================
-        GRUPO DE OUROS
-    ============================= -->
-    <div class="select-group">
-      <label id="qtdDeOuros">Quantidade de Ouros:</label>
+          <div class="input-wrap">
+            <img src="./minerais/pedraT3.png" class="input-icon">
+            <input id="stoneT3" type="number" placeholder="Reinforced Stone - Tier3">
+          </div>
+        </div>
 
-      <div class="input-wrap">
-        <img src="./minerais/ouroT1.png" class="input-icon">
-        <input id="goldT1" type="number" placeholder="Gold Rock - Tier1">
-      </div>
+        <!-- ========================= FERROS ========================= -->
+        <div class="select-group">
+          <label id="qtdDeFerros">Quantidade de Ferros:</label>
 
-      <div class="input-wrap">
-        <img src="./minerais/ouroT2.png" class="input-icon">
-        <input id="goldT2" type="number" placeholder="Pure Gold Rock - Tier2">
-      </div>
+          <div class="input-wrap">
+            <img src="./minerais/ferroT1.png" class="input-icon">
+            <input id="ironT1" type="number" placeholder="Iron Rock - Tier1">
+          </div>
 
-      <div class="input-wrap">
-        <img src="./minerais/ouroT3.png" class="input-icon">
-        <input id="goldT3" type="number" placeholder="Prime Gold Rock - Tier3">
-      </div>
-    </div>
+          <div class="input-wrap">
+            <img src="./minerais/ferroT2.png" class="input-icon">
+            <input id="ironT2" type="number" placeholder="Refined Iron - Tier2">
+          </div>
 
-    <!-- ============================
-        GRUPO DE CRIMSTONE
-    ============================= -->
-    <div class="select-group">
-      <label id="qtdDeCrimstones">Quantidade de Crimstones:</label>
+          <div class="input-wrap">
+            <img src="./minerais/ferroT3.png" class="input-icon">
+            <input id="ironT3" type="number" placeholder="Tempered Iron - Tier3">
+          </div>
+        </div>
 
-      <div class="input-wrap">
-        <img src="./minerais/crimstoneRock.png" class="input-icon">
-        <input id="crimstoneRock" type="number" placeholder="Crimstone Rock">
-      </div>
-    </div>
+        <!-- ========================= OUROS ========================= -->
+        <div class="select-group">
+          <label id="qtdDeOuros">Quantidade de Ouros:</label>
 
-    <!-- ============================
-        GRUPO DE OIL
-    ============================= -->
-    <div class="select-group">
-      <label id="qtdDeOils">Quantidade de Oils:</label>
+          <div class="input-wrap">
+            <img src="./minerais/ouroT1.png" class="input-icon">
+            <input id="goldT1" type="number" placeholder="Gold Rock - Tier1">
+          </div>
 
-      <div class="input-wrap">
-        <img src="./minerais/oilReserve.png" class="input-icon">
-        <input id="oilReserve" type="number" placeholder="Oil Reserve">
-      </div>
-    </div>
+          <div class="input-wrap">
+            <img src="./minerais/ouroT2.png" class="input-icon">
+            <input id="goldT2" type="number" placeholder="Pure Gold Rock - Tier2">
+          </div>
 
-    <!-- ============================
-        BOTÃO PARA SALVAR
-    ============================= -->
-    <button id="salvarInfos" onclick="salvarInformacoes()">Salvar</button>
+          <div class="input-wrap">
+            <img src="./minerais/ouroT3.png" class="input-icon">
+            <input id="goldT3" type="number" placeholder="Prime Gold Rock - Tier3">
+          </div>
+        </div>
 
-    <!-- ============================
-        SELECT DO TIPO DE CÁLCULO
-    ============================= -->
-    <div class="select-group">
-      <label id="modoDeCalcularMinerios" for="tipo-de-calculo-mineral">Calcular os Minerios:</label>
-      <select id="tipo-de-calculo-mineral">
-        <option value="hora">Por Hora</option>
-        <option value="rodada">Por Ciclo</option>
-        <option value="manual">Por Ferramenta</option>
-      </select>
-    </div>
+        <!-- ========================= CRIMSTONE ========================= -->
+        <div class="select-group">
+          <label id="qtdDeCrimstones">Quantidade de Crimstones:</label>
 
-  </section>
+          <div class="input-wrap">
+            <img src="./minerais/crimstoneRock.png" class="input-icon">
+            <input id="crimstoneRock" type="number" placeholder="Crimstone Rock">
+          </div>
+        </div>
+
+        <!-- ========================= OIL ========================= -->
+        <div class="select-group">
+          <label id="qtdDeOils">Quantidade de Oils:</label>
+
+          <div class="input-wrap">
+            <img src="./minerais/oilReserve.png" class="input-icon">
+            <input id="oilReserve" type="number" placeholder="Oil Reserve">
+          </div>
+        </div>
+
+        <!-- ========================= BOTÃO SALVAR ========================= -->
+        <button id="salvarInfos" onclick="salvarInformacoes()">Salvar</button>
+
+        <!-- ========================= TIPO DE CÁLCULO ========================= -->
+        <div class="select-group">
+          <label id="modoDeCalcularMinerios" for="tipo-de-calculo-mineral">Calcular os Minerios:</label>
+          <select id="tipo-de-calculo-mineral">
+            <option value="hora">Por Hora</option>
+            <option value="rodada">Por Ciclo</option>
+            <option value="manual">Por Ferramenta</option>
+          </select>
+        </div>
+
+      </section>
+
+      <!-- Área onde a tabela de minerios será inserida -->
+      <div id="saida-dos-minerios"></div>
+
+    </section>
+
+  </div>
 
 
-  <div id="saida-dos-minerios"></div>
 
   
   <!-- Scripts -->
@@ -504,10 +518,12 @@
   <script src="./desbloquearSkills.js"></script>
   <script src="./pontosSkillsEValorDasNfts.js"></script>
   <script src="./opcoesSelects.js"></script>
-  <script src="./tabelas.js"></script>
+  <script src="./tabelaCrops.js"></script>
+  <script src="./tabelaMinerios.js"></script>
   <script src="./statusFarm.js"></script>
   <script src="./checkbox.js"></script>
   <script src="./tabs.js"></script>
+  <script src="./tabsTabelas.js"></script>
   <script src="./inputs.js"></script>
   <script src="./traducoes.js"></script>
 </body>
