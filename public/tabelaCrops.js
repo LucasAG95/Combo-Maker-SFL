@@ -1,4 +1,5 @@
 const mostrarResultadoCrops = document.getElementById('saida-das-crops');
+const mostrarResultadoCropMachine = document.getElementById('saida-das-crops-cm');
 
 const idiomaTabelaCrops = {
     portugues: {
@@ -15,7 +16,7 @@ const idiomaTabelaCrops = {
         tempoTotal: 'Tempo Total',
         sementesUsadas: 'Sementes Usadas',
         totalDeCrops: 'Total de Crops',
-        lucroEmCoins: 'Lucro<br>em Coins',
+        lucroEmCoins: 'Lucro em Coins',
         valorDeVendaNoMarket: 'Valor de Venda <br> Market P2P',
         lucroVendendoNoMarket: 'Lucro no Market P2P<br>Taxa',
 
@@ -28,6 +29,10 @@ const idiomaTabelaCrops = {
         cardCustoRestock24h: 'Custo em Restock (24h)',
         cardLucroEm24h: 'Média de Lucro em 24h',
         cardLucroSemanal: 'Média de Lucro Semanal',
+
+        //exlcusivo CM
+        oilGasto: 'Oil Gasto',
+        oilUsado: 'Oil Usado',
     },
     ingles: {
         //titulo tabela
@@ -43,7 +48,7 @@ const idiomaTabelaCrops = {
         tempoTotal: 'Total Time',
         sementesUsadas: 'Seeds Used',
         totalDeCrops: 'Total Crops',
-        lucroEmCoins: 'Profit<br>in Coins',
+        lucroEmCoins: 'Profit in Coins',
         valorDeVendaNoMarket: 'Market P2P<br>Selling Price',
         lucroVendendoNoMarket: 'Profit on Market P2P<br>Fee',
 
@@ -56,62 +61,11 @@ const idiomaTabelaCrops = {
         cardCustoRestock24h: 'Restock Cost (24h)',
         cardLucroEm24h: 'Average Profit in 24h',
         cardLucroSemanal: 'Weekly Average Profit',
-    },
-    espanhol: {
-        crop: 'Cultivos',
-        estoque: 'Inventario',
-        custoDaSemente: 'Costo Semilla',
-        vendaDaCrop: 'Venta Cultivo',
-        mediaPorPlot: 'Promedio/Parcela',
-        tempoDaCrop: 'Tiempo Cultivo',
-        calculoPorSemente: 'Semillas a Plantar',
-        calculoPorCiclo: 'Ciclos a Plantar',
-        botaoSalvar: 'Guardar',
-        tempoTotal: 'Tiempo Total',
-        sementesUsadas: 'Semillas Usadas',
-        totalDeCrops: 'Total Cultivos',
-        lucroEmCoins: 'Ganancia<br>en Monedas',
-        valorDeVendaNoMarket: 'Precio Mercado<br>P2P',
-        lucroVendendoNoMarket: 'Ganancia Mercado<br>P2P (Tarifa)',
 
-        //cards
-        cardTempoTotal: 'Tiempo Total',
-        cardQtdRestock: 'Promedio Restock',
-        cardCustoRestock: 'Costo Restock',
-        cardLucroDoCombo: 'Ganancia Combo',
-        cardQtdRestock24h: 'Restock 24h',
-        cardCustoRestock24h: 'Costo 24h',
-        cardLucroEm24h: 'Ganancia 24h',
-        cardLucroSemanal: 'Ganancia Semanal',
+        //exlcusivo CM
+        oilGasto: 'Oil Spent',
+        oilUsado: 'Oil Used',
     },
-    chines: {
-        //titulo tabela
-        crop: '作物',
-        estoque: '库存',
-        custoDaSemente: '种子成本',
-        vendaDaCrop: '作物售价',
-        mediaPorPlot: '每地块平均',
-        tempoDaCrop: '生长时间',
-        calculoPorSemente: '将要种植的种子数量',
-        calculoPorCiclo: '将要种植的周期数量',
-        botaoSalvar: '保存',
-        tempoTotal: '总时间',
-        sementesUsadas: '使用的种子',
-        totalDeCrops: '总作物数',
-        lucroEmCoins: '金币<br>收益',
-        valorDeVendaNoMarket: 'P2P市场<br>售价',
-        lucroVendendoNoMarket: 'P2P市场收益<br>手续费',
-
-        //cards da tabela
-        cardTempoTotal: '总时间',
-        cardQtdRestock: '平均补货',
-        cardCustoRestock: '补货成本',
-        cardLucroDoCombo: '组合收益',
-        cardQtdRestock24h: '24小时补货',
-        cardCustoRestock24h: '24小时补货成本',
-        cardLucroEm24h: '24小时收益',
-        cardLucroSemanal: '每周收益',
-    }
 };
 
 function tabelaDeCrops() {
@@ -135,8 +89,8 @@ function tabelaDeCrops() {
             <th>${idiomaDoTextoCrops.custoDaSemente}<br>${idiomaDoTextoCrops.vendaDaCrop}</th>
             <th>${idiomaDoTextoCrops.mediaPorPlot}<br>${idiomaDoTextoCrops.tempoDaCrop}</th>
             <th>${textoDefinirModoDeCalcularCrops} <br><button onclick="sementesPlantadas()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
+            <th>${idiomaDoTextoCrops.sementesUsadas}<br>${idiomaDoTextoCrops.totalDeCrops}</th>
             <th>${idiomaDoTextoCrops.tempoTotal}</th>
-            <th>${idiomaDoTextoCrops.sementesUsadas}<br>${idiomaDoTextoCrops.totalDeCrops}</th>      
             <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
             <th>${idiomaDoTextoCrops.valorDeVendaNoMarket}</th>
             <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
@@ -170,7 +124,7 @@ function tabelaDeCrops() {
         let tempoTotalDaCrop = Number(crop.tempoTotal) || Number(0);
 
         //coins individual
-        let custoPorSemente = Number(crop.custoPorSemente) < 0.1 ? Number(crop.custoPorSemente).toFixed(3) : Number(crop.custoPorSemente).toFixed(2);;
+        let custoPorSemente = Number(crop.custoPorSemente) < 0.1 ? Number(crop.custoPorSemente).toFixed(3) : Number(crop.custoPorSemente).toFixed(2);
         let vendaPorCrop = Number(crop.vendaPorCrop) < 0.1 ? Number(crop.vendaPorCrop).toFixed(3) : Number(crop.vendaPorCrop).toFixed(2);
         //coins calculos para resultado final
         let custoTotal = Number(sementesUsadas * custoPorSemente);
@@ -192,9 +146,9 @@ function tabelaDeCrops() {
             <td><img src="./icones/coins.png" class="crop-img">${custoPorSemente}<br><img src="./icones/coins.png" class="crop-img">${vendaPorCrop}</td>
             <td><img src="./crops/${crop.name}.png" class="crop-img">${qtdPorPlot.toFixed(2)}<br><img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoDaCrop)}</td>
             <td><input type="number" placeholder="" data-name="${crop.name}" class="quantidade-input sementes-input" value="${crop.seedsPlantadas}"></td>
-            <td><img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoTotalDaCrop)}</td>
             <td><img src="./crops/seed${crop.name}.png" class="crop-img">${sementesUsadas}<br><img src="./crops/${crop.name}.png" class="crop-img">${qtdTotal.toFixed(2)}</td>
-            <td><img src="./icones/coins.png" class="crop-img">${lucroCoins.toFixed(2)}</td>
+            <td><img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoTotalDaCrop)}</td>
+            <td><img src="./crops/${crop.name}.png" class="crop-img"><br><img src="./icones/coins.png" class="crop-img">${lucroCoins.toFixed(2)}</td>
             <td><img src="./crops/${crop.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${valorPorCropEmFlower.toFixed(5)}</td>
             <td><img src="./crops/${crop.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroFlower.toFixed(5)}</td>
         </tr>
@@ -211,6 +165,7 @@ function tabelaDeCrops() {
 
     //=====================================================================================================================================================================
     
+    //info para os cards
     //ver o gasto com restock, cada restock de semente é 15 gems
     let gemsGastasComRestock = restockDoCombo * 15;
 
@@ -288,16 +243,185 @@ function tabelaDeCrops() {
         </div>
         `;
 
-    //=====================================================================================================================================================================
-
-    // renderiza tudo
+    // renderiza tudo da parte de crops
     mostrarResultadoCrops.innerHTML = `
         <div class="tabelas-em-ordem">
             ${cardResultados}
-            ${tabelaCrops}
+            ${tabelaCrops}        
         </div>
     `;
+
+    //=====================================================================================================================================================================
+
+    //acumuladores para mostrar resultado total da CM!
+    let tempoTotalDoComboNaCM = 0;
+    let lucroTotalDoComboCoinsNaCM = 0;
+    let lucroTotalDoComboFlowerNaCM = 0;
+    let restockDoComboCM = 0;
+    let oilTotalUsado = 0;
+
+    let tabelaTituloCM = `
+        <tr>
+            <th>${idiomaDoTextoCrops.crop}<br>${idiomaDoTextoCrops.estoque}</th>
+            <th>${idiomaDoTextoCrops.custoDaSemente}<br>${idiomaDoTextoCrops.vendaDaCrop}</th>
+            <th>${idiomaDoTextoCrops.mediaPorPlot}<br>${idiomaDoTextoCrops.tempoDaCrop}</th>
+            <th>${idiomaDoTextoCrops.calculoPorCiclo} <br><button onclick="rodadasPlantadasCM()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
+            <th>${idiomaDoTextoCrops.sementesUsadas}<br>${idiomaDoTextoCrops.totalDeCrops}</th>      
+            <th>${idiomaDoTextoCrops.tempoTotal}<br>${idiomaDoTextoCrops.oilGasto}</th>
+            <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
+            <th>${idiomaDoTextoCrops.valorDeVendaNoMarket}</th>
+            <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
+        </tr>`
+
+    // tabela principal continua igual
+    let tabelaCM = `
+    <table class="tabela-crops">
+            <thead>
+                ${tabelaTituloCM}
+            </thead>
+        <tbody>
+    `;
+
+    cropMachine.forEach(cropM => {
+        if (!cropM.permitido) return;
+
+        let quantidadeCM = Number(cropM.quantidade);
+        let sementesUsadasCM = Number(cropM.qtdSementeUsadas) || 0;
+        let colheitaTotal = Number(cropM.colheitaTotal) || 0;
+        
+        let tempoPorCropCM = Number(cropM.tempoFinal);
+        let tempoTotalPorCropCM = (cropM.tempoTotal || 0);
+
+        let custoPorSementeCoins = Number(cropM.custoPorSemente) < 0.1 ? Number(cropM.custoPorSemente).toFixed(3) : Number(cropM.custoPorSemente).toFixed(2);
+        let vendaDaCropPorCoins = Number(cropM.vendaPorCrop) < 0.1 ? Number(cropM.vendaPorCrop).toFixed(3) : Number(cropM.vendaPorCrop).toFixed(2);
+        
+        let custoTotal = sementesUsadasCM * custoPorSementeCoins;
+        let vendaTotal = colheitaTotal * vendaDaCropPorCoins;
+
+        let oilGasto = (oilPorHora / umaHora) * tempoTotalPorCropCM;
+        let lucroCoins = sementesUsadasCM > 0 ? (vendaTotal - custoTotal - (mapaDeMinerals['oil'].mediaDeCustoCoins * oilGasto)) : 0;
+
+        let estoqueTotal = Number(cropM.estoqueTotal);
+        let qtdDeRestock = (sementesUsadasCM / estoqueTotal);
+
+        let valorPorCropEmFlower = Number(cropM.valorDoMarket);
+
+        let GastoComSementeEmFlower = Number(((1 / flowerEmCoins) * custoPorSementeCoins) * sementesUsadasCM);
+        let lucroFlower = cropM.seedsPlantadas == 0 || ilha === 'Basic' ? 0 : 
+            Number(((valorPorCropEmFlower * colheitaTotal) * (1 - taxa)) - GastoComSementeEmFlower - ((mapaDeMinerals['oil'].mediaDeCustoFlower * oilGasto)));
+
+        tabelaCM += `
+        <tr>
+            <td><img src="./crops/${cropM.name}.png" class="crop-img">${cropM.name} <br> <img src="./icones/reestock.png" class="crop-img">${estoqueTotal}</td>
+            <td><img src="./icones/coins.png" class="crop-img">${custoPorSementeCoins}<br><img src="./icones/coins.png" class="crop-img">${vendaDaCropPorCoins}</td>
+            <td><img src="./crops/${cropM.name}.png" class="crop-img">${quantidadeCM.toFixed(2)}<br><img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoPorCropCM)}</td>
+            <td><input type="number" placeholder="" data-name="${cropM.name}" class="quantidade-input sementesCM-input" value="${cropM.seedsPlantadas}"></td>
+            <td><img src="./crops/seed${cropM.name}.png" class="crop-img">${sementesUsadasCM}<br><img src="./crops/${cropM.name}.png" class="crop-img">${colheitaTotal.toFixed(2)}</td>
+            <td><img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoTotalPorCropCM)}<br><img src="./minerais/oil.png" class="crop-img">${oilGasto.toFixed(2)}</td>
+            <td><img src="./crops/${cropM.name}.png" class="crop-img"><br><img src="./icones/coins.png" class="crop-img">${lucroCoins.toFixed(2)}</td>
+            <td><img src="./crops/${cropM.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${valorPorCropEmFlower.toFixed(5)}</td>
+            <td><img src="./crops/${cropM.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroFlower.toFixed(5)}</td>
+        </tr>
+        `;
+
+        oilTotalUsado += oilGasto;
+        tempoTotalDoComboNaCM += tempoTotalPorCropCM;
+        lucroTotalDoComboCoinsNaCM += lucroCoins;
+        lucroTotalDoComboFlowerNaCM += lucroFlower;
+        if (qtdDeRestock > restockDoComboCM) restockDoComboCM = qtdDeRestock;
+
+    });
+
+
+    //info para os cards
+    //ver o gasto com restock, cada restock de semente é 15 gems
+    let gemsGastasComRestockCM = restockDoComboCM * 15;
+
+    //calculo dos valores de restock do combo montado e seu desconto no lucro
+    let custoRestockDoComboFlowerCM = Number(gemsGastasComRestockCM * precoDaGemEmFlower);
+    let custoRestockDoComboDolarCM = Number(gemsGastasComRestockCM * precoPorGem);
+    lucroTotalDoComboFlowerNaCM -= custoRestockDoComboFlowerCM;
+
+    //média em de restock e seu custo em 24h e desconto no lucro medio em 24h
+    let mediaRestock24hCM = (vinteQuatroHoras / tempoTotalDoComboNaCM) * restockDoComboCM || 0;
+    let mediaGemsGastasRestock24hCM = mediaRestock24hCM * 15;
+    let mediaCustoRestock24hFlowerCM = Number(mediaGemsGastasRestock24hCM * precoDaGemEmFlower);
+    let mediaCustoRestock24hDolarCM = Number(mediaGemsGastasRestock24hCM * precoPorGem);
+    let lucroDoComboEm24hCM = ((vinteQuatroHoras / tempoTotalDoComboNaCM) * lucroTotalDoComboFlowerNaCM);
+    let lucroDoComboSemanalCM = lucroDoComboEm24hCM * 7;
+
+    let cardResultadosCM = `
+        <div class="cards-totais-crops">
+
+            <div class="card-total-crops">
+                <h3><img src="./icones/tempo.png" class="crop-img">${idiomaDoTextoCrops.cardTempoTotal} - <img src="./minerais/oil.png" class="crop-img">${idiomaDoTextoCrops.oilUsado}</h3>
+                <p>${formatarTempoTotalDoDia(tempoTotalDoComboNaCM)} - <img src="./minerais/oil.png" class="crop-img">${oilTotalUsado.toFixed(2)}</p>
+            </div>
+            <h1>-</h1>
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardQtdRestock}</h3>
+                <p><img src="./icones/reestock.png" class="crop-img">${restockDoComboCM.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestockCM.toFixed(2)}</p>
+            </div>
+
+             <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardCustoRestock}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${custoRestockDoComboFlowerCM.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${custoRestockDoComboDolarCM.toFixed(2)}
+                </p>
+            </div>
+
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardLucroDoCombo}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroTotalDoComboFlowerNaCM.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${Number(lucroTotalDoComboFlowerNaCM * precoDoFlower).toFixed(2)}
+                </p>
+            </div>
+            <h1>-</h1>
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardQtdRestock24h}</h3>
+                <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24hCM.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${mediaGemsGastasRestock24hCM.toFixed(2)}</p>
+            </div>
+
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardCustoRestock24h}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${mediaCustoRestock24hFlowerCM.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${mediaCustoRestock24hDolarCM.toFixed(2)}
+                </p>
+            </div>
+
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardLucroEm24h}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroDoComboEm24hCM.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${Number(lucroDoComboEm24hCM * precoDoFlower).toFixed(2)}    
+                </p>
+            </div>
+            <h1>-</h1>
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardLucroSemanal}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroDoComboSemanalCM.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${Number(lucroDoComboSemanalCM * precoDoFlower).toFixed(2)}    
+                </p>
+            </div>
+
+        </div>
+        `;
+
+    //a conta é feita aqui, mas a funcção abaixo joga o resultado para tabela da crop machine!
+    tabelaCropMachine(tabelaCM, cardResultadosCM)
 };
 
 //===========================================================================================================================================================================
 
+function tabelaCropMachine(tabelaCM, cardResultadosCM) {
+    mostrarResultadoCropMachine.innerHTML = `
+        <div class="tabelas-em-ordem">    
+            ${cardResultadosCM}    
+            ${tabelaCM}
+        </div>
+    `
+}

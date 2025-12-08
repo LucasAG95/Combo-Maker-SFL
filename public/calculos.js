@@ -9,6 +9,7 @@ function calcularBuff(recurso, listasDeBuffs) {
 
     //variaveis que sao afetadas pelos buffs de tempo
     let tempoMulti = 1;
+    let tempoCM = 1;
     let tempoSubtrai = 0;
 
     //variaveis que são afetadas pelos buffs de coins
@@ -19,6 +20,9 @@ function calcularBuff(recurso, listasDeBuffs) {
     let estoqueMulti = 1;
     let estoqueSoma = 0;
 
+    //variaveis que afetam Oil usado na CM
+    let oilAumentado = 0;
+    let oilDiminuido = 0;
 
     //esse 'lista' pode ser skills e NFTs, vai percorrer todos os buffs e adicionar o valor as variaveis criadas acima de acordo com regra
     function aplicarBuffs(lista) { 
@@ -46,7 +50,8 @@ function calcularBuff(recurso, listasDeBuffs) {
             if (nftOuSkill.tempo) {                                            
                 nftOuSkill.tempo.forEach(tempo => {                              
                     if (tempo.recursoAfetado?.includes(recurso.name)) {               
-                        if (tempo.sinal === 'x') tempoMulti *= tempo.buff;               
+                        if (tempo.sinal === 'x') tempoMulti *= tempo.buff;
+                        if (tempo.sinal === 'xCM') tempoCM *= tempo.buff  
                         if (tempo.sinal === '-') tempoSubtrai += tempo.buff;
                     }
                 });
@@ -72,7 +77,16 @@ function calcularBuff(recurso, listasDeBuffs) {
                 });
             };
             //=============================================================================================================================================================
-            
+            //Adiciona os buffs que afetam o Oil usadado na CM
+            if (nftOuSkill.oilCM) {
+                nftOuSkill.oilCM.forEach(oil => {
+                    if (oil.sinal === '+') oilAumentado += oil.buff;
+                    if (oil.sinal === '-') oilDiminuido += oil.buff;
+                })
+            }
+
+
+
         });
         
     };
@@ -88,13 +102,17 @@ function calcularBuff(recurso, listasDeBuffs) {
         qtdArea,
 
         tempoMulti,
+        tempoCM,
         tempoSubtrai,
 
         multiCusto,
         multiVenda,
 
         estoqueMulti,
-        estoqueSoma
+        estoqueSoma,
+
+        oilAumentado,
+        oilDiminuido 
     };
 
 };
@@ -138,6 +156,80 @@ function buffsAdicionadosCrops() {
         };
 
     });
+
+    //======================================================================================================================================================================
+
+    cropMachine.forEach(cropM => {
+        const buffs = calcularBuff(cropM, [
+            skillsLegacy,
+            skillsCrops.tier1,
+            skillsCrops.tier2,
+            skillsCrops.tier3,
+            skillsMachinery.tier1,
+            skillsMachinery.tier2,
+            skillsMachinery.tier3,
+            collectibles.ferreiro,
+            collectibles.crops,
+            collectibles.cropMachine,
+            wearables.factions,
+            wearables.crops,
+            shrines
+        ]);
+
+        //atualizar a quantidade de plots que a CM possui e quantos Oil ela gasta por hora!
+        plotsCM = mapaDeTodasSkillsComTier['fieldExtensionModule'].possui ? 15 : 10
+        oilPorHora = (1 - buffs.oilDiminuido) * (1 + buffs.oilAumentado);
+
+        //liberar as crops com as skills
+        if (mapaDeTodasSkillsComTier['cropExtensionModuleI'].possui) {
+            mapaDeTodasCropsEFrutas['Rhubarb'].permitido = true;
+            mapaDeTodasCropsEFrutas['Zucchini'].permitido = true;
+        } else {
+            mapaDeTodasCropsEFrutas['Rhubarb'].permitido = false;
+            mapaDeTodasCropsEFrutas['Zucchini'].permitido = false;
+        }
+        if (mapaDeTodasSkillsComTier['cropExtensionModuleII'].possui) {
+            mapaDeTodasCropsEFrutas['Carrot'].permitido = true;
+            mapaDeTodasCropsEFrutas['Cabbage'].permitido = true;
+        } else {
+            mapaDeTodasCropsEFrutas['Carrot'].permitido = false;
+            mapaDeTodasCropsEFrutas['Cabbage'].permitido = false;
+        }
+        if (mapaDeTodasSkillsComTier['cropExtensionModuleIII'].possui) {
+            mapaDeTodasCropsEFrutas['Yam'].permitido = true;
+            mapaDeTodasCropsEFrutas['Broccoli'].permitido = true;
+        } else {
+            mapaDeTodasCropsEFrutas['Yam'].permitido = false;
+            mapaDeTodasCropsEFrutas['Broccoli'].permitido = false;
+        }
+
+        cropM.quantidade = Number(buffs.qtdMulti + buffs.qtdSoma - buffs.qtdSubtrai);
+
+        cropM.tempoFinal = cropM.tempo * buffs.tempoCM;
+        
+        cropM.custoPorSemente = cropM.custoSemente * buffs.multiCusto; 
+        cropM.vendaPorCrop = cropM.valorDeVenda * buffs.multiVenda;
+
+        cropM.estoqueTotal = (cropM.estoque * buffs.estoqueMulti) + buffs.estoqueSoma;
+
+        if (modoDeCalularCropsNaCM === 'manual') {
+            cropM.qtdSementeUsadas = cropM.seedsPlantadas;
+            cropM.colheitaTotal = cropM.quantidade * cropM.seedsPlantadas;
+            cropM.tempoTotal = cropM.tempoFinal * (cropM.seedsPlantadas / plotsCM);
+
+        } else if (modoDeCalularCropsNaCM === 'rodada') {
+            cropM.qtdSementeUsadas = cropM.seedsPlantadas * plotsCM;
+            cropM.colheitaTotal = (cropM.seedsPlantadas * cropM.quantidade) * plotsCM;
+            cropM.tempoTotal = cropM.tempoFinal * cropM.seedsPlantadas;
+
+        } else if (modoDeCalularCropsNaCM === 'estoque') {
+            cropM.qtdSementeUsadas = cropM.seedsPlantadas * cropM.estoqueTotal;
+            cropM.colheitaTotal = (cropM.seedsPlantadas * cropM.quantidade) * cropM.estoqueTotal;
+            cropM.tempoTotal = cropM.tempoFinal * (cropM.qtdSementeUsadas / plotsCM);
+        }
+        
+    });
+
     tabelaDeCrops();
 };
 
@@ -201,7 +293,7 @@ function buffsAdicionadosMinerais() {
             totems
         ]);
         
-        ferramenta.qtdPrecisaPorNode = (1 * buffs.qtdMulti);
+        ferramenta.qtdPrecisaPorNode = (1 * buffs.qtdMulti) * buffs.qtdInsta;
         ferramenta.estoqueFinal = Math.ceil((ferramenta.estoque * buffs.estoqueMulti) + buffs.estoqueSoma);
         ferramenta.recursosNecessarios.coins = ferramenta.recursosNecessarios.coinsOriginal * buffs.multiCusto;
         
@@ -282,7 +374,7 @@ function mediaDeValorDasFerramentasEMinerais() {
             oilLaOuCouro = 'wool';
         } 
 
-        //Calcular media de custo em coins da ferramenta!
+        //Calcular media de custo em coins da ferramenta para mostrar nos cards!
         ferramenta.custoEmCoins = ferramenta.recursosNecessarios['coins'] + 
             ((ferramenta.recursosNecessarios['wood'] ?? 0) * (mapaDeMinerals['wood']?.mediaDeCustoCoins ?? 0)) +
             ((ferramenta.recursosNecessarios['stone'] ?? 0) * (mapaDeMinerals['stone']?.mediaDeCustoCoins ?? 0)) +
@@ -293,7 +385,7 @@ function mediaDeValorDasFerramentasEMinerais() {
             ((ferramenta.recursosNecessarios[oilLaOuCouro] ?? 0) * (mapaDosValoresDoMarket[oilLaOuCouro]?.valor ?? 0) * flowerEmCoins);
 
             
-        //feito para mostrar os gastos com as ferramentas
+        //feito para mostrar os gastos com as ferramentas nos cards!
         mapaDeMinerals['wood'].woodGastas += Number((ferramenta.recursosNecessarios['wood'] ?? 0) * ferramenta.quantidade);
         mapaDeMinerals['stone'].stoneGastas += Number((ferramenta.recursosNecessarios['stone'] ?? 0) * ferramenta.quantidade);
         mapaDeMinerals['iron'].ironGastas += Number((ferramenta.recursosNecessarios['iron'] ?? 0) * ferramenta.quantidade);
@@ -301,7 +393,7 @@ function mediaDeValorDasFerramentasEMinerais() {
         mapaDeMinerals['crimstone'].crimstoneGastas += Number((ferramenta.recursosNecessarios['crimstone'] ?? 0) * ferramenta.quantidade);
         mapaDeMinerals['oil'].oilGastas += Number((ferramenta.recursosNecessarios['oil'] ?? 0) * ferramenta.quantidade);
 
-        //essas 3 abaixo foi criado dentro de minerais, apenas com intuito de somar quanto foi gasto nas ferramentas!
+        //essas 3 abaixo foi criado dentro de minerais, apenas com intuito de somar quanto foi gasto nas ferramentas e descontar!
         mapaDeMinerals.coinsGastas += Number((ferramenta.recursosNecessarios['coins'] ?? 0) * ferramenta.quantidade);
         mapaDeMinerals.leatherGastas += oilLaOuCouro === 'leather' ? Number((ferramenta.recursosNecessarios['leather'] ?? 0) * ferramenta.quantidade) : 0;
         mapaDeMinerals.woolGastas += oilLaOuCouro === 'wool' ? Number((ferramenta.recursosNecessarios['wool'] ?? 0) * ferramenta.quantidade) : 0;
@@ -313,7 +405,7 @@ function mediaDeValorDasFerramentasEMinerais() {
             return;
         }
 
-        //calcular média em coins que cada mineral sai!
+        //calcular média em coins e flower que cada mineral sai!
         mineral.mediaDeCustoCoins = (ferramenta.custoEmCoins * (ferramenta.qtdPrecisaPorNode || 1)) / (mineral.mediaPorNode || 1);
         mineral.mediaDeCustoFlower = mineral.mediaDeCustoCoins / flowerEmCoins;
     });
@@ -322,6 +414,14 @@ function mediaDeValorDasFerramentasEMinerais() {
 
 
 //======================================================================================================================================================================
+
+
+
+
+
+//======================================================================================================================================================================
+
+
 
 const chavesPossiveis = [
     'estoque',

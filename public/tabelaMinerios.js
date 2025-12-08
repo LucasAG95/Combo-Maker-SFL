@@ -57,63 +57,6 @@ const idiomaTabelaMinerios = {
         mediaDeLucroNoDia: 'Average Profit per Day',
         mediaDeLucroSemanal: 'Weekly Average Profit'
     },
-    espanhol: {
-        //titulo tabela
-        ferramenta: 'Herramienta',
-        estoque: 'Inventario',
-        recursoObtido: 'Recurso Obtenido',
-        mediaPorNode: 'Promedio por nodo',
-        tempoDeRessurgimento: 'Tiempo de<br>Reaparición',
-        calculoPorFerramenta: 'Cantidad que minarás',
-        calculoPorRodada: 'Rondas que minarás',
-        calculoPorHora: 'Horas que minarás',
-        tempoTotal: 'Tiempo Total',
-        mediaDeCliclos: 'Promedio<br>Ciclo',
-        botaoSalvar: 'Guardar',
-        ferramentasUsadas: 'Herramientas Usadas',
-        gastoTotal: 'Costo Total',
-        qtdDeRecursosAdquirida: 'Cantidad Adquirida',
-        custoPorUnidade: 'Costo por unidad',
-        valorDeVendaMarket: 'Precio de Venta<br>Mercado P2P',
-        qtdRestanteParaVenda: 'Cantidad Restante<br>para Vender',
-        lucroNoMarket: 'Ganancia en el Mercado P2P<br>Tarifa',
-
-        //cards tabela
-        mediaDeRecursosGastos: 'Promedio de Recursos Gastados',
-        custoDosRecursos: 'Costo de los Recursos<br>Convertidos en Flower',
-        mediaDeRestockECusto: 'Promedio de Reabastecimiento<br>Costo de Reabastecimiento',
-        mediaDeLucroNoDia: 'Ganancia Promedio por Día',
-        mediaDeLucroSemanal: 'Ganancia Promedio Semanal'
-    },
-    chines: {
-        //titulo tabela
-        ferramenta: '工具',
-        estoque: '库存',
-        recursoObtido: '获得的资源',
-        mediaPorNode: '每个节点的平均值',
-        tempoDeRessurgimento: '刷新时间<br>',
-        calculoPorFerramenta: '你将开采的数量',
-        calculoPorRodada: '你将开采的轮数',
-        calculoPorHora: '你将开采的小时数',
-        tempoTotal: '总时间',
-        mediaDeCliclos: '平均<br>周期',
-        botaoSalvar: '保存',
-        ferramentasUsadas: '使用的工具',
-        gastoTotal: '总成本',
-        qtdDeRecursosAdquirida: '获得的数量',
-        custoPorUnidade: '每单位成本',
-        valorDeVendaMarket: '销售价格<br>P2P 市场',
-        qtdRestanteParaVenda: '剩余可出售数量',
-        lucroNoMarket: 'P2P 市场利润<br>（含手续费）',
-
-        //cards tabela
-        mediaDeRecursosGastos: '消耗资源平均值',
-        custoDosRecursos: '转换为 Flower 的资源成本',
-        mediaDeRestockECusto: '补给平均值<br>补给成本',
-        mediaDeLucroNoDia: '每日平均利润',
-        mediaDeLucroSemanal: '每周平均利润'
-    }
-
 }
 
 function tabelaMinerios() {
@@ -160,7 +103,6 @@ function tabelaMinerios() {
             </thead>
         <tbody>
     `;
-
 
     let restockDoCombo = 0;
     let ganhoDoCombo = 0;

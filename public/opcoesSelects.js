@@ -2,7 +2,7 @@
 let idioma = 'portugues';
 function selecionandoIdioma() {
     idioma = document.getElementById('opcao-idioma').value;
-    tabelaDeCrops();
+    chamadorDeBuffs();
     mudarIdioma();
 }
 document.getElementById('opcao-idioma').addEventListener('change', selecionandoIdioma);
@@ -20,12 +20,15 @@ document.getElementById('estacaoSelect').addEventListener('change', selecionando
 //=======================================================================================================================================================================
 
 //valor da opção inicial
-let modoDeCalularCrops = `manual`; 
+let modoDeCalularCrops = `manual`;
+let modoDeCalularCropsNaCM = `manual`;
 let modoDeCalcularMinerios = 'hora';
 
 function selecionarModoDeCalculo() {
 
     modoDeCalularCrops = document.getElementById(`tipo-de-calculo-crop`).value;
+
+    modoDeCalularCropsNaCM = document.getElementById(`tipo-de-calculo-crop-cm`).value;
     
     modoDeCalcularMinerios = document.getElementById(`tipo-de-calculo-mineral`).value;
     
@@ -33,6 +36,7 @@ function selecionarModoDeCalculo() {
 
 };
 document.getElementById('tipo-de-calculo-crop').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('tipo-de-calculo-crop-cm').addEventListener('change', selecionarModoDeCalculo);
 document.getElementById('tipo-de-calculo-mineral').addEventListener('change', selecionarModoDeCalculo);
 
 //=======================================================================================================================================================================

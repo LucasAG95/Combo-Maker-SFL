@@ -268,6 +268,13 @@ function atualizarValoresDeVendaPorFlower(apiValores) {
         };
     });
 
+    cropMachine.forEach(cropM => {
+        if (apiValores[cropM.name]) {
+            cropM.valorDoMarket = apiValores[cropM.name];
+            console.log(`Crop: ${cropM.name} Valor: ${cropM.valorDoMarket}`);
+        };
+    });
+
     minerals.forEach(mineral => {
         if (apiValores[mineral.name]) {
             mineral.valorDoMarket = apiValores[mineral.name];

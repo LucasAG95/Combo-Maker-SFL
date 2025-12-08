@@ -1127,17 +1127,17 @@ let skillsMachinery = {
                 ingles: '-5% in CM growth time, +10% in Oil consumption.'
             },
             possui: false,
-            tempoCM: [
+            tempo: [
                 {
-                    sinal: 'x',
+                    sinal: 'xCM',
                     buff: 0.95,
                     recursoAfetado: ['Sunflower', 'Potato', 'Rhubarb', 'Pumpkin', 'Zucchini',  'Carrot', 'Yam', 'Cabbage', 'Broccoli'],
                 },
             ],
             oilCM: [
                 {
-                    sinal: 'x',
-                    buff: 1.1,
+                    sinal: '+',
+                    buff: 0.1,
                     recursoAfetado: ['Oil'],
                 },
             ],
@@ -1153,8 +1153,8 @@ let skillsMachinery = {
             possui: false,
             oilCM: [
                 {
-                    sinal: 'x',
-                    buff: 0.9,
+                    sinal: '-',
+                    buff: 0.1,
                     recursoAfetado: ['Oil'],
                 },
             ],
@@ -1218,15 +1218,15 @@ let skillsMachinery = {
             idName: 'cropExtensionModuleIII',
             name: 'Crop Extension Module III',
             descricao: {
-                portugues: 'Permitir que sementes de Yam e Brocolli sejam usadas na CM.',
-                ingles: 'Allow Yam and Brocolli seeds to be used in the CM.'
+                portugues: 'Permitir que sementes de Yam e Broccoli sejam usadas na CM.',
+                ingles: 'Allow Yam and Broccoli seeds to be used in the CM.'
             },
             possui: false,
             permissao: [
                 {
                     sinal: '',
                     buff: '',
-                    recursoAfetado: ['Yam', 'Brocolli'],
+                    recursoAfetado: ['Yam', 'Broccoli'],
                 },
             ],
             pontosNecessarios: 2
@@ -1239,17 +1239,17 @@ let skillsMachinery = {
                 ingles: '-20% in CM growth time, +40% in Oil consumption.'
             },
             possui: false,
-            tempoCM: [
+            tempo: [
                 {
-                    sinal: 'x',
+                    sinal: 'xCM',
                     buff: 0.8,
                     recursoAfetado: ['Sunflower', 'Potato', 'Rhubarb', 'Pumpkin', 'Zucchini',  'Carrot', 'Yam', 'Cabbage', 'Broccoli'],
                 },
             ],
             oilCM: [
                 {
-                    sinal: 'x',
-                    buff: 1.4,
+                    sinal: '+',
+                    buff: 0.4,
                     recursoAfetado: ['Oil'],
                 },
             ],
@@ -1335,8 +1335,8 @@ let skillsMachinery = {
             possui: false,
             oilCM: [
                 {
-                    sinal: 'x',
-                    buff: 0.7,
+                    sinal: '-',
+                    buff: 0.3,
                     recursoAfetado: ['Oil'],
                 },
             ],

@@ -9,8 +9,12 @@ let flowerEmCoins = 1000;
 document.getElementById('flower-em-coins').value = 1000;
 
 //plots que a farm possui inicialmente
-let plots = parseInt(9)
+let plots = parseInt(9);
 document.getElementById('plotsPossuidos').value = plots;
+
+//plots que a CM possui!
+let plotsCM = parseInt(10);
+let oilPorHora = Number(1);
 
 //Variaveis dos recursos, são 4 variaveis na msm linha(cada uma é um let), fiz assim para diminuir as linhas e entender qual afeta qual!
 let treeTotais = 1,  treeT1,  treeT2,  treeT3;

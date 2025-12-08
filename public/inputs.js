@@ -11,6 +11,20 @@ function sementesPlantadas() {
     buffsAdicionadosCrops();
 }
 
+//================================================================================================================================================================================
+function rodadasPlantadasCM() {
+    document.querySelectorAll('.sementesCM-input').forEach(input => {
+        let nome = input.dataset.name;
+        let valor = Number(input.value);
+
+        let cropCM = cropMachine.find(c => c.name === nome);
+        if (cropCM) cropCM.seedsPlantadas = valor || '';
+    });
+
+    buffsAdicionadosCrops();
+}
+
+
 
 //================================================================================================================================================================================
 

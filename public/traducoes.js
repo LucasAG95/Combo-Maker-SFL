@@ -5,7 +5,6 @@ function mudarIdioma() {
     
     //primeiras informações da farm!
     document.getElementById('donoDaFarm').innerHTML = donoDaFarm === '' ? '' : ` ➜ ${opcaoDeIdiomas.tituloDonoDaFarm}: ${donoDaFarm}`;
-    document.getElementById('selecione-idioma').innerHTML = `${opcaoDeIdiomas.opcaoIdioma}:`;
     document.getElementById('labelNumeroFarm').innerHTML = `${opcaoDeIdiomas.inserirFarm}:`;    
     document.getElementById('procurarFarm').innerHTML = `${opcaoDeIdiomas.pesquisar}`;
     document.getElementById('ilhaAtual').innerHTML = `${opcaoDeIdiomas.tipoDeIlha}:`; 
@@ -39,6 +38,14 @@ function mudarIdioma() {
     document.getElementById('qtdDeCrimstones').innerHTML = `${opcaoDeIdiomas.qtdDeCrimstones}:`;
     document.getElementById('qtdDeOils').innerHTML = `${opcaoDeIdiomas.qtdDeOils}:`;
 
+    //informações Crop Machine
+    document.getElementById('cropPlotsQuePossuiCM').innerHTML = `${opcaoDeIdiomas.quantidadeDePlotsCM} ➜ ${plotsCM}`;
+    document.getElementById('oilGastoPorHora').innerHTML = `${opcaoDeIdiomas.quantidadeDeOilPorHora} ➜ <img src="./minerais/oil.png" class="crop-img">${oilPorHora.toFixed(2)}`;
+    document.getElementById('modoDeCalcularCropsCM').innerHTML = `${opcaoDeIdiomas.modoDeCalcularCropsCM}:`
+    document.getElementById('tipo-de-calculo-crop-cm').options[0].innerHTML = `${opcaoDeIdiomas.calcularCMPorSemente}`;
+    document.getElementById('tipo-de-calculo-crop-cm').options[1].innerHTML = `${opcaoDeIdiomas.calcularCMPorRodada}`;
+    document.getElementById('tipo-de-calculo-crop-cm').options[2].innerHTML = `${opcaoDeIdiomas.calcularCMPorEstoque}`;
+
     //NFTs, Skills e Buffs Temporarios
     document.getElementById('buffs-temporarios').innerHTML = `${opcaoDeIdiomas.abaBuffsTemporarios}`;
     document.getElementById('total-valor-em-shrines').innerHTML = `${opcaoDeIdiomas.tituloDentroDaAbaBuffsTemporarios}`;
@@ -51,11 +58,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.1.8`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.1.9`;
     document.getElementById('v015').innerHTML = `${atualizacoesFeitas.atualizacaoV015}`;
     document.getElementById('v016').innerHTML = `${atualizacoesFeitas.atualizacaoV016}`;
     document.getElementById('v017').innerHTML = `${atualizacoesFeitas.atualizacaoV017}`;
     document.getElementById('v018').innerHTML = `${atualizacoesFeitas.atualizacaoV018}`;
+    document.getElementById('v019').innerHTML = `${atualizacoesFeitas.atualizacaoV019}`;
 
 
     pontosGastosEmSkills();
@@ -100,6 +108,14 @@ const idiomaEscolhido = {
         qtdDeOuros: 'Quantidade de Ouros',
         qtdDeCrimstones: 'Quantidade de Crimstones',
         qtdDeOils: 'Quantidade de Oils',
+
+        //dados CM
+        modoDeCalcularCropsCM: 'Modo de Calcular',
+        quantidadeDePlotsCM: 'Plots Crop Machine',
+        quantidadeDeOilPorHora: 'Oil gasto por Hora',
+        calcularCMPorSemente: 'Por Semente',
+        calcularCMPorRodada: 'Por Ciclo',
+        calcularCMPorEstoque: 'Por Estoque',
 
         //nome das abas de NFTs/Skills quando precisa de tradução
         abaBuffsTemporarios: 'Buffs Temporários',
@@ -146,6 +162,14 @@ const idiomaEscolhido = {
         qtdDeCrimstones: 'Number of Crimstones',
         qtdDeOils: 'Number of Oils',
 
+        //dados CM
+        modoDeCalcularCropsCM: 'Calculation Mode',
+        quantidadeDePlotsCM: 'Plots Crop Machine',
+        quantidadeDeOilPorHora: 'Oil consumed per hour',
+        calcularCMPorSemente: 'Per Seed',
+        calcularCMPorRodada: 'Per Cycle',
+        calcularCMPorEstoque: 'By Stock',
+
         //nome das abas de NFTs/Skills quando precisa de tradução
         abaBuffsTemporarios: 'Temporary Buffs',
         tituloDentroDaAbaBuffsTemporarios: 'Temporary Buffs',
@@ -177,6 +201,13 @@ const idiomaDasAtualizacoes = {
             • Correção no cálculo de minerais por ciclos: o aviso de limite de 24 horas estava impedindo o cálculo da madeira quando ultrapassado — esse aviso foi removido!<br>
             • Adicionado um aviso em texto para orientar o usuário a manter os tempos abaixo de 24 horas, caso queira resultados mais precisos.<br>
             • Inclusão das ferramentas secundárias (Rod, Sand Shovel e Sand Drill), permitindo calcular seus custos e exibir de forma mais clara o lucro diário!`,
+
+        atualizacaoV019: `v0.1.9<br>
+            • Adicionado Crop Machine ao site.<br>
+            • Ajuste nas contas que usam Skills ou NFTs que dão chance do recurso voltar instantaneamente.<br>
+            • Adicionado restante das SFTs (Radiant Ray e Gilded Swordfish) que buffam os minerios.<br>
+            • Seção com informações sobre mim agora disponível no cabeçalho do site!`,
+            
     },
     ingles: {
         nomeDaAbaAtualizacao: 'Updates Made',
@@ -195,5 +226,12 @@ const idiomaDasAtualizacoes = {
             • Fix in mineral-per-cycle calculations: the 24-hour limit warning was preventing wood from being calculated when exceeded — this warning has been removed!<br>
             • Added a text warning to inform users to keep times below 24 hours if they want more accurate results.<br>
             • Added secondary tools (Rod, Sand Shovel and Sand Drill), allowing you to calculate their costs and better display your daily profit!`,
+
+        atualizacaoV019: `v0.1.9<br>
+            • Added Crop Machine to the site.<br>
+            • Adjusted calculations that use Skills or NFTs that give a chance for the resource to return instantly.<br>
+            • Added the remaining SFTs (Radiant Ray and Gilded Swordfish) that buff the minerals.<br>
+            • Section with information about me now available in the site header!`,
+
     }
 }

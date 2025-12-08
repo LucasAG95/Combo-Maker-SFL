@@ -73,7 +73,6 @@ function configurarCheckbox() {
                 chamadorDeBuffs();
                 ativarBonusDasNftsESkills();
                 ilhaPrestigioAtual();
-                BuffFertilizantes();
             });
         };
     });

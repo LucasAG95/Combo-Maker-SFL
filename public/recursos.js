@@ -28,15 +28,15 @@ const crops = [
 ];
 
 const cropMachine = [
-    { name: 'Sunflower',   tempo: 60_000,     custoSemente: 0.01, valorDeVenda: 0.02, valorDoMarket: 0, estoque: 800, seedPlantadas: '', permitido: true},
-    { name: 'Potato',      tempo: 300_000,    custoSemente: 0.1,  valorDeVenda: 0.14, valorDoMarket: 0, estoque: 400, seedPlantadas: '', permitido: true},
-    { name: 'Rhubarb',     tempo: 600_000,    custoSemente: 0.15, valorDeVenda: 0.24, valorDoMarket: 0, estoque: 400, seedPlantadas: '', permitido: false},
-    { name: 'Pumpkin',     tempo: 1_800_000,  custoSemente: 0.2,  valorDeVenda: 0.4,  valorDoMarket: 0, estoque: 300, seedPlantadas: '', permitido: true},
-    { name: 'Zucchini',    tempo: 1_800_000,  custoSemente: 0.2,  valorDeVenda: 0.4,  valorDoMarket: 0, estoque: 400, seedPlantadas: '', permitido: false},
-    { name: 'Carrot',      tempo: 3_600_000,   custoSemente: 0.5, valorDeVenda: 0.8,  valorDoMarket: 0, estoque: 200, seedPlantadas: '', permitido: false},
-    { name: 'Yam',         tempo: 3_600_000,   custoSemente: 0.5, valorDeVenda: 0.8,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', permitido: false},
-    { name: 'Cabbage',     tempo: 7_200_000,   custoSemente: 1,   valorDeVenda: 1.5,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', permitido: false},
-    { name: 'Broccoli',    tempo: 7_200_000,   custoSemente: 1,   valorDeVenda: 1.5,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', permitido: false},
+    { name: 'Sunflower',   tempo: 60_000,    custoSemente: 0.01, valorDeVenda: 0.02, valorDoMarket: 0, estoque: 800, seedPlantadas: '', permitido: true,  estacao: ['spring', 'summer']},
+    { name: 'Potato',      tempo: 300_000,   custoSemente: 0.1,  valorDeVenda: 0.14, valorDoMarket: 0, estoque: 400, seedPlantadas: '', permitido: true,  estacao: ['summer', 'autumn', 'winter']},
+    { name: 'Rhubarb',     tempo: 600_000,   custoSemente: 0.15, valorDeVenda: 0.24, valorDoMarket: 0, estoque: 400, seedPlantadas: '', permitido: false, estacao: ['spring']},
+    { name: 'Pumpkin',     tempo: 1_800_000, custoSemente: 0.2,  valorDeVenda: 0.4,  valorDoMarket: 0, estoque: 300, seedPlantadas: '', permitido: true,  estacao: ['autumn'] },
+    { name: 'Zucchini',    tempo: 1_800_000, custoSemente: 0.2,  valorDeVenda: 0.4,  valorDoMarket: 0, estoque: 400, seedPlantadas: '', permitido: false, estacao: ['summer']},
+    { name: 'Carrot',      tempo: 3_600_000, custoSemente: 0.5,  valorDeVenda: 0.8,  valorDoMarket: 0, estoque: 200, seedPlantadas: '', permitido: false, estacao: ['spring', 'autumn']},
+    { name: 'Yam',         tempo: 3_600_000, custoSemente: 0.5,  valorDeVenda: 0.8,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', permitido: false, estacao: ['autumn']},
+    { name: 'Cabbage',     tempo: 7_200_000, custoSemente: 1,    valorDeVenda: 1.5,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', permitido: false, estacao: ['spring', 'winter']},
+    { name: 'Broccoli',    tempo: 7_200_000, custoSemente: 1,    valorDeVenda: 1.5,  valorDoMarket: 0, estoque: 180, seedPlantadas: '', permitido: false, estacao: ['autumn']},
 ];
 
 const fruits = [
@@ -56,6 +56,12 @@ const greenhouse = [
     { name: 'Rice',  tempo: 115_200_000, custoSemente: 240, valorDeVenda: 320, valorDoMarket: 0, estoque: 10, seedPlantadas: '', oil: 4 },
     { name: 'Olive', tempo: 158_400_000, custoSemente: 320, valorDeVenda: 400, valorDoMarket: 0, estoque: 10, seedPlantadas: '', oil: 6 },
 ];
+
+const todasCropsEFrutas = [...crops, ...cropMachine, ...fruits];
+let mapaDeTodasCropsEFrutas = {}; // cria objeto vazio para guardar NFTs por id
+todasCropsEFrutas.forEach(cropsMFruits => { //vai verificar e organizar por id das NFTs no mapaDeCollectibles, foi oque entendi
+    mapaDeTodasCropsEFrutas[cropsMFruits.name] = cropsMFruits; // adiciona cada NFT no objeto usando o id como chave
+});
 
 //==============================================================================================================================================================================
 

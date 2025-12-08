@@ -1025,9 +1025,9 @@ let collectibles = {
                 ingles: '+100% Growth Speed on Crop Machine'
             },
             possui: false,
-            tempoCM: [
+            tempo: [
                 {
-                    sinal: 'x',
+                    sinal: 'xCM',
                     buff: 0.5,
                     recursoAfetado: ['Sunflower', 'Potato', 'Rhubarb', 'Pumpkin', 'Zucchini', 'Carrot', 'Yam', 'Cabbage', 'Broccoli'],
                 }
@@ -1510,6 +1510,24 @@ let collectibles = {
                 }
             ]
         },
+        {
+            idNumber: '',
+            idName: 'radiantRay',
+            name: 'Radiant Ray',
+            preco: '',
+            descricao: {
+                portugues: '+0.1 Ferro',
+                ingles: '+0.1 Iron'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['Iron'],
+                }
+            ]
+        },
         //ouro - gold
         {
             idNumber: 430,
@@ -1525,6 +1543,24 @@ let collectibles = {
                 {
                     sinal: '+',
                     buff: 0.25,
+                    recursoAfetado: ['Gold'],
+                }
+            ]
+        },
+        {
+            idNumber: '',
+            idName: 'gildedSwordfish',
+            name: 'Gilded Swordfish',
+            preco: '',
+            descricao: {
+                portugues: '+0.1 Ouro',
+                ingles: '+0.1 Gold'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
                     recursoAfetado: ['Gold'],
                 }
             ]
@@ -1904,9 +1940,7 @@ let wearables = {
                 {
                     sinal: '+',
                     buff: 1,
-                    recursoAfetado: ['Sunflower', 'Potato', 'Rhubarb', 'Pumpkin', 'Zucchini',  'Carrot', 'Yam', 'Cabbage', 'Broccoli',
-                        'Soybean', 'Pepper', 'Beetroot', 'Cauliflower', 'Parsnip', 'Eggplant', 'Corn', 'Onion', 'Turnip', 'Radish',
-                        'Wheat', 'Kale', 'Artichoke', 'Barley'],
+                    recursoAfetado: ['Sunflower', 'Rhubarb', 'Carrot', 'Cabbage', 'Soybean', 'Corn', 'Wheat', 'Kale', 'Barley'],
                 },
             ],
             estacao: ['spring']
@@ -1925,9 +1959,7 @@ let wearables = {
                 {
                     sinal: 'x',
                     buff: 0.5,
-                    recursoAfetado: ['Sunflower', 'Potato', 'Rhubarb', 'Pumpkin', 'Zucchini',  'Carrot', 'Yam', 'Cabbage', 'Broccoli',
-                        'Soybean', 'Pepper', 'Beetroot', 'Cauliflower', 'Parsnip', 'Eggplant', 'Corn', 'Onion', 'Turnip', 'Radish',
-                        'Wheat', 'Kale', 'Artichoke', 'Barley'],
+                    recursoAfetado: ['Sunflower', 'Potato', 'Zucchini', 'Pepper', 'Beetroot', 'Cauliflower', 'Eggplant', 'Radish', 'Wheat'],
                 },
             ],
             estacao: ['summer']
@@ -1946,9 +1978,7 @@ let wearables = {
                 {
                     sinal: 'x',
                     buff: 0.5,
-                    recursoAfetado: ['Sunflower', 'Potato', 'Rhubarb', 'Pumpkin', 'Zucchini',  'Carrot', 'Yam', 'Cabbage', 'Broccoli',
-                        'Soybean', 'Pepper', 'Beetroot', 'Cauliflower', 'Parsnip', 'Eggplant', 'Corn', 'Onion', 'Turnip', 'Radish',
-                        'Wheat', 'Kale', 'Artichoke', 'Barley'],
+                    recursoAfetado: ['Potato', 'Pumpkin', 'Carrot', 'Yam', 'Broccoli', 'Soybean', 'Wheat', 'Artichoke', 'Barley'],
                 },
             ],
             estacao: ['autumn']
@@ -1967,9 +1997,7 @@ let wearables = {
                 {
                     sinal: '+',
                     buff: 1,
-                    recursoAfetado: ['Sunflower', 'Potato', 'Rhubarb', 'Pumpkin', 'Zucchini',  'Carrot', 'Yam', 'Cabbage', 'Broccoli',
-                        'Soybean', 'Pepper', 'Beetroot', 'Cauliflower', 'Parsnip', 'Eggplant', 'Corn', 'Onion', 'Turnip', 'Radish',
-                        'Wheat', 'Kale', 'Artichoke', 'Barley'],
+                    recursoAfetado: ['Potato', 'Cabbage', 'Beetroot', 'Cauliflower', 'Parsnip', 'Onion', 'Turnip', 'Wheat', 'Kale'],
                 },
             ],
             estacao: ['winter']
