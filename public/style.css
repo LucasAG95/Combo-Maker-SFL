@@ -846,7 +846,7 @@ input[type="checkbox"]:disabled + .nft-img:hover {
   justify-content: space-between;
   align-items: center;
   background-color: #1e1e1e;
-  color: #f0d9a0;
+  color: #b6afaf;
   padding: 8px 15px;
   border-bottom: 2px solid #333;
   flex-wrap: wrap;
@@ -867,7 +867,7 @@ input[type="checkbox"]:disabled + .nft-img:hover {
 
 .header-left span {
   font-size: 14px;
-  color: #8b897f;
+  color: #b6afaf;
 }
 
 .select-idioma select {
@@ -907,6 +907,10 @@ input[type="checkbox"]:disabled + .nft-img:hover {
   gap: 12px; /* um pouco mais de espaço entre os ícones */
 }
 
+.icon-btn {
+  color: #b6afaf; /* cor padrão branca para o ícone */
+}
+
 .icon-btn svg {
   width: 26px; /* ✅ aumentei um pouco */
   height: 26px; /* ✅ aumentei um pouco */
@@ -937,4 +941,43 @@ input[type="checkbox"]:disabled + .nft-img:hover {
   .header-center {
     margin: 0;
   }
+}
+
+/* Botão de copiar wallet */
+.copy-btn {
+  background: none;      /* sem fundo */
+  border: none;          /* sem borda */
+  cursor: pointer;
+  color: inherit;        /* herda a cor da wallet */
+  margin-left: 5px;
+  vertical-align: middle;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+}
+
+.copy-tooltip {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  transform: translateY(-30px); /* acima do botão */
+}
+
+.copy-tooltip.show {
+  opacity: 1;
 }

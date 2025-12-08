@@ -59,3 +59,30 @@ function valoresDasGems() {
 
 }
 document.getElementById('pack-gems').addEventListener('change', valoresDasGems);
+
+
+
+
+
+
+
+
+
+
+
+//script para o botao de copiar a wallet
+const copyBtn = document.getElementById('copy-wallet');
+const walletAddress = document.getElementById('wallet-address');
+const tooltip = document.getElementById('copy-tooltip');
+
+copyBtn.addEventListener('click', () => {
+  navigator.clipboard.writeText(walletAddress.textContent);
+
+  // mostra o aviso
+  tooltip.classList.add('show');
+
+  // esconde após 1.5s
+  setTimeout(() => {
+    tooltip.classList.remove('show');
+  }, 1500);
+});
