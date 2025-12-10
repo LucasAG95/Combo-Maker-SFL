@@ -21,7 +21,7 @@ const crops = [
     { name: 'Onion',       tempo: 72_000_000,  custoSemente: 7,   valorDeVenda: 10,   valorDoMarket: 0, estoque: 100, seedPlantadas: '', estacao: ['winter'] },
     { name: 'Turnip',      tempo: 86_400_000,  custoSemente: 5,   valorDeVenda: 8,    valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['winter'] },
     { name: 'Radish',      tempo: 86_400_000,  custoSemente: 7,   valorDeVenda: 9.5,  valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['summer'] },
-    { name: 'Wheat',       tempo: 86_400_000,  custoSemente: 5,   valorDeVenda: 7,    valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['spring', 'summer', 'autumn', 'Winter'] },
+    { name: 'Wheat',       tempo: 86_400_000,  custoSemente: 5,   valorDeVenda: 7,    valorDoMarket: 0, estoque: 80,  seedPlantadas: '', estacao: ['spring', 'summer', 'autumn', 'winter'] },
     { name: 'Kale',        tempo: 129_600_000, custoSemente: 7,   valorDeVenda: 10,   valorDoMarket: 0, estoque: 60,  seedPlantadas: '', estacao: ['spring', 'winter'] },
     { name: 'Artichoke',   tempo: 129_600_000, custoSemente: 7,   valorDeVenda: 12,   valorDoMarket: 0, estoque: 60,  seedPlantadas: '', estacao: ['autumn'] },
     { name: 'Barley',      tempo: 172_800_000, custoSemente: 10,  valorDeVenda: 12,   valorDoMarket: 0, estoque: 60,  seedPlantadas: '', estacao: ['spring', 'autumn'] },
@@ -390,4 +390,5 @@ valorDosRecursosMarket.forEach(valorDoMarket => { //vai verificar e organizar po
 
     });
 }
+
 */
