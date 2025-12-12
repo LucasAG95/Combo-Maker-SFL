@@ -11,8 +11,15 @@ function sementesPlantadas() {
     buffsAdicionadosCrops();
 }
 
+function limparCrops() {
+    crops.forEach(crop => {
+        crop.seedsPlantadas = '';
+    });
+    buffsAdicionadosCrops();
+};
+
 //================================================================================================================================================================================
-function rodadasPlantadasCM() {
+function sementesPlantadasCM() {
     document.querySelectorAll('.sementesCM-input').forEach(input => {
         let nome = input.dataset.name;
         let valor = Number(input.value);
@@ -24,7 +31,32 @@ function rodadasPlantadasCM() {
     buffsAdicionadosCrops();
 }
 
+function limparCM() {
+    cropMachine.forEach(cm => {
+        cm.seedsPlantadas = '';
+    });
+    buffsAdicionadosCrops();
+}
 
+//================================================================================================================================================================================
+function sementesPlantadasFrutas() {
+    document.querySelectorAll('.sementesFrutas-input').forEach(input => {
+        let nome = input.dataset.name;
+        let valor = Number(input.value);
+
+        let frutas = fruits.find(fruta => fruta.name === nome);
+        if (frutas) frutas.seedsPlantadas = valor || '';
+    });
+
+    buffsAdicionadosFrutas();
+}
+
+function limparFrutas() {
+    fruits.forEach(fruta => {
+        fruta.seedsPlantadas = '';
+    });
+    buffsAdicionadosFrutas();
+}
 
 //================================================================================================================================================================================
 
@@ -39,3 +71,13 @@ function ferramentasUsadas() {
 
     buffsAdicionadosMinerais();
 }
+
+function limparMinerios() {
+    todasFerramentas.forEach(ferramenta => {
+        ferramenta.qtdUsada = '';
+    });
+
+    buffsAdicionadosMinerais();
+}
+
+//================================================================================================================================================================================

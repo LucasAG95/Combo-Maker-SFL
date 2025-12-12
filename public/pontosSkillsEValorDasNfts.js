@@ -1,3 +1,17 @@
+let idiomaValorDasNftsEPontosTotaisSkills = {
+    portugues: {
+        pontos: 'Pontos',
+        ultimaVenda: 'Ultima Venda',
+        precoAtual: 'Preço Atual'
+    },
+    ingles: {
+        pontos: 'Points',
+        ultimaVenda: 'Last Sale',
+        precoAtual: 'Current Price',
+    }
+}
+
+
 function pontosGastosEmSkills() {
 
     //soma dos pontos de skills gastos
@@ -10,19 +24,17 @@ function pontosGastosEmSkills() {
         };
     });
 
-    let idiomaPraPontos = idioma === 'portugues' ? 'Pontos' : 'Points';
-    document.getElementById('total-pontos-gastos-em-skills').innerHTML = `Skills: ${totalDePontosEmSkills} ${idiomaPraPontos}`;
+    document.getElementById('total-pontos-gastos-em-skills').innerHTML = `Skills: ${totalDePontosEmSkills} ${idiomaValorDasNftsEPontosTotaisSkills[idioma].pontos}`;
 
 };
 
 //==========================================================================================================================================================================
 
 function valorTotalEmNfts() {
+
+    const idiomaSelecionadoNfts = idiomaValorDasNftsEPontosTotaisSkills[idioma];
+
     //soma dos valores em flower e dolar dos Collectibles
-
-    let idiomaUltimaVenda = idioma === 'portugues' ? 'Ultima Venda' : 'Last Sale';
-    let idiomaPrecoAtual = idioma === 'portugues' ? 'Preco Atual' : 'Current Price';
-
     let valorEmCollectiblesUltimaVenda = 0;
     let valorEmCollectiblesPrecoAtual = 0;
     todosCollectibles.forEach(collectibles => {
@@ -35,8 +47,8 @@ function valorTotalEmNfts() {
     });
     document.getElementById('total-valor-em-collectibles').innerHTML = `Collectibles:
         <h3>
-            ${idiomaPrecoAtual}: <img src="./icones/flower.png" class="crop-img">${valorEmCollectiblesPrecoAtual.toFixed(2)} ~ <img src="./icones/usdc.png" class="crop-img">$${(valorEmCollectiblesPrecoAtual * precoDoFlower).toFixed(2)}<br>
-            ${idiomaUltimaVenda}: <img src="./icones/flower.png" class="crop-img">${valorEmCollectiblesUltimaVenda.toFixed(2)} ~ <img src="./icones/usdc.png" class="crop-img">$${(valorEmCollectiblesUltimaVenda * precoDoFlower).toFixed(2)}
+            ${idiomaSelecionadoNfts.precoAtual}: <img src="./icones/flower.png" class="crop-img">${valorEmCollectiblesPrecoAtual.toFixed(2)} ~ <img src="./icones/usdc.png" class="crop-img">$${(valorEmCollectiblesPrecoAtual * precoDoFlower).toFixed(2)}<br>
+            ${idiomaSelecionadoNfts.ultimaVenda}: <img src="./icones/flower.png" class="crop-img">${valorEmCollectiblesUltimaVenda.toFixed(2)} ~ <img src="./icones/usdc.png" class="crop-img">$${(valorEmCollectiblesUltimaVenda * precoDoFlower).toFixed(2)}
         </h3>`;
     
     //========================================================================================================================================================================
@@ -54,8 +66,8 @@ function valorTotalEmNfts() {
     });
     document.getElementById('total-valor-em-wearables').innerHTML = `Wearables:
         <h3>
-            ${idiomaPrecoAtual}: <img src="./icones/flower.png" class="crop-img">${valorEmWearablesPrecoAtual.toFixed(2)} ~ <img src="./icones/usdc.png" class="crop-img">$${(valorEmWearablesPrecoAtual * precoDoFlower).toFixed(2)}<br>
-            ${idiomaUltimaVenda}: <img src="./icones/flower.png" class="crop-img">${valorEmWearablesUltimaVenda.toFixed(2)} ~ <img src="./icones/usdc.png" class="crop-img">$${(valorEmWearablesUltimaVenda * precoDoFlower).toFixed(2)}
+            ${idiomaSelecionadoNfts.precoAtual}: <img src="./icones/flower.png" class="crop-img">${valorEmWearablesPrecoAtual.toFixed(2)} ~ <img src="./icones/usdc.png" class="crop-img">$${(valorEmWearablesPrecoAtual * precoDoFlower).toFixed(2)}<br>
+            ${idiomaSelecionadoNfts.ultimaVenda}: <img src="./icones/flower.png" class="crop-img">${valorEmWearablesUltimaVenda.toFixed(2)} ~ <img src="./icones/usdc.png" class="crop-img">$${(valorEmWearablesUltimaVenda * precoDoFlower).toFixed(2)}
         </h3>`;
 
     //========================================================================================================================================================================

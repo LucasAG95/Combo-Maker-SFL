@@ -181,9 +181,9 @@ let shrines = [
                 recursoAfetado: ['Grape', 'Rice', 'Olive'],
             }
         ],
-        tempoCM: [
+        tempo: [
             {
-                sinal: 'x',
+                sinal: 'xCM',
                 buff: 0.9,
                 recursoAfetado: ['Sunflower', 'Potato', 'Rhubarb', 'Pumpkin', 'Zucchini', 'Carrot', 'Yam', 'Cabbage', 'Broccoli'],
             }

@@ -1,5 +1,5 @@
 //Idioma
-let idioma = 'portugues';
+let idioma = 'ingles';
 function selecionandoIdioma() {
     idioma = document.getElementById('opcao-idioma').value;
     chamadorDeBuffs();
@@ -22,6 +22,7 @@ document.getElementById('estacaoSelect').addEventListener('change', selecionando
 //valor da opção inicial
 let modoDeCalularCrops = `manual`;
 let modoDeCalularCropsNaCM = `manual`;
+let modoDeCalularCropsFruta = `manual`;
 let modoDeCalcularMinerios = 'hora';
 
 function selecionarModoDeCalculo() {
@@ -29,6 +30,8 @@ function selecionarModoDeCalculo() {
     modoDeCalularCrops = document.getElementById(`tipo-de-calculo-crop`).value;
 
     modoDeCalularCropsNaCM = document.getElementById(`tipo-de-calculo-crop-cm`).value;
+
+    modoDeCalularCropsFruta = document.getElementById(`tipo-de-calculo-fruta`).value;
     
     modoDeCalcularMinerios = document.getElementById(`tipo-de-calculo-mineral`).value;
     
@@ -37,6 +40,7 @@ function selecionarModoDeCalculo() {
 };
 document.getElementById('tipo-de-calculo-crop').addEventListener('change', selecionarModoDeCalculo);
 document.getElementById('tipo-de-calculo-crop-cm').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('tipo-de-calculo-fruta').addEventListener('change', selecionarModoDeCalculo);
 document.getElementById('tipo-de-calculo-mineral').addEventListener('change', selecionarModoDeCalculo);
 
 //=======================================================================================================================================================================
@@ -60,17 +64,9 @@ function valoresDasGems() {
 }
 document.getElementById('pack-gems').addEventListener('change', valoresDasGems);
 
+//=============================================================================================================================================
 
-
-
-
-
-
-
-
-
-
-//script para o botao de copiar a wallet
+//Script para o botao de copiar a wallet do site
 const copyBtn = document.getElementById('copy-wallet');
 const walletAddress = document.getElementById('wallet-address');
 const tooltip = document.getElementById('copy-tooltip');
@@ -86,3 +82,5 @@ copyBtn.addEventListener('click', () => {
     tooltip.classList.remove('show');
   }, 1500);
 });
+
+

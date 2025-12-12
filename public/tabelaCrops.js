@@ -1,5 +1,6 @@
 const mostrarResultadoCrops = document.getElementById('saida-das-crops');
 const mostrarResultadoCropMachine = document.getElementById('saida-das-crops-cm');
+const mostrarResultadoFrutas = document.getElementById('saida-das-frutas');
 
 const idiomaTabelaCrops = {
     portugues: {
@@ -33,6 +34,16 @@ const idiomaTabelaCrops = {
         //exlcusivo CM
         oilGasto: 'Oil Gasto',
         oilUsado: 'Oil Usado',
+        calculoPorEstoque: 'Qtd. Estoque que vai Plantar',
+
+        //exclusivo Frutas
+        frutas: 'Frutas',
+        vendaDaFruta: 'Venda da Fruta',
+        mediaPorColeta: 'Média por Coleta',
+        tempoDaFruta: 'Tempo da Fruta',
+        totalDeFrutas: 'Total de Frutas',
+        machadosUsados: 'Machados Usados',
+        madeiraGanha: 'Madeiras Ganhas',
     },
     ingles: {
         //titulo tabela
@@ -65,6 +76,17 @@ const idiomaTabelaCrops = {
         //exlcusivo CM
         oilGasto: 'Oil Spent',
         oilUsado: 'Oil Used',
+        calculoPorEstoque: 'Amount of Stock You Will Plant',
+
+        //exclusivo Frutas
+        frutas: 'Fruits',
+        vendaDaFruta: 'Fruit Sale',
+        mediaPorColeta: 'Average per Harvest',
+        tempoDaFruta: 'Fruit Time',
+        totalDeFrutas: 'Total Fruits',
+        machadosUsados: 'Axes Used',
+        madeiraGanha: 'Wood Gained',
+
     },
 };
 
@@ -77,9 +99,9 @@ function tabelaDeCrops() {
     let textoDefinirModoDeCalcularCrops = idiomaDoTextoCrops.calculoPorSemente;
 
     if (document.getElementById('tipo-de-calculo-crop').value === 'manual') {
-        textoDefinirModoDeCalcularCrops = idiomaTabelaCrops[idioma].calculoPorSemente;
+        textoDefinirModoDeCalcularCrops = idiomaDoTextoCrops.calculoPorSemente;
     } else if (document.getElementById('tipo-de-calculo-crop').value === 'rodada') {
-        textoDefinirModoDeCalcularCrops = idiomaTabelaCrops[idioma].calculoPorCiclo;
+        textoDefinirModoDeCalcularCrops = idiomaDoTextoCrops.calculoPorCiclo;
     }
 
     //selecionando a tabela que vai usar!
@@ -260,12 +282,23 @@ function tabelaDeCrops() {
     let restockDoComboCM = 0;
     let oilTotalUsado = 0;
 
+    //texto para colocar se a pessoa qrer ver o calculo por ciclo ou por semente
+    let textoDefinirModoDeCalcularCropsCM = idiomaDoTextoCrops.calculoPorSemente;
+
+    if (document.getElementById('tipo-de-calculo-crop-cm').value === 'manual') {
+        textoDefinirModoDeCalcularCropsCM = idiomaDoTextoCrops.calculoPorSemente;
+    } else if (document.getElementById('tipo-de-calculo-crop-cm').value === 'rodada') {
+        textoDefinirModoDeCalcularCropsCM = idiomaDoTextoCrops.calculoPorCiclo;
+    } else if (document.getElementById('tipo-de-calculo-crop-cm').value === 'estoque') {
+        textoDefinirModoDeCalcularCropsCM = idiomaDoTextoCrops.calculoPorEstoque;
+    }
+
     let tabelaTituloCM = `
         <tr>
             <th>${idiomaDoTextoCrops.crop}<br>${idiomaDoTextoCrops.estoque}</th>
             <th>${idiomaDoTextoCrops.custoDaSemente}<br>${idiomaDoTextoCrops.vendaDaCrop}</th>
             <th>${idiomaDoTextoCrops.mediaPorPlot}<br>${idiomaDoTextoCrops.tempoDaCrop}</th>
-            <th>${idiomaDoTextoCrops.calculoPorCiclo} <br><button onclick="rodadasPlantadasCM()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
+            <th>${textoDefinirModoDeCalcularCropsCM} <br><button onclick="sementesPlantadasCM()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
             <th>${idiomaDoTextoCrops.sementesUsadas}<br>${idiomaDoTextoCrops.totalDeCrops}</th>      
             <th>${idiomaDoTextoCrops.tempoTotal}<br>${idiomaDoTextoCrops.oilGasto}</th>
             <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
@@ -412,7 +445,188 @@ function tabelaDeCrops() {
         `;
 
     //a conta é feita aqui, mas a funcção abaixo joga o resultado para tabela da crop machine!
-    tabelaCropMachine(tabelaCM, cardResultadosCM)
+    tabelaCropMachine(tabelaCM, cardResultadosCM);
+
+    //=====================================================================================================================================================================
+
+    //acumuladores para mostrar resultado total da CM!
+    let tempoTotalComboFrutas = 0;
+    let lucroTotalDoComboFrutasCoins = 0;
+    let lucroTotalDoComboFrutasFlower = 0;
+    let restockDoComboFrutas = 0;
+
+    //texto para colocar se a pessoa qrer ver o calculo por ciclo ou por semente
+    let textoDefinirModoDeCalcularFrutas = idiomaDoTextoCrops.calculoPorSemente;
+
+    if (document.getElementById('tipo-de-calculo-fruta').value === 'manual') {
+        textoDefinirModoDeCalcularFrutas = idiomaDoTextoCrops.calculoPorSemente;
+    } else if (document.getElementById('tipo-de-calculo-fruta').value === 'rodada') {
+        textoDefinirModoDeCalcularFrutas = idiomaDoTextoCrops.calculoPorCiclo;
+    }
+
+    let tabelaTituloFrutas = `
+        <tr>
+            <th>${idiomaDoTextoCrops.frutas}<br>${idiomaDoTextoCrops.estoque}</th>
+            <th>${idiomaDoTextoCrops.custoDaSemente}<br>${idiomaDoTextoCrops.vendaDaFruta}</th>
+            <th>${idiomaDoTextoCrops.mediaPorColeta}<br>${idiomaDoTextoCrops.tempoDaFruta}</th>
+            <th>${textoDefinirModoDeCalcularFrutas} <br><button onclick="sementesPlantadasFrutas()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
+            <th>${idiomaDoTextoCrops.sementesUsadas}<br>${idiomaDoTextoCrops.totalDeFrutas}</th>      
+            <th>${idiomaDoTextoCrops.tempoTotal}</th>
+            <th>${idiomaDoTextoCrops.machadosUsados}<br>${idiomaDoTextoCrops.madeiraGanha}</th>
+            <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
+            <th>${idiomaDoTextoCrops.valorDeVendaNoMarket}</th>
+            <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
+        </tr>`
+
+    // tabela principal continua igual
+    let tabelaFrutas = `
+        <table class="tabela-crops">
+                <thead>
+                    ${tabelaTituloFrutas}
+                </thead>
+            <tbody>
+        `;
+
+    fruits.forEach(fruta => {
+        if (!fruta.estacao.includes(estacao)) return;
+
+        let qtdPorColeta = Number(fruta.quantidade);
+
+        let tempoPorColeta = fruta.tempoFinal;
+        let tempoTotal = fruta.tempoTotal;
+
+        let custoPorSemente = Number(fruta.custoPorSemente);
+        let vendaDaFruta = Number(fruta.vendaPorFruta);
+
+        let estoqueFinal = Number(fruta.estoqueFinal);
+
+        let valorPorFrutaNoMarket = Number(fruta.valorDoMarket);
+
+        let sementesUsadas = Number(fruta.qtdSementeUsadas);
+        let colheitaTotal = Number(fruta.colheitaTotal);
+
+        let machadosUsados = fruta.totalAxe;
+        let madeirasGanhas = fruta.totalWood;
+
+        let custoTotalCoins = (custoPorSemente * sementesUsadas) + (mapaDeFerramentas['axe'].custoEmCoins * machadosUsados);
+        let vendaTotalCoins = (vendaDaFruta * colheitaTotal) + (((mapaDeMinerals['wood'].valorDoMarket * (1 - taxa)) * madeirasGanhas) * flowerEmCoins);
+        let lucroCoins = sementesUsadas > 0 ? vendaTotalCoins - custoTotalCoins : 0;
+
+        let custoTotalFlower = (1 / flowerEmCoins) * custoTotalCoins;
+        let vendaTotalFlower = ((colheitaTotal * valorPorFrutaNoMarket) + (mapaDeMinerals['wood'].valorDoMarket * madeirasGanhas)) * (1 - taxa);
+        let lucroFlower = sementesUsadas > 0 ? vendaTotalFlower - custoTotalFlower : 0;
+
+        let qtdDeRestock = (sementesUsadas / estoqueFinal);
+
+        tabelaFrutas += `
+        <tr>
+            <td><img src="./crops/${fruta.name}.png" class="crop-img">${fruta.name} <br> <img src="./icones/reestock.png" class="crop-img">${estoqueFinal}</td>
+            <td><img src="./icones/coins.png" class="crop-img">${custoPorSemente.toFixed(2)}<br><img src="./icones/coins.png" class="crop-img">${vendaDaFruta.toFixed(2)}</td>
+            <td><img src="./crops/${fruta.name}.png" class="crop-img">${qtdPorColeta.toFixed(2)}<br><img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoPorColeta)}</td>
+            <td><input type="number" placeholder="" data-name="${fruta.name}" class="quantidade-input sementesFrutas-input" value="${fruta.seedsPlantadas}"></td>
+            <td><img src="./crops/seed${fruta.name}.png" class="crop-img">${sementesUsadas}<br><img src="./crops/${fruta.name}.png" class="crop-img">${colheitaTotal.toFixed(2)}</td>
+            <td><img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoTotal)}</td>
+            <td><img src="./minerais/axe.png" class="crop-img">${machadosUsados}<br><img src="./minerais/wood.png" class="crop-img">${madeirasGanhas}</td>
+            <td><img src="./crops/${fruta.name}.png" class="crop-img">+ <img src="./minerais/wood.png" class="crop-img"><br><img src="./icones/coins.png" class="crop-img">${lucroCoins.toFixed(2)}</td>
+            <td><img src="./crops/${fruta.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${valorPorFrutaNoMarket.toFixed(5)}</td>
+            <td><img src="./crops/${fruta.name}.png" class="crop-img">+ <img src="./minerais/wood.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroFlower.toFixed(5)}</td>
+        </tr>
+        `;
+
+        tempoTotalComboFrutas += tempoTotal;
+        lucroTotalDoComboFrutasCoins += lucroCoins;
+        lucroTotalDoComboFrutasFlower += lucroFlower;
+        if (qtdDeRestock > restockDoComboFrutas) restockDoComboFrutas = qtdDeRestock;
+
+    });
+
+    //info para os cards
+    //ver o gasto com restock, cada restock de semente é 15 gems
+    let gemsGastasComRestockFrutas = restockDoComboFrutas * 15;
+
+    //calculo dos valores de restock do combo montado e seu desconto no lucro
+    let custoRestockDoComboFlowerFrutas = Number(gemsGastasComRestockFrutas * precoDaGemEmFlower);
+    let custoRestockDoComboDolarFrutas = Number(gemsGastasComRestockFrutas * precoPorGem);
+    lucroTotalDoComboFrutasFlower -= custoRestockDoComboFlowerFrutas;
+
+    //média em de restock e seu custo em 24h e desconto no lucro medio em 24h
+    let mediaRestock24hFrutas = (vinteQuatroHoras / tempoTotalComboFrutas) * restockDoComboFrutas || 0;
+    let mediaGemsGastasRestock24hFrutas = mediaRestock24hFrutas * 15;
+    let mediaCustoRestock24hFlowerFrutas = Number(mediaGemsGastasRestock24hFrutas * precoDaGemEmFlower);
+    let mediaCustoRestock24hDolarFrutas = Number(mediaGemsGastasRestock24hFrutas * precoPorGem);
+    let lucroDoComboEm24hFrutas = ((vinteQuatroHoras / tempoTotalComboFrutas) * lucroTotalDoComboFrutasFlower);
+    let lucroDoComboSemanalFrutas = lucroDoComboEm24hFrutas * 7;
+
+
+    let cardResultadosFrutas = `
+        <div class="cards-totais-crops">
+
+            <div class="card-total-crops">
+                <h3><img src="./icones/tempo.png" class="crop-img">${idiomaDoTextoCrops.cardTempoTotal}</h3>
+                <p>${formatarTempoTotalDoDia(tempoTotalComboFrutas)}</p>
+            </div>
+            <h1>-</h1>
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardQtdRestock}</h3>
+                <p><img src="./icones/reestock.png" class="crop-img">${restockDoComboFrutas.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestockFrutas.toFixed(2)}</p>
+            </div>
+
+             <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardCustoRestock}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${custoRestockDoComboFlowerFrutas.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${custoRestockDoComboDolarFrutas.toFixed(2)}
+                </p>
+            </div>
+
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardLucroDoCombo}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroTotalDoComboFrutasFlower.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${(lucroTotalDoComboFrutasFlower * precoDoFlower).toFixed(2)}
+                </p>
+            </div>
+            <h1>-</h1>
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardQtdRestock24h}</h3>
+                <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24hFrutas.toFixed(2)} ➜ ${mediaGemsGastasRestock24hFrutas.toFixed(2)}<img src="./icones/gem.png" class="crop-img"></p>
+            </div>
+
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardCustoRestock24h}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${mediaCustoRestock24hFlowerFrutas.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${mediaCustoRestock24hDolarFrutas.toFixed(2)}
+                </p>
+            </div>
+
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardLucroEm24h}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroDoComboEm24hFrutas.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${(lucroDoComboEm24hFrutas * precoDoFlower).toFixed(2)}
+                </p>
+            </div>
+            <h1>-</h1>
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardLucroSemanal}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroDoComboSemanalFrutas.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${(lucroDoComboSemanalFrutas * precoDoFlower).toFixed(2)}
+                </p>
+            </div>
+
+        </div>
+        `;
+
+
+
+
+
+
+
+
+    tabelaDeFrutas(tabelaFrutas, cardResultadosFrutas)
 };
 
 //===========================================================================================================================================================================
@@ -422,6 +636,17 @@ function tabelaCropMachine(tabelaCM, cardResultadosCM) {
         <div class="tabelas-em-ordem">    
             ${cardResultadosCM}    
             ${tabelaCM}
+        </div>
+    `
+}
+
+//===========================================================================================================================================================================
+
+function tabelaDeFrutas(tabelaFrutas, cardResultadosFrutas) {
+    mostrarResultadoFrutas.innerHTML = `
+        <div class="tabelas-em-ordem"> 
+            ${cardResultadosFrutas}   
+            ${tabelaFrutas}    
         </div>
     `
 }

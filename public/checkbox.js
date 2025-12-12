@@ -153,6 +153,12 @@ function renderNFTs(lista, containerId, pastaImagens) {
     });
 }
 
+//=============================================================================================================================================
+
+
+
+//=============================================================================================================================================
+
 window.onload = function () {
 
     // Skills Legacy
@@ -207,6 +213,7 @@ window.onload = function () {
     //chamando funções
     valoresDasGems();
     valorDoFlowerEmDolar();
+    selecionandoIdioma();
     mudarIdioma();
     configurarCheckbox();
     numeroDaFarm();

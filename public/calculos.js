@@ -85,8 +85,6 @@ function calcularBuff(recurso, listasDeBuffs) {
                 })
             }
 
-
-
         });
         
     };
@@ -232,6 +230,69 @@ function buffsAdicionadosCrops() {
 
     tabelaDeCrops();
 };
+
+//======================================================================================================================================================================
+function buffsAdicionadosFrutas() {
+    fruits.forEach(fruta => {
+        const buffs = calcularBuff(fruta, [
+            skillsLegacy,
+            skillsFruits.tier1,
+            skillsFruits.tier2,
+            skillsFruits.tier3,
+            collectibles.ferreiro,
+            collectibles.crops,
+            collectibles.fruits,
+            wearables.factions,
+            wearables.fruits,
+            shrines
+        ]);
+
+        //rodadas que uma arvore de frutas dura
+        frutiferasDuram = 4;
+        if (mapaDeTodosCollectibles['immortalPear'].possui) {
+            frutiferasDuram += mapaDeTodosCollectibles['immortalPear'].duracao[0].buff
+        }
+
+        //ferramentas usadas para cortar a arvore
+        fruta.axe = 1;
+        if (mapaDeTodasSkillsComTier['noAxeNoWorries'].possui) fruta.axe *= mapaDeTodasSkillsComTier['noAxeNoWorries'].quantidade[0].buff;
+        if (mapaDeTodosCollectibles['foremanBeaver'].possui)   fruta.axe *= mapaDeTodosCollectibles['foremanBeaver'].quantidade[0].buff;
+        if (mapaDeTodasSkillsLegacy['logger'].possui)          fruta.axe *= mapaDeTodasSkillsLegacy['logger'].quantidade[0].buff;
+
+        //wood que vai ganhar ao quebrar as arvores
+        fruta.wood = 1;
+        if (mapaDeTodasSkillsComTier['noAxeNoWorries'].possui) fruta.wood *= mapaDeTodasSkillsComTier['noAxeNoWorries'].quantidade[0].buff;
+        if (mapaDeTodasSkillsComTier['fruityWoody'].possui) fruta.wood += mapaDeTodasSkillsComTier['fruityWoody'].quantidade[0].buff;
+
+        fruta.quantidade = (1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai;
+        
+        fruta.tempoFinal = fruta.tempo * buffs.tempoMulti;
+
+        fruta.custoPorSemente = fruta.custoSemente * buffs.multiCusto;
+        fruta.vendaPorFruta = fruta.valorDeVenda * buffs.multiVenda;
+
+        fruta.estoqueFinal = (fruta.estoque * buffs.estoqueMulti) + buffs.estoqueSoma;
+
+        if (modoDeCalularCropsFruta === 'manual') {
+            fruta.qtdSementeUsadas = fruta.seedsPlantadas;
+            fruta.colheitaTotal = ((fruta.seedsPlantadas * frutiferasDuram) * fruta.quantidade);
+            fruta.tempoTotal = fruta.tempoFinal * (Math.ceil(fruta.seedsPlantadas / plotsFrutas) * frutiferasDuram); 
+            fruta.totalAxe = fruta.axe * fruta.seedsPlantadas;
+            fruta.totalWood = fruta.wood * fruta.seedsPlantadas;
+
+        } else if (modoDeCalularCropsFruta === 'rodada') {
+            fruta.qtdSementeUsadas = fruta.seedsPlantadas * plotsFrutas;
+            fruta.colheitaTotal = ((fruta.seedsPlantadas * frutiferasDuram) * fruta.quantidade) * plotsFrutas;
+            fruta.tempoTotal = fruta.tempoFinal * (fruta.seedsPlantadas * frutiferasDuram);
+            fruta.totalAxe = (fruta.axe * fruta.seedsPlantadas) * plotsFrutas;
+            fruta.totalWood = (fruta.wood * fruta.seedsPlantadas) * plotsFrutas;
+        }
+
+    })
+    tabelaDeCrops();
+}
+
+
 
 //======================================================================================================================================================================
 
@@ -517,4 +578,6 @@ function nftsDeTierQuePossuemBuffDoAntecessor() {
 function chamadorDeBuffs() {
     buffsAdicionadosCrops();
     buffsAdicionadosMinerais();
+    buffsAdicionadosFrutas();
+    mudarIdioma();
 }

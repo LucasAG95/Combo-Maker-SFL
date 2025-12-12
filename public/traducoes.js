@@ -9,6 +9,7 @@ function mudarIdioma() {
     document.getElementById('procurarFarm').innerHTML = `${opcaoDeIdiomas.pesquisar}`;
     document.getElementById('ilhaAtual').innerHTML = `${opcaoDeIdiomas.tipoDeIlha}:`; 
     document.getElementById('flowerPorCoins').innerHTML = `${opcaoDeIdiomas.flowerPorCoins}:`;
+    document.getElementById('salvarInfos').innerHTML = `${opcaoDeIdiomas.botaoSalvarInfos}`;
     document.getElementById('pacoteDeGems').innerHTML = `${opcaoDeIdiomas.pacoteDeGems}:`; 
     document.getElementById('texto-estacao').innerHTML = `${opcaoDeIdiomas.estacao}:`; 
     document.getElementById('estacaoSelect').options[0].innerHTML = `${opcaoDeIdiomas.primavera}`;
@@ -24,7 +25,8 @@ function mudarIdioma() {
     document.getElementById('tipo-de-calculo-crop').options[0].innerHTML = `${opcaoDeIdiomas.calcularCropPorSemente}`;
     document.getElementById('tipo-de-calculo-crop').options[1].innerHTML = `${opcaoDeIdiomas.calcularCropPorRodada}`;
     document.getElementById('cropPlotsQuePossui').innerHTML = `${opcaoDeIdiomas.plotsQuePossui}:`;
-    document.getElementById('salvarInfos').innerHTML = `${opcaoDeIdiomas.botaoSalvarInfos}`;
+    document.getElementById('salvarInfosCrops').innerHTML = `${opcaoDeIdiomas.botaoSalvarInfos}`;
+    document.getElementById('limparInfosCrops').innerHTML = `${opcaoDeIdiomas.botaoLimparCrops}`;
 
     //informações dos Minerios
     document.getElementById('modoDeCalcularMinerios').innerHTML = `${opcaoDeIdiomas.modoDeCalcularMinerios}:`;
@@ -37,6 +39,8 @@ function mudarIdioma() {
     document.getElementById('qtdDeOuros').innerHTML = `${opcaoDeIdiomas.qtdDeOuros}:`;
     document.getElementById('qtdDeCrimstones').innerHTML = `${opcaoDeIdiomas.qtdDeCrimstones}:`;
     document.getElementById('qtdDeOils').innerHTML = `${opcaoDeIdiomas.qtdDeOils}:`;
+    document.getElementById('salvarInfosMinerais').innerHTML = `${opcaoDeIdiomas.botaoSalvarInfos}`;
+    document.getElementById('limparInfosMinerais').innerHTML = `${opcaoDeIdiomas.botaoLimparMinerais}`;
 
     //informações Crop Machine
     document.getElementById('cropPlotsQuePossuiCM').innerHTML = `${opcaoDeIdiomas.quantidadeDePlotsCM} ➜ ${plotsCM}`;
@@ -45,6 +49,17 @@ function mudarIdioma() {
     document.getElementById('tipo-de-calculo-crop-cm').options[0].innerHTML = `${opcaoDeIdiomas.calcularCMPorSemente}`;
     document.getElementById('tipo-de-calculo-crop-cm').options[1].innerHTML = `${opcaoDeIdiomas.calcularCMPorRodada}`;
     document.getElementById('tipo-de-calculo-crop-cm').options[2].innerHTML = `${opcaoDeIdiomas.calcularCMPorEstoque}`;
+    document.getElementById('limparInfosCM').innerHTML = `${opcaoDeIdiomas.botaoLimparCM}`;
+
+    //informações Frutas
+    document.getElementById('frutaTabName').innerHTML = `${opcaoDeIdiomas.subTabFrutaNome}`;
+    document.getElementById('fruitPlotsQuePossui').innerHTML = `${opcaoDeIdiomas.plotsFrutasQuePossui}`;
+    document.getElementById('rodadasQuePossuiUmaFrutifera').innerHTML = `${opcaoDeIdiomas.rodadasQueDuramAsFrutiferas}: ${frutiferasDuram} ${opcaoDeIdiomas.rodadas}`
+    document.getElementById('modoDeCalcularFrutas').innerHTML = `${opcaoDeIdiomas.modoDeCalcularFrutas}:`;
+    document.getElementById('tipo-de-calculo-fruta').options[0].innerHTML = `${opcaoDeIdiomas.calcularFrutaPorSemente}`;
+    document.getElementById('tipo-de-calculo-fruta').options[1].innerHTML = `${opcaoDeIdiomas.calcularFrutaPorRodada}`;
+    document.getElementById('salvarInfosFrutas').innerHTML = `${opcaoDeIdiomas.botaoSalvarInfos}`;
+    document.getElementById('limparInfosFrutas').innerHTML = `${opcaoDeIdiomas.botaoLimparFrutas}`;
 
     //NFTs, Skills e Buffs Temporarios
     document.getElementById('buffs-temporarios').innerHTML = `${opcaoDeIdiomas.abaBuffsTemporarios}`;
@@ -58,12 +73,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.1.9`;
-    document.getElementById('v015').innerHTML = `${atualizacoesFeitas.atualizacaoV015}`;
-    document.getElementById('v016').innerHTML = `${atualizacoesFeitas.atualizacaoV016}`;
-    document.getElementById('v017').innerHTML = `${atualizacoesFeitas.atualizacaoV017}`;
-    document.getElementById('v018').innerHTML = `${atualizacoesFeitas.atualizacaoV018}`;
-    document.getElementById('v019').innerHTML = `${atualizacoesFeitas.atualizacaoV019}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.0`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV016}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV017}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV018}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV019}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV020}`;
 
 
     pontosGastosEmSkills();
@@ -96,6 +111,7 @@ const idiomaEscolhido = {
         calcularCropPorRodada: 'Quantidade de Ciclos',
         plotsQuePossui: 'Qtd. de Crop Plots',
         botaoSalvarInfos: 'Salvar',
+        botaoLimparCrops: 'Limpar Crops',
 
         //dados dos minerais
         modoDeCalcularMinerios: 'Calcular os Minerios',
@@ -108,6 +124,7 @@ const idiomaEscolhido = {
         qtdDeOuros: 'Quantidade de Ouros',
         qtdDeCrimstones: 'Quantidade de Crimstones',
         qtdDeOils: 'Quantidade de Oils',
+        botaoLimparMinerais: 'Limpar Minerais',
 
         //dados CM
         modoDeCalcularCropsCM: 'Modo de Calcular',
@@ -116,6 +133,17 @@ const idiomaEscolhido = {
         calcularCMPorSemente: 'Por Semente',
         calcularCMPorRodada: 'Por Ciclo',
         calcularCMPorEstoque: 'Por Estoque',
+        botaoLimparCM: 'Limpar CM',
+
+        //dados Frutas
+        subTabFrutaNome: 'Frutas',
+        plotsFrutasQuePossui: 'Qtd. de Canteiros de Frutas',
+        modoDeCalcularFrutas: 'Modo de Calcular',
+        calcularFrutaPorSemente: 'Por Semente',
+        calcularFrutaPorRodada: 'Por Ciclo',
+        rodadasQueDuramAsFrutiferas: 'Suas árvores frutíferas duram',
+        rodadas: 'rodadas',
+        botaoLimparFrutas: 'Limpar Frutas',
 
         //nome das abas de NFTs/Skills quando precisa de tradução
         abaBuffsTemporarios: 'Buffs Temporários',
@@ -149,6 +177,7 @@ const idiomaEscolhido = {
         calcularCropPorRodada: 'Number of Cycles',
         plotsQuePossui: 'Number of Crop Plots',
         botaoSalvarInfos: 'Save',
+        botaoLimparCrops: 'Clear Crops',
 
         //dados dos minerais
         modoDeCalcularMinerios: 'Calculate the Minerals',
@@ -161,6 +190,7 @@ const idiomaEscolhido = {
         qtdDeOuros: 'Number of Golds',
         qtdDeCrimstones: 'Number of Crimstones',
         qtdDeOils: 'Number of Oils',
+        botaoLimparMinerais: 'Clear Minerals',
 
         //dados CM
         modoDeCalcularCropsCM: 'Calculation Mode',
@@ -169,6 +199,17 @@ const idiomaEscolhido = {
         calcularCMPorSemente: 'Per Seed',
         calcularCMPorRodada: 'Per Cycle',
         calcularCMPorEstoque: 'By Stock',
+        botaoLimparCM: 'Clear CM',
+
+        //dados Frutas
+        subTabFrutaNome: 'Fruits',
+        plotsFrutasQuePossui: 'Number of Fruit Patches',
+        modoDeCalcularFrutas: 'Calculation Mode',
+        calcularFrutaPorSemente: 'Per Seed',
+        calcularFrutaPorRodada: 'Per Cycle',
+        rodadasQueDuramAsFrutiferas: 'Your fruit trees last for',
+        rodadas: 'rounds',
+        botaoLimparFrutas: 'Clear Fruits',
 
         //nome das abas de NFTs/Skills quando precisa de tradução
         abaBuffsTemporarios: 'Temporary Buffs',
@@ -207,7 +248,15 @@ const idiomaDasAtualizacoes = {
             • Ajuste nas contas que usam Skills ou NFTs que dão chance do recurso voltar instantaneamente.<br>
             • Adicionado restante das SFTs (Radiant Ray e Gilded Swordfish) que buffam os minerios.<br>
             • Seção com informações sobre mim agora disponível no cabeçalho do site!`,
-            
+        
+        atualizacaoV020: `v0.2.0<br>
+            • Adicionado o cálculo de Frutas ao site.<br>
+            • Implementado o salvamento local, armazenando automaticamente sua última configuração — desde o idioma selecionado até o combo montado — sem precisar preencher tudo novamente!<br>
+            • Incluído um botão para limpar cada aba, permitindo reiniciar seu combo do zero com apenas um clique.<br>
+            • Corrigida a exibição da quantidade correta de Oil e Plots presentes na Crop Machine.<br>
+            • Próximas possíveis atualizações: Adição da Greenhouse e da aba Crop to Coins!`
+
+              
     },
     ingles: {
         nomeDaAbaAtualizacao: 'Updates Made',
@@ -232,6 +281,12 @@ const idiomaDasAtualizacoes = {
             • Adjusted calculations that use Skills or NFTs that give a chance for the resource to return instantly.<br>
             • Added the remaining SFTs (Radiant Ray and Gilded Swordfish) that buff the minerals.<br>
             • Section with information about me now available in the site header!`,
-
+        
+        atualizacaoV020: `v0.2.0<br>
+            • Added Fruit calculations to the site.<br>
+            • Implemented local saving, which automatically stores your last configuration — from the selected language to your assembled combo — so you don’t need to fill everything again!<br>
+            • Added a button to clear each tab, allowing you to restart your combo from scratch with a single click.<br>
+            • Fixed the display of the correct amount of Oil and Plots owned by the Crop Machine.<br>
+            • Possible upcoming updates: Greenhouse addition and the Crop to Coins tab!`
     }
-}
+};

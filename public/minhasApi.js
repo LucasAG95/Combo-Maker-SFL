@@ -47,6 +47,9 @@ function numeroDaFarm() {
             //preencher quantos plots você possui na farm
             const cropPlotsQuePossui = data.farm.inventory['Crop Plot'];
 
+            //preencher quantos pé de frutas possui
+            const frutasQuePossui = data.farm.inventory['Fruit Patch']
+
             //Preencher quantas Arvores você possui.
             const treeT1QuePossui = data.farm.inventory['Tree'];
             const treeT2QuePossui = data.farm.inventory['Ancient Tree'];
@@ -71,7 +74,7 @@ function numeroDaFarm() {
 
             
 
-            preencherInformacoesDaFarm(cropPlotsQuePossui, 
+            preencherInformacoesDaFarm(cropPlotsQuePossui, frutasQuePossui,
                 treeT1QuePossui, treeT2QuePossui, treeT3QuePossui,
                 stoneT1QuePossui, stoneT2QuePossui, stoneT3QuePossui,
                 ironT1QuePossui, ironT2QuePossui, ironT3QuePossui,
@@ -180,7 +183,7 @@ function numeroDaFarm() {
         valorTotalEmNfts();
     }
 
-    function preencherInformacoesDaFarm(cropPlotsQuePossui, 
+    function preencherInformacoesDaFarm(cropPlotsQuePossui, frutasQuePossui,
         treeT1QuePossui, treeT2QuePossui, treeT3QuePossui,
         stoneT1QuePossui, stoneT2QuePossui, stoneT3QuePossui,
         ironT1QuePossui, ironT2QuePossui, ironT3QuePossui,
@@ -190,6 +193,10 @@ function numeroDaFarm() {
         //Crop Plots
         plots = cropPlotsQuePossui;
         document.getElementById('plotsPossuidos').value = cropPlotsQuePossui;
+
+        //Canteiro de Frutas
+        plotsFrutas = frutasQuePossui;
+        document.getElementById('fruitsPlotsPossuidos').value = frutasQuePossui;
 
         //Arvores - Wood
         mapaDeMinerals['wood'].qtdNodes.t1 = treeT1QuePossui;
@@ -272,6 +279,13 @@ function atualizarValoresDeVendaPorFlower(apiValores) {
         if (apiValores[cropM.name]) {
             cropM.valorDoMarket = apiValores[cropM.name];
             console.log(`Crop: ${cropM.name} Valor: ${cropM.valorDoMarket}`);
+        };
+    });
+
+    fruits.forEach(fruta => {
+        if (apiValores[fruta.name]) {
+            fruta.valorDoMarket = apiValores[fruta.name];
+            console.log(`Crop: ${fruta.name} Valor: ${fruta.valorDoMarket}`);
         };
     });
 

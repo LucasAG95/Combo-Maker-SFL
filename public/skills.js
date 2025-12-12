@@ -503,7 +503,7 @@ let skillsFruits = {
             tempo: [
                 {
                     sinal: 'x',
-                    buff: 0,
+                    buff: 0.9,
                     recursoAfetado: ['Tomato', 'Lemon', 'Blueberry', 'Orange', 'Apple', 'Banana'],
                 },
             ],
@@ -517,7 +517,7 @@ let skillsFruits = {
                 ingles: '+1 wood from fruit branches and stems'
             },
             possui: false,
-            tempo: [
+            quantidade: [
                 {
                     sinal: '+',
                     buff: 1,
@@ -1616,3 +1616,9 @@ let mapaDeTodasSkillsComTier = {};
 todasSkillsComTier.forEach(skills => {
     mapaDeTodasSkillsComTier[skills.idName] = skills;
 });
+
+let mapaDeTodasSkillsLegacy = {};
+skillsLegacy.forEach(skills => {
+    mapaDeTodasSkillsLegacy[skills.idName] = skills;
+});
+console.log(mapaDeTodasSkillsLegacy)

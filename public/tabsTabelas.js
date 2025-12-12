@@ -55,5 +55,9 @@ subtabButtons.forEach(btn => {
     if (btn.dataset.subtab === "cropsCM-tab2") {
       tabelaDeCrops();   // use o nome da sua função real
     }
+
+    if (btn.dataset.subtab === "frutas-tab2") {
+      tabelaDeCrops(); 
+    }
   });
 });

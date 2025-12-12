@@ -19,8 +19,8 @@
         </label>
 
         <select id="opcao-idioma">
-          <option value="portugues">Português</option>
           <option value="ingles">English</option>
+          <option value="portugues">Português</option>
         </select>
       </div>
     </div>
@@ -72,62 +72,7 @@
       <h3 id="donoDaFarm"></h3>
     </div>
   </section>
-
-
-  <section class="linha-selects">
-
-    <div class="select-group">
-      <label id="ilhaAtual" for="ilhaSelect">Tipo de Ilha:</label>
-      <select id="ilhaSelect">
-        <option value="basic">Basic</option>
-        <option value="petal">Petal</option>
-        <option value="desert">Desert</option>
-        <option value="volcano">Volcano</option>
-      </select>
-    </div>
-
-    <!-- Selecionar Estação -->
-    <div class="select-group">
-      <label for="estacaoSelect">
-        <span id="texto-estacao">Estação:</span>
-      </label>
-      <select id="estacaoSelect">
-        <option value="spring">Primavera</option>
-        <option value="summer">Verão</option>
-        <option value="autumn">Outono</option>
-        <option value="winter">Inverno</option>
-      </select>
-    </div>
-
-    <div class="select-group">
-      <label for="vipSelect">VIP?</label>
-      <select id="vipSelect">
-        <option value="Sim">Sim</option>
-        <option value="Não">Não</option>
-      </select>
-    </div>
-
-    <div class="select-group">
-      <label id="flowerPorCoins" for="flower-em-coins">Flower por coins:</label>
-      <input id="flower-em-coins" type="number" placeholder="Ex: 320">
-    </div>
-    
-    <div class="select-group"> 
-      <label id="pacoteDeGems" for="pack-gems">Pacote de Gems:</label>
-      <select id="pack-gems">
-        <option value="100-0.90">100 Gems - $0.90</option>
-        <option value="650-4.54">650 Gems - $4.54</option>
-        <option value="1350-9.09">1350 Gems - $9.09</option>
-        <option value="2800-18.19">2800 Gems - $18.19</option>
-        <option value="7400-45.49">7400 Gems - $45.49</option>
-        <option value="15500-90.99">15500 Gems - $90.99</option>
-        <option value="200000-909.99">200000 Gems - $909.99</option>
-      </select>
-    </div>
-
-  </section>
-
-  <h4 id="valor-do-flower"></h4>
+  <br>
 
   <!-- Container flex: Tabs + Card -->
   <main class="items-row">
@@ -348,15 +293,15 @@
       <section id="avisoDasAtualizacoes" class="tab-content atualizacoes-block">
         <h2 id="atualizacao-feita">Ultima Atualização - v0.1.8</h2>
 
-        <h4 id="v019"></h4>
+        <h4 id="v1"></h4>
         ------------------------------------------------------------------------------------------------------------------------------------
-        <h4 id="v018"></h4>
+        <h4 id="v2"></h4>
         ------------------------------------------------------------------------------------------------------------------------------------
-        <h4 id="v017"></h4>
+        <h4 id="v3"></h4>
         ------------------------------------------------------------------------------------------------------------------------------------
-        <h4 id="v016"></h4>
+        <h4 id="v4"></h4>
         ------------------------------------------------------------------------------------------------------------------------------------
-        <h4 id="v015"></h4>
+        <h4 id="v5"></h4>
         
 
       </section>
@@ -378,6 +323,65 @@
   <!-- Colocar o total de valor que possui em NFTs -->
   <h4 id="valor-total-em-NFTs"></h4>
 
+  <!-- ========================= Status da Farm ========================= -->
+
+  <section class="linha-selects">
+
+    <div class="select-group">
+      <label id="ilhaAtual" for="ilhaSelect">Tipo de Ilha:</label>
+      <select id="ilhaSelect">
+        <option value="basic">Basic</option>
+        <option value="petal">Petal</option>
+        <option value="desert">Desert</option>
+        <option value="volcano">Volcano</option>
+      </select>
+    </div>
+
+    <!-- Selecionar Estação -->
+    <div class="select-group">
+      <label for="estacaoSelect">
+        <span id="texto-estacao">Estação:</span>
+      </label>
+      <select id="estacaoSelect">
+        <option value="spring">Primavera</option>
+        <option value="summer">Verão</option>
+        <option value="autumn">Outono</option>
+        <option value="winter">Inverno</option>
+      </select>
+    </div>
+
+    <div class="select-group">
+      <label for="vipSelect">VIP?</label>
+      <select id="vipSelect">
+        <option value="Sim">Sim</option>
+        <option value="Não">Não</option>
+      </select>
+    </div>
+    
+    <div class="select-group"> 
+      <label id="pacoteDeGems" for="pack-gems">Pacote de Gems:</label>
+      <select id="pack-gems">
+        <option value="100-0.90">100 Gems - $0.90</option>
+        <option value="650-4.54">650 Gems - $4.54</option>
+        <option value="1350-9.09">1350 Gems - $9.09</option>
+        <option value="2800-18.19">2800 Gems - $18.19</option>
+        <option value="7400-45.49">7400 Gems - $45.49</option>
+        <option value="15500-90.99">15500 Gems - $90.99</option>
+        <option value="200000-909.99">200000 Gems - $909.99</option>
+      </select>
+    </div>
+
+    <div class="select-group">
+      <label id="flowerPorCoins" for="flower-em-coins">Flower por coins:</label>
+      <input id="flower-em-coins" type="number" placeholder="Ex: 320">
+    </div>
+
+    <button id="salvarInfos" onclick="salvarInformacoes()">Salvar</button>
+
+  </section>
+
+  <h4 id="valor-do-flower"></h4>
+
   <!-- ========================= TABS PRINCIPAIS ========================= -->
 
   <div class="tabs-secundarias">
@@ -388,7 +392,7 @@
     </div>
 
     <!-- ===================================================================== -->
-    <!-- =============================== CROPS PRINCIPAL ====================== -->
+    <!-- =============================== CROPS / CM / FRUTAS ====================== -->
     <!-- ===================================================================== -->
 
     <section id="cropsTabPrincipal" class="tab2-content active">
@@ -397,6 +401,7 @@
       <div class="subtabs-crops-buttons">
         <button class="subtab-btn active" data-subtab="crops-tab2">Crops</button>
         <button class="subtab-btn" data-subtab="cropsCM-tab2">Crop Machine</button>
+        <button id="frutaTabName" class="subtab-btn" data-subtab="frutas-tab2">Frutas</button>
       </div>
 
       <!-- ===================================================================== -->
@@ -420,7 +425,9 @@
             <input id="plotsPossuidos" type="number" placeholder="Ex: 70">
           </div>
 
-          <button id="salvarInfos" onclick="salvarInformacoes()">Salvar</button>
+          <button id="salvarInfosCrops" onclick="salvarInformacoes()">Salvar</button>
+
+          <button id="limparInfosCrops" onclick="limparCrops()">Limpar Crops</button>
         </section>
 
         <!-- Área onde a tabela de crops será inserida -->
@@ -437,16 +444,6 @@
       <section id="cropsCM-tab2" class="subtab-content">
 
         <!-- ======================= SELECTS DE CROPS CM ======================= -->
-        <section class="linha-selects">
-          <div class="select-group"> 
-            <label id="modoDeCalcularCropsCM" for="tipo-de-calculo-crop-cm">Modo de Calcular:</label>
-            <select id="tipo-de-calculo-crop-cm">
-              <option value="manual">Por Semente</option>
-              <option value="rodada">Por Ciclo</option>
-              <option value="estoque">Por Estoque</option>
-            </select>
-          </div>
-        </section>
 
         <section class="linha-selects">
           <div class="select-group">
@@ -458,8 +455,62 @@
           </div>
         </section>
 
+        <section class="linha-selects">
+          <div class="select-group"> 
+            <label id="modoDeCalcularCropsCM" for="tipo-de-calculo-crop-cm">Modo de Calcular:</label>
+            <select id="tipo-de-calculo-crop-cm">
+              <option value="manual">Por Semente</option>
+              <option value="rodada">Por Ciclo</option>
+              <option value="estoque">Por Estoque</option>
+            </select>
+          </div>
+
+          <button id="limparInfosCM" onclick="limparCM()">Limpar CM</button>
+        </section>
+
+        
+
         <!-- Área onde a tabela de crops será inserida -->
         <div id="saida-das-crops-cm"></div>
+
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- ==============================  FRUTAS ============================== -->
+      <!-- ===================================================================== -->
+
+      <section id="frutas-tab2" class="subtab-content">
+
+        <!-- ======================= SELECTS DE FRUTAS ======================= -->
+
+        <section class="linha-selects">
+          <div class="select-group">
+            <label id="rodadasQuePossuiUmaFrutifera" for="duracaoDaFrutifera"></label>
+          </div>
+
+        </section>
+
+         <section class="linha-selects">
+          <div class="select-group"> 
+            <label id="modoDeCalcularFrutas" for="tipo-de-calculo-fruta">Modo de Calcular:</label>
+            <select id="tipo-de-calculo-fruta">
+              <option value="manual">Por Semente</option>
+              <option value="rodada">Por Ciclo</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label id="fruitPlotsQuePossui" for="fruitsPlotsPossuidos">Qtd. Plots de Frutas</label>
+            <input id="fruitsPlotsPossuidos" type="number" placeholder="Ex: 10">
+          </div>
+
+          <button id="salvarInfosFrutas" onclick="salvarInformacoes()">Salvar</button>
+
+          <button id="limparInfosFrutas" onclick="limparFrutas()">Limpar Frutas</button>
+        </section>
+
+        <!-- Área onde a tabela de crops será inserida -->
+        <div id="saida-das-frutas"></div>
 
       </section>
 
@@ -575,7 +626,7 @@
         </div>
 
         <!-- ========================= BOTÃO SALVAR ========================= -->
-        <button id="salvarInfos" onclick="salvarInformacoes()">Salvar</button>
+        <button id="salvarInfosMinerais" onclick="salvarInformacoes()">Salvar</button>
 
         <!-- ========================= TIPO DE CÁLCULO ========================= -->
         <div class="select-group">
@@ -587,6 +638,7 @@
           </select>
         </div>
 
+        <button id="limparInfosMinerais" onclick="limparMinerios()">Limpar Minerios</button>
       </section>
 
       <h3 id="aviso-de-manter-horas"></h3>
@@ -618,6 +670,8 @@
   <script src="./tabsTabelas.js"></script>
   <script src="./inputs.js"></script>
   <script src="./traducoes.js"></script>
+  <script src="./scriptsSite.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
+  
 </body>
 </html>

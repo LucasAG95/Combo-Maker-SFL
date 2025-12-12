@@ -1,3 +1,20 @@
+const idiomaDesbloquearSkills = {
+    portugues: {
+        pontosUsados: 'Pontos usados',
+        desbloquearNivel2: 'Nivel 2 - Pontos para desbloquear',
+        desbloquearNivel3: 'Nivel 3 - Pontos para desbloquear',
+
+    },
+    ingles: {
+        pontosUsados: 'Points Used',
+        desbloquearNivel2: 'Level 2 – Points to Unlock',
+        desbloquearNivel3: 'Level 3 – Points to Unlock',
+
+    }
+};
+
+//=========================================================================================================================================================
+
 function skillsCropsBloqueadas() {
     let aroveDeAbilidades = 'crops';
     let tituloDoAcordion = 'Crops';
@@ -278,9 +295,10 @@ function skillsMachineryBloqueadas() {
 function textoParaDesbloquearSkill(pontosProNivel2, pontosProNivel3, totalPontosGastos, aroveDeAbilidades, tituloDoAcordion) {
 
     //tradução
-    let pontosUsados = idioma === 'portugues' ? 'Pontos usados' : 'Points Used';
-    let desbloquearN2 = idioma === 'portugues' ? 'Nivel 2 - Pontos para desbloquear' : 'Level 2 – Points to Unlock';
-    let desbloquearN3 = idioma === 'portugues' ? 'Nivel 3 - Pontos para desbloquear' : 'Level 3 – Points to Unlock';
+    const idiomaDescloqueioSkill = idiomaDesbloquearSkills[idioma];
+    let pontosUsados = idiomaDesbloquearSkills[idioma].pontosUsados;
+    let desbloquearN2 = idiomaDesbloquearSkills[idioma].desbloquearNivel2;
+    let desbloquearN3 = idiomaDesbloquearSkills[idioma].desbloquearNivel3;
 
     //mostrar texto no accordion com o total de pontos gastos na arvore de crops
     document.getElementById(`tab-skill-${aroveDeAbilidades}`).innerHTML = `<h5>${tituloDoAcordion}: ${totalPontosGastos} ${pontosUsados}</h5>`;
