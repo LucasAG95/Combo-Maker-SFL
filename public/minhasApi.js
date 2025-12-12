@@ -255,15 +255,20 @@ function numeroDaFarm() {
 //======================================================================================================================================================================
 
 //Puxa valores dos recursos do game!
-fetch(`/api/proxy?url=https://sfl.world/api/v1/prices`)
-    .then(res => res.json())
-    .then(data => {  
-        atualizarValoresDeVendaPorFlower(data.data.p2p) //vai mandar para a funcção digitada o que ela puxou da api de preços do sfl.world, primeiro data(nome da variavel), o outro data é um objeto que tem p2p como outro objeto dentro, que por sua vez tem outros resultados dentro
-        console.log(data.data.p2p)
-    })
-    .catch(err => {
-        console.error('Erro ao puxar a planilha:', err);
-    });
+function buscarValoresAPI() {
+    fetch(`/api/proxy?url=https://sfl.world/api/v1/prices`)
+        .then(res => res.json())
+        .then(data => {  
+            atualizarValoresDeVendaPorFlower(data.data.p2p) //vai mandar para a funcção digitada o que ela puxou da api de preços do sfl.world, primeiro data(nome da variavel), o outro data é um objeto que tem p2p como outro objeto dentro, que por sua vez tem outros resultados dentro
+            console.log(data.data.p2p)
+        })
+        .catch(err => {
+            console.error('Erro ao puxar a planilha:', err);
+        });
+}
+
+// Atualiza a cada 10 minutos (600000 milissegundos)
+setInterval(buscarValoresAPI, 900000);
 
 //essa função irá inserir o valor de venda por flower das crops e minerais em vendaFlower
 function atualizarValoresDeVendaPorFlower(apiValores) {
@@ -309,15 +314,20 @@ function atualizarValoresDeVendaPorFlower(apiValores) {
 //======================================================================================================================================================================
 
 //api para puxar valores do flower das NFTs e Wearebles
-fetch(`/api/proxy?url=https://sfl.world/api/v1/nfts`)
-    .then(res => res.json())
-    .then(data => {  
-        atualizarValoresDasNfts(data.collectibles, data.wearables) //vai mandar para a funcção digitada o que ela puxou da api de preços do sfl.world, primeiro data(nome da variavel), o outro data é um objeto que tem p2p como outro objeto dentro, que por sua vez tem outros resultados dentro
-        console.log(data.wearables)
-    })
-    .catch(err => {
-        console.error('Erro ao puxar a planilha:', err);
-    });
+function buscarValoresNFTs() {
+    fetch(`/api/proxy?url=https://sfl.world/api/v1/nfts`)
+        .then(res => res.json())
+        .then(data => {  
+            atualizarValoresDasNfts(data.collectibles, data.wearables) //vai mandar para a funcção digitada o que ela puxou da api de preços do sfl.world, primeiro data(nome da variavel), o outro data é um objeto que tem p2p como outro objeto dentro, que por sua vez tem outros resultados dentro
+            console.log(data.wearables)
+        })
+        .catch(err => {
+            console.error('Erro ao puxar a planilha:', err);
+        });
+}
+
+// Atualiza a cada 15 minutos (900000 milissegundos)
+setInterval(buscarValoresNFTs, 900000);
 
 //essa função irá inserir o valor de venda por flower das crops em vendaFlower
 function atualizarValoresDasNfts(apiCollectibles, apiWearables) {
@@ -352,14 +362,19 @@ function atualizarValoresDasNfts(apiCollectibles, apiWearables) {
 //======================================================================================================================================================================
 
 //api para puxar o valor do flower
-fetch(`/api/proxy?url=https://sfl.world/api/v1.1/exchange`)
-  .then(res => res.json())
-  .then(data => {  
-    valorDoFlowerEmDolar(data.sfl.usd);
-  })
-  .catch(err => {
-    console.error('Erro ao puxar a planilha:', err);
-  });
+function buscarValorFlower() {
+    fetch(`/api/proxy?url=https://sfl.world/api/v1.1/exchange`)
+      .then(res => res.json())
+      .then(data => {  
+        valorDoFlowerEmDolar(data.sfl.usd);
+      })
+      .catch(err => {
+        console.error('Erro ao puxar a planilha:', err);
+      });
+}
+
+// Atualiza a cada 15 minutos (900000 milissegundos)
+setInterval(buscarValorFlower, 900000);
 
 let precoDoFlower;
 function valorDoFlowerEmDolar(valor) {

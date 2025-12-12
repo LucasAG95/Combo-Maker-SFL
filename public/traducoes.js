@@ -254,6 +254,7 @@ const idiomaDasAtualizacoes = {
             • Implementado o salvamento local, armazenando automaticamente sua última configuração — desde o idioma selecionado até o combo montado — sem precisar preencher tudo novamente!<br>
             • Incluído um botão para limpar cada aba, permitindo reiniciar seu combo do zero com apenas um clique.<br>
             • Corrigida a exibição da quantidade correta de Oil e Plots presentes na Crop Machine.<br>
+            • Adicionado um timer de 15 minutos para atualizar os preços dos recursos, das NFTs e do Flower.<br>
             • Próximas possíveis atualizações: Adição da Greenhouse e da aba Crop to Coins!`
 
               
@@ -287,6 +288,7 @@ const idiomaDasAtualizacoes = {
             • Implemented local saving, which automatically stores your last configuration — from the selected language to your assembled combo — so you don’t need to fill everything again!<br>
             • Added a button to clear each tab, allowing you to restart your combo from scratch with a single click.<br>
             • Fixed the display of the correct amount of Oil and Plots owned by the Crop Machine.<br>
+            • Added a 15-minute timer to update the prices of resources, NFTs, and Flower.<br>
             • Possible upcoming updates: Greenhouse addition and the Crop to Coins tab!`
     }
 };

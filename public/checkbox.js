@@ -220,7 +220,9 @@ window.onload = function () {
     chamadorDeBuffs();
     chamadorDeDesbloquearSkills();
     nftsDeTierQuePossuemBuffDoAntecessor();
-
+    buscarValoresAPI();
+    buscarValoresNFTs();
+    buscarValorFlower();
 };
 
 //================================================================================================================================================================
