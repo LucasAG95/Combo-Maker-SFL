@@ -9,7 +9,7 @@ function sementesPlantadas() {
     });
 
     buffsAdicionadosCrops();
-}
+};
 
 function limparCrops() {
     crops.forEach(crop => {
@@ -29,14 +29,14 @@ function sementesPlantadasCM() {
     });
 
     buffsAdicionadosCrops();
-}
+};
 
 function limparCM() {
     cropMachine.forEach(cm => {
         cm.seedsPlantadas = '';
     });
     buffsAdicionadosCrops();
-}
+};
 
 //================================================================================================================================================================================
 function sementesPlantadasFrutas() {
@@ -49,17 +49,38 @@ function sementesPlantadasFrutas() {
     });
 
     buffsAdicionadosFrutas();
-}
+};
 
 function limparFrutas() {
     fruits.forEach(fruta => {
         fruta.seedsPlantadas = '';
     });
     buffsAdicionadosFrutas();
-}
+};
 
 //================================================================================================================================================================================
+function sementesPlantadasGH() {
+    document.querySelectorAll('.sementesGH-input').forEach(input => {
+        let nome = input.dataset.name;
+        let valor = Number(input.value);
 
+        let greenh = greenhouse.find(gh => gh.name === nome);
+        if (greenh) greenh.seedsPlantadas = valor || '';
+    });
+
+    buffsAdicionadosGreenhouse();
+};
+
+function limparGH() {
+    greenhouse.forEach(gh => {
+        gh.seedsPlantadas = '';
+    });
+    buffsAdicionadosGreenhouse();
+};
+
+
+
+//================================================================================================================================================================================
 function ferramentasUsadas() {
     document.querySelectorAll('.minerios-input').forEach(input => {
         let id = input.dataset.name;
@@ -70,7 +91,7 @@ function ferramentasUsadas() {
     });
 
     buffsAdicionadosMinerais();
-}
+};
 
 function limparMinerios() {
     todasFerramentas.forEach(ferramenta => {
@@ -78,6 +99,6 @@ function limparMinerios() {
     });
 
     buffsAdicionadosMinerais();
-}
+};
 
 //================================================================================================================================================================================

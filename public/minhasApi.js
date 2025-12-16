@@ -301,6 +301,13 @@ function atualizarValoresDeVendaPorFlower(apiValores) {
         };
     });
 
+    greenhouse.forEach(gh => {
+        if (apiValores[gh.name]) {
+            gh.valorDoMarket = apiValores[gh.name];
+            console.log(`Mineral: ${gh.name} Valor: ${gh.valorDoMarket}`);
+        };
+    })
+
     valorDosRecursosMarket.forEach(marketRecursos => {
         if (apiValores[marketRecursos.name]) {
             marketRecursos.valor = apiValores[marketRecursos.name];

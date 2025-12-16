@@ -6,6 +6,7 @@ function calcularBuff(recurso, listasDeBuffs) {
     let qtdSubtrai = 0;     //sinal === '-'
     let qtdArea = 0;        //sinal === '+A'
     let qtdInsta = 1;       //sinal === 'xI'
+    let qtdSemente = 1;     //sinal === '+S'
 
     //variaveis que sao afetadas pelos buffs de tempo
     let tempoMulti = 1;
@@ -21,6 +22,7 @@ function calcularBuff(recurso, listasDeBuffs) {
     let estoqueSoma = 0;
 
     //variaveis que afetam Oil usado na CM
+    let oilMulti = 1;
     let oilAumentado = 0;
     let oilDiminuido = 0;
 
@@ -41,7 +43,7 @@ function calcularBuff(recurso, listasDeBuffs) {
                         if (qtd.sinal === '-') qtdSubtrai += qtd.buff;
                         if (qtd.sinal === '+A') qtdArea += qtd.buff;
                         if (qtd.sinal === 'xI') qtdInsta *= qtd.buff;
-
+                        if (qtd.sinal === '+S') qtdSemente += qtd.buff;
                     }
                 });
             };
@@ -77,13 +79,21 @@ function calcularBuff(recurso, listasDeBuffs) {
                 });
             };
             //=============================================================================================================================================================
-            //Adiciona os buffs que afetam o Oil usadado na CM
+            //Adiciona os buffs que afetam o Oil usado na CM
             if (nftOuSkill.oilCM) {
                 nftOuSkill.oilCM.forEach(oil => {
                     if (oil.sinal === '+') oilAumentado += oil.buff;
                     if (oil.sinal === '-') oilDiminuido += oil.buff;
                 })
-            }
+            };
+            //=============================================================================================================================================================
+            //Adiciona os buffs que afetam o Oil usado na GH
+            if (nftOuSkill.oilGH) {
+                nftOuSkill.oilGH.forEach(oil => {
+                    if (oil.sinal === 'x') oilMulti *= oil.buff;
+                    if (oil.sinal === '-') oilDiminuido += oil.buff;
+                })
+            };
 
         });
         
@@ -93,6 +103,7 @@ function calcularBuff(recurso, listasDeBuffs) {
 
     // devolve um objeto com todos os valores calculados
     return {
+        qtdSemente,
         qtdMulti,
         qtdSoma,
         qtdSubtrai,
@@ -109,6 +120,7 @@ function calcularBuff(recurso, listasDeBuffs) {
         estoqueMulti,
         estoqueSoma,
 
+        oilMulti,
         oilAumentado,
         oilDiminuido 
     };
@@ -292,6 +304,50 @@ function buffsAdicionadosFrutas() {
     tabelaDeCrops();
 }
 
+//======================================================================================================================================================================
+function buffsAdicionadosGreenhouse() {
+    greenhouse.forEach(gh => {
+        const buffs = calcularBuff(gh, [
+            skillsLegacy,
+            skillsGreenhouse.tier1,
+            skillsGreenhouse.tier2,
+            skillsGreenhouse.tier3,
+            collectibles.ferreiro,
+            collectibles.crops,
+            collectibles.greenhouse,
+            wearables.factions,
+            wearables.crops,
+            wearables.greenhouse,
+            totems,
+            shrines
+        ]);
+
+        gh.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai) * buffs.qtdInsta;
+
+        gh.tempoFinal = (gh.tempo * buffs.tempoMulti);
+
+        gh.estoqueFinal = (gh.estoque * buffs.estoqueMulti) + buffs.estoqueSoma;
+        gh.oilFinal = (gh.oil * buffs.oilMulti) - buffs.oilDiminuido;
+
+        gh.custoPorSemente = gh.custoSemente * buffs.multiCusto;
+        gh.vendaPorCrop = gh.valorDeVenda * buffs.multiVenda;
+
+        if (modoDeCalcularGreenhouse === 'manual') {
+            gh.qtdSementeUsadas = (buffs.qtdSemente * gh.seedsPlantadas);
+            gh.colheitaTotal = gh.quantidade * gh.seedsPlantadas;
+            gh.tempoTotal = gh.tempoFinal * Math.ceil(gh.seedsPlantadas / plotsGH);
+            gh.oilTotal = gh.oilFinal * gh.seedsPlantadas;
+        } else if (modoDeCalcularGreenhouse === 'rodada') {
+            gh.qtdSementeUsadas = (gh.seedsPlantadas * buffs.qtdSemente) * plotsGH;
+            gh.colheitaTotal = gh.quantidade * (gh.seedsPlantadas * plotsGH);
+            gh.tempoTotal = gh.tempoFinal * gh.seedsPlantadas;
+            gh.oilTotal = gh.oilFinal * (gh.seedsPlantadas * plotsGH);
+        };
+
+    });
+    tabelaDeCrops();
+
+};
 
 
 //======================================================================================================================================================================
@@ -403,11 +459,13 @@ function buffsAdicionadosMinerais() {
             collectibles.minerals,
             wearables.factions,
             wearables.minerals,
+            wearables.pesca,
+            wearables.terouso,
             shrines,
             totems
         ]);
 
-        ferramenta.quantidade = Number(ferramenta.qtdUsada);
+        ferramenta.quantidade = Number(ferramenta.qtdUsada * buffs.qtdMulti);
         ferramenta.estoqueFinal = Math.ceil((ferramenta.estoque * buffs.estoqueMulti) + buffs.estoqueSoma);
 
     });
@@ -579,5 +637,6 @@ function chamadorDeBuffs() {
     buffsAdicionadosCrops();
     buffsAdicionadosMinerais();
     buffsAdicionadosFrutas();
+    buffsAdicionadosGreenhouse();
     mudarIdioma();
 }

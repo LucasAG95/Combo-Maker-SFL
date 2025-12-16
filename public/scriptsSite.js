@@ -1,3 +1,4 @@
+
 // ============================================================================
 // SISTEMA DE SAVE MELHORADO - saveManager.js
 // ============================================================================
@@ -39,6 +40,7 @@ const SaveManager = {
                     crops: modoDeCalularCrops,
                     cropsCM: modoDeCalularCropsNaCM,
                     frutas: modoDeCalularCropsFruta,
+                    cropsGH: modoDeCalcularGreenhouse,
                     minerios: modoDeCalcularMinerios,
                 },
 
@@ -57,6 +59,7 @@ const SaveManager = {
                     crops: crops.map(c => ({ name: c.name, seeds: c.seedsPlantadas })),
                     cropsCM: cropMachine.map(c => ({ name: c.name, seeds: c.seedsPlantadas })),
                     fruits: fruits.map(f => ({ name: f.name, seeds: f.seedsPlantadas })),
+                    greenhouse: greenhouse.map(gh => ({ name: gh.name, seeds: gh.seedsPlantadas })),
                 },
 
                 // Ferramentas usadas
@@ -175,6 +178,11 @@ const SaveManager = {
                 if (estado.modoCalculo.frutas) {
                     const select = document.getElementById('tipo-de-calculo-fruta');
                     select.value = estado.modoCalculo.frutas;
+                    select.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                if (estado.modoCalculo.cropsGH) {
+                    const select = document.getElementById('tipo-de-calculo-greenhouse');
+                    select.value = estado.modoCalculo.cropsGH;
                     select.dispatchEvent(new Event('change', { bubbles: true }));
                 }
                 if (estado.modoCalculo.minerios) {
@@ -301,6 +309,12 @@ const SaveManager = {
                         if (fruit) fruit.seedsPlantadas = saved.seeds || '';
                     });
                 }
+                if (estado.seedsPlantadas.greenhouse) {
+                    estado.seedsPlantadas.greenhouse.forEach(saved => {
+                        const cropsGH = greenhouse.find(gh => gh.name === saved.name);
+                        if (cropsGH) cropsGH.seedsPlantadas = saved.seeds || '';
+                    });
+                }
             }
 
             // 11. Ferramentas usadas
@@ -401,6 +415,20 @@ const SaveManager = {
                     
                     inputsEsperados++;
                     const input = document.querySelector(`.sementesFrutas-input[data-name="${saved.name}"]`);
+                    if (input) {
+                        input.value = saved.seeds;
+                        inputsRestaurados++;
+                    }
+                });
+            }
+
+            // Restaurar inputs de seeds das Greenhouse
+            if (estado.seedsPlantadas?.greenhouse) {
+                estado.seedsPlantadas.greenhouse.forEach(saved => {
+                    if (!saved.seeds) return;
+                    
+                    inputsEsperados++;
+                    const input = document.querySelector(`.sementesGH-input[data-name="${saved.name}"]`);
                     if (input) {
                         input.value = saved.seeds;
                         inputsRestaurados++;

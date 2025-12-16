@@ -61,6 +61,13 @@ function mudarIdioma() {
     document.getElementById('salvarInfosFrutas').innerHTML = `${opcaoDeIdiomas.botaoSalvarInfos}`;
     document.getElementById('limparInfosFrutas').innerHTML = `${opcaoDeIdiomas.botaoLimparFrutas}`;
 
+    //informações Greenhouse
+    document.getElementById('plotsQuePossuiGH').innerHTML = `${opcaoDeIdiomas.plotsQuePossuiGH} ➜ ${plotsGH}`;
+    document.getElementById('modoDeCalcularGreenhouse').innerHTML = `${opcaoDeIdiomas.modoDeCalcularCropsGH}:`
+    document.getElementById('tipo-de-calculo-greenhouse').options[0].innerHTML = `${opcaoDeIdiomas.calcularGHPorSemente}`;
+    document.getElementById('tipo-de-calculo-greenhouse').options[1].innerHTML = `${opcaoDeIdiomas.calcularGHPorRodada}`;
+    document.getElementById('limparInfosGreenhouse').innerHTML = `${opcaoDeIdiomas.botaoLimparGH}`;
+
     //NFTs, Skills e Buffs Temporarios
     document.getElementById('buffs-temporarios').innerHTML = `${opcaoDeIdiomas.abaBuffsTemporarios}`;
     document.getElementById('total-valor-em-shrines').innerHTML = `${opcaoDeIdiomas.tituloDentroDaAbaBuffsTemporarios}`;
@@ -73,12 +80,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.0`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV016}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV017}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV018}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV019}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV020}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.1`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV017}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV018}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV019}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV020}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV021}`;
 
 
     pontosGastosEmSkills();
@@ -144,6 +151,13 @@ const idiomaEscolhido = {
         rodadasQueDuramAsFrutiferas: 'Suas árvores frutíferas duram',
         rodadas: 'rodadas',
         botaoLimparFrutas: 'Limpar Frutas',
+
+        //dados Greenhouse
+        plotsQuePossuiGH: 'Quantidade de Plots da Greenhouse',
+        modoDeCalcularCropsGH: 'Modo de Calcular',
+        calcularGHPorSemente: 'Por Semente',
+        calcularGHPorRodada: 'Por Ciclo',
+        botaoLimparGH: 'Limpar GH',
 
         //nome das abas de NFTs/Skills quando precisa de tradução
         abaBuffsTemporarios: 'Buffs Temporários',
@@ -211,6 +225,13 @@ const idiomaEscolhido = {
         rodadas: 'rounds',
         botaoLimparFrutas: 'Clear Fruits',
 
+        //dados Greenhouse
+        plotsQuePossuiGH: 'Number of Greenhouse Plots',
+        modoDeCalcularCropsGH: 'Calculation Mode',
+        calcularGHPorSemente: 'Per Seed',
+        calcularGHPorRodada: 'Per Cycle',
+        botaoLimparGH: 'Clear GH',
+
         //nome das abas de NFTs/Skills quando precisa de tradução
         abaBuffsTemporarios: 'Temporary Buffs',
         tituloDentroDaAbaBuffsTemporarios: 'Temporary Buffs',
@@ -255,9 +276,14 @@ const idiomaDasAtualizacoes = {
             • Incluído um botão para limpar cada aba, permitindo reiniciar seu combo do zero com apenas um clique.<br>
             • Corrigida a exibição da quantidade correta de Oil e Plots presentes na Crop Machine.<br>
             • Adicionado um timer de 15 minutos para atualizar os preços dos recursos, das NFTs e do Flower.<br>
-            • Próximas possíveis atualizações: Adição da Greenhouse e da aba Crop to Coins!`
+            • Próximas possíveis atualizações: Adição da Greenhouse e da aba Crop to Coins!`,
+        
+        atualizacaoV021: `v0.2.1<br>
+            • Adicionado o cálculo da Greenhouse ao site.<br>
+            • Adicionadas as NFTs Ancient Shovel e Ancient Rod aos wearables de minérios temporariamente, até que as categorias de pesca e escavação sejam implementadas.<br>
+            • Próximas possíveis atualizações: adição da aba Crop to Coins e inclusão dos Buds!`,
 
-              
+
     },
     ingles: {
         nomeDaAbaAtualizacao: 'Updates Made',
@@ -289,6 +315,11 @@ const idiomaDasAtualizacoes = {
             • Added a button to clear each tab, allowing you to restart your combo from scratch with a single click.<br>
             • Fixed the display of the correct amount of Oil and Plots owned by the Crop Machine.<br>
             • Added a 15-minute timer to update the prices of resources, NFTs, and Flower.<br>
-            • Possible upcoming updates: Greenhouse addition and the Crop to Coins tab!`
+            • Possible upcoming updates: Greenhouse addition and the Crop to Coins tab!`,
+
+        atualizacaoV021: `v0.2.1<br>
+            • Added Greenhouse calculations to the site.<br>
+            • Temporarily added the Ancient Shovel and Ancient Rod NFTs to the mining wearables, until the fishing and digging categories are implemented.<br>
+            • Possible upcoming updates: addition of the Crop to Coins tab and inclusion of Buds!`,
     }
 };

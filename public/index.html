@@ -387,7 +387,7 @@
   <div class="tabs-secundarias">
 
     <div class="tabs-secundarias-buttons">
-      <button class="tab2-btn active" data-tab2="cropsTabPrincipal">Crops / CM / Fruits</button>
+      <button class="tab2-btn active" data-tab2="cropsTabPrincipal">Crops / CM / Fruits / GH</button>
       <button class="tab2-btn" data-tab2="minerios-tab2">Minerals</button>
     </div>
 
@@ -402,6 +402,7 @@
         <button class="subtab-btn active" data-subtab="crops-tab2">Crops</button>
         <button class="subtab-btn" data-subtab="cropsCM-tab2">Crop Machine</button>
         <button id="frutaTabName" class="subtab-btn" data-subtab="frutas-tab2">Frutas</button>
+        <button class="subtab-btn" data-subtab="greenhouse-tab2">Greenhouse</button>
       </div>
 
       <!-- ===================================================================== -->
@@ -434,8 +435,6 @@
         <div id="saida-das-crops"></div>
 
       </section>
-
-
 
       <!-- ===================================================================== -->
       <!-- ==============================  CROPS CM ============================== -->
@@ -487,7 +486,6 @@
           <div class="select-group">
             <label id="rodadasQuePossuiUmaFrutifera" for="duracaoDaFrutifera"></label>
           </div>
-
         </section>
 
          <section class="linha-selects">
@@ -511,6 +509,37 @@
 
         <!-- Área onde a tabela de crops será inserida -->
         <div id="saida-das-frutas"></div>
+
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- ==============================  GREENHOUSE ============================== -->
+      <!-- ===================================================================== -->
+
+      <section id="greenhouse-tab2" class="subtab-content">
+
+        <!-- ======================= SELECTS DE GH ======================= -->
+
+        <section class="linha-selects">
+          <div class="select-group">
+            <label id="plotsQuePossuiGH" for="qtdPlotsQuePossuiGH"></label>
+          </div>
+        </section>
+
+        <section class="linha-selects">
+          <div class="select-group"> 
+            <label id="modoDeCalcularGreenhouse" for="tipo-de-calculo-greenhouse">Modo de Calcular:</label>
+            <select id="tipo-de-calculo-greenhouse">
+              <option value="manual">Por Semente</option>
+              <option value="rodada">Por Ciclo</option>
+            </select>
+          </div>
+
+          <button id="limparInfosGreenhouse" onclick="limparGH()">Limpar GH</button>
+        </section>
+
+        <!-- Área onde a tabela de GH será inserida -->
+        <div id="saida-da-greenhouse"></div>
 
       </section>
 

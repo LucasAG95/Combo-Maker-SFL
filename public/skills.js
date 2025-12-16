@@ -1501,10 +1501,8 @@ let skillsGreenhouse = {
                     buff: 0.5,
                     recursoAfetado: ['Grape', 'Rice', 'Olive'],
                 },
-            ],
-            qtdUsada: [
                 {
-                    sinal: '+',
+                    sinal: '+S',
                     buff: 1,
                     recursoAfetado: ['Grape', 'Rice', 'Olive'],
                 },

@@ -201,8 +201,11 @@ window.onload = function () {
     renderNFTs(wearables.factions, 'wearables-container-factions', './wearables');
     renderNFTs(wearables.crops, 'wearables-container-crops', './wearables');
     renderNFTs(wearables.fruits, 'wearables-container-fruits', './wearables');
-    renderNFTs(wearables.minerals, 'wearables-container-minerals', './wearables');
     renderNFTs(wearables.greenhouse, 'wearables-container-greenhouse', './wearables');
+    renderNFTs(wearables.minerals, 'wearables-container-minerals', './wearables');
+    renderNFTs(wearables.terouso, 'wearables-container-minerals', './wearables');
+    renderNFTs(wearables.pesca, 'wearables-container-minerals', './wearables');
+    
 
     //Shrines, Totems e buffs temporarios
     renderNFTs(shrines, 'shrines-container', './shrines');

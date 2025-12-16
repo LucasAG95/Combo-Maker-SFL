@@ -1,6 +1,7 @@
 const mostrarResultadoCrops = document.getElementById('saida-das-crops');
 const mostrarResultadoCropMachine = document.getElementById('saida-das-crops-cm');
 const mostrarResultadoFrutas = document.getElementById('saida-das-frutas');
+const mostrarResultadoGreenhouse = document.getElementById('saida-da-greenhouse');
 
 const idiomaTabelaCrops = {
     portugues: {
@@ -95,6 +96,9 @@ function tabelaDeCrops() {
 
     let idiomaDoTextoCrops = idiomaTabelaCrops[idioma];
 
+    //======================================================== CROPS ===================================================================================
+
+
     //texto para colocar se a pessoa qrer ver o calculo por ciclo ou por semente
     let textoDefinirModoDeCalcularCrops = idiomaDoTextoCrops.calculoPorSemente;
 
@@ -184,8 +188,6 @@ function tabelaDeCrops() {
 
     });
     tabelaCrops += `</tbody></table>`;
-
-    //=====================================================================================================================================================================
     
     //info para os cards
     //ver o gasto com restock, cada restock de semente é 15 gems
@@ -273,7 +275,7 @@ function tabelaDeCrops() {
         </div>
     `;
 
-    //=====================================================================================================================================================================
+    //======================================================== CROP MACHINE ===================================================================================
 
     //acumuladores para mostrar resultado total da CM!
     let tempoTotalDoComboNaCM = 0;
@@ -447,7 +449,7 @@ function tabelaDeCrops() {
     //a conta é feita aqui, mas a funcção abaixo joga o resultado para tabela da crop machine!
     tabelaCropMachine(tabelaCM, cardResultadosCM);
 
-    //=====================================================================================================================================================================
+    //============================================================ FRUTAS ==========================================================================================
 
     //acumuladores para mostrar resultado total da CM!
     let tempoTotalComboFrutas = 0;
@@ -619,14 +621,179 @@ function tabelaDeCrops() {
         </div>
         `;
 
+    tabelaDeFrutas(tabelaFrutas, cardResultadosFrutas);
+
+    //========================================================== GREENHOUSE =================================================================================================
+
+    //acumuladores para mostrar resultado total da GH!
+    let tempoTotalComboGH = 0;
+    let lucroTotalDoComboGHCoins = 0;
+    let lucroTotalDoComboGHFlower = 0;
+    let restockDoComboGH = 0;
+
+    //texto para colocar se a pessoa qrer ver o calculo por ciclo ou por semente
+    let textoDefinirModoDeCalcularGH = idiomaDoTextoCrops.calculoPorSemente;
+
+    if (document.getElementById('tipo-de-calculo-greenhouse').value === 'manual') {
+        textoDefinirModoDeCalcularGH = idiomaDoTextoCrops.calculoPorSemente;
+    } else if (document.getElementById('tipo-de-calculo-greenhouse').value === 'rodada') {
+        textoDefinirModoDeCalcularGH = idiomaDoTextoCrops.calculoPorCiclo;
+    }
+
+    let tabelaTituloGH = `
+    <tr>
+        <th>${idiomaDoTextoCrops.crop}<br>${idiomaDoTextoCrops.estoque}</th>
+        <th>${idiomaDoTextoCrops.custoDaSemente}<br>${idiomaDoTextoCrops.vendaDaCrop}</th>
+        <th>${idiomaDoTextoCrops.mediaPorPlot}<br>${idiomaDoTextoCrops.tempoDaCrop}</th>
+        <th>${textoDefinirModoDeCalcularGH} <br><button onclick="sementesPlantadasGH()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
+        <th>${idiomaDoTextoCrops.sementesUsadas}<br>${idiomaDoTextoCrops.totalDeCrops}</th>      
+        <th>${idiomaDoTextoCrops.tempoTotal}<br>${idiomaDoTextoCrops.oilGasto}</th>
+        <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
+        <th>${idiomaDoTextoCrops.valorDeVendaNoMarket}</th>
+        <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
+    </tr>`
+
+    // tabela principal continua igual
+    let tabelaGreenhouse = `
+        <table class="tabela-crops">
+                <thead>
+                    ${tabelaTituloGH}
+                </thead>
+            <tbody>
+        `;
+
+    greenhouse.forEach(gh => {
+
+        let quantidadeGH = Number(gh.quantidade);
+        let sementesUsadas = Number(gh.qtdSementeUsadas);
+
+        let tempoFinal = Number(gh.tempoFinal);
+
+        let custoDaSementeCoins = Number(gh.custoPorSemente);
+        let vendaDaCropPorCoins = Number(gh.vendaPorCrop);
+
+        let oilFinal = Number(gh.oilFinal);
+        let estoqueFinal = Number(gh.estoqueFinal);
+
+        let colheitaTotal = Number(gh.colheitaTotal);
+        let tempoTotal = Number(gh.tempoTotal);
+        let oilTotalPorCrop = Number(gh.oilTotal);
+
+        let custoTotal = sementesUsadas * custoDaSementeCoins;
+        let vendaTotal = colheitaTotal * vendaDaCropPorCoins;
+
+        let qtdDeRestock = sementesUsadas / estoqueFinal;
+
+        let lucroCoins = sementesUsadas > 0 ? (vendaTotal - custoTotal - (mapaDeMinerals['oil'].mediaDeCustoCoins * oilTotalPorCrop)) : 0;
+
+        let valorPorCropEmFlower = Number(gh.valorDoMarket);
+
+        let GastoComSementeEmFlower = Number(((1 / flowerEmCoins) * custoDaSementeCoins) * sementesUsadas);
+        let lucroFlower = gh.seedsPlantadas == 0 || ilha === 'Basic' ? 0 : 
+            Number(((valorPorCropEmFlower * colheitaTotal) * (1 - taxa)) - GastoComSementeEmFlower - ((mapaDeMinerals['oil'].mediaDeCustoFlower * oilTotalPorCrop)));
 
 
+        tabelaGreenhouse += `
+        <tr>
+            <td><img src="./crops/${gh.name}.png" class="crop-img">${gh.name} <br> <img src="./icones/reestock.png" class="crop-img">${estoqueFinal}</td>
+            <td><img src="./icones/coins.png" class="crop-img">${custoDaSementeCoins}<br><img src="./icones/coins.png" class="crop-img">${vendaDaCropPorCoins}</td>
+            <td><img src="./crops/${gh.name}.png" class="crop-img">${quantidadeGH.toFixed(2)} (<img src="./minerais/oil.png" class="crop-img">${oilFinal})<br><img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoFinal)}</td>
+            <td><input type="number" placeholder="" data-name="${gh.name}" class="quantidade-input sementesGH-input" value="${gh.seedsPlantadas}"></td>
+            <td><img src="./crops/seed${gh.name}.png" class="crop-img">${sementesUsadas}<br><img src="./crops/${gh.name}.png" class="crop-img">${colheitaTotal.toFixed(2)}</td>
+            <td><img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoTotal)}<br><img src="./minerais/oil.png" class="crop-img">${oilTotalPorCrop}</td>
+            <td><img src="./crops/${gh.name}.png" class="crop-img"><br><img src="./icones/coins.png" class="crop-img">${lucroCoins.toFixed(2)}</td>
+            <td><img src="./crops/${gh.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${valorPorCropEmFlower.toFixed(5)}</td>
+            <td><img src="./crops/${gh.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroFlower.toFixed(5)}</td>
+        </tr>
+        `;
+
+        tempoTotalComboGH += tempoTotal;
+        lucroTotalDoComboGHCoins += lucroCoins;
+        lucroTotalDoComboGHFlower += lucroFlower;
+        if (qtdDeRestock > restockDoComboGH) restockDoComboGH = qtdDeRestock;
+
+    });
+
+    //info para os cards
+    //ver o gasto com restock, cada restock de semente é 15 gems
+    let gemsGastasComRestockGH = restockDoComboGH * 15;
+
+    //calculo dos valores de restock do combo montado e seu desconto no lucro
+    let custoRestockDoComboFlowerGH = Number(gemsGastasComRestockGH * precoDaGemEmFlower);
+    let custoRestockDoComboDolarGH = Number(gemsGastasComRestockGH * precoPorGem);
+    lucroTotalDoComboGHFlower -= custoRestockDoComboFlowerGH;
+
+    //média em de restock e seu custo em 24h e desconto no lucro medio em 24h
+    let mediaRestock24hGH = (vinteQuatroHoras / tempoTotalComboGH) * restockDoComboGH || 0;
+    let mediaGemsGastasRestock24hGH = mediaRestock24hGH * 15;
+    let mediaCustoRestock24hFlowerGH = Number(mediaGemsGastasRestock24hGH * precoDaGemEmFlower);
+    let mediaCustoRestock24hDolarGH = Number(mediaGemsGastasRestock24hGH * precoPorGem);
+    let lucroDoComboEm24hGH = ((vinteQuatroHoras / tempoTotalComboGH) * lucroTotalDoComboGHFlower);
+    let lucroDoComboSemanalGH = lucroDoComboEm24hGH * 7;
 
 
+    let cardResultadosGH = `
+        <div class="cards-totais-crops">
 
+            <div class="card-total-crops">
+                <h3><img src="./icones/tempo.png" class="crop-img">${idiomaDoTextoCrops.cardTempoTotal}</h3>
+                <p>${formatarTempoTotalDoDia(tempoTotalComboGH)}</p>
+            </div>
+            <h1>-</h1>
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardQtdRestock}</h3>
+                <p><img src="./icones/reestock.png" class="crop-img">${restockDoComboGH.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestockGH.toFixed(2)}</p>
+            </div>
 
+             <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardCustoRestock}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${custoRestockDoComboFlowerGH.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${custoRestockDoComboDolarGH.toFixed(2)}
+                </p>
+            </div>
 
-    tabelaDeFrutas(tabelaFrutas, cardResultadosFrutas)
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardLucroDoCombo}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroTotalDoComboGHFlower.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${(lucroTotalDoComboGHFlower * precoDoFlower).toFixed(2)}
+                </p>
+            </div>
+            <h1>-</h1>
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardQtdRestock24h}</h3>
+                <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24hGH.toFixed(2)} ➜ ${mediaGemsGastasRestock24hGH.toFixed(2)}<img src="./icones/gem.png" class="crop-img"></p>
+            </div>
+
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardCustoRestock24h}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${mediaCustoRestock24hFlowerGH.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${mediaCustoRestock24hDolarGH.toFixed(2)}
+                </p>
+            </div>
+
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardLucroEm24h}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroDoComboEm24hGH.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${(lucroDoComboEm24hGH * precoDoFlower).toFixed(2)}
+                </p>
+            </div>
+            <h1>-</h1>
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardLucroSemanal}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroDoComboSemanalGH.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${(lucroDoComboSemanalGH * precoDoFlower).toFixed(2)}
+                </p>
+            </div>
+
+        </div>
+        `;
+
+    tabelaDaGreenhouse(tabelaGreenhouse, cardResultadosGH);
 };
 
 //===========================================================================================================================================================================
@@ -650,3 +817,16 @@ function tabelaDeFrutas(tabelaFrutas, cardResultadosFrutas) {
         </div>
     `
 }
+
+//===========================================================================================================================================================================
+
+function tabelaDaGreenhouse(tabelaGreenhouse, cardResultadosGH) {
+    mostrarResultadoGreenhouse.innerHTML = `
+        <div class="tabelas-em-ordem">
+            ${cardResultadosGH} 
+            ${tabelaGreenhouse}    
+        </div>
+    `
+};
+
+//===========================================================================================================================================================================

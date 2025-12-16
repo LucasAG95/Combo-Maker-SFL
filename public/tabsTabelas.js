@@ -59,5 +59,10 @@ subtabButtons.forEach(btn => {
     if (btn.dataset.subtab === "frutas-tab2") {
       tabelaDeCrops(); 
     }
+
+    if (btn.dataset.subtab === "greenhouse-tab2") {
+      tabelaDeCrops(); 
+    }
+
   });
 });

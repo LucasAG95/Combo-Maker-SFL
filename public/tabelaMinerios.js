@@ -130,7 +130,7 @@ function tabelaMinerios() {
         }
 
         //variaveis das ferramentas
-        let ferramentasUsadas = Number(ferramenta.quantidade.toFixed(2)) || '';
+        let ferramentasUsadas = Number(ferramenta.quantidade.toFixed(2)) || 0;
         let ferramentaCustoEmCoins = ferramenta.custoEmCoins * ferramentasUsadas;
         let ferramentaCustoEmFlower = ferramentaCustoEmCoins / flowerEmCoins;
         
@@ -178,7 +178,7 @@ function tabelaMinerios() {
     ferramentasSecundarias.forEach(ferramenta => { 
 
         //variaveis das ferramentas
-        let ferramentasUsadas = Number(ferramenta.quantidade) || '';
+        let ferramentasUsadas = Number(ferramenta.quantidade) || 0;
         let ferramentaCustoEmCoins = ferramenta.custoEmCoins * ferramentasUsadas;
         let ferramentaCustoEmFlower = ferramentaCustoEmCoins / flowerEmCoins;
 

@@ -23,6 +23,7 @@ document.getElementById('estacaoSelect').addEventListener('change', selecionando
 let modoDeCalularCrops = `manual`;
 let modoDeCalularCropsNaCM = `manual`;
 let modoDeCalularCropsFruta = `manual`;
+let modoDeCalcularGreenhouse = `manual`;
 let modoDeCalcularMinerios = 'hora';
 
 function selecionarModoDeCalculo() {
@@ -32,6 +33,8 @@ function selecionarModoDeCalculo() {
     modoDeCalularCropsNaCM = document.getElementById(`tipo-de-calculo-crop-cm`).value;
 
     modoDeCalularCropsFruta = document.getElementById(`tipo-de-calculo-fruta`).value;
+
+    modoDeCalcularGreenhouse = document.getElementById(`tipo-de-calculo-greenhouse`).value;
     
     modoDeCalcularMinerios = document.getElementById(`tipo-de-calculo-mineral`).value;
     
@@ -41,6 +44,7 @@ function selecionarModoDeCalculo() {
 document.getElementById('tipo-de-calculo-crop').addEventListener('change', selecionarModoDeCalculo);
 document.getElementById('tipo-de-calculo-crop-cm').addEventListener('change', selecionarModoDeCalculo);
 document.getElementById('tipo-de-calculo-fruta').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('tipo-de-calculo-greenhouse').addEventListener('change', selecionarModoDeCalculo);
 document.getElementById('tipo-de-calculo-mineral').addEventListener('change', selecionarModoDeCalculo);
 
 //=======================================================================================================================================================================

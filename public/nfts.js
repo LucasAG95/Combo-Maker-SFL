@@ -2591,15 +2591,57 @@ let wearables = {
                 }
             ]
         },
-    ]
-}
+    ],
+    terouso: [
+        {
+            idNumber: 369,
+            idName: 'ancientShovel',
+            name: 'Ancient Shovel',
+            preco: '',
+            descricao: {
+                portugues: 'Cave sem precisar de pá',
+                ingles: 'Dig without needing a shovel'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 0,
+                    recursoAfetado: ['Sand Shovel'],
+                }
+            ]
+        },
+    ],
+    pesca: [
+        {
+            idNumber: 224,
+            idName: 'ancientRod',
+            name: 'Ancient Rod',
+            preco: '',
+            descricao: {
+                portugues: 'Pesque sem vara',
+                ingles: 'Fish without a rod'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 0,
+                    recursoAfetado: ['Rod'],
+                }
+            ]
+        },
+    ],
+};
 
 let todosWearables = [
     ...wearables.factions,
     ...wearables.crops,
     ...wearables.fruits,
     ...wearables.greenhouse,
-    ...wearables.minerals
+    ...wearables.minerals,
+    ...wearables.terouso,
+    ...wearables.pesca
 ];
 
 //=============================================================================================================================================================================

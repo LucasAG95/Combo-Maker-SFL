@@ -21,6 +21,9 @@ let plotsFrutas = parseInt(1);
 document.getElementById('fruitsPlotsPossuidos').value = plotsFrutas;
 let frutiferasDuram = parseInt(4);
 
+//Plots que possuem a Greenhouse
+let plotsGH = parseInt(4);
+
 //Variaveis dos recursos, são 4 variaveis na msm linha(cada uma é um let), fiz assim para diminuir as linhas e entender qual afeta qual!
 let treeTotais = 1,  treeT1,  treeT2,  treeT3;
 let stoneTotais = 1, stoneT1, stoneT2, stoneT3;
