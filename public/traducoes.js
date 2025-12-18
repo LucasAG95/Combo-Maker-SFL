@@ -76,16 +76,17 @@ function mudarIdioma() {
     document.getElementById('aviso-de-manter-horas').innerHTML = `* ${opcaoDeIdiomas.avisoCalculosMinerais}`
     document.getElementById('tab-sprout-mix').innerHTML = `* ${opcaoDeIdiomas.avisoSproutMix}`;
     document.getElementById('tab-rapid-root').innerHTML = `* ${opcaoDeIdiomas.avisoRapidRoot}`;
+    document.getElementById('aviso-crop-to-coins').innerHTML = `${opcaoDeIdiomas.avisoCropToCoins}`;
 
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.1`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV017}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV018}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV019}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV020}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV021}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.2`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV018}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV019}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV020}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV021}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV022}`;
 
 
     pontosGastosEmSkills();
@@ -158,6 +159,9 @@ const idiomaEscolhido = {
         calcularGHPorSemente: 'Por Semente',
         calcularGHPorRodada: 'Por Ciclo',
         botaoLimparGH: 'Limpar GH',
+
+        //dados Crop to Coins
+        avisoCropToCoins: '* Aqui você pode comparar quais crops e frutas oferecem as melhores oportunidades de compra em Flower e venda por coins.<br>* Clique na coluna desejada para ordenar os parâmetros em ordem crescente ou decrescente.',
 
         //nome das abas de NFTs/Skills quando precisa de tradução
         abaBuffsTemporarios: 'Buffs Temporários',
@@ -232,6 +236,9 @@ const idiomaEscolhido = {
         calcularGHPorRodada: 'Per Cycle',
         botaoLimparGH: 'Clear GH',
 
+        //dados Crop to Coins
+        avisoCropToCoins: '* Here you can compare which crops and fruits offer the best opportunities to buy with Flower and sell for coins.<br>* Click on the desired column to sort the parameters in ascending or descending order.',
+
         //nome das abas de NFTs/Skills quando precisa de tradução
         abaBuffsTemporarios: 'Temporary Buffs',
         tituloDentroDaAbaBuffsTemporarios: 'Temporary Buffs',
@@ -283,6 +290,11 @@ const idiomaDasAtualizacoes = {
             • Adicionadas as NFTs Ancient Shovel e Ancient Rod aos wearables de minérios temporariamente, até que as categorias de pesca e escavação sejam implementadas.<br>
             • Próximas possíveis atualizações: adição da aba Crop to Coins e inclusão dos Buds!`,
 
+        atualizacaoV022: `v0.2.2<br>
+            • Adicionada a tabela Crop to Coins.<br>
+            • Ao clicar em qualquer coluna da aba Crop to Coins, a tabela é ordenada em ordem crescente ou decrescente de acordo com a coluna selecionada.<br>
+            • Próxima possível atualização: inclusão dos Buds!`,
+
 
     },
     ingles: {
@@ -321,5 +333,10 @@ const idiomaDasAtualizacoes = {
             • Added Greenhouse calculations to the site.<br>
             • Temporarily added the Ancient Shovel and Ancient Rod NFTs to the mining wearables, until the fishing and digging categories are implemented.<br>
             • Possible upcoming updates: addition of the Crop to Coins tab and inclusion of Buds!`,
+
+        atualizacaoV022: `v0.2.2<br>
+            • Added the Crop to Coins table.<br>
+            • Clicking any column in the Crop to Coins tab sorts the table in ascending or descending order based on the selected column.<br>
+            • Possible upcoming update: inclusion of Buds!`,
     }
 };

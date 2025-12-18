@@ -294,6 +294,13 @@ function atualizarValoresDeVendaPorFlower(apiValores) {
         };
     });
 
+    fruitsLunares.forEach(fruta => {
+        if (apiValores[fruta.name]) {
+            fruta.valorDoMarket = apiValores[fruta.name];
+            console.log(`Crop: ${fruta.name} Valor: ${fruta.valorDoMarket}`);
+        };
+    });
+
     minerals.forEach(mineral => {
         if (apiValores[mineral.name]) {
             mineral.valorDoMarket = apiValores[mineral.name];

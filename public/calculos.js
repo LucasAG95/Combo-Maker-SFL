@@ -349,7 +349,6 @@ function buffsAdicionadosGreenhouse() {
 
 };
 
-
 //======================================================================================================================================================================
 
 function buffsAdicionadosMinerais() {
@@ -531,7 +530,6 @@ function mediaDeValorDasFerramentasEMinerais() {
     tabelaMinerios();
 };
 
-
 //======================================================================================================================================================================
 
 
@@ -638,5 +636,6 @@ function chamadorDeBuffs() {
     buffsAdicionadosMinerais();
     buffsAdicionadosFrutas();
     buffsAdicionadosGreenhouse();
+    cropToCoins(); //não é um buff, mudar de lugar dps
     mudarIdioma();
 }

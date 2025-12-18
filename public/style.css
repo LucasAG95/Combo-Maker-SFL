@@ -104,6 +104,17 @@ h5 {
   color: #ffffff;
 }
 
+#saida-das-crop-to-coins {
+  padding: 20px;
+  border-radius: 14px;
+  margin-top: 2px;
+  box-shadow: 0 4px 12px rgba(17, 16, 16, 0.4);
+  font-size: 1px;
+  font-weight: bold;
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
 /* ====================
    TABELA DE CROPS
 ======================= */
@@ -1002,4 +1013,46 @@ input[type="checkbox"]:disabled + .nft-img:hover {
 
 .copy-tooltip.show {
   opacity: 1;
+}
+
+/* =========================
+para tabela CROP TO COINS
+no momento só para ela 
+============================*/
+
+/* Colunas ordenáveis */
+.th-ordenavel {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.th-ordenavel:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Seta de ordenação crescente (▲) */
+.th-ordenavel.asc::after {
+    content: '';
+    display: inline-block;
+    margin-left: 8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 7px solid #27ae60;
+    vertical-align: middle;
+}
+
+/* Seta de ordenação decrescente (▼) */
+.th-ordenavel.desc::after {
+    content: '';
+    display: inline-block;
+    margin-left: 8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid #e74c3c;
+    vertical-align: middle;
 }

@@ -51,11 +51,18 @@ const fruits = [
     { name: 'Banana',    tempo: 43_200_000, custoSemente: 70, valorDeVenda: 25, valorDoMarket: 0, estoque: 20, seedsPlantadas: '', estacao: ['summer', 'autumn'] },
 ];
 
+const fruitsLunares = [
+    { name: 'Celestine', tempo: 21_600_000, custoSemente: 0, valorDeVenda: 200,  vendaPorFruta: 200,  valorDoMarket: 10, estoque: 20, seedsPlantadas: '', estacao: ['spring', 'summer', 'autumn', 'winter'] },
+    { name: 'Lunara',    tempo: 43_200_000, custoSemente: 0, valorDeVenda: 500,  vendaPorFruta: 500, valorDoMarket: 10, estoque: 20, seedsPlantadas: '', estacao: ['spring', 'summer', 'autumn', 'winter'] },
+    { name: 'Duskberry', tempo: 86_400_000, custoSemente: 0, valorDeVenda: 1000, vendaPorFruta: 1000, valorDoMarket: 10, estoque: 20, seedsPlantadas: '', estacao: ['spring', 'summer', 'autumn', 'winter'] },
+];
+
 const greenhouse = [
     { name: 'Grape', tempo: 43_200_000,  custoSemente: 160, valorDeVenda: 240, valorDoMarket: 0, estoque: 10, seedsPlantadas: '', oil: 3 },
     { name: 'Rice',  tempo: 115_200_000, custoSemente: 240, valorDeVenda: 320, valorDoMarket: 0, estoque: 10, seedsPlantadas: '', oil: 4 },
     { name: 'Olive', tempo: 158_400_000, custoSemente: 320, valorDeVenda: 400, valorDoMarket: 0, estoque: 10, seedsPlantadas: '', oil: 6 },
 ];
+
 
 const todasCropsEFrutas = [...crops, ...cropMachine, ...fruits];
 let mapaDeTodasCropsEFrutas = {}; // cria objeto vazio para guardar NFTs por id
