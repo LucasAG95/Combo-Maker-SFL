@@ -25,6 +25,7 @@ let modoDeCalularCropsNaCM = `manual`;
 let modoDeCalularCropsFruta = `manual`;
 let modoDeCalcularGreenhouse = `manual`;
 let modoDeCalcularMinerios = 'hora';
+let modoDeResultadoDoCombo = 'diario';
 
 function selecionarModoDeCalculo() {
 
@@ -37,6 +38,9 @@ function selecionarModoDeCalculo() {
     modoDeCalcularGreenhouse = document.getElementById(`tipo-de-calculo-greenhouse`).value;
     
     modoDeCalcularMinerios = document.getElementById(`tipo-de-calculo-mineral`).value;
+
+    //para mostrar o resultado do combo que você montou!
+    modoDeResultadoDoCombo = document.getElementById('visualizar-resultado-do-combo').value;
     
     chamadorDeBuffs();
 
@@ -46,6 +50,7 @@ document.getElementById('tipo-de-calculo-crop-cm').addEventListener('change', se
 document.getElementById('tipo-de-calculo-fruta').addEventListener('change', selecionarModoDeCalculo);
 document.getElementById('tipo-de-calculo-greenhouse').addEventListener('change', selecionarModoDeCalculo);
 document.getElementById('tipo-de-calculo-mineral').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('visualizar-resultado-do-combo').addEventListener('change',selecionarModoDeCalculo);
 
 //=======================================================================================================================================================================
 
@@ -76,15 +81,15 @@ const walletAddress = document.getElementById('wallet-address');
 const tooltip = document.getElementById('copy-tooltip');
 
 copyBtn.addEventListener('click', () => {
-  navigator.clipboard.writeText(walletAddress.textContent);
+    navigator.clipboard.writeText(walletAddress.textContent);
 
-  // mostra o aviso
-  tooltip.classList.add('show');
+    // mostra o aviso
+    tooltip.classList.add('show');
 
-  // esconde após 1.5s
-  setTimeout(() => {
-    tooltip.classList.remove('show');
-  }, 1500);
+    // esconde após 1.5s
+    setTimeout(() => {
+      tooltip.classList.remove('show');
+    }, 1500);
 });
 
 

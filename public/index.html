@@ -11,7 +11,7 @@
 
     <!-- ESQUERDA: Título + Select de idioma -->
     <div class="header-left">
-      <h1 class="title-bar">🌻 Combo Maker <span>v0.2.2</span></h1>
+      <h1 class="title-bar">🌻 Combo Maker <span>v0.2.3</span></h1>
 
       <div class="select-idioma">
         <label for="opcao-idioma">
@@ -382,6 +382,30 @@
 
   <h4 id="valor-do-flower"></h4>
 
+  <!-- ======================= RESULTADO DO COMBO (ACCORDION) ======================= -->
+
+  <section class="accordion-combo">
+
+    <button id="accordionResultadoComboCompleto" class="accordion-header-combo">
+      📊 Resultado do Combo Completo
+      <span class="accordion-icon">▼</span>
+    </button>
+
+    <div class="accordion-content-combo">
+
+      <div class="visualizar-combo-completo">
+        <label id="verResultadoSemanalOuDiario" for="visualizar-resultado-do-combo">Visualizar resultado:</label>
+        <select id="visualizar-resultado-do-combo">
+          <option value="diario">Diário</option>
+          <option value="semanal">Semanal</option>
+        </select>
+      </div>
+
+      <div id="resultado-do-combo-completo"></div>
+    </div>
+
+  </section>
+
   <!-- ========================= TABS PRINCIPAIS ========================= -->
 
   <div class="tabs-secundarias">
@@ -690,6 +714,11 @@
 
     </section>
 
+    <!-- ===================================================================== -->
+    <!-- ============================== RESULTADO DO COMBO COMPLETO ============================== -->
+    <!-- ===================================================================== -->
+
+
   </div>
 
   
@@ -707,6 +736,7 @@
   <script src="./tabelaCrops.js"></script>
   <script src="./tabelaMinerios.js"></script>
   <script src="./tabelaCropToCoins.js"></script>
+  <script src="./resultadoTotalCombo.js"></script>
   <script src="./statusFarm.js"></script>
   <script src="./checkbox.js"></script>
   <script src="./tabs.js"></script>

@@ -209,6 +209,19 @@ td input.quantidade-input-cm {
 }
 
 /* ====================
+   Inserir Resultado Combo label
+======================= */
+.visualizar-combo-completo {
+  font-weight: bold;
+  margin: 0;        /* <-- remove a margem inferior */
+  color: #ffa726;
+  white-space: nowrap; /* evita quebrar linha */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ====================
    Selects Group
 ======================= */
 .select-group {
@@ -1056,3 +1069,71 @@ no momento só para ela
     border-top: 7px solid #e74c3c;
     vertical-align: middle;
 }
+
+/* ================= ACCORDION RESULTADO DO COMBO ================= */
+
+.accordion-combo {
+  margin: 25px 0;
+  border-radius: 14px;
+  overflow: hidden;
+
+  /* mesmo fundo das tabs */
+  background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
+  border: 3px solid #d0a25a;
+
+  box-shadow:
+    0 0 10px #0008,
+    0 0 12px #d0a25a33 inset,
+    0 6px 12px rgba(0,0,0,0.5);
+}
+
+/* HEADER = cara de TAB */
+.accordion-header-combo {
+  width: 100%;
+  padding: 12px 18px;
+
+  background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
+  color: #ffe2aa;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  border: none;
+  border-bottom: 3px solid #d0a25a;
+
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  text-shadow: 1px 1px 2px #000;
+}
+
+.accordion-header-combo:hover {
+  filter: brightness(1.1);
+}
+
+/* seta */
+.accordion-icon {
+  transition: transform 0.25s ease;
+  font-size: 14px;
+}
+
+.accordion-header-combo.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+/* CONTEÚDO */
+.accordion-content-combo {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+
+  background: #1c1812;
+}
+
+.accordion-content-combo.open {
+  max-height: 5000px;
+  padding: 20px;
+}
+

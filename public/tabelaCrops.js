@@ -91,6 +91,22 @@ const idiomaTabelaCrops = {
     },
 };
 
+//adicionar resultado para aparecer na função que mostra Resumo do Combo Completo!
+let resultadoRestockDasSementes24h = 0;
+
+let resultadoComboCrop = 0;
+let resultadoTempoTotalCrop = 0;
+
+let resultadoComboCropMachine = 0;
+let resultadoTempoTotalCropMachine = 0;
+
+let resultadoComboFruta = 0;
+let resultadoTempoTotalFrutas = 0;
+
+let resultadoComboGreenhouse = 0;
+let resultadoTempoTotalGreenhouse = 0;
+
+
 function tabelaDeCrops() {
     mostrarResultadoCrops.innerHTML = '';
 
@@ -133,8 +149,8 @@ function tabelaDeCrops() {
 
     //acumuladores para mostrar resultado total!
     let tempoTotalDoCombo = 0;
-    let lucroTotalDoComboCoins = 0;
-    let lucroTotalDoComboFlower = 0;
+    let lucroTotalDoComboCropCoins = 0;
+    let ganhoTotalComComboCropFlower = 0;
     let restockDoCombo = 0;
 
     crops.forEach(crop => {
@@ -182,8 +198,8 @@ function tabelaDeCrops() {
 
         //somando os acumuladores - resultados que vao aparecer no card
         tempoTotalDoCombo += tempoTotalDaCrop;
-        lucroTotalDoComboCoins += lucroCoins;
-        lucroTotalDoComboFlower += lucroFlower;
+        lucroTotalDoComboCropCoins += lucroCoins;
+        ganhoTotalComComboCropFlower += lucroFlower;
         if (qtdDeRestock > restockDoCombo) restockDoCombo = qtdDeRestock;
 
     });
@@ -196,14 +212,14 @@ function tabelaDeCrops() {
     //calculo dos valores de restock do combo montado e seu desconto no lucro
     let custoRestockDoComboFlower = Number(gemsGastasComRestock * precoDaGemEmFlower);
     let custoRestockDoComboDolar = Number(gemsGastasComRestock * precoPorGem);
-    lucroTotalDoComboFlower -= custoRestockDoComboFlower;
+    let lucroDoComboCropFlower = ganhoTotalComComboCropFlower - custoRestockDoComboFlower;
 
     //média em de restock e seu custo em 24h e desconto no lucro medio em 24h
     let mediaRestock24h = (vinteQuatroHoras / tempoTotalDoCombo) * restockDoCombo || 0;
     let mediaGemsGastasRestock24h = mediaRestock24h * 15;
     let mediaCustoRestock24hFlower = Number(mediaGemsGastasRestock24h * precoDaGemEmFlower);
     let mediaCustoRestock24hDolar = Number(mediaGemsGastasRestock24h * precoPorGem)
-    let lucroDoComboEm24h = ((vinteQuatroHoras / tempoTotalDoCombo) * lucroTotalDoComboFlower);
+    let lucroDoComboEm24h = ((vinteQuatroHoras / tempoTotalDoCombo) * lucroDoComboCropFlower);
     let lucroDoComboSemanal = lucroDoComboEm24h * 7;
         
     let cardResultados = `
@@ -230,8 +246,8 @@ function tabelaDeCrops() {
             <div class="card-total-crops">
                 <h3>${idiomaDoTextoCrops.cardLucroDoCombo}</h3>
                 <p>
-                    <img src="./icones/flower.png" class="crop-img">${lucroTotalDoComboFlower.toFixed(2)} ~ 
-                    <img src="./icones/usdc.png" class="crop-img">${Number(lucroTotalDoComboFlower * precoDoFlower).toFixed(2)}
+                    <img src="./icones/flower.png" class="crop-img">${lucroDoComboCropFlower.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${Number(lucroDoComboCropFlower * precoDoFlower).toFixed(2)}
                 </p>
             </div>
             <h1>-</h1> 
@@ -275,12 +291,16 @@ function tabelaDeCrops() {
         </div>
     `;
 
+    //isso é para colocar valor na variavel que vai na função de lucro total do combo
+    resultadoComboCrop = ganhoTotalComComboCropFlower;
+    resultadoTempoTotalCrop = tempoTotalDoCombo;
+
     //======================================================== CROP MACHINE ===================================================================================
 
     //acumuladores para mostrar resultado total da CM!
     let tempoTotalDoComboNaCM = 0;
     let lucroTotalDoComboCoinsNaCM = 0;
-    let lucroTotalDoComboFlowerNaCM = 0;
+    let ganhoTotalDoComboFlowerNaCM = 0;
     let restockDoComboCM = 0;
     let oilTotalUsado = 0;
 
@@ -362,7 +382,7 @@ function tabelaDeCrops() {
         oilTotalUsado += oilGasto;
         tempoTotalDoComboNaCM += tempoTotalPorCropCM;
         lucroTotalDoComboCoinsNaCM += lucroCoins;
-        lucroTotalDoComboFlowerNaCM += lucroFlower;
+        ganhoTotalDoComboFlowerNaCM += lucroFlower;
         if (qtdDeRestock > restockDoComboCM) restockDoComboCM = qtdDeRestock;
 
     });
@@ -375,7 +395,7 @@ function tabelaDeCrops() {
     //calculo dos valores de restock do combo montado e seu desconto no lucro
     let custoRestockDoComboFlowerCM = Number(gemsGastasComRestockCM * precoDaGemEmFlower);
     let custoRestockDoComboDolarCM = Number(gemsGastasComRestockCM * precoPorGem);
-    lucroTotalDoComboFlowerNaCM -= custoRestockDoComboFlowerCM;
+    let lucroTotalDoComboFlowerNaCM = ganhoTotalDoComboFlowerNaCM - custoRestockDoComboFlowerCM;
 
     //média em de restock e seu custo em 24h e desconto no lucro medio em 24h
     let mediaRestock24hCM = (vinteQuatroHoras / tempoTotalDoComboNaCM) * restockDoComboCM || 0;
@@ -449,12 +469,16 @@ function tabelaDeCrops() {
     //a conta é feita aqui, mas a funcção abaixo joga o resultado para tabela da crop machine!
     tabelaCropMachine(tabelaCM, cardResultadosCM);
 
+    //isso é para colocar valor na variavel que vai na função de lucro total do combo
+    resultadoComboCropMachine = ganhoTotalDoComboFlowerNaCM;
+    resultadoTempoTotalCropMachine = tempoTotalDoComboNaCM;
+
     //============================================================ FRUTAS ==========================================================================================
 
     //acumuladores para mostrar resultado total da CM!
     let tempoTotalComboFrutas = 0;
     let lucroTotalDoComboFrutasCoins = 0;
-    let lucroTotalDoComboFrutasFlower = 0;
+    let ganhoTotalDoComboFrutasFlower = 0;
     let restockDoComboFrutas = 0;
 
     //texto para colocar se a pessoa qrer ver o calculo por ciclo ou por semente
@@ -537,7 +561,7 @@ function tabelaDeCrops() {
 
         tempoTotalComboFrutas += tempoTotal;
         lucroTotalDoComboFrutasCoins += lucroCoins;
-        lucroTotalDoComboFrutasFlower += lucroFlower;
+        ganhoTotalDoComboFrutasFlower += lucroFlower;
         if (qtdDeRestock > restockDoComboFrutas) restockDoComboFrutas = qtdDeRestock;
 
     });
@@ -549,7 +573,7 @@ function tabelaDeCrops() {
     //calculo dos valores de restock do combo montado e seu desconto no lucro
     let custoRestockDoComboFlowerFrutas = Number(gemsGastasComRestockFrutas * precoDaGemEmFlower);
     let custoRestockDoComboDolarFrutas = Number(gemsGastasComRestockFrutas * precoPorGem);
-    lucroTotalDoComboFrutasFlower -= custoRestockDoComboFlowerFrutas;
+    let lucroTotalDoComboFrutasFlower = ganhoTotalDoComboFrutasFlower - custoRestockDoComboFlowerFrutas;
 
     //média em de restock e seu custo em 24h e desconto no lucro medio em 24h
     let mediaRestock24hFrutas = (vinteQuatroHoras / tempoTotalComboFrutas) * restockDoComboFrutas || 0;
@@ -623,12 +647,16 @@ function tabelaDeCrops() {
 
     tabelaDeFrutas(tabelaFrutas, cardResultadosFrutas);
 
+    //isso é para colocar valor na variavel que vai na função de lucro total do combo
+    resultadoComboFruta = ganhoTotalDoComboFrutasFlower;
+    resultadoTempoTotalFrutas = tempoTotalComboFrutas;
+
     //========================================================== GREENHOUSE =================================================================================================
 
     //acumuladores para mostrar resultado total da GH!
     let tempoTotalComboGH = 0;
     let lucroTotalDoComboGHCoins = 0;
-    let lucroTotalDoComboGHFlower = 0;
+    let ganhoTotalDoComboGHFlower = 0;
     let restockDoComboGH = 0;
 
     //texto para colocar se a pessoa qrer ver o calculo por ciclo ou por semente
@@ -709,7 +737,7 @@ function tabelaDeCrops() {
 
         tempoTotalComboGH += tempoTotal;
         lucroTotalDoComboGHCoins += lucroCoins;
-        lucroTotalDoComboGHFlower += lucroFlower;
+        ganhoTotalDoComboGHFlower += lucroFlower;
         if (qtdDeRestock > restockDoComboGH) restockDoComboGH = qtdDeRestock;
 
     });
@@ -721,7 +749,7 @@ function tabelaDeCrops() {
     //calculo dos valores de restock do combo montado e seu desconto no lucro
     let custoRestockDoComboFlowerGH = Number(gemsGastasComRestockGH * precoDaGemEmFlower);
     let custoRestockDoComboDolarGH = Number(gemsGastasComRestockGH * precoPorGem);
-    lucroTotalDoComboGHFlower -= custoRestockDoComboFlowerGH;
+    let lucroTotalDoComboGHFlower = ganhoTotalDoComboGHFlower - custoRestockDoComboFlowerGH;
 
     //média em de restock e seu custo em 24h e desconto no lucro medio em 24h
     let mediaRestock24hGH = (vinteQuatroHoras / tempoTotalComboGH) * restockDoComboGH || 0;
@@ -794,6 +822,18 @@ function tabelaDeCrops() {
         `;
 
     tabelaDaGreenhouse(tabelaGreenhouse, cardResultadosGH);
+
+    //isso é para colocar valor na variavel que vai na função de lucro total do combo
+    resultadoComboGreenhouse = ganhoTotalDoComboGHFlower;
+    resultadoTempoTotalGreenhouse = tempoTotalComboGH;
+
+    resultadoRestockDasSementes24h = 0;
+    if (mediaRestock24h > resultadoRestockDasSementes24h) resultadoRestockDasSementes24h = mediaRestock24h;
+    if (mediaRestock24hCM > resultadoRestockDasSementes24h) resultadoRestockDasSementes24h = mediaRestock24hCM;
+    if (mediaRestock24hFrutas > resultadoRestockDasSementes24h) resultadoRestockDasSementes24h = mediaRestock24hFrutas;
+    if (mediaRestock24hGH > resultadoRestockDasSementes24h) resultadoRestockDasSementes24h = mediaRestock24hGH;
+
+    cardResultadoTotalDosCombosJuntos();
 };
 
 //===========================================================================================================================================================================

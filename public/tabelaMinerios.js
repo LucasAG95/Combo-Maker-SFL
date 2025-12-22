@@ -59,6 +59,10 @@ const idiomaTabelaMinerios = {
     },
 }
 
+//variaveis para aparecer em resumo do combo!
+let resultadoComboMinerais = 0;
+let resultadoRestockDasFerramentas24h = 0;
+
 function tabelaMinerios() {
     mostrarResultadoMinerios.innerHTML = '';
 
@@ -226,7 +230,6 @@ function tabelaMinerios() {
     let lucroDoCombo = ganhoDoCombo - custoRestockDoComboFlower -
         ((coinsGasta / flowerEmCoins) + (couroGasto * mapaDosValoresDoMarket['leather'].valor) + (woolGasta * mapaDosValoresDoMarket['wool'].valor));
 
-
     let cardResultados = `
         <div class="cards-totais-minerais">
 
@@ -292,4 +295,10 @@ function tabelaMinerios() {
             ${tabelaFerramentas2}
         </div>
     `;
+
+    //isso é para colocar valor na variavel que vai na função de lucro total do combo
+    resultadoComboMinerais = ganhoDoCombo - ((coinsGasta / flowerEmCoins) + (couroGasto * mapaDosValoresDoMarket['leather'].valor) + (woolGasta * mapaDosValoresDoMarket['wool'].valor));
+    resultadoRestockDasFerramentas24h = restockDoCombo;
+
+    cardResultadoTotalDosCombosJuntos();
 };

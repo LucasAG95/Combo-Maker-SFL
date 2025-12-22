@@ -78,15 +78,21 @@ function mudarIdioma() {
     document.getElementById('tab-rapid-root').innerHTML = `* ${opcaoDeIdiomas.avisoRapidRoot}`;
     document.getElementById('aviso-crop-to-coins').innerHTML = `${opcaoDeIdiomas.avisoCropToCoins}`;
 
+    //Resultado Total do combo montado
+    document.getElementById('accordionResultadoComboCompleto').innerHTML = `${opcaoDeIdiomas.tituloAccordionCombo}`
+    document.getElementById('verResultadoSemanalOuDiario').innerHTML = `${opcaoDeIdiomas.modoDeVerResultadoCombo}`
+    document.getElementById('visualizar-resultado-do-combo').options[0].innerHTML = `${opcaoDeIdiomas.diario}`;
+    document.getElementById('visualizar-resultado-do-combo').options[1].innerHTML = `${opcaoDeIdiomas.semanal}`;
+
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.2`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV018}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV019}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV020}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV021}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV022}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.3`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV019}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV020}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV021}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV022}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV023}`;
 
 
     pontosGastosEmSkills();
@@ -167,6 +173,12 @@ const idiomaEscolhido = {
         abaBuffsTemporarios: 'Buffs Temporários',
         tituloDentroDaAbaBuffsTemporarios: 'Buffs Temporários', //tirar talvez
 
+        //dados accordion resultado do combo total
+        tituloAccordionCombo: '📊 Resultado do Combo Completo',
+        modoDeVerResultadoCombo: 'Visualizar resultado:',
+        diario: 'Diário',
+        semanal: 'Semanal',
+
         //mensagem de avisos
         avisoCalculosMinerais: 'Se você optar por calcular por ferramenta ou por ciclo, tente manter o Tempo Total em, no máximo, 24 horas para obter resultados mais precisos. Caso ultrapasse esse limite, desconsidere a média de lucro diário e semanal.',
         avisoSproutMix: 'Ao selecionar qualquer crop, ela ganhará +0.2 por plot, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
@@ -243,6 +255,12 @@ const idiomaEscolhido = {
         abaBuffsTemporarios: 'Temporary Buffs',
         tituloDentroDaAbaBuffsTemporarios: 'Temporary Buffs',
 
+        //dados accordion resultado do combo total
+        tituloAccordionCombo: '📊 Full Combo Result',
+        modoDeVerResultadoCombo: 'View result:',
+        diario: 'Daily',
+        semanal: 'Weekly',
+
         //mensagem de avisos
         avisoCalculosMinerais: 'If you choose to calculate by tool or by cycle, try to keep the Total Time at a maximum of 24 hours to obtain more accurate results. If this limit is exceeded, disregard the daily and weekly profit averages.',
         avisoSproutMix: 'When selecting any crop, it will gain +0.2 per plot, but remember that fertilizers are temporary buffs and you use one per seed. When you select it, the system will assume you’ll use the fertilizer on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
@@ -295,6 +313,9 @@ const idiomaDasAtualizacoes = {
             • Ao clicar em qualquer coluna da aba Crop to Coins, a tabela é ordenada em ordem crescente ou decrescente de acordo com a coluna selecionada.<br>
             • Próxima possível atualização: inclusão dos Buds!`,
 
+            atualizacaoV023: `v0.2.3<br>
+                • Adicionado o Resultado do Combo Completo.<br>
+                • Aqui você pode visualizar sua média diária ou semanal somando todo o combo que você montou e subtraindo a quantidade de restock, trazendo resultados melhores!`,
 
     },
     ingles: {
@@ -338,5 +359,9 @@ const idiomaDasAtualizacoes = {
             • Added the Crop to Coins table.<br>
             • Clicking any column in the Crop to Coins tab sorts the table in ascending or descending order based on the selected column.<br>
             • Possible upcoming update: inclusion of Buds!`,
+
+        atualizacaoV023: `v0.2.3<br>
+            • Added the Full Combo Result.<br>
+            • Here you can view your daily or weekly average by summing the entire combo you built and subtracting the restock amount, providing better results!`,
     }
 };
