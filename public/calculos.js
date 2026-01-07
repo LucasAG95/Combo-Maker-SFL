@@ -7,6 +7,8 @@ function calcularBuff(recurso, listasDeBuffs) {
     let qtdArea = 0;        //sinal === '+A'
     let qtdInsta = 1;       //sinal === 'xI'
     let qtdSemente = 1;     //sinal === '+S'
+    let qtdMenosRacao = 1;  //sinal === 'x-'
+    let qtdMaisRacao = 1;   //sinal === 'x+'
 
     //variaveis que sao afetadas pelos buffs de tempo
     let tempoMulti = 1;
@@ -33,25 +35,30 @@ function calcularBuff(recurso, listasDeBuffs) {
 
             if (nftOuSkill.estacao && !nftOuSkill.estacao.includes(estacao)) return;
             
+            // Identifica o nome do recurso (objeto com .name ou string direta)
+            const nomeRecurso = recurso.name || recurso;
+            
             //=============================================================================================================================================================
             //Adiciona os buffs que afetam a quantidade de recursos 
-            if (nftOuSkill.quantidade) {                                            // O buff é de quantidade? Sim
-                nftOuSkill.quantidade.forEach(qtd => {                              // Olhe dentro de quantidade e veja a lista de buffs dentro e oque afeta
-                    if (qtd.recursoAfetado?.includes(recurso.name)) {               // Verifica se o nome do recurso esta dentro da lista de quantidade e recursosAfetados
-                        if (qtd.sinal === 'x') qtdMulti *= qtd.buff;                //Se tiver, aplica o buff equivalente ao recurso
+            if (nftOuSkill.quantidade) {
+                nftOuSkill.quantidade.forEach(qtd => {
+                    if (qtd.recursoAfetado?.includes(nomeRecurso)) {
+                        if (qtd.sinal === 'x') qtdMulti *= qtd.buff;
                         if (qtd.sinal === '+') qtdSoma += qtd.buff;
                         if (qtd.sinal === '-') qtdSubtrai += qtd.buff;
                         if (qtd.sinal === '+A') qtdArea += qtd.buff;
                         if (qtd.sinal === 'xI') qtdInsta *= qtd.buff;
                         if (qtd.sinal === '+S') qtdSemente += qtd.buff;
+                        if (qtd.sinal === 'x-') qtdMenosRacao *= qtd.buff;
+                        if (qtd.sinal === 'x+') qtdMaisRacao *= qtd.buff;
                     }
                 });
             };
             //=============================================================================================================================================================
             //Adiciona os buffs que afetam o tempo dos recursos 
-            if (nftOuSkill.tempo) {                                            
-                nftOuSkill.tempo.forEach(tempo => {                              
-                    if (tempo.recursoAfetado?.includes(recurso.name)) {               
+            if (nftOuSkill.tempo) {
+                nftOuSkill.tempo.forEach(tempo => {
+                    if (tempo.recursoAfetado?.includes(nomeRecurso)) {
                         if (tempo.sinal === 'x') tempoMulti *= tempo.buff;
                         if (tempo.sinal === 'xCM') tempoCM *= tempo.buff  
                         if (tempo.sinal === '-') tempoSubtrai += tempo.buff;
@@ -60,9 +67,9 @@ function calcularBuff(recurso, listasDeBuffs) {
             };
             //=============================================================================================================================================================
             //Adiciona os buffs que afetam o custo e venda por coins 
-            if (nftOuSkill.coins) {                                            
-                nftOuSkill.coins.forEach(coin => {                              
-                    if (coin.recursoAfetado?.includes(recurso.name)) {               
+            if (nftOuSkill.coins) {
+                nftOuSkill.coins.forEach(coin => {
+                    if (coin.recursoAfetado?.includes(nomeRecurso)) {
                         if (coin.sinal === 'xV') multiVenda *= coin.buff;
                         if (coin.sinal === 'xC') multiCusto *= coin.buff;                
                     }
@@ -70,9 +77,9 @@ function calcularBuff(recurso, listasDeBuffs) {
             };
             //=============================================================================================================================================================
             //Adiciona os buffs que afetam o estoque
-            if (nftOuSkill.estoque) {                                            
-                nftOuSkill.estoque.forEach(estoque => {                              
-                    if (estoque.recursoAfetado?.includes(recurso.name)) {               
+            if (nftOuSkill.estoque) {
+                nftOuSkill.estoque.forEach(estoque => {
+                    if (estoque.recursoAfetado?.includes(nomeRecurso)) {
                         if (estoque.sinal === 'x') estoqueMulti *= estoque.buff;
                         if (estoque.sinal === '+') estoqueSoma += estoque.buff;                
                     }
@@ -109,6 +116,8 @@ function calcularBuff(recurso, listasDeBuffs) {
         qtdSubtrai,
         qtdInsta,
         qtdArea,
+        qtdMenosRacao,
+        qtdMaisRacao,
 
         tempoMulti,
         tempoCM,
@@ -428,9 +437,9 @@ function buffsAdicionadosMinerais() {
 
         } else if (modoDeCalcularMinerios === 'hora') {
             if (ferramenta.qtdUsada > 24) {
-                let linguagemDoAlerta = idioma === 'portugues' ? 'Para fim de calculos melhores, você não pode colocar mais que 24 horas!' : 'For better calculation results, you can\'t set more than 24 hours!'
+                let linguagemDoAlerta = idioma === 'portugues' ? 'Se quer usar o Modo de calcular por hora, não pode colocar mais que 24 horas. Se quiser isso, mude o modo de calcular e, se passar das 24 horas, ignore seu lucro diário e semanal. 😅' : 'If you want to use the hourly calculation mode, you cannot enter more than 24 hours. If you need that, change the calculation mode and, if it exceeds 24 hours, ignore your daily and weekly profit. 😅';
                 alert(linguagemDoAlerta);
-                return;
+                ferramenta.qtdUsada = 24;
             }
             ferramenta.quantidade = (((ferramenta.qtdUsada * umaHora) / mapaDeMinerals[ferramenta.recursoObtido].tempoFinal) * buffs.qtdMulti * buffs.qtdInsta) * mapaDeMinerals[ferramenta.recursoObtido].qtdNodes.total;
             //nesse caso vai mostrar quantas rodadas se faz pela hora colocada
@@ -531,9 +540,263 @@ function mediaDeValorDasFerramentasEMinerais() {
 };
 
 //======================================================================================================================================================================
+function buffsAdicionadosAnimais() {
+    ferramentasAnimais.forEach(carinho => {
+        const buffs = calcularBuff(carinho, [
+                skillsLegacy,
+                skillsAnimais.tier1,
+                skillsAnimais.tier2,
+                skillsAnimais.tier3,
+                collectibles.animais,
+                wearables.animais,
+                shrines,
+                totems,
+            ]);
+    
+        carinho.xpFinal = (carinho.xpPadrao * buffs.qtdMulti) + buffs.qtdSoma;
+        console.log(`xp de ${carinho.name} com buff: ${carinho.xpFinal}`);
+
+    });
+
+    todosAnimais.forEach(animal => {
+        const buffs = calcularBuff(animal, [
+                skillsLegacy,
+                skillsAnimais.tier1,
+                skillsAnimais.tier2,
+                skillsAnimais.tier3,
+                collectibles.animais,
+                wearables.animais,
+                shrines,
+                totems,
+            ]);
+        
+        if (animal.name === 'galinha') {
+            animal.qtdComidaPadrao = 1;
+            animal.tempo = parseFloat(86_400_000);
+        }
+        if (animal.name === 'vaca') {
+            animal.qtdComidaPadrao = 5;
+            animal.tempo = parseFloat(86_400_000);
+        }
+        if (animal.name === 'ovelha') {
+            animal.qtdComidaPadrao = 3;
+            animal.tempo = parseFloat(86_400_000);
+        }
+
+        animal.qtdComidaPadrao *= buffs.qtdMulti * buffs.qtdMenosRacao * buffs.qtdMaisRacao;
+        animal.tempo = (animal.tempo * buffs.tempoMulti) - buffs.tempoSubtrai;
+        animal.coinsFinal = animal.coins * buffs.multiVenda;
+
+        console.log(`${animal.name} dorme ${formatarTempo(animal.tempo)}`)
+
+    });
+
+    xpCarinhoXpComidaValores();
+};
 
 
+function buffsAdicionadosRecursosAnimais() {
 
+    let contadorGalinhas = 0;
+    let somadorDeOvos = 0;
+    let somadorDePenas = 0;
+    let somadorDeCustoDaComidaGalinhas = 0;
+
+    //=============================================== GALINHAS =====================================================================
+
+
+    animais.galinhas.forEach(galinha => {
+
+        //contador, que aumenta a cada level que passa no for each, serve para usar como divisao e fazer a media de recurso que vai render do 0 ate o level desejado!
+        contadorGalinhas += 1;
+
+
+        // Calcula buffs para egg
+        const buffsEgg = calcularBuff('egg', [
+            skillsLegacy,
+            skillsAnimais.tier1,
+            skillsAnimais.tier2,
+            skillsAnimais.tier3,
+            collectibles.ferreiro,
+            collectibles.animais,
+            wearables.animais,
+            shrines,
+            totems,
+        ]);
+        
+        // Calcula buffs para feather
+        const buffsFeather = calcularBuff('feather', [
+            skillsLegacy,
+            skillsAnimais.tier1,
+            skillsAnimais.tier2,
+            skillsAnimais.tier3,
+            collectibles.ferreiro,
+            collectibles.animais,
+            wearables.animais,
+            shrines,
+            totems,
+        ]);
+
+        //definir quanto falta de comida para subir de level
+        galinha.qtdDeComidaPraSubirDeLevel = (galinha.xpNecessario / galinha.xpDaComidaPadrao) * galinha.qtdComidaPadrao;
+
+        galinha.eggFinal = (galinha.egg * buffsEgg.qtdMulti) + buffsEgg.qtdSoma - buffsEgg.qtdSubtrai;
+        galinha.featherFinal = galinha.feather === 0 ? galinha.feather : (galinha.feather * buffsFeather.qtdMulti) + buffsFeather.qtdSoma - buffsFeather.qtdSubtrai;
+
+        //somar e dps fazer a media de recursos que a galinha faz ate o level!
+        somadorDeOvos += galinha.eggFinal;
+        somadorDePenas += galinha.featherFinal;
+        somadorDeCustoDaComidaGalinhas += (galinha.custoDaComida * galinha.qtdDeComidaPraSubirDeLevel);
+
+        //definir media ou manter level 15 as galinhas
+        if (galinha.levelAnterior < 15) {
+            galinha.mediaDeOvosDoLevel = (somadorDeOvos / contadorGalinhas) * (galinha.qtdUsada || 0);
+            galinha.mediaDePenasDoLevel = (somadorDePenas / contadorGalinhas) * (galinha.qtdUsada || 0);
+            //definir gasto com comida
+            galinha.mediaDeGastoComComida = (somadorDeCustoDaComidaGalinhas / contadorGalinhas) * (galinha.qtdUsada || 0);
+        } else {
+            galinha.mediaDeOvosDoLevel = galinha.eggFinal * (galinha.qtdUsada || 0);
+            galinha.mediaDePenasDoLevel = galinha.featherFinal * (galinha.qtdUsada || 0);
+            //definir gasto com comida
+            galinha.mediaDeGastoComComida = (galinha.custoDaComida * galinha.qtdDeComidaPraSubirDeLevel) * (galinha.qtdUsada || 0);
+        }
+
+
+    });
+    tabelaGalinhas();
+
+    //=============================================== VACAS =====================================================================
+
+    let contadorVacas = 0;
+    let somadorDeLeite = 0;
+    let somadorDeCouro = 0;
+    let somadorDeCustoDaComidaVacas = 0;
+
+    animais.vacas.forEach(vaca => {
+
+        //contador, que aumenta a cada level que passa no for each, serve para usar como divisao e fazer a media de recurso que vai render do 0 ate o level desejado!
+        contadorVacas += 1;
+
+
+        // Calcula buffs para egg
+        const buffsMilk = calcularBuff('milk', [
+            skillsLegacy,
+            skillsAnimais.tier1,
+            skillsAnimais.tier2,
+            skillsAnimais.tier3,
+            collectibles.ferreiro,
+            collectibles.animais,
+            wearables.animais,
+            shrines,
+            totems,
+        ]);
+        
+        // Calcula buffs para feather
+        const buffsLeather = calcularBuff('leather', [
+            skillsLegacy,
+            skillsAnimais.tier1,
+            skillsAnimais.tier2,
+            skillsAnimais.tier3,
+            collectibles.ferreiro,
+            collectibles.animais,
+            wearables.animais,
+            shrines,
+            totems,
+        ]);
+
+        //definir quanto falta de comida para subir de level
+        vaca.qtdDeComidaPraSubirDeLevel = (vaca.xpNecessario / vaca.xpDaComidaPadrao) * vaca.qtdComidaPadrao;
+
+        vaca.milkFinal = (vaca.milk * buffsMilk.qtdMulti) + buffsMilk.qtdSoma - buffsMilk.qtdSubtrai;
+        vaca.leatherFinal = vaca.leather === 0 ? vaca.leather : (vaca.leather * buffsLeather.qtdMulti) + buffsLeather.qtdSoma - buffsLeather.qtdSubtrai;
+
+        //somar e dps fazer a media de recursos que a galinha faz ate o level!
+        somadorDeLeite += vaca.milkFinal;
+        somadorDeCouro += vaca.leatherFinal;
+        somadorDeCustoDaComidaVacas += (vaca.custoDaComida * vaca.qtdDeComidaPraSubirDeLevel);
+
+        //definir media ou manter level 15 as galinhas
+        if (vaca.levelAnterior < 15) {
+            vaca.mediaDeLeiteDoLevel = (somadorDeLeite / contadorVacas) * (vaca.qtdUsada || 0);
+            vaca.mediaDeCouroDoLevel = (somadorDeCouro / contadorVacas) * (vaca.qtdUsada || 0);
+            //definir gasto com comida
+            vaca.mediaDeGastoComComida = (somadorDeCustoDaComidaVacas / contadorVacas) * (vaca.qtdUsada || 0);
+        } else {
+            vaca.mediaDeLeiteDoLevel = vaca.milkFinal * (vaca.qtdUsada || 0);
+            vaca.mediaDeCouroDoLevel = vaca.leatherFinal * (vaca.qtdUsada || 0);
+            //definir gasto com comida
+            vaca.mediaDeGastoComComida = (vaca.custoDaComida * vaca.qtdDeComidaPraSubirDeLevel) * (vaca.qtdUsada || 0);
+        }
+
+    });
+    tabelaVacas();
+
+    //=============================================== OVELHAS =====================================================================
+
+    let contadorOvelhas = 0;
+    let somadorDeLa = 0;
+    let somadorDeLaMerino = 0;
+    let somadorDeCustoDaComidaOvelhas = 0;
+
+    animais.ovelhas.forEach(ovelha => {
+
+        //contador, que aumenta a cada level que passa no for each, serve para usar como divisao e fazer a media de recurso que vai render do 0 ate o level desejado!
+        contadorOvelhas += 1;
+
+
+        // Calcula buffs para egg
+        const buffsWool = calcularBuff('wool', [
+            skillsLegacy,
+            skillsAnimais.tier1,
+            skillsAnimais.tier2,
+            skillsAnimais.tier3,
+            collectibles.ferreiro,
+            collectibles.animais,
+            wearables.animais,
+            shrines,
+            totems,
+        ]);
+        
+        // Calcula buffs para feather
+        const buffsMerino = calcularBuff('merinoWool', [
+            skillsLegacy,
+            skillsAnimais.tier1,
+            skillsAnimais.tier2,
+            skillsAnimais.tier3,
+            collectibles.ferreiro,
+            collectibles.animais,
+            wearables.animais,
+            shrines,
+            totems,
+        ]);
+
+        //definir quanto falta de comida para subir de level
+        ovelha.qtdDeComidaPraSubirDeLevel = (ovelha.xpNecessario / ovelha.xpDaComidaPadrao) * ovelha.qtdComidaPadrao;
+
+        ovelha.woolFinal = (ovelha.wool * buffsWool.qtdMulti) + buffsWool.qtdSoma - buffsWool.qtdSubtrai;
+        ovelha.merinoWoolFinal = ovelha.merinoWool === 0 ? ovelha.merinoWool : (ovelha.merinoWool * buffsMerino.qtdMulti) + buffsMerino.qtdSoma - buffsMerino.qtdSubtrai;
+
+        //somar e dps fazer a media de recursos que a galinha faz ate o level!
+        somadorDeLa += ovelha.woolFinal;
+        somadorDeLaMerino += ovelha.merinoWoolFinal;
+        somadorDeCustoDaComidaOvelhas += (ovelha.custoDaComida * ovelha.qtdDeComidaPraSubirDeLevel);
+
+        //definir media ou manter level 15 as galinhas
+        if (ovelha.levelAnterior < 15) {
+            ovelha.mediaDeLaDoLevel = (somadorDeLa / contadorOvelhas) * (ovelha.qtdUsada || 0);
+            ovelha.mediaDeLaMerinoDoLevel = (somadorDeLaMerino / contadorOvelhas) * (ovelha.qtdUsada || 0);
+            //definir gasto com comida
+            ovelha.mediaDeGastoComComida = (somadorDeCustoDaComidaOvelhas / contadorOvelhas) * (ovelha.qtdUsada || 0);
+        } else {
+            ovelha.mediaDeLaDoLevel = ovelha.woolFinal * (ovelha.qtdUsada || 0);
+            ovelha.mediaDeLaMerinoDoLevel = ovelha.merinoWoolFinal * (ovelha.qtdUsada || 0);
+            //definir gasto com comida
+            ovelha.mediaDeGastoComComida = (ovelha.custoDaComida * ovelha.qtdDeComidaPraSubirDeLevel) * (ovelha.qtdUsada || 0);
+        }
+
+    });
+    tabelaOvelhas();
+};
 
 
 //======================================================================================================================================================================
@@ -568,32 +831,60 @@ function ativarBonusDasNftsESkills() {
             // Cada grupo sempre possui o objeto no índice 0
             const data = collectibles[chave][0];
 
-            // Base real (não pode depender de data.buff)
+            // ===== BASES REAIS (imutáveis) =====
             const buffBase = data.buffBase ?? data.buff;
-            let buffAplicado = buffBase;
+            const recursoBase = data.recursoAfetadoBase ?? data.recursoAfetado;
 
-            // Condicional por NFT
+            let buffAplicado = buffBase;
+            let recursoAplicado = recursoBase;
+
+            // ===== CONDICIONAL POR NFT =====
             if (data.condicionalNft) {
                 const depende = mapaDeTodosCollectibles[data.condicionalNft.dependeDe];
-                if (depende?.possui) buffAplicado = data.condicionalNft.novoBuff;
+
+                if (depende?.possui) {
+                    buffAplicado = data.condicionalNft.novoBuff ?? buffAplicado;
+                    recursoAplicado = data.condicionalNft.novoRecursoAfetado ?? recursoAplicado;
+                }
             }
 
-            // Condicional por Skill
+            // ===== CONDICIONAL POR SKILL (1) =====
             if (data.condicionalSkill) {
                 const skill = mapaDeTodasSkillsComTier[data.condicionalSkill.dependeDe];
-                if (skill?.possui) buffAplicado = data.condicionalSkill.novoBuff;
+
+                if (skill?.possui) {
+                    buffAplicado = data.condicionalSkill.novoBuff ?? buffAplicado;
+                    recursoAplicado = data.condicionalSkill.novoRecursoAfetado ?? recursoAplicado;
+                }
             }
 
-            // Atualiza somente se mudou
+            // ===== CONDICIONAL POR SKILL (2) =====
+            if (data.condicionalSkill2) {
+                const skill2 = mapaDeTodasSkillsComTier[data.condicionalSkill2.dependeDe];
+
+                if (skill2?.possui) {
+                    buffAplicado = data.condicionalSkill2.novoBuff ?? buffAplicado;
+                    recursoAplicado = data.condicionalSkill2.novoRecursoAfetado ?? recursoAplicado;
+                }
+            }
+
+            // ===== APLICA SOMENTE SE MUDAR =====
             if (data.buff !== buffAplicado) {
                 data.buff = buffAplicado;
+                mudouBuff = true;
+            }
+
+            if (data.recursoAfetado !== recursoAplicado) {
+                data.recursoAfetado = recursoAplicado;
                 mudouBuff = true;
             }
         });
 
     } while (mudouBuff);
+
     chamadorDeBuffs();
-};
+}
+
 
 //==================================================================================================================================================================
 
@@ -636,6 +927,7 @@ function chamadorDeBuffs() {
     buffsAdicionadosMinerais();
     buffsAdicionadosFrutas();
     buffsAdicionadosGreenhouse();
+    buffsAdicionadosAnimais();
     cropToCoins(); //não é um buff, mudar de lugar dps
     mudarIdioma();
 }

@@ -102,3 +102,96 @@ function limparMinerios() {
 };
 
 //================================================================================================================================================================================
+
+function galinhasColocadas() {
+
+    document.querySelectorAll('.galinhas-input').forEach(input => {
+        let id = Number(input.dataset.name);
+        let valor = Number(input.value);
+
+        let galinha = animais.galinhas.find(gal => gal.levelAnterior === id); // <-- CORRIGIDO
+        if (galinha) galinha.qtdUsada = valor || '';
+    });
+
+    document.querySelectorAll('.galinhas-venda-input').forEach(input => {
+        let id = Number(input.dataset.name);
+        let valor = Number(input.value);
+
+        let galinha = animais.galinhas.find(gal => gal.levelAnterior === id); // <-- CORRIGIDO
+        if (galinha) galinha.vendida = valor || '';
+    });
+    buffsAdicionadosAnimais();
+};
+
+function limparGalinhas() {
+    animais.galinhas.forEach(galinha => {
+        galinha.qtdUsada = '';
+        galinha.vendida = '';
+    });
+
+    buffsAdicionadosAnimais();
+};
+
+//================================================================================================================================================================================
+
+function vacasColocadas() {
+
+    document.querySelectorAll('.vacas-input').forEach(input => {
+        let id = Number(input.dataset.name);
+        let valor = Number(input.value);
+
+        let vaca = animais.vacas.find(vac => vac.levelAnterior === id); // <-- CORRIGIDO
+        if (vaca) vaca.qtdUsada = valor || '';
+    });
+
+    document.querySelectorAll('.vacas-venda-input').forEach(input => {
+        let id = Number(input.dataset.name);
+        let valor = Number(input.value);
+
+        let vaca = animais.vacas.find(vac => vac.levelAnterior === id); // <-- CORRIGIDO
+        if (vaca) vaca.vendida = valor || '';
+    });
+
+    buffsAdicionadosAnimais();
+};
+
+function limparVacas() {
+    animais.vacas.forEach(vaca => {
+        vaca.qtdUsada = '';
+        vaca.vendida = '';
+    });
+
+    buffsAdicionadosAnimais();
+};
+
+//================================================================================================================================================================================
+
+function ovelhasColocadas() {
+
+    document.querySelectorAll('.ovelhas-input').forEach(input => {
+        let id = Number(input.dataset.name);
+        let valor = Number(input.value);
+
+        let ovelha = animais.ovelhas.find(ove => ove.levelAnterior === id); // <-- CORRIGIDO
+        if (ovelha) ovelha.qtdUsada = valor || '';
+    });
+
+    document.querySelectorAll('.ovelhas-venda-input').forEach(input => {
+        let id = Number(input.dataset.name);
+        let valor = Number(input.value);
+
+        let ovelha = animais.ovelhas.find(ove => ove.levelAnterior === id); // <-- CORRIGIDO
+        if (ovelha) ovelha.vendida = valor || '';
+    });
+
+    buffsAdicionadosAnimais();
+};
+
+function limparOvelhas() {
+    animais.ovelhas.forEach(ovelha => {
+        ovelha.qtdUsada = '';
+        ovelha.vendida = '';
+    });
+
+    buffsAdicionadosAnimais();
+};

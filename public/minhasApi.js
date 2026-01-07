@@ -70,16 +70,18 @@ function numeroDaFarm() {
             const crimstoneQuePossui = data.farm.inventory['Crimstone Rock'];
 
             const oilQuePossui = data.farm.inventory['Oil Reserve'];
-
-
             
-
             preencherInformacoesDaFarm(cropPlotsQuePossui, frutasQuePossui,
                 treeT1QuePossui, treeT2QuePossui, treeT3QuePossui,
                 stoneT1QuePossui, stoneT2QuePossui, stoneT3QuePossui,
                 ironT1QuePossui, ironT2QuePossui, ironT3QuePossui,
                 goldT1QuePossui, goldT2QuePossui, goldT3QuePossui,
                 crimstoneQuePossui, oilQuePossui);
+
+            //=====================================================================================================================================================
+            //preencher valor quantidade de animais
+            let bountiesAnimais = data.farm.bounties.requests;
+            valorDeCoinsDosAnimais(bountiesAnimais);
 
             //=====================================================================================================================================================
             
@@ -99,6 +101,8 @@ function numeroDaFarm() {
             //mudar a estação automaticamente para a q esta no game!
             document.getElementById('estacaoSelect').value = data.farm.season.season;
             selecionandoEstacao();
+
+            //=====================================================================================================================================================
 
         })
         .catch(err => {
@@ -246,9 +250,35 @@ function numeroDaFarm() {
         mapaDeMinerals['oil'].qtdNodes.t1 = oilQuePossui;
         document.getElementById('oilReserve').value = mapaDeMinerals['oil'].qtdNodes.t1;
 
-
         salvarInformacoes();
     }
+
+    function valorDeCoinsDosAnimais(bountiesAnimais) {
+        todosAnimais.forEach(animal => {  
+            animal.qtdDeAnimaisQuePodeVender = 0;
+
+            bountiesAnimais.forEach(bountie => {
+                
+                if (bountie.name === 'Chicken' && animal.name === 'galinha' && bountie.level === animal.level && bountie.coins && animal.levelAnterior < 15) {
+                    animal.qtdDeAnimaisQuePodeVender += 1;
+                    animal.coins = bountie.coins;
+                };
+
+                if (bountie.name === 'Cow' && animal.name === 'vaca' && bountie.level === animal.level && bountie.coins && animal.levelAnterior < 15) {
+                    animal.qtdDeAnimaisQuePodeVender += 1;
+                    animal.coins = bountie.coins;
+                };
+
+                if (bountie.name === 'Sheep' && animal.name === 'ovelha' && bountie.level === animal.level && bountie.coins && animal.levelAnterior < 15) {
+                    animal.qtdDeAnimaisQuePodeVender += 1;
+                    animal.coins = bountie.coins;
+                };
+
+            });
+
+        });
+    }
+    chamadorDeBuffs();
 };
 
 
@@ -397,3 +427,5 @@ function valorDoFlowerEmDolar(valor) {
     
     valoresDasGems();
 };
+
+//======================================================================================================================================================================

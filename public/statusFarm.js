@@ -24,6 +24,11 @@ let frutiferasDuram = parseInt(4);
 //Plots que possuem a Greenhouse
 let plotsGH = parseInt(4);
 
+//Tempo de sono dos Animais
+let sleepGalinhas = parseFloat(86_400_000);
+let sleepVacas = parseFloat(86_400_000);
+let sleepOvelhas = parseFloat(86_400_000);
+
 //Variaveis dos recursos, são 4 variaveis na msm linha(cada uma é um let), fiz assim para diminuir as linhas e entender qual afeta qual!
 let treeTotais = 1,  treeT1,  treeT2,  treeT3;
 let stoneTotais = 1, stoneT1, stoneT2, stoneT3;
@@ -74,6 +79,7 @@ function salvarInformacoes() {
 
     // OIL
     mapaDeMinerals['oil'].qtdNodes.t1 = document.getElementById('oilReserve').value;
+
     
     //chama as funções para atualizar
     chamadorDeBuffs();

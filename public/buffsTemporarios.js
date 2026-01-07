@@ -100,14 +100,14 @@ let shrines = [
             {
                 sinal: 'x',
                 buff: 0.75,
-                recursoAfetado: [''],
+                recursoAfetado: ['vaca', 'ovelha'],
             }
         ],
-        food: [
+        quantidade: [
             {
-                sinal: 'x',
+                sinal: 'x-',
                 buff: 0.95,
-                recursoAfetado: [''],
+                recursoAfetado: ['vaca', 'ovelha'],
             }
         ]
     },
@@ -246,14 +246,14 @@ let shrines = [
             {
                 sinal: 'x',
                 buff: 0.75,
-                recursoAfetado: ['Chicken'],
+                recursoAfetado: ['galinha'],
             }
         ],
-        food: [
+        quantidade: [
             {
-                sinal: 'x',
+                sinal: 'x-',
                 buff: 0.95,
-                recursoAfetado: ['Chicken'],
+                recursoAfetado: ['galinha'],
             }
         ]
     },

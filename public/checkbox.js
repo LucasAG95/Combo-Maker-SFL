@@ -183,6 +183,10 @@ window.onload = function () {
     renderSkills(skillsMinerals.tier1, 'skills-mineral-tier1-container', './skills');
     renderSkills(skillsMinerals.tier2, 'skills-mineral-tier2-container', './skills');
     renderSkills(skillsMinerals.tier3, 'skills-mineral-tier3-container', './skills');
+    //Skills Animals
+    renderSkills(skillsAnimais.tier1, 'skills-animal-tier1-container', './skills');
+    renderSkills(skillsAnimais.tier2, 'skills-animal-tier2-container', './skills');
+    renderSkills(skillsAnimais.tier3, 'skills-animal-tier3-container', './skills');
     //Skills Machinery
     renderSkills(skillsMachinery.tier1, 'skills-machinery-tier1-container', './skills');
     renderSkills(skillsMachinery.tier2, 'skills-machinery-tier2-container', './skills');
@@ -196,6 +200,7 @@ window.onload = function () {
     renderNFTs(collectibles.minerals, 'collectibles-container-trees-minerals', './collectibles');
     renderNFTs(collectibles.fruits, 'collectibles-container-fruits', './collectibles' );
     renderNFTs(collectibles.greenhouse, 'collectibles-container-greenhouse', './collectibles');
+    renderNFTs(collectibles.animais, 'collectibles-container-animais', './collectibles');
 
     // Wearables
     renderNFTs(wearables.factions, 'wearables-container-factions', './wearables');
@@ -205,6 +210,7 @@ window.onload = function () {
     renderNFTs(wearables.minerals, 'wearables-container-minerals', './wearables');
     renderNFTs(wearables.terouso, 'wearables-container-minerals', './wearables');
     renderNFTs(wearables.pesca, 'wearables-container-minerals', './wearables');
+    renderNFTs(wearables.animais, 'wearables-container-animais', './wearables');
     
 
     //Shrines, Totems e buffs temporarios

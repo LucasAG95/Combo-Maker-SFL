@@ -1,45 +1,82 @@
-// ======================
-// TROCA DE ABAS PRINCIPAIS
-// ======================
-document.addEventListener("DOMContentLoaded", function () {
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  const tabContents = document.querySelectorAll(".tab-content");
+document.addEventListener("DOMContentLoaded", () => {
 
-  tabButtons.forEach(btn => {
+  // ======================
+  // TABS PRINCIPAIS (Skills / Collectibles / etc)
+  // ======================
+  document.querySelectorAll(".tab-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      const target = btn.getAttribute("data-tab");
+      const target = btn.dataset.tab;
 
-      // Remove active de todos
-      tabButtons.forEach(b => b.classList.remove("active"));
-      tabContents.forEach(content => content.classList.remove("active"));
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
 
-      // Ativa a aba clicada
       btn.classList.add("active");
       document.getElementById(target).classList.add("active");
     });
   });
 
+
   // ======================
-  // TROCA DE SUB-ABAS
+  // SUBTABS DO TOPO (Skills, Collectibles, Wearables, Buffs)
   // ======================
-  const subTabButtons = document.querySelectorAll(".sub-tab-btn");
-  const subTabContents = document.querySelectorAll(".sub-tab-content");
+  document.querySelectorAll(".tab-content").forEach(tab => {
 
-  subTabButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const target = btn.getAttribute("data-sub-tab");
-      const parentSection = btn.closest(".tab-content");
+    const buttons = tab.querySelectorAll(".sub-tab-btn");
+    const contents = tab.querySelectorAll(".sub-tab-content");
 
-      // Filtra apenas sub-abas dentro da mesma aba principal
-      const siblingsButtons = parentSection.querySelectorAll(".sub-tab-btn");
-      const siblingsContents = parentSection.querySelectorAll(".sub-tab-content");
+    if (!buttons.length) return;
 
-      siblingsButtons.forEach(b => b.classList.remove("active"));
-      siblingsContents.forEach(c => c.classList.remove("active"));
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.subTab;
 
-      btn.classList.add("active");
-      parentSection.querySelector(`#${target}`).classList.add("active");
+        buttons.forEach(b => b.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active"));
+
+        btn.classList.add("active");
+        tab.querySelector(`#${target}`).classList.add("active");
+      });
     });
   });
-});
 
+
+  // ======================
+  // TABS SECUNDÁRIAS (Crops / Minerais / Animais)
+  // ======================
+  document.querySelectorAll(".tab2-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.tab2;
+
+      document.querySelectorAll(".tab2-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".tab2-content").forEach(c => c.classList.remove("active"));
+
+      btn.classList.add("active");
+      document.getElementById(target).classList.add("active");
+    });
+  });
+
+
+  // ======================
+  // SUBTABS DAS TABS SECUNDÁRIAS (Crops / Animais)
+  // ======================
+  document.querySelectorAll(".tab2-content").forEach(tab => {
+
+    const buttons = tab.querySelectorAll(".subtab-btn");
+    const contents = tab.querySelectorAll(".subtab-content");
+
+    if (!buttons.length) return;
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.subtab;
+
+        buttons.forEach(b => b.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active"));
+
+        btn.classList.add("active");
+        tab.querySelector(`#${target}`).classList.add("active");
+      });
+    });
+  });
+
+});

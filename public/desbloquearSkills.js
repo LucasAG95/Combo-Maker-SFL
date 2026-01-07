@@ -245,6 +245,52 @@ function skillsMineralsBloqueadas() {
     textoParaDesbloquearSkill(3, 7, totalDePontosGastos, aroveDeAbilidades, tituloDoAcordion);
 };
 
+function skillsAnimaisBloqueadas() {
+    let aroveDeAbilidades = 'animal';
+    let tituloDoAcordion = 'Animals';
+    let pontosTier1 = 0;
+    let pontosTier2 = 0;
+    let pontosTier3 = 0;
+    let totalDePontosGastos = 0;
+
+    todasSkillsAnimais.forEach(skill => {
+        let checkbox = document.getElementById(skill.idName)
+
+        // Tier 1 sempre pode ser contado
+        if(skill.pontosNecessarios === 1 && checkbox.checked) {
+            pontosTier1 += skill.pontosNecessarios;
+        };
+
+        // Tier 2 só conta se já tiver pontos suficientes no Tier 1
+        if(skill.pontosNecessarios === 2 && checkbox.checked && pontosTier1 >= 4) {
+            pontosTier2 += skill.pontosNecessarios;
+        };
+
+        // Tier 3 só conta se já tiver pontos suficientes no Tier 1 + 2
+        if(skill.pontosNecessarios === 3 && checkbox.checked && (pontosTier1 + pontosTier2) >= 8) {
+            pontosTier3 += skill.pontosNecessarios;
+        };
+
+        //Bloquear tier 2 e 3 das skills ate condições serem falsas
+        if (pontosTier1 < 4 && skill.pontosNecessarios === 2) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            skill.possui = false;
+        } else if ((pontosTier1 + pontosTier2) < 8 && skill.pontosNecessarios === 3) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            skill.possui = false;
+        } else {
+            checkbox.disabled = false;
+        };
+        
+    });
+    totalDePontosGastos = pontosTier1 + pontosTier2 + pontosTier3;
+    console.log(totalDePontosGastos);
+
+    textoParaDesbloquearSkill(4, 8, totalDePontosGastos, aroveDeAbilidades, tituloDoAcordion);
+};
+
 function skillsMachineryBloqueadas() {
     let aroveDeAbilidades = 'machinery';
     let tituloDoAcordion = 'Machinery';
@@ -295,7 +341,7 @@ function skillsMachineryBloqueadas() {
 function textoParaDesbloquearSkill(pontosProNivel2, pontosProNivel3, totalPontosGastos, aroveDeAbilidades, tituloDoAcordion) {
 
     //tradução
-    const idiomaDescloqueioSkill = idiomaDesbloquearSkills[idioma];
+    const idiomaDesbloqueioSkill = idiomaDesbloquearSkills[idioma];
     let pontosUsados = idiomaDesbloquearSkills[idioma].pontosUsados;
     let desbloquearN2 = idiomaDesbloquearSkills[idioma].desbloquearNivel2;
     let desbloquearN3 = idiomaDesbloquearSkills[idioma].desbloquearNivel3;
@@ -325,5 +371,6 @@ function chamadorDeDesbloquearSkills() {
     skillsTreesBloqueadas();
     skillsGreenhouseBloqueadas();
     skillsMineralsBloqueadas();
+    skillsAnimaisBloqueadas();
     skillsMachineryBloqueadas();
 };

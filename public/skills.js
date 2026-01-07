@@ -134,6 +134,39 @@ let skillsLegacy = [
             }
         ]
     },
+    //animais
+    {
+        idName: 'wrangler',
+        name: 'Wrangler',
+        descricao: {
+            portugues: '-10% no Tempo de Sono dos Animais',
+            ingles: '-10% Animal Cooldowns'
+        },
+        possui: false,
+        tempo: [
+            {
+                sinal: 'x',
+                buff: 0.9,
+                recursoAfetado: ['galinha', 'vaca', 'ovelha'],
+            }
+        ]
+    },
+    {
+        idName: 'barnManager',
+        name: 'Barn Manager',
+        descricao: {
+            portugues: '+0,1 de Rendimento em Recursos Animais',
+            ingles: '+0.1 Yield for Animal Produce'
+        },
+        possui: false,
+        quantidade: [
+            {
+                sinal: '+',
+                buff: 0.1,
+                recursoAfetado: ['egg', 'feather', 'milk', 'leather', 'wool', 'merinoWool'],
+            }
+        ]
+    },
 ];
 
 //============================================================================================================================================================================
@@ -1590,6 +1623,375 @@ let skillsGreenhouse = {
 };
 
 //============================================================================================================================================================================
+
+let skillsAnimais = {
+    tier1: [
+        {
+            idName: 'efficientFeeding',
+            name: 'Efficient Feeding',
+            descricao: {
+                portugues: '-5% na ração para alimentar todos os animais.',
+                ingles: '-5% feed required to feed all animals.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 0.95,
+                    recursoAfetado: ['galinha', 'vaca', 'ovelha'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'restlessAnimals',
+            name: 'Restless Animals',
+            descricao: {
+                portugues: '-10% no tempo de sono dos animais.',
+                ingles: '-10% animal sleep time.'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.9,
+                    recursoAfetado: ['galinha', 'vaca', 'ovelha'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'fineFibers',
+            name: 'Fine Fibers',
+            descricao: {
+                portugues: '+0,1 no rendimento de penas, couro e lã Merino.',
+                ingles: '+0.1 yield to feathers, leather, and merino wool.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['feather', 'leather', 'merinoWool'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'bountifulBounties',
+            name: 'Bountiful Bounties',
+            descricao: {
+                portugues: '+50% em coins por Recompensas de Animais.',
+                ingles: '+50% coins from Animal Rewards.'
+            },
+            possui: false,
+            coins: [
+                {
+                    sinal: 'xV',
+                    buff: 1.5,
+                    recursoAfetado: ['galinha', 'vaca', 'ovelha'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'doubleBale',
+            name: 'Double Bale',
+            descricao: {
+                portugues: 'Dobre o Efeito da Bale.',
+                ingles: 'Double the effect of Bale.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 2,
+                    recursoAfetado: ['Bale'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'baleEconomy',
+            name: 'Bale Economy',
+            descricao: {
+                portugues: 'A Bale afeta a produção de leite e lã.',
+                ingles: 'Bale also affects milk and wool production.'
+            },
+            possui: false,
+            permissao: [
+                {
+                    sinal: '',
+                    buff: '',
+                    recursoAfetado: ['milk', 'wool'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'featherweight',
+            name: 'Featherweight',
+            descricao: {
+                portugues: '+0,25 rendimento de Pena, -0,35 rendimento de Couro & Lã Merino',
+                ingles: '+0.25 feather yield, -0.35 leather & merino wool yield.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.25,
+                    recursoAfetado: ['feather'],
+                },
+                {
+                    sinal: '-',
+                    buff: 0.35,
+                    recursoAfetado: ['leather', 'merinoWool'],
+                }
+            ],
+            pontosNecessarios: 1
+        },
+    ],
+    tier2: [
+        {
+            idName: 'abundantHarvest',
+            name: 'Abundant Harvest',
+            descricao: {
+                portugues: '+0,2 no rendimento de ovos, lã e leite.',
+                ingles: '+0.2 yield to eggs, wool, and milk.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.2,
+                    recursoAfetado: ['egg', 'milk', 'wool'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'heartwarmingInstruments',
+            name: 'Heartwarming Instruments',
+            descricao: {
+                portugues: '+50% de experiência animal a partir das ferramentas de Afeto Animal.',
+                ingles: '+50% animal experience from Animal Affection tools.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 1.5,
+                    recursoAfetado: ['Petting Hand', 'Brush', 'Music Box'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'kaleMix',
+            name: 'Kale Mix',
+            descricao: {
+                portugues: 'Mixed Grain requer 3 couves para misturar.',
+                ingles: 'Mixed Grain requires 3 kale to craft.'
+            },
+            possui: false,
+            troca: [
+                {
+                    sinal: '',
+                    buff: 'Kale',
+                    recursoAfetado: ['Mixed Grain'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'alternateMedicine',
+            name: 'Alternate Medicine',
+            descricao: {
+                portugues: 'Remédio requer 1 limão e mel a menos para misturar',
+                ingles: 'Medicine requires 1 less lemon and honey to craft.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '-',
+                    buff: 1,
+                    recursoAfetado: ['Lemon', 'Honey'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'healthyLivestock',
+            name: 'Healthy Livestock',
+            descricao: {
+                portugues: '-50% de chance de doença.',
+                ingles: '-50% chance of disease.'
+            },
+            possui: false,
+            rng: [
+                {
+                    sinal: 'x',
+                    buff: 0.5,
+                    recursoAfetado: [],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'merinoWhisperer',
+            name: 'Merino Whisperer',
+            descricao: {
+                portugues: '+0,25 rendimento de Lã Merino, -0,35 rendimento de Couro & Pena',
+                ingles: '+0.25 merino wool yield, -0.35 leather & feather yield.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.25,
+                    recursoAfetado: ['merinoWool'],
+                },
+                {
+                    sinal: '-',
+                    buff: 0.35,
+                    recursoAfetado: ['leather', 'feather'],
+                }
+            ],
+            pontosNecessarios: 2
+        },
+    ],
+    tier3: [
+        {
+            idName: 'cluckyGrazing',
+            name: 'Clucky Grazing',
+            descricao: {
+                portugues: '-25% de ração para alimentar galinhas, +50% de ração para alimentar outros animais.',
+                ingles: '-25% feed required to feed chickens, +50% feed required to feed other animals.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x-',
+                    buff: 0.75,
+                    recursoAfetado: ['galinha'],
+                },
+                {
+                    sinal: 'x+',
+                    buff: 1.5,
+                    recursoAfetado: ['vaca', 'ovelha'],
+                }
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'sheepwiseDiet',
+            name: 'Sheepwise Diet',
+            descricao: {
+                portugues: '-25% de ração para alimentar ovelhas, +50% de ração para alimentar outros animais.',
+                ingles: '-25% feed required to feed sheep, +50% feed required to feed other animals.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x-',
+                    buff: 0.75,
+                    recursoAfetado: ['ovelha'],
+                },
+                {
+                    sinal: 'x+',
+                    buff: 1.5,
+                    recursoAfetado: ['vaca', 'galinha'],
+                }
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'cow-SmartNutrition',
+            name: 'Cow-Smart Nutrition',
+            descricao: {
+                portugues: '-25% de ração para alimentar vacas, +50% de ração para alimentar outros animais.',
+                ingles: '-25% feed required to feed cows, +50% feed required to feed other animals.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x-',
+                    buff: 0.75,
+                    recursoAfetado: ['vaca'],
+                },
+                {
+                    sinal: 'x+',
+                    buff: 1.5,
+                    recursoAfetado: ['ovelha', 'galinha'],
+                }
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'chonkyFeed',
+            name: 'Chonky Feed',
+            descricao: {
+                portugues: '2x de experiência animal a partir da alimentação, +50% de ração para alimentar todos os animais.',
+                ingles: '2x animal experience from feeding, +50% feed required to feed all animals.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '',
+                    buff: 2,
+                    recursoAfetado: ['galinha', 'vaca', 'ovelha'],
+                },
+                {
+                    sinal: 'x+',
+                    buff: 1.5,
+                    recursoAfetado: ['galinha', 'vaca', 'ovelha'],
+                }
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'leathercraftMastery',
+            name: 'Leathercraft Mastery',
+            descricao: {
+                portugues: '+0,25 rendimento de Couro, -0,35 rendimento de Pena & Lã Merino',
+                ingles: '+0.25 leather yield, -0.35 feather & merino wool yield.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.25,
+                    recursoAfetado: ['leather'],
+                },
+                {
+                    sinal: '-',
+                    buff: 0.35,
+                    recursoAfetado: ['feather', 'merinoWool'],
+                }
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'barnyardRouse',
+            name: 'Barnyard Rouse',
+            descricao: {
+                portugues: 'Acorda instantaneamente todos os animais (1/5d)',
+                ingles: 'Instantly wakes all animals (1/5d).'
+            },
+            possui: false,
+            insta: [
+                {
+                    sinal: '',
+                    buff: '',
+                    recursoAfetado: [],
+                },
+            ],
+            pontosNecessarios: 3
+        }, 
+    ]
+};
+
+//============================================================================================================================================================================
 //Todas arvores de skills separadas
 let todasSkillsCrops      = [...skillsCrops.tier1,      ...skillsCrops.tier2,      ...skillsCrops.tier3];
 let todasSkillsFruits     = [...skillsFruits.tier1,     ...skillsFruits.tier2,     ...skillsFruits.tier3];
@@ -1597,6 +1999,7 @@ let todasSkillsTrees      = [...skillsTrees.tier1,      ...skillsTrees.tier2,   
 let todasSkillsMinerals   = [...skillsMinerals.tier1,   ...skillsMinerals.tier2,   ...skillsMinerals.tier3];
 let todasSkillsMachinery  = [...skillsMachinery.tier1,  ...skillsMachinery.tier2,  ...skillsMachinery.tier3];
 let todasSkillsGreenhouse = [...skillsGreenhouse.tier1, ...skillsGreenhouse.tier2, ...skillsGreenhouse.tier3];
+let todasSkillsAnimais    = [...skillsAnimais.tier1,    ...skillsAnimais.tier2,    ...skillsAnimais.tier3]
 
 //============================================================================================================================================================================
 //Todas arvores de skills juntas
@@ -1607,6 +2010,7 @@ let todasSkillsComTier = [
     ...skillsMinerals.tier1,   ...skillsMinerals.tier2,   ...skillsMinerals.tier3,
     ...skillsMachinery.tier1,  ...skillsMachinery.tier2,  ...skillsMachinery.tier3,
     ...skillsGreenhouse.tier1, ...skillsGreenhouse.tier2, ...skillsGreenhouse.tier3,
+    ...skillsAnimais.tier1,    ...skillsAnimais.tier2,    ...skillsAnimais.tier3,
 ];
 //============================================================================================================================================================================
 //Mapas

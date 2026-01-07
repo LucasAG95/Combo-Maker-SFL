@@ -115,6 +115,39 @@ h5 {
   color: #ffffff;
 }
 
+#saida-das-galinhas {
+  padding: 20px;
+  border-radius: 14px;
+  margin-top: 2px;
+  box-shadow: 0 4px 12px rgba(17, 16, 16, 0.4);
+  font-size: 1px;
+  font-weight: bold;
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+#saida-das-vacas {
+  padding: 20px;
+  border-radius: 14px;
+  margin-top: 2px;
+  box-shadow: 0 4px 12px rgba(17, 16, 16, 0.4);
+  font-size: 1px;
+  font-weight: bold;
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+#saida-das-ovelhas {
+  padding: 20px;
+  border-radius: 14px;
+  margin-top: 2px;
+  box-shadow: 0 4px 12px rgba(17, 16, 16, 0.4);
+  font-size: 1px;
+  font-weight: bold;
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
 /* ====================
    TABELA DE CROPS
 ======================= */
@@ -659,6 +692,38 @@ input[type="checkbox"]:disabled + .nft-img:hover {
   color: #fff;
 }
 
+/* CARDS DOS ANIMAIS */
+.cards-totais-animais {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center;     /* centraliza verticalmente */
+}
+
+.card-total-animal {
+  background: #222;
+  border: 1px solid #444;
+  padding: 15px 20px;
+  border-radius: 12px;
+  min-width: 120px;
+  text-align: center;
+  color: #ffa726;
+  box-shadow: 0 0 10px #0005;
+}
+
+.card-total-animal h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.card-total-animal p {
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+}
+
 .header {
   display: flex;
   flex-direction: column;   /* empilha verticalmente */
@@ -776,6 +841,38 @@ input[type="checkbox"]:disabled + .nft-img:hover {
 #qtdDeOils {
   margin-left: 35px; 
   display: block;
+}
+
+/* ====================
+   TABELA DE Animais
+======================= */
+.tabela-animais {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 30px;
+  font-size: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #333;
+}
+
+.tabela-animais th, .tabela-animais td {
+  padding: 5px 1px;
+  text-align: center;
+}
+
+.tabela-animais th {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.tabela-animais tr:nth-child(even) {
+  background-color: #2c2c2c;
+}
+
+.tabela-animais tr:nth-child(odd) {
+  background-color: #242424;
 }
 
 /* ============================================================

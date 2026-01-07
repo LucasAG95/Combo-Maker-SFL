@@ -1,5 +1,5 @@
 /* ============================
-      TABS PRINCIPAIS
+      TABS PRINCIPAIS (TAB2)
 ============================ */
 
 const tabs2Buttons = document.querySelectorAll(".tab2-btn");
@@ -18,7 +18,6 @@ tabs2Buttons.forEach(btn => {
 
     // carregar tabelas ao clicar
     if (btn.dataset.tab2 === "cropsTabPrincipal") {
-      // ao abrir a tab principal de crops → carregar a subtab padrão (Crops)
       tabelaDeCrops();
     }
 
@@ -30,39 +29,49 @@ tabs2Buttons.forEach(btn => {
 
 
 /* ============================
-         SUBTABS CROPS
+   SUBTABS (CROPS + ANIMAIS)
 ============================ */
 
-const subtabButtons = document.querySelectorAll(".subtab-btn");
-const subtabContents = document.querySelectorAll(".subtab-content");
+document.querySelectorAll(".tab2-content").forEach(tab2 => {
 
-subtabButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
+  const subtabButtons = tab2.querySelectorAll(".subtab-btn");
+  const subtabContents = tab2.querySelectorAll(".subtab-content");
 
-    // remove active das subtabs
-    subtabButtons.forEach(b => b.classList.remove("active"));
-    subtabContents.forEach(c => c.classList.remove("active"));
+  // se não tiver subtabs, ignora
+  if (!subtabButtons.length) return;
 
-    // ativa o botão clicado
-    btn.classList.add("active");
-    document.getElementById(btn.dataset.subtab).classList.add("active");
+  subtabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
 
-    // carregar tabelas específicas
-    if (btn.dataset.subtab === "crops-tab2") {
-      tabelaDeCrops();
-    }
+      // remove active SOMENTE dentro da tab atual
+      subtabButtons.forEach(b => b.classList.remove("active"));
+      subtabContents.forEach(c => c.classList.remove("active"));
 
-    if (btn.dataset.subtab === "cropsCM-tab2") {
-      tabelaDeCrops();   // use o nome da sua função real
-    }
+      // ativa a subtab clicada
+      btn.classList.add("active");
+      tab2.querySelector(`#${btn.dataset.subtab}`).classList.add("active");
 
-    if (btn.dataset.subtab === "frutas-tab2") {
-      tabelaDeCrops(); 
-    }
+      // ============================
+      // CARREGAMENTO DAS TABELAS
+      // ============================
+      switch (btn.dataset.subtab) {
 
-    if (btn.dataset.subtab === "greenhouse-tab2") {
-      tabelaDeCrops(); 
-    }
+        // CROPS
+        case "crops-tab2":
+        case "cropsCM-tab2":
+        case "frutas-tab2":
+        case "greenhouse-tab2":
+          tabelaDeCrops();
+          break;
 
+        // ANIMAIS
+        case "galinhas-tab2":
+        case "vacas-tab2":
+        case "ovelhas-tab2":
+          tabelaGalinhas();
+          break;
+      }
+
+    });
   });
 });

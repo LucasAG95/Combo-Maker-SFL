@@ -230,6 +230,36 @@ let collectibles = {
                 }
             ]
         },
+        //animais
+        {
+            idNumber: '',
+            idName: 'bale',
+            name: 'Bale',
+            preco: '',
+            descricao: {
+                portugues: '+0.1 Ovo',
+                ingles: '+0.1 Egg'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buffBase: 0.1,
+                    recursoAfetadoBase: ['egg'],
+                    condicionalSkill: {
+                        dependeDe: 'doubleBale',
+                        novoBuff: 0.2,
+                        
+                    },
+                    condicionalSkill2: {
+                        dependeDe: 'baleEconomy',
+                        novoRecursoAfetado: ['egg', 'milk', 'wool'],
+                    },
+                    buff: 0.1,
+                    recursoAfetado: ['egg']
+                }   
+            ],  
+        },
     ],
     crops: [
         {
@@ -1658,6 +1688,25 @@ let collectibles = {
                 }
             ]
         },
+        {
+            idNumber: '',
+            idName: 'magmaStone',
+            name: 'Magma Stone',
+            preco: '',
+            descricao: {
+                portugues: '-15% no tempo do Poço de Lava, +0.15 de Obsidiana',
+                ingles: '-15% Lava Pit Time, +0.15 Obsidian'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.5,
+                    recursoAfetado: ['Obsidian'],
+                }
+            ]
+        },
+
     ],
     greenhouse: [
         {
@@ -1750,7 +1799,543 @@ let collectibles = {
                 }
             ]
         },
+    ],
+    animais: [
+        {
+            idNumber: 408,
+            idName: 'chickenCoop',
+            name: 'Chicken Coop',
+            preco: '',
+            descricao: {
+                portugues: '+1 Ovo, +5 Galinhas base e +5 por upgrade',
+                ingles: '+1 Egg, +5 Base Chickens and +5 per upgrade'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 1,
+                    recursoAfetado: ['egg'],
+                }
+            ],
+            espaco: [
+                {
+                    sinal: '+',
+                    buff: 1,
+                    recursoAfetado: ['egg'],
+                }
+            ],
+        },
+        {
+            idNumber: 409,
+            idName: 'goldEgg',
+            name: 'Gold Egg',
+            preco: '',
+            descricao: {
+                portugues: 'Alimente as galinhas sem usar comida',
+                ingles: 'Feed the chickens without food'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x-',
+                    buff: 0,
+                    recursoAfetado: ['galinha'],
+                }
+            ],
+        },
+        {
+            idNumber: 2157,
+            idName: 'cluckulator',
+            name: 'Cluckulator',
+            preco: '',
+            descricao: {
+                portugues: '-25% de comida para alimentar as galinhas',
+                ingles: '-25% food to feed the chickens'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x-',
+                    buff: 0.75,
+                    recursoAfetado: ['galinha'],
+                }
+            ],
+        },
+        {
+            idNumber: 610,
+            idName: 'speedChicken',
+            name: 'Speed Chicken',
+            preco: '',
+            descricao: {
+                portugues: '-10% no tempo de produção das galinhas',
+                ingles: '-10% in chicken production time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.9,
+                    recursoAfetado: ['galinha'],
+                }
+            ],
+        },
+        {
+            idNumber: 611,
+            idName: 'fatChicken',
+            name: 'Fat Chicken',
+            preco: '',
+            descricao: {
+                portugues: '-10% de comida necessária para as galinhas',
+                ingles: '-10% food needed for the chickens'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x-',
+                    buff: 0.9,
+                    recursoAfetado: ['galinha'],
+                }
+            ],
+        },
+        {
+            idNumber: 612,
+            idName: 'richChicken',
+            name: 'Rich Chicken',
+            preco: '',
+            descricao: {
+                portugues: '+0.1 Ovo',
+                ingles: '+0.1 Egg'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['egg'],
+                }
+            ],
+        },
+        {
+            idNumber: 1114,
+            idName: 'undeadRooster',
+            name: 'Undead Rooster',
+            preco: '',
+            descricao: {
+                portugues: '+0.1 Ovo',
+                ingles: '+0.1 Egg'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['egg'],
+                }
+            ],
+        },
+        {
+            idNumber: 445,
+            idName: 'ayamCemani',
+            name: 'Ayam Cemani',
+            preco: '',
+            descricao: {
+                portugues: '+0.2 Ovos',
+                ingles: '+0.2 Eggs'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.2,
+                    recursoAfetado: ['egg'],
+                }
+            ],
+        },
+        {
+            idNumber: 470,
+            idName: 'elPolloVeloz',
+            name: 'El Pollo Veloz',
+            preco: '',
+            descricao: {
+                portugues: '-2 horas no tempo de produção das galinhas',
+                ingles: '-2 hours in chicken production time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: '-',
+                    buff: 7_200_000,
+                    recursoAfetado: ['galinha'],
+                }
+            ],
+        },
+        {
+            idNumber: 2162,
+            idName: 'alienChicken',
+            name: 'Alien Chicken',
+            preco: '',
+            descricao: {
+                portugues: '+0.1 Pena',
+                ingles: '+0.1 Feather'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['feather'],
+                }
+            ],
+        },
+        {
+            idNumber: 2528,
+            idName: 'janitorChicken',
+            name: 'Janitor Chicken',
+            preco: '',
+            descricao: {
+                portugues: '-5% no tempo de descanso das galinhas',
+                ingles: '-5% chicken sleep time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.95,
+                    recursoAfetado: ['galinha'],
+                }
+            ],
+        },
+        {
+            idNumber: 613,
+            idName: 'rooster',
+            name: 'Rooster',
+            preco: '',
+            descricao: {
+                portugues: 'Dobra as chances de obter Galinhas Mutantes',
+                ingles: 'Double the chances of getting Mutant Chickens'
+            },
+            possui: false,
+            rng: [
+                {
+                    sinal: 'x',
+                    buff: 2,
+                    recursoAfetado: ['galinha'],
+                }
+            ],
+        },
+        {
+            idNumber: 2201,
+            idName: 'summerChicken',
+            name: 'Summer Chicken',
+            preco: '',
+            descricao: {
+                portugues: 'Galinhas não ficam doentes no Verão',
+                ingles: 'Chickens don\'t get sick in Summer'
+            },
+            possui: false,
+            doente: [
+                {
+                    sinal: 'x',
+                    buff: 0,
+                    recursoAfetado: ['galinha'],
+                }
+            ],
+        },
+        {
+            idNumber: '',
+            idName: 'sleepyChicken',
+            name: 'Sleepy Chicken',
+            preco: '',
+            descricao: {
+                portugues: 'Previne doenças das galinhas durante o Outono',
+                ingles: 'Prevent chicken sickness during fall'
+            },
+            possui: false,
+            doente: [
+                {
+                    sinal: 'x',
+                    buff: 0,
+                    recursoAfetado: ['galinha'],
+                }
+            ],
+        },
+
+        // VACAS
+        {
+            idNumber: 2194,
+            idName: 'barnBlueprint',
+            name: 'Barn Blueprint',
+            preco: '',
+            descricao: {
+                portugues: '+5 animais por nível do Celeiro',
+                ingles: '+5 animals per level of the Barn'
+            },
+            possui: false,
+            espaco: [
+                {
+                    sinal: '+',
+                    buff: 5,
+                    recursoAfetado: ['vaca'],
+                }
+            ],
+        },
+        {
+            idNumber: 2525,
+            idName: 'babyCow',
+            name: 'Baby Cow',
+            preco: '',
+            descricao: {
+                portugues: '+10 XP de vaca por carinho',
+                ingles: '+10 cow xp from affection'
+            },
+            possui: false,
+            carinho: [
+                {
+                    sinal: '+',
+                    buff: 10,
+                    recursoAfetado: ['vaca'],
+                }
+            ],
+        },
+        {
+            idNumber: 2191,
+            idName: 'mammoth',
+            name: 'Mammoth',
+            preco: '',
+            descricao: {
+                portugues: '-25% no tempo de descanso das vacas',
+                ingles: '-25% in Cow Sleep Time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.75,
+                    recursoAfetado: ['vaca'],
+                }
+            ],
+        },
+        {
+            idNumber: 2256,
+            idName: 'drCow',
+            name: 'Dr Cow',
+            preco: '',
+            descricao: {
+                portugues: '-5% no custo de alimentação das vacas',
+                ingles: '5% less feeding cost for cows'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x-',
+                    buff: 0.95,
+                    recursoAfetado: ['vaca'],
+                }
+            ],
+        },
+        {
+            idNumber: 2178,
+            idName: 'goldenCow',
+            name: 'Golden Cow',
+            preco: '',
+            descricao: {
+                portugues: 'Alimente as vacas sem usar comida',
+                ingles: 'Feed the cows without food'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x-',
+                    buff: 0,
+                    recursoAfetado: ['vaca'],
+                }
+            ],
+        },
+        {
+            idNumber: 1540,
+            idName: 'longhornCowfish',
+            name: 'Longhorn Cowfish',
+            preco: '',
+            descricao: {
+                portugues: '+0.2 Leite',
+                ingles: '+0.2 Milk'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.2,
+                    recursoAfetado: ['milk'],
+                }
+            ],
+        },
+        {
+            idNumber: 2163,
+            idName: 'mootant',
+            name: 'Mootant',
+            preco: '',
+            descricao: {
+                portugues: '+0.1 Couro',
+                ingles: '+0.1 Leather'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['leather'],
+                }
+            ],
+        },
+        {
+            idNumber: 2155,
+            idName: 'moover',
+            name: 'Moo-ver',
+            preco: '',
+            descricao: {
+                portugues: '+0.25 Couro',
+                ingles: '+0.25 Leather'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.25,
+                    recursoAfetado: ['leather'],
+                }
+            ],
+        },
+        {
+            idNumber: 2199,
+            idName: 'frozenCow',
+            name: 'Frozen Cow',
+            preco: '',
+            descricao: {
+                portugues: 'Vacas não ficam doentes no Inverno',
+                ingles: 'Cows don\'t get sick in Winter'
+            },
+            possui: false,
+            doente: [
+                {
+                    sinal: '',
+                    buff: 0,
+                    recursoAfetado: ['vaca'],
+                }
+            ],
+        },
+
+        // OVELHAS
+        {
+            idNumber: 2193,
+            idName: 'goldenSheep',
+            name: 'Golden Sheep',
+            preco: '',
+            descricao: {
+                portugues: 'Alimente as ovelhas sem usar comida',
+                ingles: 'Feed the sheep without food'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x-',
+                    buff: 0,
+                    recursoAfetado: ['ovelha'],
+                }
+            ],
+        },
+        {
+            idNumber: 406,
+            idName: 'farmDog',
+            name: 'Farm Dog',
+            preco: '',
+            descricao: {
+                portugues: '-25% no tempo de produção das ovelhas',
+                ingles: '-25% in sheep production time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.75,
+                    recursoAfetado: ['ovelha'],
+                }
+            ],
+        },
+        {
+            idNumber: '',
+            idName: 'astronautSheep',
+            name: 'Astronaut Sheep',
+            preco: '',
+            descricao: {
+                portugues: 'Aumenta a produção de Lã em +0.1',
+                ingles: 'Increase Wool Yield +0.1'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['wool'],
+                }
+            ],
+        },
+        {
+            idNumber: 2164,
+            idName: 'toxicTuft',
+            name: 'Toxic Tuft',
+            preco: '',
+            descricao: {
+                portugues: '+0.1 Lã Merino',
+                ingles: '+0.1 Merino Wool'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['merinoWool'],
+                }
+            ],
+        },
+        {
+            idNumber: 2200,
+            idName: 'frozenSheep',
+            name: 'Frozen Sheep',
+            preco: '',
+            descricao: {
+                portugues: 'Ovelhas não ficam doentes no Inverno',
+                ingles: 'Sheep don\'t get sick in Winter'
+            },
+            possui: false,
+            doente: [
+                {
+                    sinal: '',
+                    buff: 0,
+                    recursoAfetado: ['ovelha'],
+                }
+            ],
+        },
+        {
+            idNumber: 2257,
+            idName: 'nurseSheep',
+            name: 'Nurse Sheep',
+            preco: '',
+            descricao: {
+                portugues: 'Ovelhas não ficam doentes durante o Verão',
+                ingles: 'Sheeps cannot get sick during summer'
+            },
+            possui: false,
+            doente: [
+                {
+                    sinal: '',
+                    buff: 0,
+                    recursoAfetado: ['ovelha'],
+                }
+            ],
+        },
     ]
+    
 };
 
 let todosCollectibles = [
@@ -1760,7 +2345,8 @@ let todosCollectibles = [
     ...collectibles.fruits, 
     ...collectibles.greenhouse, 
     ...collectibles.trees, 
-    ...collectibles.minerals
+    ...collectibles.minerals,
+    ...collectibles.animais
 ];
 
 let mapaDeTodosCollectibles = {}
@@ -2592,6 +3178,224 @@ let wearables = {
             ]
         },
     ],
+    animais: [
+        {
+            idNumber: 164,
+            idName: 'cattlegrim',
+            name: 'Cattlegrim',
+            preco: '',
+            descricao: {
+                portugues: '+0.25 de produção animal',
+                ingles: '+0.25 in animal production'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.25,
+                    recursoAfetado: ['egg', 'feather', 'milk', 'leather', 'wool', 'merinoWool'],
+                }
+            ]
+        },
+        {
+            idNumber: 456,
+            idName: 'medicApron',
+            name: 'Medic Apron',
+            preco: '',
+            descricao: {
+                portugues: 'Remédios pela metade do preço',
+                ingles: 'Half Price Medicine'
+            },
+            possui: false,
+            doente: [
+                {
+                    sinal: 'x',
+                    buff: 0.5,
+                    recursoAfetado: ['galinha', 'vaca', 'ovelha'],
+                }
+            ]
+        },
+        {
+            idNumber: 461,
+            idName: 'oracleSyringe',
+            name: 'Oracle Syringe',
+            preco: '',
+            descricao: {
+                portugues: 'Cure os animais gratuitamente',
+                ingles: 'Heal animals for free'
+            },
+            possui: false,
+            doente: [
+                {
+                    sinal: 'x',
+                    buff: 0,
+                    recursoAfetado: ['galinha', 'vaca', 'ovelha'],
+                }
+            ]
+        },
+        {
+            idNumber: 403,
+            idName: 'chickenSuit',
+            name: 'Chicken Suit',
+            preco: '',
+            descricao: {
+                portugues: '+1 Pena',
+                ingles: '+1 Feather'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 1,
+                    recursoAfetado: ['feather'],
+                }
+            ]
+        },
+        {
+            idNumber: 400,
+            idName: 'infernalBullwhip',
+            name: 'Infernal Bullwhip',
+            preco: '',
+            descricao: {
+                portugues: '-50% de comida para os animais da Barn',
+                ingles: '-50% food for Barn animals'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x-',
+                    buff: 0.5,
+                    recursoAfetado: ['vaca', 'ovelha'],
+                }
+            ]
+        },
+        {
+            idNumber: 408,
+            idName: 'milkApron',
+            name: 'Milk Apron',
+            preco: '',
+            descricao: {
+                portugues: '+0.5 Leite',
+                ingles: '+0.5 Milk'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.5,
+                    recursoAfetado: ['milk'],
+                }
+            ]
+        },
+        {
+            idNumber: 407,
+            idName: 'cowbellNecklace',
+            name: 'Cowbell Necklace',
+            preco: '',
+            descricao: {
+                portugues: '+2 Leites',
+                ingles: '+2 Milk'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 2,
+                    recursoAfetado: ['milk'],
+                }
+            ]
+        },
+        {
+            idNumber: '',
+            idName: 'trainingWhistle',
+            name: 'Training Whistle',
+            preco: '',
+            descricao: {
+                portugues: '+1 Couro',
+                ingles: '+1 Leather'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 1,
+                    recursoAfetado: ['leather'],
+                }
+            ]
+        },
+        {
+            idNumber: 406,
+            idName: 'dreamScarf',
+            name: 'Dream Scarf',
+            preco: '',
+            descricao: {
+                portugues: '-20% no tempo de produção da Ovelha',
+                ingles: '-20% in sheep production time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.8,
+                    recursoAfetado: ['ovelha'],
+                }
+            ]
+        },
+        {
+            idNumber: 401,
+            idName: 'whiteSheepOnesie',
+            name: 'White Sheep Onesie',
+            preco: '',
+            descricao: {
+                portugues: '+0.25 Lã',
+                ingles: '+0.25 Wool'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.25,
+                    recursoAfetado: ['wool'],
+                }
+            ]
+        },
+        {
+            idNumber: 402,
+            idName: 'blackSheepOnesie',
+            name: 'Black Sheep Onesie',
+            preco: '',
+            descricao: {
+                portugues: '+2 Lãs',
+                ingles: '+2 Wool'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 2,
+                    recursoAfetado: ['wool'],
+                }
+            ]
+        },
+        {
+            idNumber: 405,
+            idName: 'merinoJumper',
+            name: 'Merino Jumper',
+            preco: '',
+            descricao: {
+                portugues: '+1 Lã Merino',
+                ingles: '+1 Merino Wool'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 2,
+                    recursoAfetado: ['merinoWool'],
+                }
+            ]
+        },
+    ],
     terouso: [
         {
             idNumber: 369,
@@ -2641,7 +3445,8 @@ let todosWearables = [
     ...wearables.greenhouse,
     ...wearables.minerals,
     ...wearables.terouso,
-    ...wearables.pesca
+    ...wearables.pesca,
+    ...wearables.animais
 ];
 
 //=============================================================================================================================================================================

@@ -56,8 +56,9 @@ function cardResultadoTotalDosCombosJuntos() {
     let lucroDasFrutas24h = ((vinteQuatroHoras / resultadoTempoTotalFrutas) * resultadoComboFruta) || 0;
     let lucroDaGreenhouse24h = ((vinteQuatroHoras / resultadoTempoTotalGreenhouse) * resultadoComboGreenhouse) || 0;
     let lucroDaMinerios24h = resultadoComboMinerais || 0;
+    let lucroDosAnimais24h = resultadoComboGalinhasPorDia + resultadoComboVacasPorDia + resultadoComboOvelhasPorDia;
 
-    let ganhoTotal = Number(lucroDasCrops24h + lucroDaCropMachine24h + lucroDasFrutas24h + lucroDaGreenhouse24h + lucroDaMinerios24h - custoTotalDeGemsEmFlower);
+    let ganhoTotal = Number(lucroDasCrops24h + lucroDaCropMachine24h + lucroDasFrutas24h + lucroDaGreenhouse24h + lucroDaMinerios24h + lucroDosAnimais24h - custoTotalDeGemsEmFlower);
 
     let idiomaComboTotal = traducoesCardsComboTotal[idioma];
 
@@ -114,6 +115,16 @@ function cardResultadoTotalDosCombosJuntos() {
                 </p>
             </div>
 
+            <h1>+</h1>
+
+            <div class="card-total-crops">
+                <h3>${idiomaComboTotal.animais}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroDosAnimais24h.toFixed(2)}<br>
+                    <img src="./icones/usdc.png" class="crop-img">${(lucroDosAnimais24h * precoDoFlower).toFixed(2)}
+                </p>
+            </div>
+
             <h1>-</h1>
 
             <div class="card-total-crops">
@@ -138,6 +149,10 @@ function cardResultadoTotalDosCombosJuntos() {
         `;
 
     //===================================================================================================================================
+
+    //fazendo a média de Semanal
+    let lucroDosAnimaisSemanal = resultadoComboGalinhasSemanal + resultadoComboVacasSemanal + resultadoComboOvelhasSemanal;
+    let ganhoTotalSemanal = Number(((lucroDasCrops24h + lucroDaCropMachine24h + lucroDasFrutas24h + lucroDaGreenhouse24h + lucroDaMinerios24h - custoTotalDeGemsEmFlower) * 7) + lucroDosAnimaisSemanal)
 
     let cardResultadosTotais7d = `
         <h1>${idiomaComboTotal.mediaSemanal}</h1>
@@ -192,6 +207,16 @@ function cardResultadoTotalDosCombosJuntos() {
                 </p>
             </div>
 
+            <h1>+</h1>
+
+            <div class="card-total-crops">
+                <h3>${idiomaComboTotal.animais}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroDosAnimaisSemanal.toFixed(2)}<br>
+                    <img src="./icones/usdc.png" class="crop-img">${(lucroDosAnimaisSemanal * precoDoFlower).toFixed(2)}
+                </p>
+            </div>
+
             <h1>-</h1>
 
             <div class="card-total-crops">
@@ -207,8 +232,8 @@ function cardResultadoTotalDosCombosJuntos() {
             <div class="card-total-crops">
                 <h3>${idiomaComboTotal.lucroTotal}</h3>
                 <p>
-                    <img src="./icones/flower.png" class="crop-img">${(ganhoTotal * 7).toFixed(2)}<br>
-                    <img src="./icones/usdc.png" class="crop-img">${((ganhoTotal * precoDoFlower) * 7).toFixed(2)}
+                    <img src="./icones/flower.png" class="crop-img">${ganhoTotalSemanal.toFixed(2)}<br>
+                    <img src="./icones/usdc.png" class="crop-img">${(ganhoTotalSemanal * precoDoFlower).toFixed(2)}
                 </p>
             </div>
 
@@ -233,6 +258,7 @@ traducoesCardsComboTotal = {
         frutas: 'Frutas',
         greenhouse: 'Greenhouse',
         minerais: 'Minerais',
+        animais: 'Animais',
         restock: 'Gasto com Restock',
         lucroTotal: 'Lucro Total',
     },
@@ -244,6 +270,7 @@ traducoesCardsComboTotal = {
         frutas: 'Fruits',
         greenhouse: 'Greenhouse',
         minerais: 'Minerals',
+        animais: 'Animals',
         restock: 'Restock Cost',
         lucroTotal: 'Total Profit',
     }

@@ -11,7 +11,7 @@
 
     <!-- ESQUERDA: Título + Select de idioma -->
     <div class="header-left">
-      <h1 class="title-bar">🌻 Combo Maker <span>v0.2.3</span></h1>
+      <h1 class="title-bar">🌻 Combo Maker <span>v0.2.4</span></h1>
 
       <div class="select-idioma">
         <label for="opcao-idioma">
@@ -108,6 +108,9 @@
           <button class="sub-tab-btn" data-sub-tab="skills-minerals-sub">
             <img src="./icones/skillMineral.png" alt="Ícone Mineral" class="icon-btn"> Minerals
           </button>
+          <button class="sub-tab-btn" data-sub-tab="skills-animals-sub">
+            <img src="./icones/skillAnimal.png" alt="Ícone Animal" class="icon-btn"> Animals
+          </button>
           <button class="sub-tab-btn" data-sub-tab="skills-machinery-sub">
             <img src="./icones/skillMachinery.png" alt="Ícone Machinery" class="icon-btn"> Machinery
           </button>
@@ -166,6 +169,16 @@
             <p class="texto-skill-desbloquear" id="tab-skill-mineral-tier3"></p>
           </div>
         </div>
+        <div class="sub-tab-content" id="skills-animals-sub">
+          <span id="tab-skill-animal">Animals</span>
+          <div id="skills-animal-tier1-container" class="skill-container"></div>
+          <div id="skills-animal-tier2-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-animal-tier2"></p>
+          </div>
+          <div id="skills-animal-tier3-container" class="skill-container">
+            <p class="texto-skill-desbloquear" id="tab-skill-animal-tier3"></p>
+          </div>
+        </div>
         <div class="sub-tab-content" id="skills-machinery-sub">
           <span id="tab-skill-machinery">Machinery</span>
           <div id="skills-machinery-tier1-container" class="skill-container"></div>
@@ -198,6 +211,9 @@
             <img src="./icones/skillTree.png" alt="Ícone Tree" class="icon-btn">Tree
             <img src="./icones/skillMineral.png" alt="Ícone Mineral" class="icon-btn">Minerals
           </button>
+          <button class="sub-tab-btn" data-sub-tab="collectibles-animais-sub">
+            <img src="./icones/skillAnimal.png" alt="Ícone Animal" class="icon-btn">Animals
+          </button>
         </div>
 
         <div class="sub-tab-content active" id="collectibles-ferreiro-sub">
@@ -214,6 +230,9 @@
         </div>
         <div class="sub-tab-content" id="collectibles-minerals-sub">
           <div id="collectibles-container-trees-minerals" class="nft-container"></div>
+        </div>
+        <div class="sub-tab-content" id="collectibles-animais-sub">
+          <div id="collectibles-container-animais" class="nft-container"></div>
         </div>
       </section>
 
@@ -236,6 +255,9 @@
           <button class="sub-tab-btn" data-sub-tab="wearables-minerals-sub">
             <img src="./icones/skillMineral.png" alt="Ícone Mineral" class="icon-btn">Minerals
           </button>
+          <button class="sub-tab-btn" data-sub-tab="wearables-animais-sub">
+            <img src="./icones/skillAnimal.png" alt="Ícone Animal" class="icon-btn">Animals
+          </button>
         </div>
 
         <div class="sub-tab-content active" id="wearables-factions-sub">
@@ -252,6 +274,9 @@
         </div>
         <div class="sub-tab-content" id="wearables-minerals-sub">
           <div id="wearables-container-minerals" class="nft-container"></div>
+        </div>
+        <div class="sub-tab-content" id="wearables-animais-sub">
+          <div id="wearables-container-animais" class="nft-container"></div>
         </div>
       </section>
 
@@ -413,6 +438,7 @@
     <div class="tabs-secundarias-buttons">
       <button class="tab2-btn active" data-tab2="cropsTabPrincipal">Crops / CM / Fruits / GH</button>
       <button class="tab2-btn" data-tab2="minerios-tab2">Minerals</button>
+      <button class="tab2-btn" data-tab2="animais-tab2">Animals</button>
       <button class="tab2-btn" data-tab2="cropToCoins-tab2">Crop to Coins</button>
     </div>
 
@@ -703,6 +729,268 @@
     </section>
 
     <!-- ===================================================================== -->
+    <!-- ============================== ANIMAIS ============================== -->
+    <!-- ===================================================================== -->
+
+    <section id="animais-tab2" class="tab2-content">
+
+      <!-- ======================= SUBTABS DE ANIMAIS ======================= -->
+      <div class="subtabs-animais-buttons">
+        <button id="subGalinhas" class="subtab-btn active" data-subtab="galinhas-tab2">Galinhas</button>
+        <button id="subVacas" class="subtab-btn" data-subtab="vacas-tab2">Vacas</button>
+        <button id="subOvelhas" class="subtab-btn" data-subtab="ovelhas-tab2">Ovelhas</button>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- ===============================  GALINHAS  =============================== -->
+      <!-- ===================================================================== -->
+
+      <section id="galinhas-tab2" class="subtab-content active">
+        
+        <!-- ======================= SELECTS DE GALINHAS ======================= -->
+
+        <section class="linha-selects">
+
+          <div class="select-group">
+            <label id="comidaUsadaAteLevel3" for="galinha-comida-ate-level3">Até level 3:</label>
+            <select id="galinha-comida-ate-level3">
+              <option value="kernelBlend">Kernel Blend</option>
+              <option value="hay">Hay</option>
+              <option value="nutriBarley">NutriBarley</option>
+              <option value="mixedGrain">Mixed Grain</option>
+              <option value="omnifeed">Omnifeed</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label id="comidaUsadaDoLevel4ao6" for="galinha-comida-level4ao6">Level 4 ao 6:</label>
+            <select id="galinha-comida-level4ao6">
+              <option value="hay">Hay</option>
+              <option value="kernelBlend">Kernel Blend</option>
+              <option value="nutriBarley">NutriBarley</option>
+              <option value="mixedGrain">Mixed Grain</option>
+              <option value="omnifeed">Omnifeed</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label id="comidaUsadaDoLevel7ao10" for="galinha-comida-level7ao10">Level 7 ao 10:</label>
+            <select id="galinha-comida-level7ao10">
+              <option value="nutriBarley">NutriBarley</option>
+              <option value="kernelBlend">Kernel Blend</option>
+              <option value="hay">Hay</option>
+              <option value="mixedGrain">Mixed Grain</option>
+              <option value="omnifeed">Omnifeed</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label id="comidaUsadaDoLevel11ao15" for="galinha-comida-level11ao15">Level 11 ao 15 :</label>
+            <select id="galinha-comida-level11ao15">
+              <option value="mixedGrain">Mixed Grain</option>
+              <option value="kernelBlend">Kernel Blend</option>
+              <option value="hay">Hay</option>
+              <option value="nutriBarley">NutriBarley</option>
+              <option value="omnifeed">Omnifeed</option>
+            </select>
+          </div>
+
+          <button id="limparInfosGalinhas" onclick="limparGalinhas()">Limpar Galinhas</button>
+
+        </section>
+
+        <section class="linha-selects">
+
+          <div class="select-group">
+            <label id="tempoDasGalinhas">Cooldown das Galinhas:</label>
+          </div>
+
+          <div class="select-group">
+            <label id="precoRacao">Preço da ração:</label>
+          </div>
+
+          <div class="select-group">
+            <label id="valorDoOvo">Ovos no Market:</label>
+          </div>
+          <div class="select-group">
+            <label id="valorDaPena">Penas no Market:</label>
+          </div>
+          
+          
+        </section>
+
+        <!-- Área onde a tabela de crops será inserida -->
+        <div id="saida-das-galinhas"></div>
+
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- ===============================  VACAS  =============================== -->
+      <!-- ===================================================================== -->
+
+      <section id="vacas-tab2" class="subtab-content">
+        
+        <!-- ======================= SELECTS DE VACAS ======================= -->
+
+        <section class="linha-selects">
+
+          <div class="select-group">
+            <label id="comidaVacaAteLevel3" for="vaca-comida-ate-level3">Até level 3:</label>
+            <select id="vaca-comida-ate-level3">
+              <option value="kernelBlend">Kernel Blend</option>
+              <option value="hay">Hay</option>
+              <option value="nutriBarley">NutriBarley</option>
+              <option value="mixedGrain">Mixed Grain</option>
+              <option value="omnifeed">Omnifeed</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label id="comidaVacaDoLevel4ao6" for="vaca-comida-level4ao6">Level 4 ao 6:</label>
+            <select id="vaca-comida-level4ao6">
+              <option value="hay">Hay</option>
+              <option value="kernelBlend">Kernel Blend</option>
+              <option value="nutriBarley">NutriBarley</option>
+              <option value="mixedGrain">Mixed Grain</option>
+              <option value="omnifeed">Omnifeed</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label id="comidaVacaDoLevel7ao10" for="vaca-comida-level7ao10">Level 7 ao 10:</label>
+            <select id="vaca-comida-level7ao10">
+              <option value="nutriBarley">NutriBarley</option>
+              <option value="kernelBlend">Kernel Blend</option>
+              <option value="hay">Hay</option>
+              <option value="mixedGrain">Mixed Grain</option>
+              <option value="omnifeed">Omnifeed</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label id="comidaVacaDoLevel11ao15" for="vaca-comida-level11ao15">Level 11 ao 15 :</label>
+            <select id="vaca-comida-level11ao15">
+              <option value="mixedGrain">Mixed Grain</option>
+              <option value="kernelBlend">Kernel Blend</option>
+              <option value="hay">Hay</option>
+              <option value="nutriBarley">NutriBarley</option>
+              <option value="omnifeed">Omnifeed</option>
+            </select>
+          </div>
+
+          <button id="limparInfosVacas" onclick="limparVacas()">Limpar Vacas</button>
+
+        </section>
+
+        <section class="linha-selects">
+
+          <div class="select-group">
+            <label id="tempoDasVacas">Cooldown das Vacas:</label>
+          </div>
+
+          <div class="select-group">
+            <label id="precoRacaoVaca">Preço da ração:</label>
+          </div>
+
+          <div class="select-group">
+            <label id="valorDoLeite">Leite no Market:</label>
+          </div>
+          <div class="select-group">
+            <label id="valorDoCouro">Couro no Market:</label>
+          </div>
+          
+          
+        </section>
+
+        <!-- Área onde a tabela de crops será inserida -->
+        <div id="saida-das-vacas"></div>
+
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- ===============================  OVELHAS  =============================== -->
+      <!-- ===================================================================== -->
+
+      <section id="ovelhas-tab2" class="subtab-content">
+        
+        <!-- ======================= SELECTS DE OVELHAS ======================= -->
+
+        <section class="linha-selects">
+
+          <div class="select-group">
+            <label id="comidaOvelhaAteLevel3" for="ovelha-comida-ate-level3">Até level 3:</label>
+            <select id="ovelha-comida-ate-level3">
+              <option value="kernelBlend">Kernel Blend</option>
+              <option value="hay">Hay</option>
+              <option value="nutriBarley">NutriBarley</option>
+              <option value="mixedGrain">Mixed Grain</option>
+              <option value="omnifeed">Omnifeed</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label id="comidaOvelhaDoLevel4ao6" for="ovelha-comida-level4ao6">Level 4 ao 6:</label>
+            <select id="ovelha-comida-level4ao6">
+              <option value="hay">Hay</option>
+              <option value="kernelBlend">Kernel Blend</option>
+              <option value="nutriBarley">NutriBarley</option>
+              <option value="mixedGrain">Mixed Grain</option>
+              <option value="omnifeed">Omnifeed</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label id="comidaOvelhaDoLevel7ao10" for="ovelha-comida-level7ao10">Level 7 ao 10:</label>
+            <select id="ovelha-comida-level7ao10">
+              <option value="nutriBarley">NutriBarley</option>
+              <option value="kernelBlend">Kernel Blend</option>
+              <option value="hay">Hay</option>
+              <option value="mixedGrain">Mixed Grain</option>
+              <option value="omnifeed">Omnifeed</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label id="comidaOvelhaDoLevel11ao15" for="ovelha-comida-level11ao15">Level 11 ao 15 :</label>
+            <select id="ovelha-comida-level11ao15">
+              <option value="mixedGrain">Mixed Grain</option>
+              <option value="kernelBlend">Kernel Blend</option>
+              <option value="hay">Hay</option>
+              <option value="nutriBarley">NutriBarley</option>
+              <option value="omnifeed">Omnifeed</option>
+            </select>
+          </div>
+
+          <button id="limparInfosOvelhas" onclick="limparOvelhas()">Limpar Ovelhas</button>
+
+        </section>
+
+        <section class="linha-selects">
+
+          <div class="select-group">
+            <label id="tempoDasOvelhas">Cooldown das Ovelhas:</label>
+          </div>
+
+          <div class="select-group">
+            <label id="precoRacaoOvelha">Preço da ração:</label>
+          </div>
+
+          <div class="select-group">
+            <label id="valorDaLa">Lã no Market:</label>
+          </div>
+          <div class="select-group">
+            <label id="valorDaLaMerino">Lã Merino no Market:</label>
+          </div>
+          
+        </section>
+
+        <!-- Área onde a tabela de crops será inserida -->
+        <div id="saida-das-ovelhas"></div>
+
+      </section>
+    </section>
+
+    <!-- ===================================================================== -->
     <!-- ============================== CROP TO COINS ============================== -->
     <!-- ===================================================================== -->
 
@@ -724,6 +1012,7 @@
   
   <!-- Scripts -->
   <script src="./recursos.js"></script>
+  <script src="./animais.js"></script>
   <script src="./skills.js"></script>
   <script src="./nfts.js"></script>
   <script src="./buffsTemporarios.js"></script>
@@ -735,6 +1024,7 @@
   <script src="./opcoesSelects.js"></script>
   <script src="./tabelaCrops.js"></script>
   <script src="./tabelaMinerios.js"></script>
+  <script src="./tabelaAnimais.js"></script>
   <script src="./tabelaCropToCoins.js"></script>
   <script src="./resultadoTotalCombo.js"></script>
   <script src="./statusFarm.js"></script>

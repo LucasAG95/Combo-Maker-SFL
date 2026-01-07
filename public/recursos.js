@@ -363,6 +363,7 @@ let mapaDosValoresDoMarket = {}; // cria objeto vazio para guardar NFTs por id
 valorDosRecursosMarket.forEach(valorDoMarket => { //vai verificar e organizar por id das NFTs no mapaDeCollectibles, foi oque entendi
     mapaDosValoresDoMarket[valorDoMarket.id] = valorDoMarket; // adiciona cada NFT no objeto usando o id como chave
 });
+console.log(mapaDosValoresDoMarket);
 
 //==============================================================================================================================================================================    
 

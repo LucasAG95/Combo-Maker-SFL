@@ -68,6 +68,65 @@ function mudarIdioma() {
     document.getElementById('tipo-de-calculo-greenhouse').options[1].innerHTML = `${opcaoDeIdiomas.calcularGHPorRodada}`;
     document.getElementById('limparInfosGreenhouse').innerHTML = `${opcaoDeIdiomas.botaoLimparGH}`;
 
+    //Animais
+    document.getElementById('subGalinhas').innerHTML = `${opcaoDeIdiomas.galinhas}`;
+    document.getElementById('subVacas').innerHTML = `${opcaoDeIdiomas.vacas}`;
+    document.getElementById('subOvelhas').innerHTML = `${opcaoDeIdiomas.ovelhas}`;
+
+    //Galinhas
+    document.getElementById('precoRacao').innerHTML = `(${opcaoDeIdiomas.precoRacao} ➜ <img src="./animais/kernelBlend.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor).toFixed(4)} | 
+        <img src="./animais/hay.png" class="crop-img">${Number(mapaDosValoresDoMarket['wheat'].valor).toFixed(4)} | 
+        <img src="./animais/nutriBarley.png" class="crop-img">${Number(mapaDosValoresDoMarket['barley'].valor).toFixed(4)} | 
+        <img src="./animais/mixedGrain.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor + mapaDosValoresDoMarket['wheat'].valor + mapaDosValoresDoMarket['barley'].valor).toFixed(4)} |
+        <img src="./animais/kaleMix.png" class="crop-img">${Number(mapaDosValoresDoMarket['kale'].valor * 3).toFixed(4)} |
+        <img src="./animais/omnifeed.png" class="crop-img">${Number(precoDaGemEmFlower).toFixed(4)})`
+
+    document.getElementById('comidaUsadaAteLevel3').innerHTML = `${opcaoDeIdiomas.comidaUsadaAteLevel3}:`;
+    document.getElementById('comidaUsadaDoLevel4ao6').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel4ao6}:`;
+    document.getElementById('comidaUsadaDoLevel7ao10').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel7ao10}:`;
+    document.getElementById('comidaUsadaDoLevel11ao15').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel11ao15}:`;
+    
+    document.getElementById('tempoDasGalinhas').innerHTML = `(${opcaoDeIdiomas.tempoDaGalinha}: <img src="./icones/tempo.png" class="crop-img">${formatarTempo(animais.galinhas[0].tempo)})`;
+    document.getElementById('valorDoOvo').innerHTML = `(${opcaoDeIdiomas.valorDoOvo} <img src="./animais/egg.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['egg'].valor).toFixed(5)})`;
+    document.getElementById('valorDaPena').innerHTML = `(${opcaoDeIdiomas.valorDaPena} <img src="./animais/feather.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['feather'].valor).toFixed(5)})`;
+    document.getElementById('limparInfosGalinhas').innerHTML = `${opcaoDeIdiomas.limparGalinhas}`;
+
+    //Vacas
+    document.getElementById('precoRacaoVaca').innerHTML = `(${opcaoDeIdiomas.precoRacao} ➜ <img src="./animais/kernelBlend.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor).toFixed(4)} | 
+        <img src="./animais/hay.png" class="crop-img">${Number(mapaDosValoresDoMarket['wheat'].valor).toFixed(4)} | 
+        <img src="./animais/nutriBarley.png" class="crop-img">${Number(mapaDosValoresDoMarket['barley'].valor).toFixed(4)} | 
+        <img src="./animais/mixedGrain.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor + mapaDosValoresDoMarket['wheat'].valor + mapaDosValoresDoMarket['barley'].valor).toFixed(4)} |
+        <img src="./animais/kaleMix.png" class="crop-img">${Number(mapaDosValoresDoMarket['kale'].valor * 3).toFixed(4)} |
+        <img src="./animais/omnifeed.png" class="crop-img">${Number(precoDaGemEmFlower).toFixed(4)})`
+
+    document.getElementById('comidaVacaAteLevel3').innerHTML = `${opcaoDeIdiomas.comidaUsadaAteLevel3}:`;
+    document.getElementById('comidaVacaDoLevel4ao6').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel4ao6}:`;
+    document.getElementById('comidaVacaDoLevel7ao10').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel7ao10}:`;
+    document.getElementById('comidaVacaDoLevel11ao15').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel11ao15}:`;
+    
+    document.getElementById('tempoDasVacas').innerHTML = `(${opcaoDeIdiomas.tempoDaVaca}: <img src="./icones/tempo.png" class="crop-img">${formatarTempo(animais.vacas[0].tempo)})`;
+    document.getElementById('valorDoLeite').innerHTML = `(${opcaoDeIdiomas.valorDoLeite} <img src="./animais/milk.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['milk'].valor).toFixed(5)})`;
+    document.getElementById('valorDoCouro').innerHTML = `(${opcaoDeIdiomas.valorDoCouro} <img src="./animais/leather.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['leather'].valor).toFixed(5)})`;
+    document.getElementById('limparInfosVacas').innerHTML = `${opcaoDeIdiomas.limparVacas}`;
+
+    //Ovelhas
+    document.getElementById('precoRacaoOvelha').innerHTML = `(${opcaoDeIdiomas.precoRacao} ➜ <img src="./animais/kernelBlend.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor).toFixed(4)} | 
+        <img src="./animais/hay.png" class="crop-img">${Number(mapaDosValoresDoMarket['wheat'].valor).toFixed(4)} | 
+        <img src="./animais/nutriBarley.png" class="crop-img">${Number(mapaDosValoresDoMarket['barley'].valor).toFixed(4)} | 
+        <img src="./animais/mixedGrain.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor + mapaDosValoresDoMarket['wheat'].valor + mapaDosValoresDoMarket['barley'].valor).toFixed(4)} |
+        <img src="./animais/kaleMix.png" class="crop-img">${Number(mapaDosValoresDoMarket['kale'].valor * 3).toFixed(4)} |
+        <img src="./animais/omnifeed.png" class="crop-img">${Number(precoDaGemEmFlower).toFixed(4)})`
+
+    document.getElementById('comidaOvelhaAteLevel3').innerHTML = `${opcaoDeIdiomas.comidaUsadaAteLevel3}:`;
+    document.getElementById('comidaOvelhaDoLevel4ao6').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel4ao6}:`;
+    document.getElementById('comidaOvelhaDoLevel7ao10').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel7ao10}:`;
+    document.getElementById('comidaOvelhaDoLevel11ao15').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel11ao15}:`;
+    
+    document.getElementById('tempoDasOvelhas').innerHTML = `(${opcaoDeIdiomas.tempoDaOvelha}: <img src="./icones/tempo.png" class="crop-img">${formatarTempo(animais.ovelhas[0].tempo)})`;
+    document.getElementById('valorDaLa').innerHTML = `(${opcaoDeIdiomas.valorDaLa} <img src="./animais/wool.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['wool'].valor).toFixed(5)})`;
+    document.getElementById('valorDaLaMerino').innerHTML = `(${opcaoDeIdiomas.valorDaLaMerino} <img src="./animais/merinoWool.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['merinoWool'].valor).toFixed(5)})`;
+    document.getElementById('limparInfosOvelhas').innerHTML = `${opcaoDeIdiomas.limparOvelhas}`;
+
     //NFTs, Skills e Buffs Temporarios
     document.getElementById('buffs-temporarios').innerHTML = `${opcaoDeIdiomas.abaBuffsTemporarios}`;
     document.getElementById('total-valor-em-shrines').innerHTML = `${opcaoDeIdiomas.tituloDentroDaAbaBuffsTemporarios}`;
@@ -87,12 +146,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.3`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV019}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV020}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV021}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV022}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV023}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.4`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV020}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV021}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV022}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV023}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV024}`;
 
 
     pontosGastosEmSkills();
@@ -165,6 +224,31 @@ const idiomaEscolhido = {
         calcularGHPorSemente: 'Por Semente',
         calcularGHPorRodada: 'Por Ciclo',
         botaoLimparGH: 'Limpar GH',
+
+        //dados dos Animais
+        precoRacao: 'Preço das Rações',
+        galinhas: 'Galinhas',
+        vacas: 'Vacas',
+        ovelhas: 'Ovelhas',
+        tempoDaGalinha: 'Cooldown das Galinhas',
+        valorDoOvo: 'Preço do Ovo',
+        valorDaPena: 'Preço da Pena',
+        limparGalinhas: 'Limpar Galinhas',
+
+        tempoDaVaca: 'Cooldown das Vacas',
+        valorDoLeite: 'Preço do Leite',
+        valorDoCouro: 'Preço do Couro',
+        limparVacas: 'Limpar Vacas',
+
+        tempoDaOvelha: 'Cooldown das Ovelhas',
+        valorDaLa: 'Preço da Lã',
+        valorDaLaMerino: 'Preço da Lã Merino',
+        limparOvelhas: 'Limpar Ovelhas',
+
+        comidaUsadaAteLevel3: 'Até Level 3',
+        comidaUsadaDoLevel4ao6: 'Level 4 ao 6',
+        comidaUsadaDoLevel7ao10: 'Level 7 ao 10',
+        comidaUsadaDoLevel11ao15: 'Level 11 ao 15',
 
         //dados Crop to Coins
         avisoCropToCoins: '* Aqui você pode comparar quais crops e frutas oferecem as melhores oportunidades de compra em Flower e venda por coins.<br>* Clique na coluna desejada para ordenar os parâmetros em ordem crescente ou decrescente.',
@@ -248,6 +332,30 @@ const idiomaEscolhido = {
         calcularGHPorRodada: 'Per Cycle',
         botaoLimparGH: 'Clear GH',
 
+        //dados Animais
+        precoRacao: 'Feed Price',
+        galinhas: 'Chickens',
+        vacas: 'Cows',
+        ovelhas: 'Sheep',
+        comidaUsadaAteLevel3: 'Up to Level 3',
+        comidaUsadaDoLevel4ao6: 'Level 4 to 6',
+        comidaUsadaDoLevel7ao10: 'Level 7 to 10',
+        comidaUsadaDoLevel11ao15: 'Level 11 to 15',
+        tempoDaGalinha: 'Chicken Cooldown',
+        valorDoOvo: 'Egg Price',
+        valorDaPena: 'Feather Price',
+        limparGalinhas: 'Clear Chickens',
+        tempoDaVaca: 'Cow Cooldown',
+        valorDoLeite: 'Milk Price',
+        valorDoCouro: 'Leather Price',
+        limparVacas: 'Clear Cows',
+        tempoDaOvelha: 'Sheep Cooldown',
+        valorDaLa: 'Wool Price',
+        valorDaLaMerino: 'Merino Wool Price',
+        limparOvelhas: 'Clear Sheep',
+
+
+
         //dados Crop to Coins
         avisoCropToCoins: '* Here you can compare which crops and fruits offer the best opportunities to buy with Flower and sell for coins.<br>* Click on the desired column to sort the parameters in ascending or descending order.',
 
@@ -313,10 +421,22 @@ const idiomaDasAtualizacoes = {
             • Ao clicar em qualquer coluna da aba Crop to Coins, a tabela é ordenada em ordem crescente ou decrescente de acordo com a coluna selecionada.<br>
             • Próxima possível atualização: inclusão dos Buds!`,
 
-            atualizacaoV023: `v0.2.3<br>
-                • Adicionado o Resultado do Combo Completo.<br>
-                • Aqui você pode visualizar sua média diária ou semanal somando todo o combo que você montou e subtraindo a quantidade de restock, trazendo resultados melhores!`,
+        atualizacaoV023: `v0.2.3<br>
+            • Adicionado o Resultado do Combo Completo.<br>
+            • Aqui você pode visualizar sua média diária ou semanal somando todo o combo que você montou e subtraindo a quantidade de restock, trazendo resultados melhores!`,
 
+        atualizacaoV024: `v0.2.4 - Data da Atualização: 06/01/2026 <br><br>
+            • Adicionada a tabela de todos os animais.<br>
+            • Skills, Legacys e NFTs dos animais foram adicionados.<br>
+            • Agora você pode escolher a comida que deseja dar ao seu animal! Basta selecionar as opções. Caso queira testar o Mixed Grain (que usa couve), selecione também a skill Kale Mix.<br>
+            • Adicionado o resultado ao combo completo.<br>
+            • Os animais agora ficam salvos mesmo se você fechar a página e abrir novamente depois.<br>
+            • Nunca leve os resultados como 100% de certeza, pois sou humano e podem ocorrer erros.<br>
+            • Esta parte da tabela foi a mais trabalhosa e mentalmente exaustiva. Apesar de não ter encontrado erros nos testes, ainda pode haver algum. Caso encontre, informe no Discord do fórum — agradeço qualquer feedback!<br>
+            • Próxima atualização planejada: Buds.<br>
+            `
+            
+            ,
     },
     ingles: {
         nomeDaAbaAtualizacao: 'Updates Made',
@@ -363,5 +483,16 @@ const idiomaDasAtualizacoes = {
         atualizacaoV023: `v0.2.3<br>
             • Added the Full Combo Result.<br>
             • Here you can view your daily or weekly average by summing the entire combo you built and subtracting the restock amount, providing better results!`,
+        
+        atualizacaoV024: `v0.2.4 - Update Date: 01/06/2026 <br><br>
+            • Added the table with all animals.<br>
+            • Animal Skills, Legacies, and NFTs have been added.<br>
+            • You can now choose which food you want to give to your animal! Just select the options. If you want to test Mixed Grain (which uses kale), make sure to also select the Kale Mix skill.<br>
+            • Added the result to the full combo calculation.<br>
+            • Animals are now saved even if you close the page and reopen it later.<br>
+            • Never consider the results as 100% accurate, as I am human and errors may occur.<br>
+            • This part of the table was the most time-consuming and mentally exhausting to develop. Although no errors were found during testing, some may still exist. If you find any issues, please report them on the forum’s Discord — any feedback is appreciated!<br>
+            • Next planned update: Buds.<br>
+            `
     }
 };

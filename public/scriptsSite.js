@@ -78,6 +78,72 @@ const SaveManager = {
 
                 // Buffs Temporários
                 temporarios: todosTemporarios.map(t => ({ idName: t.idName, possui: t.possui })),
+
+                // Animais - Quantidade usada e vendida
+                animais: {
+                    galinhas: animais.galinhas.map(g => ({ 
+                        levelAnterior: g.levelAnterior, 
+                        qtdUsada: g.qtdUsada, 
+                        vendida: g.vendida 
+                    })),
+                    vacas: animais.vacas.map(v => ({ 
+                        levelAnterior: v.levelAnterior, 
+                        qtdUsada: v.qtdUsada, 
+                        vendida: v.vendida 
+                    })),
+                    ovelhas: animais.ovelhas.map(o => ({ 
+                        levelAnterior: o.levelAnterior, 
+                        qtdUsada: o.qtdUsada, 
+                        vendida: o.vendida 
+                    })),
+                },
+
+                // Opções de comida dos animais
+                opcoesComidaAnimais: {
+                    galinhas: {
+                        ateLevel3: document.getElementById('galinha-comida-ate-level3')?.value,
+                        level4ao6: document.getElementById('galinha-comida-level4ao6')?.value,
+                        level7ao10: document.getElementById('galinha-comida-level7ao10')?.value,
+                        level11ao15: document.getElementById('galinha-comida-level11ao15')?.value,
+                    },
+                    vacas: {
+                        ateLevel3: document.getElementById('vaca-comida-ate-level3')?.value,
+                        level4ao6: document.getElementById('vaca-comida-level4ao6')?.value,
+                        level7ao10: document.getElementById('vaca-comida-level7ao10')?.value,
+                        level11ao15: document.getElementById('vaca-comida-level11ao15')?.value,
+                    },
+                    ovelhas: {
+                        ateLevel3: document.getElementById('ovelha-comida-ate-level3')?.value,
+                        level4ao6: document.getElementById('ovelha-comida-level4ao6')?.value,
+                        level7ao10: document.getElementById('ovelha-comida-level7ao10')?.value,
+                        level11ao15: document.getElementById('ovelha-comida-level11ao15')?.value,
+                    },
+                },
+
+                // Valores em COINS dos animais (Venda Semanal) - vindos da API
+                valoresAnimaisCoins: {
+                    galinhas: animais.galinhas.map(g => ({ 
+                        levelAnterior: g.levelAnterior,
+                        level: g.level,
+                        coins: g.coins,
+                        coinsFinal: g.coinsFinal,
+                        qtdDeAnimaisQuePodeVender: g.qtdDeAnimaisQuePodeVender
+                    })),
+                    vacas: animais.vacas.map(v => ({ 
+                        levelAnterior: v.levelAnterior,
+                        level: v.level,
+                        coins: v.coins,
+                        coinsFinal: v.coinsFinal,
+                        qtdDeAnimaisQuePodeVender: v.qtdDeAnimaisQuePodeVender
+                    })),
+                    ovelhas: animais.ovelhas.map(o => ({ 
+                        levelAnterior: o.levelAnterior,
+                        level: o.level,
+                        coins: o.coins,
+                        coinsFinal: o.coinsFinal,
+                        qtdDeAnimaisQuePodeVender: o.qtdDeAnimaisQuePodeVender
+                    })),
+                },
             };
 
             localStorage.setItem(this.SAVE_KEY, JSON.stringify(estado));
@@ -288,7 +354,124 @@ const SaveManager = {
                 });
             }
 
-            // 10. Seeds plantadas (depois de tudo configurado)
+            // 10. Animais - Quantidade usada e vendida
+            if (estado.animais) {
+                // Galinhas
+                if (estado.animais.galinhas) {
+                    estado.animais.galinhas.forEach(saved => {
+                        const galinha = animais.galinhas.find(g => g.levelAnterior === saved.levelAnterior);
+                        if (galinha) {
+                            galinha.qtdUsada = saved.qtdUsada || '';
+                            galinha.vendida = saved.vendida || '';
+                        }
+                    });
+                }
+
+                // Vacas
+                if (estado.animais.vacas) {
+                    estado.animais.vacas.forEach(saved => {
+                        const vaca = animais.vacas.find(v => v.levelAnterior === saved.levelAnterior);
+                        if (vaca) {
+                            vaca.qtdUsada = saved.qtdUsada || '';
+                            vaca.vendida = saved.vendida || '';
+                        }
+                    });
+                }
+
+                // Ovelhas
+                if (estado.animais.ovelhas) {
+                    estado.animais.ovelhas.forEach(saved => {
+                        const ovelha = animais.ovelhas.find(o => o.levelAnterior === saved.levelAnterior);
+                        if (ovelha) {
+                            ovelha.qtdUsada = saved.qtdUsada || '';
+                            ovelha.vendida = saved.vendida || '';
+                        }
+                    });
+                }
+            }
+
+            // 11. Opções de comida dos animais
+            if (estado.opcoesComidaAnimais) {
+                // Galinhas
+                if (estado.opcoesComidaAnimais.galinhas) {
+                    const selectAte3 = document.getElementById('galinha-comida-ate-level3');
+                    const select4ao6 = document.getElementById('galinha-comida-level4ao6');
+                    const select7ao10 = document.getElementById('galinha-comida-level7ao10');
+                    const select11ao15 = document.getElementById('galinha-comida-level11ao15');
+                    
+                    if (selectAte3) selectAte3.value = estado.opcoesComidaAnimais.galinhas.ateLevel3;
+                    if (select4ao6) select4ao6.value = estado.opcoesComidaAnimais.galinhas.level4ao6;
+                    if (select7ao10) select7ao10.value = estado.opcoesComidaAnimais.galinhas.level7ao10;
+                    if (select11ao15) select11ao15.value = estado.opcoesComidaAnimais.galinhas.level11ao15;
+                }
+
+                // Vacas
+                if (estado.opcoesComidaAnimais.vacas) {
+                    const selectAte3 = document.getElementById('vaca-comida-ate-level3');
+                    const select4ao6 = document.getElementById('vaca-comida-level4ao6');
+                    const select7ao10 = document.getElementById('vaca-comida-level7ao10');
+                    const select11ao15 = document.getElementById('vaca-comida-level11ao15');
+                    
+                    if (selectAte3) selectAte3.value = estado.opcoesComidaAnimais.vacas.ateLevel3;
+                    if (select4ao6) select4ao6.value = estado.opcoesComidaAnimais.vacas.level4ao6;
+                    if (select7ao10) select7ao10.value = estado.opcoesComidaAnimais.vacas.level7ao10;
+                    if (select11ao15) select11ao15.value = estado.opcoesComidaAnimais.vacas.level11ao15;
+                }
+
+                // Ovelhas
+                if (estado.opcoesComidaAnimais.ovelhas) {
+                    const selectAte3 = document.getElementById('ovelha-comida-ate-level3');
+                    const select4ao6 = document.getElementById('ovelha-comida-level4ao6');
+                    const select7ao10 = document.getElementById('ovelha-comida-level7ao10');
+                    const select11ao15 = document.getElementById('ovelha-comida-level11ao15');
+                    
+                    if (selectAte3) selectAte3.value = estado.opcoesComidaAnimais.ovelhas.ateLevel3;
+                    if (select4ao6) select4ao6.value = estado.opcoesComidaAnimais.ovelhas.level4ao6;
+                    if (select7ao10) select7ao10.value = estado.opcoesComidaAnimais.ovelhas.level7ao10;
+                    if (select11ao15) select11ao15.value = estado.opcoesComidaAnimais.ovelhas.level11ao15;
+                }
+            }
+
+            // 11.5. Valores em COINS dos animais (Venda Semanal) - vindos da API
+            if (estado.valoresAnimaisCoins) {
+                // Galinhas
+                if (estado.valoresAnimaisCoins.galinhas) {
+                    estado.valoresAnimaisCoins.galinhas.forEach(saved => {
+                        const galinha = animais.galinhas.find(g => g.levelAnterior === saved.levelAnterior);
+                        if (galinha) {
+                            if (saved.coins) galinha.coins = saved.coins;
+                            if (saved.coinsFinal) galinha.coinsFinal = saved.coinsFinal;
+                            if (saved.qtdDeAnimaisQuePodeVender) galinha.qtdDeAnimaisQuePodeVender = saved.qtdDeAnimaisQuePodeVender;
+                        }
+                    });
+                }
+
+                // Vacas
+                if (estado.valoresAnimaisCoins.vacas) {
+                    estado.valoresAnimaisCoins.vacas.forEach(saved => {
+                        const vaca = animais.vacas.find(v => v.levelAnterior === saved.levelAnterior);
+                        if (vaca) {
+                            if (saved.coins) vaca.coins = saved.coins;
+                            if (saved.coinsFinal) vaca.coinsFinal = saved.coinsFinal;
+                            if (saved.qtdDeAnimaisQuePodeVender) vaca.qtdDeAnimaisQuePodeVender = saved.qtdDeAnimaisQuePodeVender;
+                        }
+                    });
+                }
+
+                // Ovelhas
+                if (estado.valoresAnimaisCoins.ovelhas) {
+                    estado.valoresAnimaisCoins.ovelhas.forEach(saved => {
+                        const ovelha = animais.ovelhas.find(o => o.levelAnterior === saved.levelAnterior);
+                        if (ovelha) {
+                            if (saved.coins) ovelha.coins = saved.coins;
+                            if (saved.coinsFinal) ovelha.coinsFinal = saved.coinsFinal;
+                            if (saved.qtdDeAnimaisQuePodeVender) ovelha.qtdDeAnimaisQuePodeVender = saved.qtdDeAnimaisQuePodeVender;
+                        }
+                    });
+                }
+            }
+
+            // 12. Seeds plantadas (depois de tudo configurado)
             if (estado.seedsPlantadas) {
                 if (estado.seedsPlantadas.crops) {
                     estado.seedsPlantadas.crops.forEach(saved => {
@@ -316,7 +499,7 @@ const SaveManager = {
                 }
             }
 
-            // 11. Ferramentas usadas
+            // 13. Ferramentas usadas
             if (estado.ferramentasUsadas) {
                 estado.ferramentasUsadas.forEach(saved => {
                     const ferramenta = todasFerramentas.find(f => f.id === saved.id);
@@ -449,6 +632,72 @@ const SaveManager = {
                 });
             }
 
+            // Restaurar inputs dos animais (galinhas, vacas, ovelhas)
+            if (estado.animais) {
+                // Galinhas - qtdUsada
+                if (estado.animais.galinhas) {
+                    estado.animais.galinhas.forEach(saved => {
+                        if (!saved.qtdUsada && !saved.vendida) return;
+                        
+                        inputsEsperados++;
+                        const inputQtd = document.querySelector(`.galinhas-input[data-name="${saved.levelAnterior}"]`);
+                        if (inputQtd && saved.qtdUsada) {
+                            inputQtd.value = saved.qtdUsada;
+                            inputsRestaurados++;
+                        }
+
+                        inputsEsperados++;
+                        const inputVenda = document.querySelector(`.galinhas-venda-input[data-name="${saved.levelAnterior}"]`);
+                        if (inputVenda && saved.vendida) {
+                            inputVenda.value = saved.vendida;
+                            inputsRestaurados++;
+                        }
+                    });
+                }
+
+                // Vacas - qtdUsada
+                if (estado.animais.vacas) {
+                    estado.animais.vacas.forEach(saved => {
+                        if (!saved.qtdUsada && !saved.vendida) return;
+                        
+                        inputsEsperados++;
+                        const inputQtd = document.querySelector(`.vacas-input[data-name="${saved.levelAnterior}"]`);
+                        if (inputQtd && saved.qtdUsada) {
+                            inputQtd.value = saved.qtdUsada;
+                            inputsRestaurados++;
+                        }
+
+                        inputsEsperados++;
+                        const inputVenda = document.querySelector(`.vacas-venda-input[data-name="${saved.levelAnterior}"]`);
+                        if (inputVenda && saved.vendida) {
+                            inputVenda.value = saved.vendida;
+                            inputsRestaurados++;
+                        }
+                    });
+                }
+
+                // Ovelhas - qtdUsada
+                if (estado.animais.ovelhas) {
+                    estado.animais.ovelhas.forEach(saved => {
+                        if (!saved.qtdUsada && !saved.vendida) return;
+                        
+                        inputsEsperados++;
+                        const inputQtd = document.querySelector(`.ovelhas-input[data-name="${saved.levelAnterior}"]`);
+                        if (inputQtd && saved.qtdUsada) {
+                            inputQtd.value = saved.qtdUsada;
+                            inputsRestaurados++;
+                        }
+
+                        inputsEsperados++;
+                        const inputVenda = document.querySelector(`.ovelhas-venda-input[data-name="${saved.levelAnterior}"]`);
+                        if (inputVenda && saved.vendida) {
+                            inputVenda.value = saved.vendida;
+                            inputsRestaurados++;
+                        }
+                    });
+                }
+            }
+
             console.log(`📊 Inputs restaurados: ${inputsRestaurados}/${inputsEsperados}`);
             
             // Retorna true se restaurou TODOS os inputs esperados
@@ -569,19 +818,6 @@ const SaveManager = {
         console.log('✅ SaveManager pronto! Auto-save ativado.');
     }
 };
-
-// ============================================================================
-// 🚀 AUTO-INICIALIZAR QUANDO O DOM ESTIVER PRONTO
-// ============================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        // Aguardar um pouco para garantir que tudo carregou
-        setTimeout(() => SaveManager.inicializar(), 100);
-    });
-} else {
-    // DOM já está pronto
-    setTimeout(() => SaveManager.inicializar(), 100);
-}
 
 // ============================================================================
 // 🚀 AUTO-INICIALIZAR QUANDO O DOM ESTIVER PRONTO
