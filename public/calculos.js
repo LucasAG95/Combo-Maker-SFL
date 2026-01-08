@@ -584,7 +584,7 @@ function buffsAdicionadosAnimais() {
         }
 
         animal.qtdComidaPadrao *= buffs.qtdMulti * buffs.qtdMenosRacao * buffs.qtdMaisRacao;
-        animal.tempo = (animal.tempo * buffs.tempoMulti) - buffs.tempoSubtrai;
+        animal.tempo = (animal.tempo - buffs.tempoSubtrai) * buffs.tempoMulti;
         animal.coinsFinal = animal.coins * buffs.multiVenda;
 
         console.log(`${animal.name} dorme ${formatarTempo(animal.tempo)}`)
