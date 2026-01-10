@@ -11,7 +11,7 @@
 
     <!-- ESQUERDA: Título + Select de idioma -->
     <div class="header-left">
-      <h1 class="title-bar">🌻 Combo Maker <span>v0.2.4</span></h1>
+      <h1 class="title-bar">🌻 Combo Maker <span>v0.2.5</span></h1>
 
       <div class="select-idioma">
         <label for="opcao-idioma">
@@ -472,6 +472,14 @@
             </select>
           </div>
 
+          <div class="select-group"> 
+            <label id="descontarRestockCrops" for="descontar-restock-crops">Restock:</label>
+            <select id="descontar-restock-crops">
+              <option value="sim">Descontar</option>
+              <option value="nao">Não descontar</option>
+            </select>
+          </div>
+
           <div class="select-group">
             <label id="cropPlotsQuePossui" for="plotsPossuidos">Qtd. de Crop Plots</label>
             <input id="plotsPossuidos" type="number" placeholder="Ex: 70">
@@ -480,6 +488,8 @@
           <button id="salvarInfosCrops" onclick="salvarInformacoes()">Salvar</button>
 
           <button id="limparInfosCrops" onclick="limparCrops()">Limpar Crops</button>
+
+          
         </section>
 
         <!-- Área onde a tabela de crops será inserida -->
@@ -515,6 +525,14 @@
             </select>
           </div>
 
+          <div class="select-group"> 
+            <label id="descontarRestockCM" for="descontar-restock-cm">Restock:</label>
+            <select id="descontar-restock-cm">
+              <option value="sim">Descontar</option>
+              <option value="nao">Não descontar</option>
+            </select>
+          </div>
+
           <button id="limparInfosCM" onclick="limparCM()">Limpar CM</button>
         </section>
 
@@ -545,6 +563,14 @@
             <select id="tipo-de-calculo-fruta">
               <option value="manual">Por Semente</option>
               <option value="rodada">Por Ciclo</option>
+            </select>
+          </div>
+
+          <div class="select-group"> 
+            <label id="descontarRestockFrutas" for="descontar-restock-frutas">Restock:</label>
+            <select id="descontar-restock-frutas">
+              <option value="sim">Descontar</option>
+              <option value="nao">Não descontar</option>
             </select>
           </div>
 
@@ -583,6 +609,14 @@
             <select id="tipo-de-calculo-greenhouse">
               <option value="manual">Por Semente</option>
               <option value="rodada">Por Ciclo</option>
+            </select>
+          </div>
+
+          <div class="select-group"> 
+            <label id="descontarRestockGreenhouse" for="descontar-restock-greenhouse">Restock:</label>
+            <select id="descontar-restock-greenhouse">
+              <option value="sim">Descontar</option>
+              <option value="nao">Não descontar</option>
             </select>
           </div>
 
@@ -717,6 +751,14 @@
             <option value="manual">Por Ferramenta</option>
           </select>
         </div>
+
+        <div class="select-group"> 
+            <label id="descontarRestockMinerais" for="descontar-restock-minerais">Restock:</label>
+            <select id="descontar-restock-minerais">
+              <option value="sim">Descontar</option>
+              <option value="nao">Não descontar</option>
+            </select>
+          </div>
 
         <button id="limparInfosMinerais" onclick="limparMinerios()">Limpar Minerios</button>
       </section>

@@ -16,7 +16,7 @@ const idiomaTabelaAnimais = {
         custoMedioPorDiaEmComida: 'Custo Médio<br>diário em Comida',
         lucroTotal: 'Lucro Total',
         taxa: 'Taxa',
-        vendaDaSemana: 'Vendas da Semana',
+        vendaDaSemana: 'Bounties<br>da Semana ',
 
         cardLucroTotalPorDia: 'Lucro<br>por Dia',
         cardCustoSemanalDaComida: 'Custo Semanal<br>da Comida',
@@ -28,10 +28,11 @@ const idiomaTabelaAnimais = {
 
         //exclusivo galinhas
         mediaDeRecursosPorGalinha: 'Recursos<br>por Galinha',
-        galinhasQueVaiCriar: 'Informe quantas galinhas irá criar',
+        galinhasQueVaiCriar: 'Inserir galinhas',
         mediaDePenasEOvosPorDia: 'Média de Penas<br>e Ovos por Dia',
         valorPorGalinha: 'Valor por Galinha',
-        galinhasQueVaiVender: 'Qtd. de Galinhas a Vender',
+        galinhasQueVaiVender: 'Galinhas à venda',
+        rendimentoPorGalinha: 'Lucro por<br>Galinha',
 
         cardMediaSemanalDeOvosEPenas: 'Média Semanal<br>de Ovos e Penas',
         cardVendaDeGalinhas: 'Venda de<br>Galinhas',
@@ -41,10 +42,11 @@ const idiomaTabelaAnimais = {
 
         //exclusivo vacas
         mediaDeRecursosPorVaca: 'Recursos<br>por Vaca',
-        vacasQueVaiCriar: 'Informe quantas vacas irá criar',
+        vacasQueVaiCriar: 'Inserir vacas',
         mediaDeLeiteECouroPorDia: 'Média de Leite<br>e Couro por Dia',
         valorPorVaca: 'Valor por Vaca',
-        vacasQueVaiVender: 'Qtd. de Vacas a Vender',
+        vacasQueVaiVender: 'Vacas à venda',
+        rendimentoPorVaca: 'Lucro por<br>Vaca',
 
         cardMediaSemanalDeLeiteECouro: 'Média Semanal<br>de Leite e Couro',
         cardVendaDeVacas: 'Venda de<br>Vacas',
@@ -54,10 +56,11 @@ const idiomaTabelaAnimais = {
 
         //exclusivo ovelhas
         mediaDeRecursosPorOvelha: 'Recursos<br>por Ovelha',
-        ovelhasQueVaiCriar: 'Informe quantas ovelhas irá criar',
+        ovelhasQueVaiCriar: 'Inserir ovelhas',
         mediaDeLaEMerinoPorDia: 'Média de Lã e<br>Lã Merino por Dia',
         valorPorOvelha: 'Valor por Ovelha',
-        ovelhasQueVaiVender: 'Qtd. de Ovelhas a Vender',
+        ovelhasQueVaiVender: 'Ovelhas à venda',
+        rendimentoPorOvelha: 'Lucro por<br>Ovelha',
 
         cardMediaSemanalDeLaEMerino: 'Média Semanal<br>de Lã e Lã Merino',
         cardVendaDeOvelhas: 'Venda de<br>Ovelhas',
@@ -79,7 +82,7 @@ const idiomaTabelaAnimais = {
         custoMedioPorDiaEmComida: 'Average Daily<br>Food Cost',
         lucroTotal: 'Total Profit',
         taxa: 'Fee',
-        vendaDaSemana: 'Weekly Sales',
+        vendaDaSemana: 'Weekly<br>Bounties',
 
         cardLucroTotalPorDia: 'Profit<br>per Day',
         cardCustoSemanalDaComida: 'Weekly<br>Food Cost',
@@ -90,10 +93,11 @@ const idiomaTabelaAnimais = {
 
         //exclusivo galinhas
         mediaDeRecursosPorGalinha: 'Resources<br>per Chicken',
-        galinhasQueVaiCriar: 'Enter number of chickens',
+        galinhasQueVaiCriar: 'Enter Chickens',
         mediaDePenasEOvosPorDia: 'Average Feathers<br>and Eggs per Day',
         valorPorGalinha: 'Value per Chicken',
-        galinhasQueVaiVender: 'Number of Chickens to Sell',
+        galinhasQueVaiVender: 'Chickens to Sell',
+        rendimentoPorGalinha: 'Profit per<br>Chicken',
 
         cardMediaSemanalDeOvosEPenas: 'Weekly Average<br>of Eggs and Feathers',
         cardVendaDeGalinhas: 'Chicken<br>Sales',
@@ -103,10 +107,11 @@ const idiomaTabelaAnimais = {
 
         //exclusivo vacas
         mediaDeRecursosPorVaca: 'Resources<br>per Cow',
-        vacasQueVaiCriar: 'Enter number of cows',
+        vacasQueVaiCriar: 'Enter Cows',
         mediaDeLeiteECouroPorDia: 'Average Milk<br>and Leather per Day',
         valorPorVaca: 'Value per Cow',
-        vacasQueVaiVender: 'Number of Cows to Sell',
+        vacasQueVaiVender: 'Cows to Sell',
+        rendimentoPorVaca: 'Profit per<br>Cow',
 
         cardMediaSemanalDeLeiteECouro: 'Weekly Average<br>of Milk and Leather',
         cardVendaDeVacas: 'Cow<br>Sales',
@@ -116,10 +121,11 @@ const idiomaTabelaAnimais = {
 
         // sheep only
         mediaDeRecursosPorOvelha: 'Resources<br>per Sheep',
-        ovelhasQueVaiCriar: 'Enter number of sheep to raise',
+        ovelhasQueVaiCriar: 'Enter Sheep',
         mediaDeLaEMerinoPorDia: 'Average Wool<br>and Merino Wool per Day',
         valorPorOvelha: 'Value per Sheep',
-        ovelhasQueVaiVender: 'Number of Sheep to Sell',
+        ovelhasQueVaiVender: 'Sheep to Sell',
+        rendimentoPorOvelha: 'Profit per<br>Sheep',
 
         cardMediaSemanalDeLaEMerino: 'Weekly Average<br>of Wool and Merino Wool',
         cardVendaDeOvelhas: 'Sheep<br>Sales',
@@ -157,8 +163,9 @@ function tabelaGalinhas() {
             <th>${idiomaSelecionadoAnimais.galinhasQueVaiCriar}<br><button onclick="galinhasColocadas()">${idiomaSelecionadoAnimais.salvar}</button></th>
             <th>${idiomaSelecionadoAnimais.custoMedioPorDiaEmComida}</th>
             <th>${idiomaSelecionadoAnimais.mediaDePenasEOvosPorDia}</th>
+            <th>${idiomaSelecionadoAnimais.rendimentoPorGalinha}</th>
             <th>${idiomaSelecionadoAnimais.lucroTotal}<br>${idiomaSelecionadoAnimais.taxa}: ${(taxa * 100).toFixed(2)}%</th>
-            <th>${idiomaSelecionadoAnimais.vendaDaSemana}<br>${idiomaSelecionadoAnimais.valorPorGalinha}</th>
+            <th>${idiomaSelecionadoAnimais.vendaDaSemana}</th>
             <th>${idiomaSelecionadoAnimais.galinhasQueVaiVender}<br><button onclick="galinhasColocadas()">${idiomaSelecionadoAnimais.salvar}</button></th>
         </tr>`
 
@@ -210,6 +217,8 @@ function tabelaGalinhas() {
         
         let ganhoComOvosEPenas = Number(((precoOvo * mediaDeOvosNoDia) + (precoPena * mediaDePenasNoDia)) * (1 - taxa));
         let lucroFlower = galinha.qtdUsada == 0 || ilha === 'Basic' ? 0 : Number(ganhoComOvosEPenas - gastoComComida);
+        let lucroPorGalinha = lucroFlower / (galinha.qtdUsada || 1);
+        let textoLucroPorGalinha = lucroPorGalinha != 0 ? `<img src="./icones/flower.png" class="crop-img">${lucroPorGalinha.toFixed(4)}` : '';
         
         //lucroFlowerComGalinha pega o valor de coins da galinha e multiplica por quantas tem pra vender na semana, dps divide pela quantidade de galinhas que vai criar ate aqle nivel para te dar a média
         let galinhasVendidas = (galinha.vendida || 0) < galinha.qtdDeAnimaisQuePodeVender ? galinha.vendida : galinha.qtdDeAnimaisQuePodeVender;
@@ -222,7 +231,7 @@ function tabelaGalinhas() {
         let lucroSemanalSemGalinha = Number(lucroFlower * usarParaMediaDaSemana);
 
         //textos personalizados que vão dentro da tabela!
-        let textoLucroFlower = lucroFlower != 0 ? `<img src="./animais/egg.png" class="crop-img">+ <img src="./animais/feather.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroFlower.toFixed(4)}` : '';
+        let textoLucroFlower = lucroFlower != 0 ? `<img src="./icones/flower.png" class="crop-img">${lucroFlower.toFixed(4)}` : '';
         let textoVendaPorLevelCoins = Number(galinha.qtdDeAnimaisQuePodeVender) > 0 && ateLevel != 'Manter Level 15' ? 
             `<img src="./animais/galinha.png" class="crop-img">${Number(galinha.qtdDeAnimaisQuePodeVender)}<br><img src="./icones/coins.png" class="crop-img">${galinha.coinsFinal}` : '';
         
@@ -244,16 +253,17 @@ function tabelaGalinhas() {
             <td><input type="number" placeholder="" data-name="${galinha.levelAnterior}" class="quantidade-input galinhas-input" value="${galinha.qtdUsada}"></td>
             <td><img src="./animais/galinha.png" class="crop-img">${levelProProximo} ➜ ${galinha.level}<br>${textoGastoComComida}</td>
             <td>${textoMediaDeOvosNoDia}<br>${textoMediaDePenasNoDia}</td>
+            <td>${textoLucroPorGalinha}</td>
             <td>${textoLucroFlower}</td>
             <td>${textoVendaPorLevelCoins}</td>
             <td>${inputVendaGalinhas}</td>
         </tr>
         `;
 
-        totalGastoComComidaGalinhas += gastoComComida;
-        totalDeOvosPorDia += mediaDeOvosNoDia;
-        totalDePenasPorDia += mediaDePenasNoDia;
-        lucroTotalPorDiaDasGalinhas += lucroFlower;
+        totalGastoComComidaGalinhas += gastoComComida * (usarParaMediaDaSemana / 7);
+        totalDeOvosPorDia += mediaDeOvosNoDia * (usarParaMediaDaSemana / 7);
+        totalDePenasPorDia += mediaDePenasNoDia * (usarParaMediaDaSemana / 7);
+        lucroTotalPorDiaDasGalinhas += lucroFlower * (usarParaMediaDaSemana / 7);
         totalDeGalinhasAVenda += galinhasVendidas || 0;
         totalDeCoinsComAsGalinhas += Number(galinha.coinsFinal * galinhasVendidas) || 0;
         totalDeLucroSemanalDosOvosEPenas += lucroSemanalSemGalinha;
@@ -370,8 +380,9 @@ function tabelaVacas() {
             <th>${idiomaSelecionadoAnimais.vacasQueVaiCriar}<br><button onclick="vacasColocadas()">${idiomaSelecionadoAnimais.salvar}</button></th>
             <th>${idiomaSelecionadoAnimais.custoMedioPorDiaEmComida}</th>
             <th>${idiomaSelecionadoAnimais.mediaDeLeiteECouroPorDia}</th>
+            <th>${idiomaSelecionadoAnimais.rendimentoPorVaca}</th>
             <th>${idiomaSelecionadoAnimais.lucroTotal}<br>${idiomaSelecionadoAnimais.taxa}: ${(taxa * 100).toFixed(2)}%</th>
-            <th>${idiomaSelecionadoAnimais.vendaDaSemana}<br>${idiomaSelecionadoAnimais.valorPorVaca}</th>
+            <th>${idiomaSelecionadoAnimais.vendaDaSemana}</th>
             <th>${idiomaSelecionadoAnimais.vacasQueVaiVender}<br><button onclick="vacasColocadas()">${idiomaSelecionadoAnimais.salvar}</button></th>
         </tr>`
 
@@ -423,8 +434,10 @@ function tabelaVacas() {
         
         let ganhoComLeiteECouro = Number(((precoLeite * mediaDeLeiteNoDia) + (precoCouro * mediaDeCouroNoDia)) * (1 - taxa));
         let lucroFlower = vaca.qtdUsada == 0 || ilha === 'Basic' ? 0 : Number(ganhoComLeiteECouro - gastoComComida);
+        let lucroPorVaca = lucroFlower / (vaca.qtdUsada || 1);
+        let textoLucroPorVaca = lucroPorVaca != 0 ? `<img src="./icones/flower.png" class="crop-img">${lucroPorVaca.toFixed(4)}` : '';
         
-        //lucroFlowerComGalinha pega o valor de coins da galinha e multiplica por quantas tem pra vender na semana, dps divide pela quantidade de galinhas que vai criar ate aqle nivel para te dar a média
+        //lucroFlowerComVaca pega o valor de coins da galinha e multiplica por quantas tem pra vender na semana, dps divide pela quantidade de galinhas que vai criar ate aqle nivel para te dar a média
         let vacasVendidas = (vaca.vendida || 0) < vaca.qtdDeAnimaisQuePodeVender ? vaca.vendida : vaca.qtdDeAnimaisQuePodeVender;
         let lucroFlowerComVaca = Number((vacasVendidas * vaca.coinsFinal) / flowerEmCoins) || 0;
 
@@ -435,7 +448,7 @@ function tabelaVacas() {
         let lucroSemanalSemVaca = Number(lucroFlower * usarParaMediaDaSemana);
 
         //textos personalizados que vão dentro da tabela!
-        let textoLucroFlower = lucroFlower != 0 ? `<img src="./animais/milk.png" class="crop-img">+ <img src="./animais/leather.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroFlower.toFixed(4)}` : '';
+        let textoLucroFlower = lucroFlower != 0 ? `<img src="./icones/flower.png" class="crop-img">${lucroFlower.toFixed(4)}` : '';
         let textoVendaPorLevelCoins = Number(vaca.qtdDeAnimaisQuePodeVender) > 0 && ateLevel != 'Manter Level 15' ? 
             `<img src="./animais/vaca.png" class="crop-img">${Number(vaca.qtdDeAnimaisQuePodeVender)}<br><img src="./icones/coins.png" class="crop-img">${vaca.coinsFinal}` : '';
         
@@ -457,16 +470,17 @@ function tabelaVacas() {
             <td><input type="number" placeholder="" data-name="${vaca.levelAnterior}" class="quantidade-input vacas-input" value="${vaca.qtdUsada}"></td>
             <td><img src="./animais/vaca.png" class="crop-img">${levelProProximo} ➜ ${vaca.level}<br>${textoGastoComComida}</td>
             <td>${textoMediaDeLeiteNoDia}<br>${textoMediaDeCouroNoDia}</td>
+            <td>${textoLucroPorVaca}</td>
             <td>${textoLucroFlower}</td>
             <td>${textoVendaPorLevelCoins}</td>
             <td>${inputVendaVacas}</td>
         </tr>
         `;
 
-        totalGastoComComidaVacas += gastoComComida;
-        totalDeLeitePorDia += mediaDeLeiteNoDia;
-        totalDeCouroPorDia += mediaDeCouroNoDia;
-        lucroTotalPorDiaDasVacas += lucroFlower;
+        totalGastoComComidaVacas += gastoComComida * (usarParaMediaDaSemana / 7);
+        totalDeLeitePorDia += mediaDeLeiteNoDia * (usarParaMediaDaSemana / 7);
+        totalDeCouroPorDia += mediaDeCouroNoDia * (usarParaMediaDaSemana / 7);
+        lucroTotalPorDiaDasVacas += lucroFlower * (usarParaMediaDaSemana / 7);
         totalDeVacasAVenda += vacasVendidas || 0;
         totalDeCoinsComAsVacas += Number(vaca.coinsFinal * vacasVendidas) || 0;
         totalDeLucroSemanalDosLeitesECouro += lucroSemanalSemVaca;
@@ -584,8 +598,9 @@ function tabelaOvelhas() {
             <th>${idiomaSelecionadoAnimais.ovelhasQueVaiCriar}<br><button onclick="ovelhasColocadas()">${idiomaSelecionadoAnimais.salvar}</button></th>
             <th>${idiomaSelecionadoAnimais.custoMedioPorDiaEmComida}</th>
             <th>${idiomaSelecionadoAnimais.mediaDeLaEMerinoPorDia}</th>
+            <th>${idiomaSelecionadoAnimais.rendimentoPorOvelha}</th>
             <th>${idiomaSelecionadoAnimais.lucroTotal}<br>${idiomaSelecionadoAnimais.taxa}: ${(taxa * 100).toFixed(2)}%</th>
-            <th>${idiomaSelecionadoAnimais.vendaDaSemana}<br>${idiomaSelecionadoAnimais.valorPorOvelha}</th>
+            <th>${idiomaSelecionadoAnimais.vendaDaSemana}</th>
             <th>${idiomaSelecionadoAnimais.ovelhasQueVaiVender}<br><button onclick="ovelhasColocadas()">${idiomaSelecionadoAnimais.salvar}</button></th>
         </tr>`
 
@@ -637,6 +652,8 @@ function tabelaOvelhas() {
         
         let ganhoComLasEMerinos = Number(((precoLa * mediaDeLaNoDia) + (precoLaMerino * mediaDeLaMerinoNoDia)) * (1 - taxa));
         let lucroFlower = ovelha.qtdUsada == 0 || ilha === 'Basic' ? 0 : Number(ganhoComLasEMerinos - gastoComComida);
+        let lucroPorOvelha = lucroFlower / (ovelha.qtdUsada || 1);
+        let textoLucroPorOvelha = lucroPorOvelha != 0 ? `<img src="./icones/flower.png" class="crop-img">${lucroPorOvelha.toFixed(4)}` : '';
         
         //lucroFlowerComGalinha pega o valor de coins da galinha e multiplica por quantas tem pra vender na semana, dps divide pela quantidade de galinhas que vai criar ate aqle nivel para te dar a média
         let ovelhasVendidas = (ovelha.vendida || 0) < ovelha.qtdDeAnimaisQuePodeVender ? ovelha.vendida : ovelha.qtdDeAnimaisQuePodeVender;
@@ -671,16 +688,17 @@ function tabelaOvelhas() {
             <td><input type="number" placeholder="" data-name="${ovelha.levelAnterior}" class="quantidade-input ovelhas-input" value="${ovelha.qtdUsada}"></td>
             <td><img src="./animais/ovelha.png" class="crop-img">${levelProProximo} ➜ ${ovelha.level}<br>${textoGastoComComida}</td>
             <td>${textoMediaDeLaNoDia}<br>${textoMediaDeLaMerinoNoDia}</td>
+            <td>${textoLucroPorOvelha}</td>
             <td>${textoLucroFlower}</td>
             <td>${textoVendaPorLevelCoins}</td>
             <td>${inputVendaOvelhas}</td>
         </tr>
         `;
 
-        totalGastoComComidaOvelhas += gastoComComida;
-        totalDeLaPorDia += mediaDeLaNoDia;
-        totalDeLaMerinoPorDia += mediaDeLaMerinoNoDia;
-        lucroTotalPorDiaDasOvelhas += lucroFlower;
+        totalGastoComComidaOvelhas += gastoComComida * (usarParaMediaDaSemana / 7);
+        totalDeLaPorDia += mediaDeLaNoDia * (usarParaMediaDaSemana / 7);
+        totalDeLaMerinoPorDia += mediaDeLaMerinoNoDia * (usarParaMediaDaSemana / 7);
+        lucroTotalPorDiaDasOvelhas += lucroFlower * (usarParaMediaDaSemana / 7);
         totalDeOvelhasAVenda += ovelhasVendidas || 0;
         totalDeCoinsComAsOvelhas += Number(ovelha.coinsFinal * ovelhasVendidas) || 0;
         totalDeLucroSemanalDasLasEMerinos += lucroSemanalSemOvelha;

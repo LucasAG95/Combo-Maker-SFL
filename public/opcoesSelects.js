@@ -21,23 +21,38 @@ document.getElementById('estacaoSelect').addEventListener('change', selecionando
 
 //valor da opção inicial
 let modoDeCalularCrops = `manual`;
+let calcularRestockCrops = 'sim';
+
 let modoDeCalularCropsNaCM = `manual`;
+let calcularRestockCM = 'sim';
+
 let modoDeCalularCropsFruta = `manual`;
+let calcularRestockFrutas = 'sim';
+
 let modoDeCalcularGreenhouse = `manual`;
+let calcularRestockGreenhouse = 'sim';
+
 let modoDeCalcularMinerios = 'hora';
+let calcularRestockMinerios = 'sim';
+
 let modoDeResultadoDoCombo = 'diario';
 
 function selecionarModoDeCalculo() {
 
     modoDeCalularCrops = document.getElementById(`tipo-de-calculo-crop`).value;
+    calcularRestockCrops = document.getElementById(`descontar-restock-crops`).value;
 
     modoDeCalularCropsNaCM = document.getElementById(`tipo-de-calculo-crop-cm`).value;
+    calcularRestockCM = document.getElementById(`descontar-restock-cm`).value;
 
     modoDeCalularCropsFruta = document.getElementById(`tipo-de-calculo-fruta`).value;
+    calcularRestockFrutas = document.getElementById(`descontar-restock-frutas`).value;
 
     modoDeCalcularGreenhouse = document.getElementById(`tipo-de-calculo-greenhouse`).value;
+    calcularRestockGreenhouse = document.getElementById(`descontar-restock-greenhouse`).value;
     
     modoDeCalcularMinerios = document.getElementById(`tipo-de-calculo-mineral`).value;
+    calcularRestockMinerios = document.getElementById(`descontar-restock-minerais`).value;
 
     //para mostrar o resultado do combo que você montou!
     modoDeResultadoDoCombo = document.getElementById('visualizar-resultado-do-combo').value;
@@ -46,10 +61,20 @@ function selecionarModoDeCalculo() {
 
 };
 document.getElementById('tipo-de-calculo-crop').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('descontar-restock-crops').addEventListener('change', selecionarModoDeCalculo);
+
 document.getElementById('tipo-de-calculo-crop-cm').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('descontar-restock-cm').addEventListener('change', selecionarModoDeCalculo);
+
 document.getElementById('tipo-de-calculo-fruta').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('descontar-restock-frutas').addEventListener('change', selecionarModoDeCalculo);
+
 document.getElementById('tipo-de-calculo-greenhouse').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('descontar-restock-greenhouse').addEventListener('change', selecionarModoDeCalculo);
+
 document.getElementById('tipo-de-calculo-mineral').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('descontar-restock-minerais').addEventListener('change', selecionarModoDeCalculo);
+
 document.getElementById('visualizar-resultado-do-combo').addEventListener('change',selecionarModoDeCalculo);
 
 //=======================================================================================================================================================================

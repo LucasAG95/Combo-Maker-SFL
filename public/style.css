@@ -192,13 +192,17 @@ h5 {
 td input.quantidade-input {
   display: block;
   margin: 0 auto;
-  border-radius: 8px;
+  width: 125px;        /* 🔹 largura */
+  height: 28px;       /* 🔹 altura */
+  padding: 2px 4px;   /* 🔹 espaço interno */
+  font-size: 13px;    /* 🔹 texto menor */
+  border-radius: 6px;
   border: 1px solid #555;
   background-color: #1e1e1e;
   color: #ffffff;
-  padding: 10px;
   text-align: center;
 }
+
 
 td input.quantidade-input-cm {
   display: block;

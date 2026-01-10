@@ -227,8 +227,22 @@ function tabelaMinerios() {
         (woolGasta * mapaDosValoresDoMarket['wool'].valor);
 
     //como ja é vendido só os recursos que sobram ao fazer as outras ferramentas, eu só desconto esses 3 abaixo que seria "valor do Market"
-    let lucroDoCombo = ganhoDoCombo - custoRestockDoComboFlower -
-        ((coinsGasta / flowerEmCoins) + (couroGasto * mapaDosValoresDoMarket['leather'].valor) + (woolGasta * mapaDosValoresDoMarket['wool'].valor));
+    let lucroDoCombo = calcularRestockMinerios === 'sim' ? 
+        ganhoDoCombo - custoRestockDoComboFlower - ((coinsGasta / flowerEmCoins) + (couroGasto * mapaDosValoresDoMarket['leather'].valor) + (woolGasta * mapaDosValoresDoMarket['wool'].valor)) :
+        ganhoDoCombo - ((coinsGasta / flowerEmCoins) + (couroGasto * mapaDosValoresDoMarket['leather'].valor) + (woolGasta * mapaDosValoresDoMarket['wool'].valor))
+    
+    //textos para os cards de restock
+    let cardRestockECusto = calcularRestockMinerios === 'sim' ?
+        `<div class="card-total-mineral">
+            <h3>${idiomaDoTextoMinerais.mediaDeRestockECusto}</h3>
+            <p>
+                <img src="./icones/reestock.png" class="crop-img">${restockDoCombo.toFixed(2)} ➜ 
+                <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestock.toFixed(2)}<br>
+                <img src="./icones/flower.png" class="crop-img"> ${custoRestockDoComboFlower.toFixed(2)} ~
+                <img src="./icones/usdc.png" class="crop-img"> ${custoRestockDoComboDolar.toFixed(2)}
+            </p>
+        </div>` : '';
+
 
     let cardResultados = `
         <div class="cards-totais-minerais">
@@ -256,15 +270,7 @@ function tabelaMinerios() {
                 </p>
             </div>
             
-            <div class="card-total-mineral">
-                <h3>${idiomaDoTextoMinerais.mediaDeRestockECusto}</h3>
-                <p>
-                    <img src="./icones/reestock.png" class="crop-img">${restockDoCombo.toFixed(2)} ➜ 
-                    <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestock.toFixed(2)}<br>
-                    <img src="./icones/flower.png" class="crop-img"> ${custoRestockDoComboFlower.toFixed(2)} ~
-                    <img src="./icones/usdc.png" class="crop-img"> ${custoRestockDoComboDolar.toFixed(2)}
-                </p>
-            </div>
+            ${cardRestockECusto}
 
             <div class="card-total-mineral">
                 <h3>${idiomaDoTextoMinerais.mediaDeLucroNoDia}</h3>

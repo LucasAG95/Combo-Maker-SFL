@@ -68,6 +68,18 @@ function mudarIdioma() {
     document.getElementById('tipo-de-calculo-greenhouse').options[1].innerHTML = `${opcaoDeIdiomas.calcularGHPorRodada}`;
     document.getElementById('limparInfosGreenhouse').innerHTML = `${opcaoDeIdiomas.botaoLimparGH}`;
 
+    //Todos Restocks
+    document.getElementById('descontar-restock-crops').options[0].innerHTML = `${opcaoDeIdiomas.descontarCustoRestock}`;
+    document.getElementById('descontar-restock-crops').options[1].innerHTML = `${opcaoDeIdiomas.naoDescontarCusto}`;
+    document.getElementById('descontar-restock-cm').options[0].innerHTML = `${opcaoDeIdiomas.descontarCustoRestock}`;
+    document.getElementById('descontar-restock-cm').options[1].innerHTML = `${opcaoDeIdiomas.naoDescontarCusto}`;
+    document.getElementById('descontar-restock-frutas').options[0].innerHTML = `${opcaoDeIdiomas.descontarCustoRestock}`;
+    document.getElementById('descontar-restock-frutas').options[1].innerHTML = `${opcaoDeIdiomas.naoDescontarCusto}`;
+    document.getElementById('descontar-restock-greenhouse').options[0].innerHTML = `${opcaoDeIdiomas.descontarCustoRestock}`;
+    document.getElementById('descontar-restock-greenhouse').options[1].innerHTML = `${opcaoDeIdiomas.naoDescontarCusto}`;
+    document.getElementById('descontar-restock-minerais').options[0].innerHTML = `${opcaoDeIdiomas.descontarCustoRestock}`;
+    document.getElementById('descontar-restock-minerais').options[1].innerHTML = `${opcaoDeIdiomas.naoDescontarCusto}`;
+
     //Animais
     document.getElementById('subGalinhas').innerHTML = `${opcaoDeIdiomas.galinhas}`;
     document.getElementById('subVacas').innerHTML = `${opcaoDeIdiomas.vacas}`;
@@ -146,12 +158,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.4`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV020}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV021}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV022}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV023}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV024}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.5`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV021}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV022}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV023}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV024}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV025}`;
 
 
     pontosGastosEmSkills();
@@ -177,6 +189,10 @@ const idiomaEscolhido = {
         verao: 'Verão',
         outono: 'Outono',
         inverno: 'Inverno',
+
+        //todos restocks
+        descontarCustoRestock: 'Descontar custo',
+        naoDescontarCusto: 'Não descontar',
         
         //dados das Crops
         modoDeCalcularCrops: 'Modo de calcular as Crops',
@@ -284,6 +300,10 @@ const idiomaEscolhido = {
         verao: 'Summer',
         outono: 'Autumn',
         inverno: 'Winter',
+
+        //todos restocks
+        descontarCustoRestock: 'Deduct cost',
+        naoDescontarCusto: 'Do not deduct',
         
         //dados das Crops
         modoDeCalcularCrops: 'Crop Calculation Mode',
@@ -433,10 +453,15 @@ const idiomaDasAtualizacoes = {
             • Os animais agora ficam salvos mesmo se você fechar a página e abrir novamente depois.<br>
             • Nunca leve os resultados como 100% de certeza, pois sou humano e podem ocorrer erros.<br>
             • Esta parte da tabela foi a mais trabalhosa e mentalmente exaustiva. Apesar de não ter encontrado erros nos testes, ainda pode haver algum. Caso encontre, informe no Discord do fórum — agradeço qualquer feedback!<br>
-            • Próxima atualização planejada: Buds.<br>
-            `
-            
-            ,
+            • Próxima atualização planejada: Buds.<br>`,
+        
+        atualizacaoV025: `v0.2.5 - Data da Atualização: 10/01/2026 <br><br>
+            • Opção de descontar ou não o custo de Restock.<br>
+            • Media de Lucro por animal adicionado!
+            • Diminuição no tamanhos dos inputs e de alguns titulos de colunas!`,
+
+        atualizacaoV026: `• ajustar o card dos minerios que mostra o custo errado`
+
     },
     ingles: {
         nomeDaAbaAtualizacao: 'Updates Made',
@@ -492,7 +517,12 @@ const idiomaDasAtualizacoes = {
             • Animals are now saved even if you close the page and reopen it later.<br>
             • Never consider the results as 100% accurate, as I am human and errors may occur.<br>
             • This part of the table was the most time-consuming and mentally exhausting to develop. Although no errors were found during testing, some may still exist. If you find any issues, please report them on the forum’s Discord — any feedback is appreciated!<br>
-            • Next planned update: Buds.<br>
-            `
+            • Next planned update: Buds.<br>`,
+        
+        atualizacaoV025: `v0.2.5 - Update Date: 01/10/2026 <br><br>
+            • Option to deduct or not deduct the Restock cost.<br>
+            • Average profit per animal added!<br>
+            • Reduced the size of inputs and some column titles!`,
+
     }
 };

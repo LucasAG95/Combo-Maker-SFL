@@ -12,8 +12,8 @@ const idiomaTabelaCrops = {
         vendaDaCrop: 'Venda da Crop',
         mediaPorPlot: 'Média por Plot',
         tempoDaCrop: 'Tempo da Crop',
-        calculoPorSemente: 'Sementes que vai Plantar',
-        calculoPorCiclo: 'Qtd. Ciclos que vai Plantar',
+        calculoPorSemente: 'Inserir Sementes',
+        calculoPorCiclo: 'Inserir Ciclos',
         botaoSalvar: 'Salvar',
         tempoTotal: 'Tempo Total',
         sementesUsadas: 'Sementes Usadas',
@@ -35,7 +35,7 @@ const idiomaTabelaCrops = {
         //exlcusivo CM
         oilGasto: 'Oil Gasto',
         oilUsado: 'Oil Usado',
-        calculoPorEstoque: 'Qtd. Estoque que vai Plantar',
+        calculoPorEstoque: 'Inserir Estoque',
 
         //exclusivo Frutas
         frutas: 'Frutas',
@@ -54,8 +54,8 @@ const idiomaTabelaCrops = {
         vendaDaCrop: 'Crop Sale',
         mediaPorPlot: 'Average per Plot',
         tempoDaCrop: 'Crop Time',
-        calculoPorSemente: 'Number of Seeds You Will Plant',
-        calculoPorCiclo: 'Number of Cycles You Will Plant',
+        calculoPorSemente: 'Enter Seeds',
+        calculoPorCiclo: 'Enter Cycles',
         botaoSalvar: 'Save',
         tempoTotal: 'Total Time',
         sementesUsadas: 'Seeds Used',
@@ -77,7 +77,7 @@ const idiomaTabelaCrops = {
         //exlcusivo CM
         oilGasto: 'Oil Spent',
         oilUsado: 'Oil Used',
-        calculoPorEstoque: 'Amount of Stock You Will Plant',
+        calculoPorEstoque: 'Enter Stock',
 
         //exclusivo Frutas
         frutas: 'Fruits',
@@ -212,7 +212,7 @@ function tabelaDeCrops() {
     //calculo dos valores de restock do combo montado e seu desconto no lucro
     let custoRestockDoComboFlower = Number(gemsGastasComRestock * precoDaGemEmFlower);
     let custoRestockDoComboDolar = Number(gemsGastasComRestock * precoPorGem);
-    let lucroDoComboCropFlower = ganhoTotalComComboCropFlower - custoRestockDoComboFlower;
+    let lucroDoComboCropFlower = calcularRestockCrops === 'sim' ? ganhoTotalComComboCropFlower - custoRestockDoComboFlower : ganhoTotalComComboCropFlower;
 
     //média em de restock e seu custo em 24h e desconto no lucro medio em 24h
     let mediaRestock24h = (vinteQuatroHoras / tempoTotalDoCombo) * restockDoCombo || 0;
@@ -221,37 +221,23 @@ function tabelaDeCrops() {
     let mediaCustoRestock24hDolar = Number(mediaGemsGastasRestock24h * precoPorGem)
     let lucroDoComboEm24h = ((vinteQuatroHoras / tempoTotalDoCombo) * lucroDoComboCropFlower);
     let lucroDoComboSemanal = lucroDoComboEm24h * 7;
-        
-    let cardResultados = `
-        <div class="cards-totais-crops">
 
-            <div class="card-total-crops">
-                <h3><img src="./icones/tempo.png" class="crop-img">${idiomaDoTextoCrops.cardTempoTotal}</h3>
-                <p>${formatarTempoTotalDoDia(tempoTotalDoCombo)}</p>
-            </div>
-            <h1>-</h1> 
-            <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardQtdRestock}</h3>
-                <p><img src="./icones/reestock.png" class="crop-img">${restockDoCombo.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestock.toFixed(2)}</p>
-            </div>
+    //textos para os cards de restock
+    let cardRestockECusto = calcularRestockCrops === 'sim' ?
+        `<div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardCustoRestock}</h3>
+            <p>
+                <img src="./icones/flower.png" class="crop-img">${custoRestockDoComboFlower.toFixed(2)} ~ 
+                <img src="./icones/usdc.png" class="crop-img">${custoRestockDoComboDolar.toFixed(2)}
+            </p>
+        </div>
 
-            <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardCustoRestock}</h3>
-                <p>
-                    <img src="./icones/flower.png" class="crop-img">${custoRestockDoComboFlower.toFixed(2)} ~ 
-                    <img src="./icones/usdc.png" class="crop-img">${custoRestockDoComboDolar.toFixed(2)}
-                </p>
-            </div>
-
-            <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardLucroDoCombo}</h3>
-                <p>
-                    <img src="./icones/flower.png" class="crop-img">${lucroDoComboCropFlower.toFixed(2)} ~ 
-                    <img src="./icones/usdc.png" class="crop-img">${Number(lucroDoComboCropFlower * precoDoFlower).toFixed(2)}
-                </p>
-            </div>
-            <h1>-</h1> 
-            <div class="card-total-crops">
+        <div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardQtdRestock}</h3>
+            <p><img src="./icones/reestock.png" class="crop-img">${restockDoCombo.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestock.toFixed(2)}</p>
+        </div>` : '';
+    let cardRestockECusto24h = calcularRestockCrops === 'sim' ?
+        `<div class="card-total-crops">
                 <h3>${idiomaDoTextoCrops.cardQtdRestock24h}</h3>
                 <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24h.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${mediaGemsGastasRestock24h.toFixed(2)}</p>
             </div>
@@ -262,7 +248,31 @@ function tabelaDeCrops() {
                     <img src="./icones/flower.png" class="crop-img">${mediaCustoRestock24hFlower.toFixed(2)} ~ 
                     <img src="./icones/usdc.png" class="crop-img">${mediaCustoRestock24hDolar.toFixed(2)}
                 </p>
+            </div>` : '';
+        
+    let cardResultados = `
+        <div class="cards-totais-crops">
+
+            <div class="card-total-crops">
+                <h3><img src="./icones/tempo.png" class="crop-img">${idiomaDoTextoCrops.cardTempoTotal}</h3>
+                <p>${formatarTempoTotalDoDia(tempoTotalDoCombo)}</p>
             </div>
+
+            <h1>-</h1> 
+            
+            ${cardRestockECusto}
+
+            <div class="card-total-crops">
+                <h3>${idiomaDoTextoCrops.cardLucroDoCombo}</h3>
+                <p>
+                    <img src="./icones/flower.png" class="crop-img">${lucroDoComboCropFlower.toFixed(2)} ~ 
+                    <img src="./icones/usdc.png" class="crop-img">${Number(lucroDoComboCropFlower * precoDoFlower).toFixed(2)}
+                </p>
+            </div>
+
+            <h1>-</h1> 
+
+            ${cardRestockECusto24h}
 
             <div class="card-total-crops">
                 <h3>${idiomaDoTextoCrops.cardLucroEm24h}</h3>
@@ -395,7 +405,7 @@ function tabelaDeCrops() {
     //calculo dos valores de restock do combo montado e seu desconto no lucro
     let custoRestockDoComboFlowerCM = Number(gemsGastasComRestockCM * precoDaGemEmFlower);
     let custoRestockDoComboDolarCM = Number(gemsGastasComRestockCM * precoPorGem);
-    let lucroTotalDoComboFlowerNaCM = ganhoTotalDoComboFlowerNaCM - custoRestockDoComboFlowerCM;
+    let lucroTotalDoComboFlowerNaCM = calcularRestockCM === 'sim' ? ganhoTotalDoComboFlowerNaCM - custoRestockDoComboFlowerCM : ganhoTotalDoComboFlowerNaCM;
 
     //média em de restock e seu custo em 24h e desconto no lucro medio em 24h
     let mediaRestock24hCM = (vinteQuatroHoras / tempoTotalDoComboNaCM) * restockDoComboCM || 0;
@@ -405,6 +415,35 @@ function tabelaDeCrops() {
     let lucroDoComboEm24hCM = ((vinteQuatroHoras / tempoTotalDoComboNaCM) * lucroTotalDoComboFlowerNaCM);
     let lucroDoComboSemanalCM = lucroDoComboEm24hCM * 7;
 
+    //textos para os cards de restock
+    let cardRestockECustoCM = calcularRestockCM === 'sim' ?
+        `<div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardQtdRestock}</h3>
+            <p><img src="./icones/reestock.png" class="crop-img">${restockDoComboCM.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestockCM.toFixed(2)}</p>
+        </div>
+
+            <div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardCustoRestock}</h3>
+            <p>
+                <img src="./icones/flower.png" class="crop-img">${custoRestockDoComboFlowerCM.toFixed(2)} ~ 
+                <img src="./icones/usdc.png" class="crop-img">${custoRestockDoComboDolarCM.toFixed(2)}
+            </p>
+        </div>` : '';
+    let cardRestockECusto24hCM = calcularRestockCM === 'sim' ?
+        `<div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardQtdRestock24h}</h3>
+            <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24hCM.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${mediaGemsGastasRestock24hCM.toFixed(2)}</p>
+        </div>
+
+        <div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardCustoRestock24h}</h3>
+            <p>
+                <img src="./icones/flower.png" class="crop-img">${mediaCustoRestock24hFlowerCM.toFixed(2)} ~ 
+                <img src="./icones/usdc.png" class="crop-img">${mediaCustoRestock24hDolarCM.toFixed(2)}
+            </p>
+        </div>` : '';
+
+
     let cardResultadosCM = `
         <div class="cards-totais-crops">
 
@@ -412,19 +451,10 @@ function tabelaDeCrops() {
                 <h3><img src="./icones/tempo.png" class="crop-img">${idiomaDoTextoCrops.cardTempoTotal} - <img src="./minerais/oil.png" class="crop-img">${idiomaDoTextoCrops.oilUsado}</h3>
                 <p>${formatarTempoTotalDoDia(tempoTotalDoComboNaCM)} - <img src="./minerais/oil.png" class="crop-img">${oilTotalUsado.toFixed(2)}</p>
             </div>
-            <h1>-</h1>
-            <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardQtdRestock}</h3>
-                <p><img src="./icones/reestock.png" class="crop-img">${restockDoComboCM.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestockCM.toFixed(2)}</p>
-            </div>
 
-             <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardCustoRestock}</h3>
-                <p>
-                    <img src="./icones/flower.png" class="crop-img">${custoRestockDoComboFlowerCM.toFixed(2)} ~ 
-                    <img src="./icones/usdc.png" class="crop-img">${custoRestockDoComboDolarCM.toFixed(2)}
-                </p>
-            </div>
+            <h1>-</h1>
+
+            ${cardRestockECustoCM}
 
             <div class="card-total-crops">
                 <h3>${idiomaDoTextoCrops.cardLucroDoCombo}</h3>
@@ -433,19 +463,10 @@ function tabelaDeCrops() {
                     <img src="./icones/usdc.png" class="crop-img">${Number(lucroTotalDoComboFlowerNaCM * precoDoFlower).toFixed(2)}
                 </p>
             </div>
-            <h1>-</h1>
-            <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardQtdRestock24h}</h3>
-                <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24hCM.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${mediaGemsGastasRestock24hCM.toFixed(2)}</p>
-            </div>
 
-            <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardCustoRestock24h}</h3>
-                <p>
-                    <img src="./icones/flower.png" class="crop-img">${mediaCustoRestock24hFlowerCM.toFixed(2)} ~ 
-                    <img src="./icones/usdc.png" class="crop-img">${mediaCustoRestock24hDolarCM.toFixed(2)}
-                </p>
-            </div>
+            <h1>-</h1>
+
+            ${cardRestockECusto24hCM}
 
             <div class="card-total-crops">
                 <h3>${idiomaDoTextoCrops.cardLucroEm24h}</h3>
@@ -573,7 +594,7 @@ function tabelaDeCrops() {
     //calculo dos valores de restock do combo montado e seu desconto no lucro
     let custoRestockDoComboFlowerFrutas = Number(gemsGastasComRestockFrutas * precoDaGemEmFlower);
     let custoRestockDoComboDolarFrutas = Number(gemsGastasComRestockFrutas * precoPorGem);
-    let lucroTotalDoComboFrutasFlower = ganhoTotalDoComboFrutasFlower - custoRestockDoComboFlowerFrutas;
+    let lucroTotalDoComboFrutasFlower = calcularRestockFrutas === 'sim' ? ganhoTotalDoComboFrutasFlower - custoRestockDoComboFlowerFrutas : ganhoTotalDoComboFrutasFlower;
 
     //média em de restock e seu custo em 24h e desconto no lucro medio em 24h
     let mediaRestock24hFrutas = (vinteQuatroHoras / tempoTotalComboFrutas) * restockDoComboFrutas || 0;
@@ -583,6 +604,33 @@ function tabelaDeCrops() {
     let lucroDoComboEm24hFrutas = ((vinteQuatroHoras / tempoTotalComboFrutas) * lucroTotalDoComboFrutasFlower);
     let lucroDoComboSemanalFrutas = lucroDoComboEm24hFrutas * 7;
 
+    //textos para os cards de restock
+    let cardRestockECustoFrutas = calcularRestockFrutas === 'sim' ?
+        `<div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardQtdRestock}</h3>
+            <p><img src="./icones/reestock.png" class="crop-img">${restockDoComboFrutas.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestockFrutas.toFixed(2)}</p>
+        </div>
+
+            <div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardCustoRestock}</h3>
+            <p>
+                <img src="./icones/flower.png" class="crop-img">${custoRestockDoComboFlowerFrutas.toFixed(2)} ~ 
+                <img src="./icones/usdc.png" class="crop-img">${custoRestockDoComboDolarFrutas.toFixed(2)}
+            </p>
+        </div>` : '';   
+    let cardRestockECusto24hFrutas = calcularRestockFrutas === 'sim' ?
+        `<div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardQtdRestock24h}</h3>
+            <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24hFrutas.toFixed(2)} ➜ ${mediaGemsGastasRestock24hFrutas.toFixed(2)}<img src="./icones/gem.png" class="crop-img"></p>
+        </div>
+
+        <div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardCustoRestock24h}</h3>
+            <p>
+                <img src="./icones/flower.png" class="crop-img">${mediaCustoRestock24hFlowerFrutas.toFixed(2)} ~ 
+                <img src="./icones/usdc.png" class="crop-img">${mediaCustoRestock24hDolarFrutas.toFixed(2)}
+            </p>
+        </div>` : '';
 
     let cardResultadosFrutas = `
         <div class="cards-totais-crops">
@@ -591,19 +639,10 @@ function tabelaDeCrops() {
                 <h3><img src="./icones/tempo.png" class="crop-img">${idiomaDoTextoCrops.cardTempoTotal}</h3>
                 <p>${formatarTempoTotalDoDia(tempoTotalComboFrutas)}</p>
             </div>
-            <h1>-</h1>
-            <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardQtdRestock}</h3>
-                <p><img src="./icones/reestock.png" class="crop-img">${restockDoComboFrutas.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestockFrutas.toFixed(2)}</p>
-            </div>
 
-             <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardCustoRestock}</h3>
-                <p>
-                    <img src="./icones/flower.png" class="crop-img">${custoRestockDoComboFlowerFrutas.toFixed(2)} ~ 
-                    <img src="./icones/usdc.png" class="crop-img">${custoRestockDoComboDolarFrutas.toFixed(2)}
-                </p>
-            </div>
+            <h1>-</h1>
+
+            ${cardRestockECustoFrutas}
 
             <div class="card-total-crops">
                 <h3>${idiomaDoTextoCrops.cardLucroDoCombo}</h3>
@@ -612,19 +651,10 @@ function tabelaDeCrops() {
                     <img src="./icones/usdc.png" class="crop-img">${(lucroTotalDoComboFrutasFlower * precoDoFlower).toFixed(2)}
                 </p>
             </div>
-            <h1>-</h1>
-            <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardQtdRestock24h}</h3>
-                <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24hFrutas.toFixed(2)} ➜ ${mediaGemsGastasRestock24hFrutas.toFixed(2)}<img src="./icones/gem.png" class="crop-img"></p>
-            </div>
 
-            <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardCustoRestock24h}</h3>
-                <p>
-                    <img src="./icones/flower.png" class="crop-img">${mediaCustoRestock24hFlowerFrutas.toFixed(2)} ~ 
-                    <img src="./icones/usdc.png" class="crop-img">${mediaCustoRestock24hDolarFrutas.toFixed(2)}
-                </p>
-            </div>
+            <h1>-</h1>
+
+            ${cardRestockECusto24hFrutas}
 
             <div class="card-total-crops">
                 <h3>${idiomaDoTextoCrops.cardLucroEm24h}</h3>
@@ -749,7 +779,7 @@ function tabelaDeCrops() {
     //calculo dos valores de restock do combo montado e seu desconto no lucro
     let custoRestockDoComboFlowerGH = Number(gemsGastasComRestockGH * precoDaGemEmFlower);
     let custoRestockDoComboDolarGH = Number(gemsGastasComRestockGH * precoPorGem);
-    let lucroTotalDoComboGHFlower = ganhoTotalDoComboGHFlower - custoRestockDoComboFlowerGH;
+    let lucroTotalDoComboGHFlower = calcularRestockGreenhouse === 'sim' ? ganhoTotalDoComboGHFlower - custoRestockDoComboFlowerGH : ganhoTotalDoComboGHFlower;
 
     //média em de restock e seu custo em 24h e desconto no lucro medio em 24h
     let mediaRestock24hGH = (vinteQuatroHoras / tempoTotalComboGH) * restockDoComboGH || 0;
@@ -759,6 +789,33 @@ function tabelaDeCrops() {
     let lucroDoComboEm24hGH = ((vinteQuatroHoras / tempoTotalComboGH) * lucroTotalDoComboGHFlower);
     let lucroDoComboSemanalGH = lucroDoComboEm24hGH * 7;
 
+    //textos para os cards de restock
+    let cardRestockECustoGreenhouse = calcularRestockGreenhouse === 'sim' ?
+        `<div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardQtdRestock}</h3>
+            <p><img src="./icones/reestock.png" class="crop-img">${restockDoComboGH.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestockGH.toFixed(2)}</p>
+        </div>
+
+            <div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardCustoRestock}</h3>
+            <p>
+                <img src="./icones/flower.png" class="crop-img">${custoRestockDoComboFlowerGH.toFixed(2)} ~ 
+                <img src="./icones/usdc.png" class="crop-img">${custoRestockDoComboDolarGH.toFixed(2)}
+            </p>
+        </div>` : '';
+    let cardRestockECusto24hGreenhouse = calcularRestockGreenhouse === 'sim' ?
+        `<div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardQtdRestock24h}</h3>
+            <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24hGH.toFixed(2)} ➜ ${mediaGemsGastasRestock24hGH.toFixed(2)}<img src="./icones/gem.png" class="crop-img"></p>
+        </div>
+
+        <div class="card-total-crops">
+            <h3>${idiomaDoTextoCrops.cardCustoRestock24h}</h3>
+            <p>
+                <img src="./icones/flower.png" class="crop-img">${mediaCustoRestock24hFlowerGH.toFixed(2)} ~ 
+                <img src="./icones/usdc.png" class="crop-img">${mediaCustoRestock24hDolarGH.toFixed(2)}
+            </p>
+        </div>` : '';
 
     let cardResultadosGH = `
         <div class="cards-totais-crops">
@@ -767,19 +824,10 @@ function tabelaDeCrops() {
                 <h3><img src="./icones/tempo.png" class="crop-img">${idiomaDoTextoCrops.cardTempoTotal}</h3>
                 <p>${formatarTempoTotalDoDia(tempoTotalComboGH)}</p>
             </div>
-            <h1>-</h1>
-            <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardQtdRestock}</h3>
-                <p><img src="./icones/reestock.png" class="crop-img">${restockDoComboGH.toFixed(2)} ➜ <img src="./icones/gem.png" class="crop-img">${gemsGastasComRestockGH.toFixed(2)}</p>
-            </div>
 
-             <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardCustoRestock}</h3>
-                <p>
-                    <img src="./icones/flower.png" class="crop-img">${custoRestockDoComboFlowerGH.toFixed(2)} ~ 
-                    <img src="./icones/usdc.png" class="crop-img">${custoRestockDoComboDolarGH.toFixed(2)}
-                </p>
-            </div>
+            <h1>-</h1>
+            
+            ${cardRestockECustoGreenhouse}
 
             <div class="card-total-crops">
                 <h3>${idiomaDoTextoCrops.cardLucroDoCombo}</h3>
@@ -788,19 +836,10 @@ function tabelaDeCrops() {
                     <img src="./icones/usdc.png" class="crop-img">${(lucroTotalDoComboGHFlower * precoDoFlower).toFixed(2)}
                 </p>
             </div>
-            <h1>-</h1>
-            <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardQtdRestock24h}</h3>
-                <p><img src="./icones/reestock.png" class="crop-img">${mediaRestock24hGH.toFixed(2)} ➜ ${mediaGemsGastasRestock24hGH.toFixed(2)}<img src="./icones/gem.png" class="crop-img"></p>
-            </div>
 
-            <div class="card-total-crops">
-                <h3>${idiomaDoTextoCrops.cardCustoRestock24h}</h3>
-                <p>
-                    <img src="./icones/flower.png" class="crop-img">${mediaCustoRestock24hFlowerGH.toFixed(2)} ~ 
-                    <img src="./icones/usdc.png" class="crop-img">${mediaCustoRestock24hDolarGH.toFixed(2)}
-                </p>
-            </div>
+            <h1>-</h1>
+            
+            ${cardRestockECusto24hGreenhouse}
 
             <div class="card-total-crops">
                 <h3>${idiomaDoTextoCrops.cardLucroEm24h}</h3>

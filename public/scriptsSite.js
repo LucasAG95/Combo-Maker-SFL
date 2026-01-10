@@ -43,6 +43,15 @@ const SaveManager = {
                     minerios: modoDeCalcularMinerios,
                 },
 
+                // Opções de Restock
+                restock: {
+                    crops: document.getElementById('descontar-restock-crops')?.value,
+                    cropsCM: document.getElementById('descontar-restock-cm')?.value,
+                    frutas: document.getElementById('descontar-restock-frutas')?.value,
+                    greenhouse: document.getElementById('descontar-restock-greenhouse')?.value,
+                    minerais: document.getElementById('descontar-restock-minerais')?.value,
+                },
+
                 // Minerals - quantidade de nodes
                 minerals: {
                     wood: { t1: mapaDeMinerals['wood'].qtdNodes.t1, t2: mapaDeMinerals['wood'].qtdNodes.t2, t3: mapaDeMinerals['wood'].qtdNodes.t3 },
@@ -254,6 +263,45 @@ const SaveManager = {
                     const select = document.getElementById('tipo-de-calculo-mineral');
                     select.value = estado.modoCalculo.minerios;
                     select.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            }
+
+            // 3.5. Opções de Restock
+            if (estado.restock) {
+                if (estado.restock.crops) {
+                    const select = document.getElementById('descontar-restock-crops');
+                    if (select) {
+                        select.value = estado.restock.crops;
+                        select.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                }
+                if (estado.restock.cropsCM) {
+                    const select = document.getElementById('descontar-restock-cm');
+                    if (select) {
+                        select.value = estado.restock.cropsCM;
+                        select.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                }
+                if (estado.restock.frutas) {
+                    const select = document.getElementById('descontar-restock-frutas');
+                    if (select) {
+                        select.value = estado.restock.frutas;
+                        select.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                }
+                if (estado.restock.greenhouse) {
+                    const select = document.getElementById('descontar-restock-greenhouse');
+                    if (select) {
+                        select.value = estado.restock.greenhouse;
+                        select.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                }
+                if (estado.restock.minerais) {
+                    const select = document.getElementById('descontar-restock-minerais');
+                    if (select) {
+                        select.value = estado.restock.minerais;
+                        select.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
                 }
             }
 
