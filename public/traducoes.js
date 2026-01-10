@@ -158,12 +158,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.5`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV021}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV022}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV023}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV024}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV025}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.6`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV022}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV023}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV024}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV025}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV026}`;
 
 
     pontosGastosEmSkills();
@@ -460,7 +460,10 @@ const idiomaDasAtualizacoes = {
             • Media de Lucro por animal adicionado!
             • Diminuição no tamanhos dos inputs e de alguns titulos de colunas!`,
 
-        atualizacaoV026: `• ajustar o card dos minerios que mostra o custo errado`
+        atualizacaoV026: `v0.2.6 - Data da Atualização: 10/01/2026 <br><br>
+            • Remodelagem na tabela de animais e lucro individual por level do animal<br>`,
+
+        atualizacaoV027: `• ajustar o card dos minerios que mostra o custo errado`,
 
     },
     ingles: {
@@ -523,6 +526,9 @@ const idiomaDasAtualizacoes = {
             • Option to deduct or not deduct the Restock cost.<br>
             • Average profit per animal added!<br>
             • Reduced the size of inputs and some column titles!`,
+
+        atualizacaoV026: `v0.2.6 - Update Date: 01/10/2026 <br><br>
+            • Redesign of the animal table and individual profit per animal level<br>`,
 
     }
 };

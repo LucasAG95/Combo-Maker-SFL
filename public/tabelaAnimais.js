@@ -7,7 +7,7 @@ const idiomaTabelaAnimais = {
         //todos animais
         level: 'Level',
         xpTotal: 'XP Total',
-        xpNecessarioProProximoLevel: 'XP Necessário<br>para o Próx. Level',
+        xpNecessarioProProximoLevel: 'XP Necessário',
         mediaDeXpComCarinho: 'Média de XP<br>com Carinho',
         xpFaltantePosCarinho: 'XP Restante<br>após Carinho',
         comidaUsada: 'Comida Usada',
@@ -73,7 +73,7 @@ const idiomaTabelaAnimais = {
         //todos animais
         level: 'Level',
         xpTotal: 'Total XP',
-        xpNecessarioProProximoLevel: 'XP Required<br>for Next Level',
+        xpNecessarioProProximoLevel: 'XP Required',
         mediaDeXpComCarinho: 'Average XP<br>with Affection',
         xpFaltantePosCarinho: 'Remaining XP<br>after Affection',
         comidaUsada: 'Food Used',
@@ -154,16 +154,15 @@ function tabelaGalinhas() {
     
     let tabelaTituloGalinhas = `
         <tr>   
-            <th>${idiomaSelecionadoAnimais.level}<br>${idiomaSelecionadoAnimais.xpTotal}</th>
+            <th>${idiomaSelecionadoAnimais.level}<br>${idiomaSelecionadoAnimais.xpNecessarioProProximoLevel}</th>
             <th>${idiomaSelecionadoAnimais.mediaDeRecursosPorGalinha}</th>
-            <th>${idiomaSelecionadoAnimais.xpNecessarioProProximoLevel}</th>
             <th>${idiomaSelecionadoAnimais.mediaDeXpComCarinho}</th>
             <th>${idiomaSelecionadoAnimais.xpFaltantePosCarinho}</th>
             <th>${idiomaSelecionadoAnimais.comidaUsada}<br>${idiomaSelecionadoAnimais.xpPorUnidadeDeComida}</th>
+            <th>${idiomaSelecionadoAnimais.rendimentoPorGalinha}</th>
             <th>${idiomaSelecionadoAnimais.galinhasQueVaiCriar}<br><button onclick="galinhasColocadas()">${idiomaSelecionadoAnimais.salvar}</button></th>
             <th>${idiomaSelecionadoAnimais.custoMedioPorDiaEmComida}</th>
             <th>${idiomaSelecionadoAnimais.mediaDePenasEOvosPorDia}</th>
-            <th>${idiomaSelecionadoAnimais.rendimentoPorGalinha}</th>
             <th>${idiomaSelecionadoAnimais.lucroTotal}<br>${idiomaSelecionadoAnimais.taxa}: ${(taxa * 100).toFixed(2)}%</th>
             <th>${idiomaSelecionadoAnimais.vendaDaSemana}</th>
             <th>${idiomaSelecionadoAnimais.galinhasQueVaiVender}<br><button onclick="galinhasColocadas()">${idiomaSelecionadoAnimais.salvar}</button></th>
@@ -203,9 +202,10 @@ function tabelaGalinhas() {
 
         let totalComidaUsada = galinha.qtdDeComidaPraSubirDeLevel;
         let ateLevel = galinha.level - galinha.levelAnterior === 0 ? `Manter Level 15` : `Level ${galinha.level}`;
-        let xpTotalDoLevel = ateLevel === 'Manter Level 15' ? '♾️' : galinha.xpTotalDoLevel;
 
         let levelProProximo = galinha.level - galinha.levelAnterior > 0 ? 0 : 15;
+
+        let lucroPorLevelDaGalinha = (((galinha.eggFinal * mapaDosValoresDoMarket['egg'].valor) + (galinha.featherFinal * mapaDosValoresDoMarket['feather'].valor)) * (1 - taxa)) - (totalComidaUsada * galinha.custoDaComida);
 
         let mediaDeOvosNoDia = (vinteQuatroHoras / galinha.tempo) * galinha.mediaDeOvosDoLevel;
         let mediaDePenasNoDia = (vinteQuatroHoras / galinha.tempo) * galinha.mediaDePenasDoLevel;
@@ -217,8 +217,6 @@ function tabelaGalinhas() {
         
         let ganhoComOvosEPenas = Number(((precoOvo * mediaDeOvosNoDia) + (precoPena * mediaDePenasNoDia)) * (1 - taxa));
         let lucroFlower = galinha.qtdUsada == 0 || ilha === 'Basic' ? 0 : Number(ganhoComOvosEPenas - gastoComComida);
-        let lucroPorGalinha = lucroFlower / (galinha.qtdUsada || 1);
-        let textoLucroPorGalinha = lucroPorGalinha != 0 ? `<img src="./icones/flower.png" class="crop-img">${lucroPorGalinha.toFixed(4)}` : '';
         
         //lucroFlowerComGalinha pega o valor de coins da galinha e multiplica por quantas tem pra vender na semana, dps divide pela quantidade de galinhas que vai criar ate aqle nivel para te dar a média
         let galinhasVendidas = (galinha.vendida || 0) < galinha.qtdDeAnimaisQuePodeVender ? galinha.vendida : galinha.qtdDeAnimaisQuePodeVender;
@@ -244,16 +242,15 @@ function tabelaGalinhas() {
 
         tabelaGalinhas += `
         <tr>
-            <td><img src="./animais/galinha.png" class="crop-img">${ateLevel}<br><img src="./icones/xp.png" class="crop-img">${xpTotalDoLevel}</td>
-            <td><img src="./animais/egg.png" class="crop-img">${(galinha.eggFinal).toFixed(2)}<br><img src="./animais/feather.png" class="crop-img">${(galinha.featherFinal).toFixed(2)}</td>
             <td><img src="./animais/galinha.png" class="crop-img">${galinha.levelAnterior} ➜ ${galinha.level}<br><img src="./icones/subirXP.png" class="crop-img">${galinha.xpTotalDoLevel - galinha.xpTotalAnterior}</td>
+            <td><img src="./animais/egg.png" class="crop-img">${(galinha.eggFinal).toFixed(2)}<br><img src="./animais/feather.png" class="crop-img">${(galinha.featherFinal).toFixed(2)}</td>
             <td><img src="./animais/brush.png" class="crop-img">${galinha.xpAdquiridoComCarinho} xp</td>
             <td><img src="./icones/xp.png" class="crop-img">${galinha.xpNecessario}</td>
             <td><img src="./animais/${mudarImagemMixedGrain}.png" class="crop-img">${totalComidaUsada.toFixed(2)}<br><img src="./icones/xp.png" class="crop-img">${galinha.xpDaComidaPadrao}</td>
+            <td><img src="./animais/galinha.png" class="crop-img">${galinha.levelAnterior} ➜ ${galinha.level}<br><img src="./icones/flower.png" class="crop-img">${lucroPorLevelDaGalinha.toFixed(4)}</td>
             <td><input type="number" placeholder="" data-name="${galinha.levelAnterior}" class="quantidade-input galinhas-input" value="${galinha.qtdUsada}"></td>
             <td><img src="./animais/galinha.png" class="crop-img">${levelProProximo} ➜ ${galinha.level}<br>${textoGastoComComida}</td>
             <td>${textoMediaDeOvosNoDia}<br>${textoMediaDePenasNoDia}</td>
-            <td>${textoLucroPorGalinha}</td>
             <td>${textoLucroFlower}</td>
             <td>${textoVendaPorLevelCoins}</td>
             <td>${inputVendaGalinhas}</td>
@@ -371,16 +368,15 @@ function tabelaVacas() {
     
     let tabelaTituloVacas = `
         <tr>   
-            <th>${idiomaSelecionadoAnimais.level}<br>${idiomaSelecionadoAnimais.xpTotal}</th>
+            <th>${idiomaSelecionadoAnimais.level}<br>${idiomaSelecionadoAnimais.xpNecessarioProProximoLevel}</th>
             <th>${idiomaSelecionadoAnimais.mediaDeRecursosPorVaca}</th>
-            <th>${idiomaSelecionadoAnimais.xpNecessarioProProximoLevel}</th>
             <th>${idiomaSelecionadoAnimais.mediaDeXpComCarinho}</th>
             <th>${idiomaSelecionadoAnimais.xpFaltantePosCarinho}</th>
             <th>${idiomaSelecionadoAnimais.comidaUsada}<br>${idiomaSelecionadoAnimais.xpPorUnidadeDeComida}</th>
+            <th>${idiomaSelecionadoAnimais.rendimentoPorVaca}</th>
             <th>${idiomaSelecionadoAnimais.vacasQueVaiCriar}<br><button onclick="vacasColocadas()">${idiomaSelecionadoAnimais.salvar}</button></th>
             <th>${idiomaSelecionadoAnimais.custoMedioPorDiaEmComida}</th>
             <th>${idiomaSelecionadoAnimais.mediaDeLeiteECouroPorDia}</th>
-            <th>${idiomaSelecionadoAnimais.rendimentoPorVaca}</th>
             <th>${idiomaSelecionadoAnimais.lucroTotal}<br>${idiomaSelecionadoAnimais.taxa}: ${(taxa * 100).toFixed(2)}%</th>
             <th>${idiomaSelecionadoAnimais.vendaDaSemana}</th>
             <th>${idiomaSelecionadoAnimais.vacasQueVaiVender}<br><button onclick="vacasColocadas()">${idiomaSelecionadoAnimais.salvar}</button></th>
@@ -420,9 +416,10 @@ function tabelaVacas() {
 
         let totalComidaUsada = vaca.qtdDeComidaPraSubirDeLevel;
         let ateLevel = vaca.level - vaca.levelAnterior === 0 ? `Manter Level 15` : `Level ${vaca.level}`;
-        let xpTotalDoLevel = ateLevel === 'Manter Level 15' ? '♾️' : vaca.xpTotalDoLevel;
 
         let levelProProximo = vaca.level - vaca.levelAnterior > 0 ? 0 : 15;
+
+        let lucroPorLevelDaVaca = (((vaca.milkFinal * mapaDosValoresDoMarket['milk'].valor) + (vaca.leatherFinal * mapaDosValoresDoMarket['leather'].valor)) * (1 - taxa)) - (totalComidaUsada * vaca.custoDaComida);
 
         let mediaDeLeiteNoDia = (vinteQuatroHoras / vaca.tempo) * vaca.mediaDeLeiteDoLevel;
         let mediaDeCouroNoDia = (vinteQuatroHoras / vaca.tempo) * vaca.mediaDeCouroDoLevel;
@@ -434,8 +431,6 @@ function tabelaVacas() {
         
         let ganhoComLeiteECouro = Number(((precoLeite * mediaDeLeiteNoDia) + (precoCouro * mediaDeCouroNoDia)) * (1 - taxa));
         let lucroFlower = vaca.qtdUsada == 0 || ilha === 'Basic' ? 0 : Number(ganhoComLeiteECouro - gastoComComida);
-        let lucroPorVaca = lucroFlower / (vaca.qtdUsada || 1);
-        let textoLucroPorVaca = lucroPorVaca != 0 ? `<img src="./icones/flower.png" class="crop-img">${lucroPorVaca.toFixed(4)}` : '';
         
         //lucroFlowerComVaca pega o valor de coins da galinha e multiplica por quantas tem pra vender na semana, dps divide pela quantidade de galinhas que vai criar ate aqle nivel para te dar a média
         let vacasVendidas = (vaca.vendida || 0) < vaca.qtdDeAnimaisQuePodeVender ? vaca.vendida : vaca.qtdDeAnimaisQuePodeVender;
@@ -461,16 +456,15 @@ function tabelaVacas() {
 
         tabelaVacas += `
         <tr>
-            <td><img src="./animais/vaca.png" class="crop-img">${ateLevel}<br><img src="./icones/xp.png" class="crop-img">${xpTotalDoLevel}</td>
-            <td><img src="./animais/milk.png" class="crop-img">${(vaca.milkFinal).toFixed(2)}<br><img src="./animais/leather.png" class="crop-img">${(vaca.leatherFinal).toFixed(2)}</td>
             <td><img src="./animais/vaca.png" class="crop-img">${vaca.levelAnterior} ➜ ${vaca.level}<br><img src="./icones/subirXP.png" class="crop-img">${vaca.xpTotalDoLevel - vaca.xpTotalAnterior}</td>
+            <td><img src="./animais/milk.png" class="crop-img">${(vaca.milkFinal).toFixed(2)}<br><img src="./animais/leather.png" class="crop-img">${(vaca.leatherFinal).toFixed(2)}</td>
             <td><img src="./animais/brush.png" class="crop-img">${vaca.xpAdquiridoComCarinho} xp</td>
             <td><img src="./icones/xp.png" class="crop-img">${vaca.xpNecessario}</td>
             <td><img src="./animais/${mudarImagemMixedGrain}.png" class="crop-img">${totalComidaUsada.toFixed(2)}<br><img src="./icones/xp.png" class="crop-img">${vaca.xpDaComidaPadrao}</td>
+            <td><img src="./animais/vaca.png" class="crop-img">${vaca.levelAnterior} ➜ ${vaca.level}<br><img src="./icones/flower.png" class="crop-img">${lucroPorLevelDaVaca.toFixed(4)}</td>
             <td><input type="number" placeholder="" data-name="${vaca.levelAnterior}" class="quantidade-input vacas-input" value="${vaca.qtdUsada}"></td>
             <td><img src="./animais/vaca.png" class="crop-img">${levelProProximo} ➜ ${vaca.level}<br>${textoGastoComComida}</td>
             <td>${textoMediaDeLeiteNoDia}<br>${textoMediaDeCouroNoDia}</td>
-            <td>${textoLucroPorVaca}</td>
             <td>${textoLucroFlower}</td>
             <td>${textoVendaPorLevelCoins}</td>
             <td>${inputVendaVacas}</td>
@@ -589,16 +583,15 @@ function tabelaOvelhas() {
     
     let tabelaTituloOvelhas = `
         <tr>   
-            <th>${idiomaSelecionadoAnimais.level}<br>${idiomaSelecionadoAnimais.xpTotal}</th>
+            <th>${idiomaSelecionadoAnimais.level}<br>${idiomaSelecionadoAnimais.xpNecessarioProProximoLevel}</th>
             <th>${idiomaSelecionadoAnimais.mediaDeRecursosPorOvelha}</th>
-            <th>${idiomaSelecionadoAnimais.xpNecessarioProProximoLevel}</th>
             <th>${idiomaSelecionadoAnimais.mediaDeXpComCarinho}</th>
             <th>${idiomaSelecionadoAnimais.xpFaltantePosCarinho}</th>
             <th>${idiomaSelecionadoAnimais.comidaUsada}<br>${idiomaSelecionadoAnimais.xpPorUnidadeDeComida}</th>
+            <th>${idiomaSelecionadoAnimais.rendimentoPorOvelha}</th>
             <th>${idiomaSelecionadoAnimais.ovelhasQueVaiCriar}<br><button onclick="ovelhasColocadas()">${idiomaSelecionadoAnimais.salvar}</button></th>
             <th>${idiomaSelecionadoAnimais.custoMedioPorDiaEmComida}</th>
             <th>${idiomaSelecionadoAnimais.mediaDeLaEMerinoPorDia}</th>
-            <th>${idiomaSelecionadoAnimais.rendimentoPorOvelha}</th>
             <th>${idiomaSelecionadoAnimais.lucroTotal}<br>${idiomaSelecionadoAnimais.taxa}: ${(taxa * 100).toFixed(2)}%</th>
             <th>${idiomaSelecionadoAnimais.vendaDaSemana}</th>
             <th>${idiomaSelecionadoAnimais.ovelhasQueVaiVender}<br><button onclick="ovelhasColocadas()">${idiomaSelecionadoAnimais.salvar}</button></th>
@@ -638,9 +631,10 @@ function tabelaOvelhas() {
 
         let totalComidaUsada = ovelha.qtdDeComidaPraSubirDeLevel;
         let ateLevel = ovelha.level - ovelha.levelAnterior === 0 ? `Manter Level 15` : `Level ${ovelha.level}`;
-        let xpTotalDoLevel = ateLevel === 'Manter Level 15' ? '♾️' : ovelha.xpTotalDoLevel;
 
         let levelProProximo = ovelha.level - ovelha.levelAnterior > 0 ? 0 : 15;
+
+        let lucroPorLevelDaOvelha = (((ovelha.woolFinal * mapaDosValoresDoMarket['wool'].valor) + (ovelha.merinoWoolFinal * mapaDosValoresDoMarket['merinoWool'].valor)) * (1 - taxa)) - (totalComidaUsada * ovelha.custoDaComida);
 
         let mediaDeLaNoDia = (vinteQuatroHoras / ovelha.tempo) * ovelha.mediaDeLaDoLevel;
         let mediaDeLaMerinoNoDia = (vinteQuatroHoras / ovelha.tempo) * ovelha.mediaDeLaMerinoDoLevel;
@@ -652,8 +646,6 @@ function tabelaOvelhas() {
         
         let ganhoComLasEMerinos = Number(((precoLa * mediaDeLaNoDia) + (precoLaMerino * mediaDeLaMerinoNoDia)) * (1 - taxa));
         let lucroFlower = ovelha.qtdUsada == 0 || ilha === 'Basic' ? 0 : Number(ganhoComLasEMerinos - gastoComComida);
-        let lucroPorOvelha = lucroFlower / (ovelha.qtdUsada || 1);
-        let textoLucroPorOvelha = lucroPorOvelha != 0 ? `<img src="./icones/flower.png" class="crop-img">${lucroPorOvelha.toFixed(4)}` : '';
         
         //lucroFlowerComGalinha pega o valor de coins da galinha e multiplica por quantas tem pra vender na semana, dps divide pela quantidade de galinhas que vai criar ate aqle nivel para te dar a média
         let ovelhasVendidas = (ovelha.vendida || 0) < ovelha.qtdDeAnimaisQuePodeVender ? ovelha.vendida : ovelha.qtdDeAnimaisQuePodeVender;
@@ -679,16 +671,15 @@ function tabelaOvelhas() {
 
         tabelaOvelhas += `
         <tr>
-            <td><img src="./animais/ovelha.png" class="crop-img">${ateLevel}<br><img src="./icones/xp.png" class="crop-img">${xpTotalDoLevel}</td>
-            <td><img src="./animais/wool.png" class="crop-img">${(ovelha.woolFinal).toFixed(2)}<br><img src="./animais/merinoWool.png" class="crop-img">${(ovelha.merinoWoolFinal).toFixed(2)}</td>
             <td><img src="./animais/ovelha.png" class="crop-img">${ovelha.levelAnterior} ➜ ${ovelha.level}<br><img src="./icones/subirXP.png" class="crop-img">${ovelha.xpTotalDoLevel - ovelha.xpTotalAnterior}</td>
+            <td><img src="./animais/wool.png" class="crop-img">${(ovelha.woolFinal).toFixed(2)}<br><img src="./animais/merinoWool.png" class="crop-img">${(ovelha.merinoWoolFinal).toFixed(2)}</td>
             <td><img src="./animais/brush.png" class="crop-img">${ovelha.xpAdquiridoComCarinho} xp</td>
             <td><img src="./icones/xp.png" class="crop-img">${ovelha.xpNecessario}</td>
             <td><img src="./animais/${mudarImagemMixedGrain}.png" class="crop-img">${totalComidaUsada.toFixed(2)}<br><img src="./icones/xp.png" class="crop-img">${ovelha.xpDaComidaPadrao}</td>
+            <td><img src="./animais/ovelha.png" class="crop-img">${ovelha.levelAnterior} ➜ ${ovelha.level}<br><img src="./icones/flower.png" class="crop-img">${lucroPorLevelDaOvelha.toFixed(4)}</td>
             <td><input type="number" placeholder="" data-name="${ovelha.levelAnterior}" class="quantidade-input ovelhas-input" value="${ovelha.qtdUsada}"></td>
             <td><img src="./animais/ovelha.png" class="crop-img">${levelProProximo} ➜ ${ovelha.level}<br>${textoGastoComComida}</td>
             <td>${textoMediaDeLaNoDia}<br>${textoMediaDeLaMerinoNoDia}</td>
-            <td>${textoLucroPorOvelha}</td>
             <td>${textoLucroFlower}</td>
             <td>${textoVendaPorLevelCoins}</td>
             <td>${inputVendaOvelhas}</td>
