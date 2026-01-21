@@ -268,7 +268,7 @@ function tabelaGalinhas() {
         totalGastoComComidaSemanal += (gastoComComida * usarParaMediaDaSemana);
         totalDeOvosSemanal += (mediaDeOvosNoDia * usarParaMediaDaSemana);
         totalDePenasSemanal +=(mediaDePenasNoDia * usarParaMediaDaSemana);
-        totalGanhoPorDiaComOvosEPenas += ganhoComOvosEPenas
+        totalGanhoPorDiaComOvosEPenas += ganhoComOvosEPenas * (usarParaMediaDaSemana / 7);
         totalGanhoSemanalComOvosEPenas += (ganhoComOvosEPenas * usarParaMediaDaSemana);
 
     });
@@ -482,7 +482,7 @@ function tabelaVacas() {
         totalGastoComComidaSemanalDaVaca += (gastoComComida * usarParaMediaDaSemana);
         totalDeLeiteSemanal += (mediaDeLeiteNoDia * usarParaMediaDaSemana);
         totalDeCouroSemanal +=(mediaDeCouroNoDia * usarParaMediaDaSemana);
-        totalGanhoPorDiaComLeiteECouro += ganhoComLeiteECouro
+        totalGanhoPorDiaComLeiteECouro += ganhoComLeiteECouro * (usarParaMediaDaSemana / 7);
         totalGanhoSemanalComLeiteECouro += (ganhoComLeiteECouro * usarParaMediaDaSemana);
 
     });
@@ -697,7 +697,7 @@ function tabelaOvelhas() {
         totalGastoComComidaSemanalDaOvelha += (gastoComComida * usarParaMediaDaSemana);
         totalDeLaSemanal += (mediaDeLaNoDia * usarParaMediaDaSemana);
         totalDeLaMerinoSemanal +=(mediaDeLaMerinoNoDia * usarParaMediaDaSemana);
-        totalGanhoPorDiaComLasEMerinos += ganhoComLasEMerinos
+        totalGanhoPorDiaComLasEMerinos += ganhoComLasEMerinos * (usarParaMediaDaSemana / 7);
         totalGanhoSemanalComLasEMerinos += (ganhoComLasEMerinos * usarParaMediaDaSemana);
 
     });
@@ -788,4 +788,5 @@ function tabelaOvelhas() {
     resultadoComboOvelhasPorDia = lucroTotalPorDiaDasOvelhas;
     resultadoComboOvelhasSemanal = totalDeLucroSemanalDasLasEMerinos;
     cardResultadoTotalDosCombosJuntos();
+
 };
