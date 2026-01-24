@@ -1,11 +1,11 @@
 // ============================================================================
-// SISTEMA DE SAVE MELHORADO - saveManager.js
+// SISTEMA DE SAVE MELHORADO - saveManager.js v2.0.0
 // ============================================================================
 
 const SaveManager = {
-    VERSION: '1.0.0',
+    VERSION: '2.0.0',
     SAVE_KEY: 'sfl_combo_maker_save',
-    DEBOUNCE_DELAY: 500, // ms para esperar antes de salvar
+    DEBOUNCE_DELAY: 500,
     debounceTimer: null,
 
     // ========================================================================
@@ -54,10 +54,26 @@ const SaveManager = {
 
                 // Minerals - quantidade de nodes
                 minerals: {
-                    wood: { t1: mapaDeMinerals['wood'].qtdNodes.t1, t2: mapaDeMinerals['wood'].qtdNodes.t2, t3: mapaDeMinerals['wood'].qtdNodes.t3 },
-                    stone: { t1: mapaDeMinerals['stone'].qtdNodes.t1, t2: mapaDeMinerals['stone'].qtdNodes.t2, t3: mapaDeMinerals['stone'].qtdNodes.t3 },
-                    iron: { t1: mapaDeMinerals['iron'].qtdNodes.t1, t2: mapaDeMinerals['iron'].qtdNodes.t2, t3: mapaDeMinerals['iron'].qtdNodes.t3 },
-                    gold: { t1: mapaDeMinerals['gold'].qtdNodes.t1, t2: mapaDeMinerals['gold'].qtdNodes.t2, t3: mapaDeMinerals['gold'].qtdNodes.t3 },
+                    wood: { 
+                        t1: mapaDeMinerals['wood'].qtdNodes.t1, 
+                        t2: mapaDeMinerals['wood'].qtdNodes.t2, 
+                        t3: mapaDeMinerals['wood'].qtdNodes.t3 
+                    },
+                    stone: { 
+                        t1: mapaDeMinerals['stone'].qtdNodes.t1, 
+                        t2: mapaDeMinerals['stone'].qtdNodes.t2, 
+                        t3: mapaDeMinerals['stone'].qtdNodes.t3 
+                    },
+                    iron: { 
+                        t1: mapaDeMinerals['iron'].qtdNodes.t1, 
+                        t2: mapaDeMinerals['iron'].qtdNodes.t2, 
+                        t3: mapaDeMinerals['iron'].qtdNodes.t3 
+                    },
+                    gold: { 
+                        t1: mapaDeMinerals['gold'].qtdNodes.t1, 
+                        t2: mapaDeMinerals['gold'].qtdNodes.t2, 
+                        t3: mapaDeMinerals['gold'].qtdNodes.t3 
+                    },
                     crimstone: { t1: mapaDeMinerals['crimstone'].qtdNodes.t1 },
                     oil: { t1: mapaDeMinerals['oil'].qtdNodes.t1 },
                 },
@@ -107,26 +123,43 @@ const SaveManager = {
                     })),
                 },
 
-                // Opções de comida dos animais
-                opcoesComidaAnimais: {
-                    galinhas: {
-                        ateLevel3: document.getElementById('galinha-comida-ate-level3')?.value,
-                        level4ao6: document.getElementById('galinha-comida-level4ao6')?.value,
-                        level7ao10: document.getElementById('galinha-comida-level7ao10')?.value,
-                        level11ao15: document.getElementById('galinha-comida-level11ao15')?.value,
-                    },
-                    vacas: {
-                        ateLevel3: document.getElementById('vaca-comida-ate-level3')?.value,
-                        level4ao6: document.getElementById('vaca-comida-level4ao6')?.value,
-                        level7ao10: document.getElementById('vaca-comida-level7ao10')?.value,
-                        level11ao15: document.getElementById('vaca-comida-level11ao15')?.value,
-                    },
-                    ovelhas: {
-                        ateLevel3: document.getElementById('ovelha-comida-ate-level3')?.value,
-                        level4ao6: document.getElementById('ovelha-comida-level4ao6')?.value,
-                        level7ao10: document.getElementById('ovelha-comida-level7ao10')?.value,
-                        level11ao15: document.getElementById('ovelha-comida-level11ao15')?.value,
-                    },
+                // ⭐ Comidas dos animais (checkboxes por level - global para todos)
+                comidasAnimais: {
+                    // Level 0-3
+                    kernelBlend3: document.getElementById('kernelBlend3')?.checked || false,
+                    hay3: document.getElementById('hay3')?.checked || false,
+                    nutriBarley3: document.getElementById('nutriBarley3')?.checked || false,
+                    mixedGrain3: document.getElementById('mixedGrain3')?.checked || false,
+                    omnifeed3: document.getElementById('omnifeed3')?.checked || false,
+                    
+                    // Level 4-6
+                    kernelBlend6: document.getElementById('kernelBlend6')?.checked || false,
+                    hay6: document.getElementById('hay6')?.checked || false,
+                    nutriBarley6: document.getElementById('nutriBarley6')?.checked || false,
+                    mixedGrain6: document.getElementById('mixedGrain6')?.checked || false,
+                    omnifeed6: document.getElementById('omnifeed6')?.checked || false,
+                    
+                    // Level 7-10
+                    kernelBlend10: document.getElementById('kernelBlend10')?.checked || false,
+                    hay10: document.getElementById('hay10')?.checked || false,
+                    nutriBarley10: document.getElementById('nutriBarley10')?.checked || false,
+                    mixedGrain10: document.getElementById('mixedGrain10')?.checked || false,
+                    omnifeed10: document.getElementById('omnifeed10')?.checked || false,
+                    
+                    // Level 11-15
+                    kernelBlend15: document.getElementById('kernelBlend15')?.checked || false,
+                    hay15: document.getElementById('hay15')?.checked || false,
+                    nutriBarley15: document.getElementById('nutriBarley15')?.checked || false,
+                    mixedGrain15: document.getElementById('mixedGrain15')?.checked || false,
+                    omnifeed15: document.getElementById('omnifeed15')?.checked || false,
+                },
+
+                // ⭐ Ferramentas de carinho e quantidade
+                carrinhos: {
+                    pettingHand: document.getElementById('pettingHand')?.checked || false,
+                    brush: document.getElementById('brush')?.checked || false,
+                    musicBox: document.getElementById('musicBox')?.checked || false,
+                    qtdCarinhos: document.getElementById('qtd-carinho-feito')?.value || '1',
                 },
 
                 // Valores em COINS dos animais (Venda Semanal) - vindos da API
@@ -178,171 +211,146 @@ const SaveManager = {
 
             const estado = JSON.parse(savedData);
             
-            // Verificar versão (para futuras atualizações)
             if (estado.version !== this.VERSION) {
-                console.warn('⚠️ Versão do save diferente. Pode haver incompatibilidades.');
+                console.warn('⚠️ Versão do save diferente. Aplicando migração...');
             }
 
             console.log('📂 Restaurando save de:', new Date(estado.timestamp).toLocaleString());
 
-            // ORDEM IMPORTANTE: restaurar configs básicas primeiro
-            
-            // 1. Configurações
+            // 1. Configurações básicas
             if (estado.config) {
                 idioma = estado.config.idioma || 'portugues';
                 const selectIdioma = document.getElementById('opcao-idioma');
-                selectIdioma.value = idioma;
-                selectIdioma.dispatchEvent(new Event('change', { bubbles: true }));
+                if (selectIdioma) {
+                    selectIdioma.value = idioma;
+                    selectIdioma.dispatchEvent(new Event('change', { bubbles: true }));
+                }
                 
                 estacao = estado.config.estacao || 'spring';
                 const selectEstacao = document.getElementById('estacaoSelect');
-                selectEstacao.value = estacao;
-                selectEstacao.dispatchEvent(new Event('change', { bubbles: true }));
+                if (selectEstacao) {
+                    selectEstacao.value = estacao;
+                    selectEstacao.dispatchEvent(new Event('change', { bubbles: true }));
+                }
                 
                 ilha = estado.config.ilha || 'basic';
                 const selectIlha = document.getElementById('ilhaSelect');
-                selectIlha.value = ilha;
-                selectIlha.dispatchEvent(new Event('change', { bubbles: true }));
+                if (selectIlha) {
+                    selectIlha.value = ilha;
+                    selectIlha.dispatchEvent(new Event('change', { bubbles: true }));
+                }
                 
                 vip = estado.config.vip || 'Sim';
                 const selectVip = document.getElementById('vipSelect');
-                selectVip.value = vip;
-                selectVip.dispatchEvent(new Event('change', { bubbles: true }));
+                if (selectVip) {
+                    selectVip.value = vip;
+                    selectVip.dispatchEvent(new Event('change', { bubbles: true }));
+                }
                 
                 if (estado.config.flowerEmCoins) {
                     flowerEmCoins = estado.config.flowerEmCoins;
                     const inputFlower = document.getElementById('flower-em-coins');
-                    inputFlower.value = flowerEmCoins;
+                    if (inputFlower) inputFlower.value = flowerEmCoins;
                 }
                 
                 if (estado.config.packGems) {
                     const selectGems = document.getElementById('pack-gems');
-                    selectGems.value = estado.config.packGems;
-                    selectGems.dispatchEvent(new Event('change', { bubbles: true }));
+                    if (selectGems) {
+                        selectGems.value = estado.config.packGems;
+                        selectGems.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
                 }
             }
 
             // 2. Farm info
             if (estado.farm) {
                 if (estado.farm.numero) {
-                    document.getElementById('numeroFarm').value = estado.farm.numero;
+                    const input = document.getElementById('numeroFarm');
+                    if (input) input.value = estado.farm.numero;
                 }
-                if (estado.farm.plots) {
+                if (estado.farm.plots !== undefined) {
                     plots = estado.farm.plots;
-                    document.getElementById('plotsPossuidos').value = plots;
+                    const input = document.getElementById('plotsPossuidos');
+                    if (input) input.value = plots;
                 }
-                if (estado.farm.plotsFrutas) {
+                if (estado.farm.plotsFrutas !== undefined) {
                     plotsFrutas = estado.farm.plotsFrutas;
-                    document.getElementById('fruitsPlotsPossuidos').value = plotsFrutas;
+                    const input = document.getElementById('fruitsPlotsPossuidos');
+                    if (input) input.value = plotsFrutas;
                 }
             }
 
             // 3. Modo de cálculo
             if (estado.modoCalculo) {
-                if (estado.modoCalculo.crops) {
-                    const select = document.getElementById('tipo-de-calculo-crop');
-                    select.value = estado.modoCalculo.crops;
-                    select.dispatchEvent(new Event('change', { bubbles: true }));
-                }
-                if (estado.modoCalculo.cropsCM) {
-                    const select = document.getElementById('tipo-de-calculo-crop-cm');
-                    select.value = estado.modoCalculo.cropsCM;
-                    select.dispatchEvent(new Event('change', { bubbles: true }));
-                }
-                if (estado.modoCalculo.frutas) {
-                    const select = document.getElementById('tipo-de-calculo-fruta');
-                    select.value = estado.modoCalculo.frutas;
-                    select.dispatchEvent(new Event('change', { bubbles: true }));
-                }
-                if (estado.modoCalculo.cropsGH) {
-                    const select = document.getElementById('tipo-de-calculo-greenhouse');
-                    select.value = estado.modoCalculo.cropsGH;
-                    select.dispatchEvent(new Event('change', { bubbles: true }));
-                }
-                if (estado.modoCalculo.minerios) {
-                    const select = document.getElementById('tipo-de-calculo-mineral');
-                    select.value = estado.modoCalculo.minerios;
-                    select.dispatchEvent(new Event('change', { bubbles: true }));
-                }
-            }
+                const modos = [
+                    { key: 'crops', id: 'tipo-de-calculo-crop' },
+                    { key: 'cropsCM', id: 'tipo-de-calculo-crop-cm' },
+                    { key: 'frutas', id: 'tipo-de-calculo-fruta' },
+                    { key: 'cropsGH', id: 'tipo-de-calculo-greenhouse' },
+                    { key: 'minerios', id: 'tipo-de-calculo-mineral' }
+                ];
 
-            // 3.5. Opções de Restock
-            if (estado.restock) {
-                if (estado.restock.crops) {
-                    const select = document.getElementById('descontar-restock-crops');
-                    if (select) {
-                        select.value = estado.restock.crops;
-                        select.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-                }
-                if (estado.restock.cropsCM) {
-                    const select = document.getElementById('descontar-restock-cm');
-                    if (select) {
-                        select.value = estado.restock.cropsCM;
-                        select.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-                }
-                if (estado.restock.frutas) {
-                    const select = document.getElementById('descontar-restock-frutas');
-                    if (select) {
-                        select.value = estado.restock.frutas;
-                        select.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-                }
-                if (estado.restock.greenhouse) {
-                    const select = document.getElementById('descontar-restock-greenhouse');
-                    if (select) {
-                        select.value = estado.restock.greenhouse;
-                        select.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-                }
-                if (estado.restock.minerais) {
-                    const select = document.getElementById('descontar-restock-minerais');
-                    if (select) {
-                        select.value = estado.restock.minerais;
-                        select.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-                }
-            }
-
-            // 4. Minerals
-            if (estado.minerals) {
-                Object.keys(estado.minerals).forEach(mineral => {
-                    if (mapaDeMinerals[mineral]) {
-                        Object.assign(mapaDeMinerals[mineral].qtdNodes, estado.minerals[mineral]);
-                        
-                        // Atualizar inputs
-                        if (mineral === 'wood') {
-                            document.getElementById('woodT1').value = estado.minerals.wood.t1;
-                            document.getElementById('woodT2').value = estado.minerals.wood.t2;
-                            document.getElementById('woodT3').value = estado.minerals.wood.t3;
-                        }
-                        if (mineral === 'stone') {
-                            document.getElementById('stoneT1').value = estado.minerals.stone.t1;
-                            document.getElementById('stoneT2').value = estado.minerals.stone.t2;
-                            document.getElementById('stoneT3').value = estado.minerals.stone.t3;
-                        }
-                        if (mineral === 'iron') {
-                            document.getElementById('ironT1').value = estado.minerals.iron.t1;
-                            document.getElementById('ironT2').value = estado.minerals.iron.t2;
-                            document.getElementById('ironT3').value = estado.minerals.iron.t3;
-                        }
-                        if (mineral === 'gold') {
-                            document.getElementById('goldT1').value = estado.minerals.gold.t1;
-                            document.getElementById('goldT2').value = estado.minerals.gold.t2;
-                            document.getElementById('goldT3').value = estado.minerals.gold.t3;
-                        }
-                        if (mineral === 'crimstone') {
-                            document.getElementById('crimstoneRock').value = estado.minerals.crimstone.t1;
-                        }
-                        if (mineral === 'oil') {
-                            document.getElementById('oilReserve').value = estado.minerals.oil.t1;
+                modos.forEach(modo => {
+                    if (estado.modoCalculo[modo.key]) {
+                        const select = document.getElementById(modo.id);
+                        if (select) {
+                            select.value = estado.modoCalculo[modo.key];
+                            select.dispatchEvent(new Event('change', { bubbles: true }));
                         }
                     }
                 });
             }
 
-            // 5. Skills Legacy
+            // 4. Opções de Restock
+            if (estado.restock) {
+                const restocks = [
+                    { key: 'crops', id: 'descontar-restock-crops' },
+                    { key: 'cropsCM', id: 'descontar-restock-cm' },
+                    { key: 'frutas', id: 'descontar-restock-frutas' },
+                    { key: 'greenhouse', id: 'descontar-restock-greenhouse' },
+                    { key: 'minerais', id: 'descontar-restock-minerais' }
+                ];
+
+                restocks.forEach(restock => {
+                    if (estado.restock[restock.key]) {
+                        const select = document.getElementById(restock.id);
+                        if (select) {
+                            select.value = estado.restock[restock.key];
+                            select.dispatchEvent(new Event('change', { bubbles: true }));
+                        }
+                    }
+                });
+            }
+
+            // 5. Minerals
+            if (estado.minerals) {
+                Object.keys(estado.minerals).forEach(mineral => {
+                    if (mapaDeMinerals[mineral]) {
+                        Object.assign(mapaDeMinerals[mineral].qtdNodes, estado.minerals[mineral]);
+                        
+                        const updates = {
+                            wood: ['woodT1', 'woodT2', 'woodT3'],
+                            stone: ['stoneT1', 'stoneT2', 'stoneT3'],
+                            iron: ['ironT1', 'ironT2', 'ironT3'],
+                            gold: ['goldT1', 'goldT2', 'goldT3'],
+                            crimstone: ['crimstoneRock'],
+                            oil: ['oilReserve']
+                        };
+
+                        if (updates[mineral]) {
+                            updates[mineral].forEach((inputId, index) => {
+                                const input = document.getElementById(inputId);
+                                const tier = index === 0 ? 't1' : index === 1 ? 't2' : 't3';
+                                if (input && estado.minerals[mineral][tier] !== undefined) {
+                                    input.value = estado.minerals[mineral][tier];
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+
+            // 6. Skills Legacy
             if (estado.skillsLegacy) {
                 estado.skillsLegacy.forEach(saved => {
                     const skill = skillsLegacy.find(s => s.idName === saved.idName);
@@ -354,7 +362,7 @@ const SaveManager = {
                 });
             }
 
-            // 6. Skills com Tier
+            // 7. Skills com Tier
             if (estado.skillsTier) {
                 estado.skillsTier.forEach(saved => {
                     const skill = todasSkillsComTier.find(s => s.idName === saved.idName);
@@ -366,7 +374,7 @@ const SaveManager = {
                 });
             }
 
-            // 7. Collectibles
+            // 8. Collectibles
             if (estado.collectibles) {
                 estado.collectibles.forEach(saved => {
                     const collectible = todosCollectibles.find(c => c.idName === saved.idName);
@@ -378,7 +386,7 @@ const SaveManager = {
                 });
             }
 
-            // 8. Wearables
+            // 9. Wearables
             if (estado.wearables) {
                 estado.wearables.forEach(saved => {
                     const wearable = todosWearables.find(w => w.idName === saved.idName);
@@ -390,7 +398,7 @@ const SaveManager = {
                 });
             }
 
-            // 9. Buffs Temporários
+            // 10. Buffs Temporários
             if (estado.temporarios) {
                 estado.temporarios.forEach(saved => {
                     const temp = todosTemporarios.find(t => t.idName === saved.idName);
@@ -402,124 +410,86 @@ const SaveManager = {
                 });
             }
 
-            // 10. Animais - Quantidade usada e vendida
+            // 11. Animais - Quantidade usada e vendida
             if (estado.animais) {
-                // Galinhas
-                if (estado.animais.galinhas) {
-                    estado.animais.galinhas.forEach(saved => {
-                        const galinha = animais.galinhas.find(g => g.levelAnterior === saved.levelAnterior);
-                        if (galinha) {
-                            galinha.qtdUsada = saved.qtdUsada || '';
-                            galinha.vendida = saved.vendida || '';
-                        }
-                    });
-                }
+                ['galinhas', 'vacas', 'ovelhas'].forEach(tipo => {
+                    if (estado.animais[tipo]) {
+                        estado.animais[tipo].forEach(saved => {
+                            const animal = animais[tipo].find(a => a.levelAnterior === saved.levelAnterior);
+                            if (animal) {
+                                animal.qtdUsada = saved.qtdUsada || '';
+                                animal.vendida = saved.vendida || '';
+                            }
+                        });
+                    }
+                });
+            }
 
-                // Vacas
-                if (estado.animais.vacas) {
-                    estado.animais.vacas.forEach(saved => {
-                        const vaca = animais.vacas.find(v => v.levelAnterior === saved.levelAnterior);
-                        if (vaca) {
-                            vaca.qtdUsada = saved.qtdUsada || '';
-                            vaca.vendida = saved.vendida || '';
-                        }
-                    });
-                }
+            // 12. ⭐ Comidas dos animais (checkboxes globais por level)
+            if (estado.comidasAnimais) {
+                const comidasIds = [
+                    'kernelBlend3', 'hay3', 'nutriBarley3', 'mixedGrain3', 'omnifeed3',
+                    'kernelBlend6', 'hay6', 'nutriBarley6', 'mixedGrain6', 'omnifeed6',
+                    'kernelBlend10', 'hay10', 'nutriBarley10', 'mixedGrain10', 'omnifeed10',
+                    'kernelBlend15', 'hay15', 'nutriBarley15', 'mixedGrain15', 'omnifeed15'
+                ];
 
-                // Ovelhas
-                if (estado.animais.ovelhas) {
-                    estado.animais.ovelhas.forEach(saved => {
-                        const ovelha = animais.ovelhas.find(o => o.levelAnterior === saved.levelAnterior);
-                        if (ovelha) {
-                            ovelha.qtdUsada = saved.qtdUsada || '';
-                            ovelha.vendida = saved.vendida || '';
-                        }
-                    });
+                comidasIds.forEach(id => {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox && estado.comidasAnimais[id] !== undefined) {
+                        checkbox.checked = estado.comidasAnimais[id];
+                        // Disparar evento de change para atualizar visual
+                        checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                });
+            }
+
+            // 13. ⭐ Ferramentas de carinho e quantidade
+            if (estado.carrinhos) {
+                const pettingHand = document.getElementById('pettingHand');
+                if (pettingHand && estado.carrinhos.pettingHand !== undefined) {
+                    pettingHand.checked = estado.carrinhos.pettingHand;
+                    pettingHand.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                const brush = document.getElementById('brush');
+                if (brush && estado.carrinhos.brush !== undefined) {
+                    brush.checked = estado.carrinhos.brush;
+                    brush.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                const musicBox = document.getElementById('musicBox');
+                if (musicBox && estado.carrinhos.musicBox !== undefined) {
+                    musicBox.checked = estado.carrinhos.musicBox;
+                    musicBox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                const qtdCarinhos = document.getElementById('qtd-carinho-feito');
+                if (qtdCarinhos && estado.carrinhos.qtdCarinhos) {
+                    qtdCarinhos.value = estado.carrinhos.qtdCarinhos;
+                    qtdCarinhos.dispatchEvent(new Event('change', { bubbles: true }));
                 }
             }
 
-            // 11. Opções de comida dos animais
-            if (estado.opcoesComidaAnimais) {
-                // Galinhas
-                if (estado.opcoesComidaAnimais.galinhas) {
-                    const selectAte3 = document.getElementById('galinha-comida-ate-level3');
-                    const select4ao6 = document.getElementById('galinha-comida-level4ao6');
-                    const select7ao10 = document.getElementById('galinha-comida-level7ao10');
-                    const select11ao15 = document.getElementById('galinha-comida-level11ao15');
-                    
-                    if (selectAte3) selectAte3.value = estado.opcoesComidaAnimais.galinhas.ateLevel3;
-                    if (select4ao6) select4ao6.value = estado.opcoesComidaAnimais.galinhas.level4ao6;
-                    if (select7ao10) select7ao10.value = estado.opcoesComidaAnimais.galinhas.level7ao10;
-                    if (select11ao15) select11ao15.value = estado.opcoesComidaAnimais.galinhas.level11ao15;
-                }
-
-                // Vacas
-                if (estado.opcoesComidaAnimais.vacas) {
-                    const selectAte3 = document.getElementById('vaca-comida-ate-level3');
-                    const select4ao6 = document.getElementById('vaca-comida-level4ao6');
-                    const select7ao10 = document.getElementById('vaca-comida-level7ao10');
-                    const select11ao15 = document.getElementById('vaca-comida-level11ao15');
-                    
-                    if (selectAte3) selectAte3.value = estado.opcoesComidaAnimais.vacas.ateLevel3;
-                    if (select4ao6) select4ao6.value = estado.opcoesComidaAnimais.vacas.level4ao6;
-                    if (select7ao10) select7ao10.value = estado.opcoesComidaAnimais.vacas.level7ao10;
-                    if (select11ao15) select11ao15.value = estado.opcoesComidaAnimais.vacas.level11ao15;
-                }
-
-                // Ovelhas
-                if (estado.opcoesComidaAnimais.ovelhas) {
-                    const selectAte3 = document.getElementById('ovelha-comida-ate-level3');
-                    const select4ao6 = document.getElementById('ovelha-comida-level4ao6');
-                    const select7ao10 = document.getElementById('ovelha-comida-level7ao10');
-                    const select11ao15 = document.getElementById('ovelha-comida-level11ao15');
-                    
-                    if (selectAte3) selectAte3.value = estado.opcoesComidaAnimais.ovelhas.ateLevel3;
-                    if (select4ao6) select4ao6.value = estado.opcoesComidaAnimais.ovelhas.level4ao6;
-                    if (select7ao10) select7ao10.value = estado.opcoesComidaAnimais.ovelhas.level7ao10;
-                    if (select11ao15) select11ao15.value = estado.opcoesComidaAnimais.ovelhas.level11ao15;
-                }
-            }
-
-            // 11.5. Valores em COINS dos animais (Venda Semanal) - vindos da API
+            // 14. Valores em COINS dos animais
             if (estado.valoresAnimaisCoins) {
-                // Galinhas
-                if (estado.valoresAnimaisCoins.galinhas) {
-                    estado.valoresAnimaisCoins.galinhas.forEach(saved => {
-                        const galinha = animais.galinhas.find(g => g.levelAnterior === saved.levelAnterior);
-                        if (galinha) {
-                            if (saved.coins) galinha.coins = saved.coins;
-                            if (saved.coinsFinal) galinha.coinsFinal = saved.coinsFinal;
-                            if (saved.qtdDeAnimaisQuePodeVender) galinha.qtdDeAnimaisQuePodeVender = saved.qtdDeAnimaisQuePodeVender;
-                        }
-                    });
-                }
-
-                // Vacas
-                if (estado.valoresAnimaisCoins.vacas) {
-                    estado.valoresAnimaisCoins.vacas.forEach(saved => {
-                        const vaca = animais.vacas.find(v => v.levelAnterior === saved.levelAnterior);
-                        if (vaca) {
-                            if (saved.coins) vaca.coins = saved.coins;
-                            if (saved.coinsFinal) vaca.coinsFinal = saved.coinsFinal;
-                            if (saved.qtdDeAnimaisQuePodeVender) vaca.qtdDeAnimaisQuePodeVender = saved.qtdDeAnimaisQuePodeVender;
-                        }
-                    });
-                }
-
-                // Ovelhas
-                if (estado.valoresAnimaisCoins.ovelhas) {
-                    estado.valoresAnimaisCoins.ovelhas.forEach(saved => {
-                        const ovelha = animais.ovelhas.find(o => o.levelAnterior === saved.levelAnterior);
-                        if (ovelha) {
-                            if (saved.coins) ovelha.coins = saved.coins;
-                            if (saved.coinsFinal) ovelha.coinsFinal = saved.coinsFinal;
-                            if (saved.qtdDeAnimaisQuePodeVender) ovelha.qtdDeAnimaisQuePodeVender = saved.qtdDeAnimaisQuePodeVender;
-                        }
-                    });
-                }
+                ['galinhas', 'vacas', 'ovelhas'].forEach(tipo => {
+                    if (estado.valoresAnimaisCoins[tipo]) {
+                        estado.valoresAnimaisCoins[tipo].forEach(saved => {
+                            const animal = animais[tipo].find(a => a.levelAnterior === saved.levelAnterior);
+                            if (animal) {
+                                if (saved.coins !== undefined) animal.coins = saved.coins;
+                                if (saved.coinsFinal !== undefined) animal.coinsFinal = saved.coinsFinal;
+                                if (saved.qtdDeAnimaisQuePodeVender !== undefined) {
+                                    animal.qtdDeAnimaisQuePodeVender = saved.qtdDeAnimaisQuePodeVender;
+                                }
+                            }
+                        });
+                    }
+                });
             }
 
-            // 12. Seeds plantadas (depois de tudo configurado)
+            // 15. Seeds plantadas (depois de tudo configurado)
             if (estado.seedsPlantadas) {
                 if (estado.seedsPlantadas.crops) {
                     estado.seedsPlantadas.crops.forEach(saved => {
@@ -547,7 +517,7 @@ const SaveManager = {
                 }
             }
 
-            // 13. Ferramentas usadas
+            // 16. Ferramentas usadas
             if (estado.ferramentasUsadas) {
                 estado.ferramentasUsadas.forEach(saved => {
                     const ferramenta = todasFerramentas.find(f => f.id === saved.id);
@@ -555,19 +525,18 @@ const SaveManager = {
                 });
             }
 
-            // AGORA SIM: aplicar todos os cálculos
-            valoresDasGems();
-            ilhaPrestigioAtual();
-            chamadorDeBuffs();
-            chamadorDeDesbloquearSkills();
-            ativarBonusDasNftsESkills();
-            nftsDeTierQuePossuemBuffDoAntecessor();
-            pontosGastosEmSkills();
-            valorTotalEmNfts();
-            mudarIdioma();
+            // Aplicar todos os cálculos
+            if (typeof valoresDasGems === 'function') valoresDasGems();
+            if (typeof ilhaPrestigioAtual === 'function') ilhaPrestigioAtual();
+            if (typeof chamadorDeBuffs === 'function') chamadorDeBuffs();
+            if (typeof chamadorDeDesbloquearSkills === 'function') chamadorDeDesbloquearSkills();
+            if (typeof ativarBonusDasNftsESkills === 'function') ativarBonusDasNftsESkills();
+            if (typeof nftsDeTierQuePossuemBuffDoAntecessor === 'function') nftsDeTierQuePossuemBuffDoAntecessor();
+            if (typeof pontosGastosEmSkills === 'function') pontosGastosEmSkills();
+            if (typeof valorTotalEmNfts === 'function') valorTotalEmNfts();
+            if (typeof mudarIdioma === 'function') mudarIdioma();
 
-            // ⭐ RESTAURAR INPUTS DAS TABELAS em múltiplas tentativas
-            // (porque as tabelas podem demorar para carregar)
+            // Restaurar inputs das tabelas em múltiplas tentativas
             let tentativas = 0;
             const intervalo = setInterval(() => {
                 tentativas++;
@@ -593,7 +562,7 @@ const SaveManager = {
     },
 
     // ========================================================================
-    // SALVAR COM DEBOUNCE (evita salvar a cada mudança)
+    // SALVAR COM DEBOUNCE
     // ========================================================================
     salvarComDebounce() {
         clearTimeout(this.debounceTimer);
@@ -603,74 +572,39 @@ const SaveManager = {
     },
 
     // ========================================================================
-    // RESTAURAR INPUTS DAS TABELAS (chamado após tabelas serem criadas)
+    // RESTAURAR INPUTS DAS TABELAS
     // ========================================================================
     restaurarInputsDasTabelas(estado) {
         try {
             let inputsRestaurados = 0;
             let inputsEsperados = 0;
 
-            // Restaurar inputs de seeds das crops
-            if (estado.seedsPlantadas?.crops) {
-                estado.seedsPlantadas.crops.forEach(saved => {
-                    if (!saved.seeds) return; // pula se não tem valor
-                    
-                    inputsEsperados++;
-                    const input = document.querySelector(`.sementes-input[data-name="${saved.name}"]`);
-                    if (input) {
-                        input.value = saved.seeds;
-                        inputsRestaurados++;
-                    }
-                });
-            }
+            // Seeds
+            const tiposSeeds = [
+                { data: estado.seedsPlantadas?.crops, classe: 'sementes-input' },
+                { data: estado.seedsPlantadas?.cropsCM, classe: 'sementesCM-input' },
+                { data: estado.seedsPlantadas?.fruits, classe: 'sementesFrutas-input' },
+                { data: estado.seedsPlantadas?.greenhouse, classe: 'sementesGH-input' }
+            ];
 
-            // Restaurar inputs de seeds da Crop Machine
-            if (estado.seedsPlantadas?.cropsCM) {
-                estado.seedsPlantadas.cropsCM.forEach(saved => {
-                    if (!saved.seeds) return;
-                    
-                    inputsEsperados++;
-                    const input = document.querySelector(`.sementesCM-input[data-name="${saved.name}"]`);
-                    if (input) {
-                        input.value = saved.seeds;
-                        inputsRestaurados++;
-                    }
-                });
-            }
+            tiposSeeds.forEach(tipo => {
+                if (tipo.data) {
+                    tipo.data.forEach(saved => {
+                        if (!saved.seeds) return;
+                        inputsEsperados++;
+                        const input = document.querySelector(`.${tipo.classe}[data-name="${saved.name}"]`);
+                        if (input) {
+                            input.value = saved.seeds;
+                            inputsRestaurados++;
+                        }
+                    });
+                }
+            });
 
-            // Restaurar inputs de seeds das frutas
-            if (estado.seedsPlantadas?.fruits) {
-                estado.seedsPlantadas.fruits.forEach(saved => {
-                    if (!saved.seeds) return;
-                    
-                    inputsEsperados++;
-                    const input = document.querySelector(`.sementesFrutas-input[data-name="${saved.name}"]`);
-                    if (input) {
-                        input.value = saved.seeds;
-                        inputsRestaurados++;
-                    }
-                });
-            }
-
-            // Restaurar inputs de seeds das Greenhouse
-            if (estado.seedsPlantadas?.greenhouse) {
-                estado.seedsPlantadas.greenhouse.forEach(saved => {
-                    if (!saved.seeds) return;
-                    
-                    inputsEsperados++;
-                    const input = document.querySelector(`.sementesGH-input[data-name="${saved.name}"]`);
-                    if (input) {
-                        input.value = saved.seeds;
-                        inputsRestaurados++;
-                    }
-                });
-            }
-
-            // Restaurar inputs de ferramentas
+            // Ferramentas
             if (estado.ferramentasUsadas) {
                 estado.ferramentasUsadas.forEach(saved => {
                     if (!saved.qtd) return;
-                    
                     inputsEsperados++;
                     const input = document.querySelector(`.minerios-input[data-name="${saved.id}"]`);
                     if (input) {
@@ -680,75 +614,34 @@ const SaveManager = {
                 });
             }
 
-            // Restaurar inputs dos animais (galinhas, vacas, ovelhas)
+            // Animais
             if (estado.animais) {
-                // Galinhas - qtdUsada
-                if (estado.animais.galinhas) {
-                    estado.animais.galinhas.forEach(saved => {
-                        if (!saved.qtdUsada && !saved.vendida) return;
-                        
-                        inputsEsperados++;
-                        const inputQtd = document.querySelector(`.galinhas-input[data-name="${saved.levelAnterior}"]`);
-                        if (inputQtd && saved.qtdUsada) {
-                            inputQtd.value = saved.qtdUsada;
-                            inputsRestaurados++;
-                        }
+                ['galinhas', 'vacas', 'ovelhas'].forEach(tipo => {
+                    if (estado.animais[tipo]) {
+                        estado.animais[tipo].forEach(saved => {
+                            if (saved.qtdUsada) {
+                                inputsEsperados++;
+                                const inputQtd = document.querySelector(`.${tipo}-input[data-name="${saved.levelAnterior}"]`);
+                                if (inputQtd) {
+                                    inputQtd.value = saved.qtdUsada;
+                                    inputsRestaurados++;
+                                }
+                            }
 
-                        inputsEsperados++;
-                        const inputVenda = document.querySelector(`.galinhas-venda-input[data-name="${saved.levelAnterior}"]`);
-                        if (inputVenda && saved.vendida) {
-                            inputVenda.value = saved.vendida;
-                            inputsRestaurados++;
-                        }
-                    });
-                }
-
-                // Vacas - qtdUsada
-                if (estado.animais.vacas) {
-                    estado.animais.vacas.forEach(saved => {
-                        if (!saved.qtdUsada && !saved.vendida) return;
-                        
-                        inputsEsperados++;
-                        const inputQtd = document.querySelector(`.vacas-input[data-name="${saved.levelAnterior}"]`);
-                        if (inputQtd && saved.qtdUsada) {
-                            inputQtd.value = saved.qtdUsada;
-                            inputsRestaurados++;
-                        }
-
-                        inputsEsperados++;
-                        const inputVenda = document.querySelector(`.vacas-venda-input[data-name="${saved.levelAnterior}"]`);
-                        if (inputVenda && saved.vendida) {
-                            inputVenda.value = saved.vendida;
-                            inputsRestaurados++;
-                        }
-                    });
-                }
-
-                // Ovelhas - qtdUsada
-                if (estado.animais.ovelhas) {
-                    estado.animais.ovelhas.forEach(saved => {
-                        if (!saved.qtdUsada && !saved.vendida) return;
-                        
-                        inputsEsperados++;
-                        const inputQtd = document.querySelector(`.ovelhas-input[data-name="${saved.levelAnterior}"]`);
-                        if (inputQtd && saved.qtdUsada) {
-                            inputQtd.value = saved.qtdUsada;
-                            inputsRestaurados++;
-                        }
-
-                        inputsEsperados++;
-                        const inputVenda = document.querySelector(`.ovelhas-venda-input[data-name="${saved.levelAnterior}"]`);
-                        if (inputVenda && saved.vendida) {
-                            inputVenda.value = saved.vendida;
-                            inputsRestaurados++;
-                        }
-                    });
-                }
+                            if (saved.vendida) {
+                                inputsEsperados++;
+                                const inputVenda = document.querySelector(`.${tipo}-venda-input[data-name="${saved.levelAnterior}"]`);
+                                if (inputVenda) {
+                                    inputVenda.value = saved.vendida;
+                                    inputsRestaurados++;
+                                }
+                            }
+                        });
+                    }
+                });
             }
 
             console.log(`📊 Inputs restaurados: ${inputsRestaurados}/${inputsEsperados}`);
-            
-            // Retorna true se restaurou TODOS os inputs esperados
             return inputsEsperados > 0 && inputsRestaurados === inputsEsperados;
 
         } catch (error) {
@@ -769,7 +662,7 @@ const SaveManager = {
     },
 
     // ========================================================================
-    // EXPORTAR SAVE (para backup)
+    // EXPORTAR SAVE
     // ========================================================================
     exportarSave() {
         try {
@@ -794,7 +687,7 @@ const SaveManager = {
     },
 
     // ========================================================================
-    // IMPORTAR SAVE (de backup)
+    // IMPORTAR SAVE
     // ========================================================================
     importarSave() {
         const input = document.createElement('input');
@@ -809,7 +702,7 @@ const SaveManager = {
             reader.onload = (event) => {
                 try {
                     const saveData = event.target.result;
-                    JSON.parse(saveData); // validar JSON
+                    JSON.parse(saveData);
                     
                     localStorage.setItem(this.SAVE_KEY, saveData);
                     console.log('📤 Save importado com sucesso!');
@@ -827,36 +720,85 @@ const SaveManager = {
     },
 
     // ========================================================================
+    // CONFIGURAR EVENT LISTENERS ESPECÍFICOS
+    // ========================================================================
+    configurarEventListeners() {
+        // Event listeners para checkboxes de comida
+        const comidasIds = [
+            'kernelBlend3', 'hay3', 'nutriBarley3', 'mixedGrain3', 'omnifeed3',
+            'kernelBlend6', 'hay6', 'nutriBarley6', 'mixedGrain6', 'omnifeed6',
+            'kernelBlend10', 'hay10', 'nutriBarley10', 'mixedGrain10', 'omnifeed10',
+            'kernelBlend15', 'hay15', 'nutriBarley15', 'mixedGrain15', 'omnifeed15'
+        ];
+
+        comidasIds.forEach(id => {
+            const checkbox = document.getElementById(id);
+            if (checkbox) {
+                checkbox.addEventListener('change', () => {
+                    console.log(`🍽️ Comida ${id} alterada para:`, checkbox.checked);
+                    this.salvarComDebounce();
+                });
+            }
+        });
+
+        // Event listeners para ferramentas de carinho
+        const ferramentasIds = ['pettingHand', 'brush', 'musicBox'];
+        ferramentasIds.forEach(id => {
+            const checkbox = document.getElementById(id);
+            if (checkbox) {
+                checkbox.addEventListener('change', () => {
+                    console.log(`🛠️ Ferramenta ${id} alterada para:`, checkbox.checked);
+                    this.salvarComDebounce();
+                });
+            }
+        });
+
+        // Event listener para quantidade de carinhos
+        const qtdCarinhos = document.getElementById('qtd-carinho-feito');
+        if (qtdCarinhos) {
+            qtdCarinhos.addEventListener('change', () => {
+                console.log('💚 Quantidade de carinhos alterada para:', qtdCarinhos.value);
+                this.salvarComDebounce();
+            });
+        }
+
+        console.log('✅ Event listeners específicos configurados!');
+    },
+
+    // ========================================================================
     // INICIALIZAR SISTEMA DE SAVE
     // ========================================================================
     inicializar() {
-        console.log('🎮 Inicializando SaveManager...');
+        console.log('🎮 Inicializando SaveManager v2.0.0...');
 
-        // ⭐ RESTAURAR AUTOMATICAMENTE ao carregar página
+        // Restaurar estado salvo
         this.restaurarEstado();
 
-        // 💾 SALVAR AUTOMATICAMENTE em qualquer mudança
+        // Configurar event listeners específicos
+        this.configurarEventListeners();
+
+        // Event listeners gerais para inputs, selects e checkboxes
         const eventos = ['change', 'input'];
         eventos.forEach(evento => {
             document.addEventListener(evento, (e) => {
-                // Salvar quando houver mudança em inputs, selects ou checkboxes
-                if (e.target.id || e.target.type === 'checkbox') {
+                // Verifica se o elemento tem ID ou é um checkbox/select
+                if (e.target.id || e.target.type === 'checkbox' || e.target.tagName === 'SELECT') {
                     this.salvarComDebounce();
                 }
             });
         });
 
-        // 💾 SALVAR antes de fechar/recarregar a página
+        // Salvar antes de fechar/recarregar a página
         window.addEventListener('beforeunload', () => {
             this.salvarEstado();
         });
 
-        // 💾 SALVAR periodicamente (a cada 2 minutos como backup)
+        // Salvar periodicamente (a cada 2 minutos como backup)
         setInterval(() => {
             this.salvarEstado();
         }, 120000);
 
-        // 💾 SALVAR quando trocar de aba do navegador
+        // Salvar quando trocar de aba do navegador
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
                 this.salvarEstado();
@@ -868,20 +810,18 @@ const SaveManager = {
 };
 
 // ============================================================================
-// 🚀 AUTO-INICIALIZAR QUANDO O DOM ESTIVER PRONTO
+// AUTO-INICIALIZAR
 // ============================================================================
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        // Aguardar um pouco para garantir que tudo carregou
         setTimeout(() => SaveManager.inicializar(), 100);
     });
 } else {
-    // DOM já está pronto
     setTimeout(() => SaveManager.inicializar(), 100);
 }
 
 // ============================================================================
-// 🎯 FUNÇÕES GLOBAIS (opcional - para usar no console)
+// 🎯 FUNÇÕES GLOBAIS (para usar no console)
 // ============================================================================
 window.SaveManager = SaveManager;
 window.limparSave = () => SaveManager.limparSave();

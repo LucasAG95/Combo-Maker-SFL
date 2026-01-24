@@ -178,7 +178,19 @@ function numeroDaFarm() {
                 temporarios.possui = false;
             };    
         });
-        
+
+        //esta sendo usado skillsLegacyQuePossui pra facilitar, ja que as ferramentas de carinhos estao dentro de inventory!
+        ferramentasAnimais.forEach(carinho => {
+            let checkbox = document.getElementById(carinho.idName);
+            if (skillsLegacyQuePossui[carinho.name]) {
+                checkbox.checked = true;
+                carinho.possui = true;
+            } else {
+                checkbox.checked = false;
+                carinho.possui = false;
+            };      
+        });
+
         chamadorDeBuffs();
         chamadorDeDesbloquearSkills();
         ativarBonusDasNftsESkills();

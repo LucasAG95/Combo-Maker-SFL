@@ -151,7 +151,7 @@ function buffsAdicionadosCrops() {
             shrines,
             totems,
             fertilizantes.rapidRoot,
-            fertilizantes.sproutMix
+            fertilizantes.sproutMix,
         ]);
         
         crop.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai + (buffs.qtdArea / plots)) * buffs.qtdInsta;
@@ -541,6 +541,7 @@ function mediaDeValorDasFerramentasEMinerais() {
 
 //======================================================================================================================================================================
 function buffsAdicionadosAnimais() {
+
     ferramentasAnimais.forEach(carinho => {
         const buffs = calcularBuff(carinho, [
                 skillsLegacy,
@@ -569,7 +570,7 @@ function buffsAdicionadosAnimais() {
                 shrines,
                 totems,
             ]);
-        
+
         if (animal.name === 'galinha') {
             animal.qtdComidaPadrao = 1;
             animal.tempo = parseFloat(86_400_000);
@@ -637,16 +638,13 @@ function buffsAdicionadosRecursosAnimais() {
             totems,
         ]);
 
-        //definir quanto falta de comida para subir de level
-        galinha.qtdDeComidaPraSubirDeLevel = (galinha.xpNecessario / galinha.xpDaComidaPadrao) * galinha.qtdComidaPadrao;
-
         galinha.eggFinal = (galinha.egg * buffsEgg.qtdMulti) + buffsEgg.qtdSoma - buffsEgg.qtdSubtrai;
         galinha.featherFinal = galinha.feather === 0 ? galinha.feather : (galinha.feather * buffsFeather.qtdMulti) + buffsFeather.qtdSoma - buffsFeather.qtdSubtrai;
 
         //somar e dps fazer a media de recursos que a galinha faz ate o level!
         somadorDeOvos += galinha.eggFinal;
         somadorDePenas += galinha.featherFinal;
-        somadorDeCustoDaComidaGalinhas += (galinha.custoDaComida * galinha.qtdDeComidaPraSubirDeLevel);
+        somadorDeCustoDaComidaGalinhas += (galinha.custoDaComida * galinha.comidaNecessaria);
 
         //definir media ou manter level 15 as galinhas
         if (galinha.levelAnterior < 15) {
@@ -658,9 +656,8 @@ function buffsAdicionadosRecursosAnimais() {
             galinha.mediaDeOvosDoLevel = galinha.eggFinal * (galinha.qtdUsada || 0);
             galinha.mediaDePenasDoLevel = galinha.featherFinal * (galinha.qtdUsada || 0);
             //definir gasto com comida
-            galinha.mediaDeGastoComComida = (galinha.custoDaComida * galinha.qtdDeComidaPraSubirDeLevel) * (galinha.qtdUsada || 0);
+            galinha.mediaDeGastoComComida = (galinha.custoDaComida * galinha.comidaNecessaria) * (galinha.qtdUsada || 0);
         }
-
 
     });
     tabelaGalinhas();
@@ -704,18 +701,15 @@ function buffsAdicionadosRecursosAnimais() {
             totems,
         ]);
 
-        //definir quanto falta de comida para subir de level
-        vaca.qtdDeComidaPraSubirDeLevel = (vaca.xpNecessario / vaca.xpDaComidaPadrao) * vaca.qtdComidaPadrao;
-
         vaca.milkFinal = (vaca.milk * buffsMilk.qtdMulti) + buffsMilk.qtdSoma - buffsMilk.qtdSubtrai;
         vaca.leatherFinal = vaca.leather === 0 ? vaca.leather : (vaca.leather * buffsLeather.qtdMulti) + buffsLeather.qtdSoma - buffsLeather.qtdSubtrai;
 
-        //somar e dps fazer a media de recursos que a galinha faz ate o level!
+        //somar e dps fazer a media de recursos que a vaca faz ate o level!
         somadorDeLeite += vaca.milkFinal;
         somadorDeCouro += vaca.leatherFinal;
-        somadorDeCustoDaComidaVacas += (vaca.custoDaComida * vaca.qtdDeComidaPraSubirDeLevel);
+        somadorDeCustoDaComidaVacas += (vaca.custoDaComida * vaca.comidaNecessaria);
 
-        //definir media ou manter level 15 as galinhas
+        //definir media ou manter level 15 as vacas
         if (vaca.levelAnterior < 15) {
             vaca.mediaDeLeiteDoLevel = (somadorDeLeite / contadorVacas) * (vaca.qtdUsada || 0);
             vaca.mediaDeCouroDoLevel = (somadorDeCouro / contadorVacas) * (vaca.qtdUsada || 0);
@@ -725,7 +719,7 @@ function buffsAdicionadosRecursosAnimais() {
             vaca.mediaDeLeiteDoLevel = vaca.milkFinal * (vaca.qtdUsada || 0);
             vaca.mediaDeCouroDoLevel = vaca.leatherFinal * (vaca.qtdUsada || 0);
             //definir gasto com comida
-            vaca.mediaDeGastoComComida = (vaca.custoDaComida * vaca.qtdDeComidaPraSubirDeLevel) * (vaca.qtdUsada || 0);
+            vaca.mediaDeGastoComComida = (vaca.custoDaComida * vaca.comidaNecessaria) * (vaca.qtdUsada || 0);
         }
 
     });
@@ -776,12 +770,12 @@ function buffsAdicionadosRecursosAnimais() {
         ovelha.woolFinal = (ovelha.wool * buffsWool.qtdMulti) + buffsWool.qtdSoma - buffsWool.qtdSubtrai;
         ovelha.merinoWoolFinal = ovelha.merinoWool === 0 ? ovelha.merinoWool : (ovelha.merinoWool * buffsMerino.qtdMulti) + buffsMerino.qtdSoma - buffsMerino.qtdSubtrai;
 
-        //somar e dps fazer a media de recursos que a galinha faz ate o level!
+        //somar e dps fazer a media de recursos que a ovelha faz ate o level!
         somadorDeLa += ovelha.woolFinal;
         somadorDeLaMerino += ovelha.merinoWoolFinal;
-        somadorDeCustoDaComidaOvelhas += (ovelha.custoDaComida * ovelha.qtdDeComidaPraSubirDeLevel);
+        somadorDeCustoDaComidaOvelhas += (ovelha.custoDaComida * ovelha.comidaNecessaria);
 
-        //definir media ou manter level 15 as galinhas
+        //definir media ou manter level 15 as ovelhas
         if (ovelha.levelAnterior < 15) {
             ovelha.mediaDeLaDoLevel = (somadorDeLa / contadorOvelhas) * (ovelha.qtdUsada || 0);
             ovelha.mediaDeLaMerinoDoLevel = (somadorDeLaMerino / contadorOvelhas) * (ovelha.qtdUsada || 0);
@@ -791,7 +785,7 @@ function buffsAdicionadosRecursosAnimais() {
             ovelha.mediaDeLaDoLevel = ovelha.woolFinal * (ovelha.qtdUsada || 0);
             ovelha.mediaDeLaMerinoDoLevel = ovelha.merinoWoolFinal * (ovelha.qtdUsada || 0);
             //definir gasto com comida
-            ovelha.mediaDeGastoComComida = (ovelha.custoDaComida * ovelha.qtdDeComidaPraSubirDeLevel) * (ovelha.qtdUsada || 0);
+            ovelha.mediaDeGastoComComida = (ovelha.custoDaComida * ovelha.comidaNecessaria) * (ovelha.qtdUsada || 0);
         }
 
     });

@@ -84,59 +84,37 @@ function mudarIdioma() {
     document.getElementById('subGalinhas').innerHTML = `${opcaoDeIdiomas.galinhas}`;
     document.getElementById('subVacas').innerHTML = `${opcaoDeIdiomas.vacas}`;
     document.getElementById('subOvelhas').innerHTML = `${opcaoDeIdiomas.ovelhas}`;
-
-    //Galinhas
-    document.getElementById('precoRacao').innerHTML = `(${opcaoDeIdiomas.precoRacao} ➜ <img src="./animais/kernelBlend.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor).toFixed(4)} | 
+    document.getElementById('precoRacao').innerHTML = `${opcaoDeIdiomas.precoRacao} ➜ <img src="./animais/kernelBlend.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor).toFixed(4)} | 
         <img src="./animais/hay.png" class="crop-img">${Number(mapaDosValoresDoMarket['wheat'].valor).toFixed(4)} | 
         <img src="./animais/nutriBarley.png" class="crop-img">${Number(mapaDosValoresDoMarket['barley'].valor).toFixed(4)} | 
         <img src="./animais/mixedGrain.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor + mapaDosValoresDoMarket['wheat'].valor + mapaDosValoresDoMarket['barley'].valor).toFixed(4)} |
         <img src="./animais/kaleMix.png" class="crop-img">${Number(mapaDosValoresDoMarket['kale'].valor * 3).toFixed(4)} |
-        <img src="./animais/omnifeed.png" class="crop-img">${Number(precoDaGemEmFlower).toFixed(4)})`
+        <img src="./animais/omnifeed.png" class="crop-img">${Number(precoDaGemEmFlower).toFixed(4)}`
+    document.getElementById('comida-do-level-0-ao-3').innerHTML = `${opcaoDeIdiomas.comidaUsadaAteLevel3}:`;
+    document.getElementById('comida-do-level-4-ao-6').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel4ao6}:`;
+    document.getElementById('comida-do-level-7-ao-10').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel7ao10}:`;
+    document.getElementById('comida-do-level-11-ao-15').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel11ao15}:`;
+    document.getElementById('ferramentas-de-carinho').innerHTML = `${opcaoDeIdiomas.ferramentaDeCarinho}:`;
+    document.getElementById('carinhos-feitos').innerHTML = `${opcaoDeIdiomas.tituloUsoDeCarinhos}:`;
+    document.getElementById('qtd-carinho-feito').options[0].innerHTML = `${opcaoDeIdiomas.UsoDeUmCarinho}`;
+    document.getElementById('qtd-carinho-feito').options[1].innerHTML = `${opcaoDeIdiomas.UsoDeDoisCarinhos}`;
 
-    document.getElementById('comidaUsadaAteLevel3').innerHTML = `${opcaoDeIdiomas.comidaUsadaAteLevel3}:`;
-    document.getElementById('comidaUsadaDoLevel4ao6').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel4ao6}:`;
-    document.getElementById('comidaUsadaDoLevel7ao10').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel7ao10}:`;
-    document.getElementById('comidaUsadaDoLevel11ao15').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel11ao15}:`;
-    
-    document.getElementById('tempoDasGalinhas').innerHTML = `(${opcaoDeIdiomas.tempoDaGalinha}: <img src="./icones/tempo.png" class="crop-img">${formatarTempo(animais.galinhas[0].tempo)})`;
-    document.getElementById('valorDoOvo').innerHTML = `(${opcaoDeIdiomas.valorDoOvo} <img src="./animais/egg.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['egg'].valor).toFixed(5)})`;
-    document.getElementById('valorDaPena').innerHTML = `(${opcaoDeIdiomas.valorDaPena} <img src="./animais/feather.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['feather'].valor).toFixed(5)})`;
+    //Galinhas
+    document.getElementById('tempoDasGalinhas').innerHTML = `${opcaoDeIdiomas.tempoDaGalinha}: <img src="./icones/tempo.png" class="crop-img">${formatarTempo(animais.galinhas[0].tempo)}`;
+    document.getElementById('valorDoOvo').innerHTML = `${opcaoDeIdiomas.valorDoOvo} <img src="./animais/egg.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['egg'].valor).toFixed(5)}`;
+    document.getElementById('valorDaPena').innerHTML = `${opcaoDeIdiomas.valorDaPena} <img src="./animais/feather.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['feather'].valor).toFixed(5)}`;
     document.getElementById('limparInfosGalinhas').innerHTML = `${opcaoDeIdiomas.limparGalinhas}`;
 
     //Vacas
-    document.getElementById('precoRacaoVaca').innerHTML = `(${opcaoDeIdiomas.precoRacao} ➜ <img src="./animais/kernelBlend.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor).toFixed(4)} | 
-        <img src="./animais/hay.png" class="crop-img">${Number(mapaDosValoresDoMarket['wheat'].valor).toFixed(4)} | 
-        <img src="./animais/nutriBarley.png" class="crop-img">${Number(mapaDosValoresDoMarket['barley'].valor).toFixed(4)} | 
-        <img src="./animais/mixedGrain.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor + mapaDosValoresDoMarket['wheat'].valor + mapaDosValoresDoMarket['barley'].valor).toFixed(4)} |
-        <img src="./animais/kaleMix.png" class="crop-img">${Number(mapaDosValoresDoMarket['kale'].valor * 3).toFixed(4)} |
-        <img src="./animais/omnifeed.png" class="crop-img">${Number(precoDaGemEmFlower).toFixed(4)})`
-
-    document.getElementById('comidaVacaAteLevel3').innerHTML = `${opcaoDeIdiomas.comidaUsadaAteLevel3}:`;
-    document.getElementById('comidaVacaDoLevel4ao6').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel4ao6}:`;
-    document.getElementById('comidaVacaDoLevel7ao10').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel7ao10}:`;
-    document.getElementById('comidaVacaDoLevel11ao15').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel11ao15}:`;
-    
-    document.getElementById('tempoDasVacas').innerHTML = `(${opcaoDeIdiomas.tempoDaVaca}: <img src="./icones/tempo.png" class="crop-img">${formatarTempo(animais.vacas[0].tempo)})`;
-    document.getElementById('valorDoLeite').innerHTML = `(${opcaoDeIdiomas.valorDoLeite} <img src="./animais/milk.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['milk'].valor).toFixed(5)})`;
-    document.getElementById('valorDoCouro').innerHTML = `(${opcaoDeIdiomas.valorDoCouro} <img src="./animais/leather.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['leather'].valor).toFixed(5)})`;
+    document.getElementById('tempoDasVacas').innerHTML = `${opcaoDeIdiomas.tempoDaVaca}: <img src="./icones/tempo.png" class="crop-img">${formatarTempo(animais.vacas[0].tempo)}`;
+    document.getElementById('valorDoLeite').innerHTML = `${opcaoDeIdiomas.valorDoLeite} <img src="./animais/milk.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['milk'].valor).toFixed(5)}`;
+    document.getElementById('valorDoCouro').innerHTML = `${opcaoDeIdiomas.valorDoCouro} <img src="./animais/leather.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['leather'].valor).toFixed(5)}`;
     document.getElementById('limparInfosVacas').innerHTML = `${opcaoDeIdiomas.limparVacas}`;
 
     //Ovelhas
-    document.getElementById('precoRacaoOvelha').innerHTML = `(${opcaoDeIdiomas.precoRacao} ➜ <img src="./animais/kernelBlend.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor).toFixed(4)} | 
-        <img src="./animais/hay.png" class="crop-img">${Number(mapaDosValoresDoMarket['wheat'].valor).toFixed(4)} | 
-        <img src="./animais/nutriBarley.png" class="crop-img">${Number(mapaDosValoresDoMarket['barley'].valor).toFixed(4)} | 
-        <img src="./animais/mixedGrain.png" class="crop-img">${Number(mapaDosValoresDoMarket['corn'].valor + mapaDosValoresDoMarket['wheat'].valor + mapaDosValoresDoMarket['barley'].valor).toFixed(4)} |
-        <img src="./animais/kaleMix.png" class="crop-img">${Number(mapaDosValoresDoMarket['kale'].valor * 3).toFixed(4)} |
-        <img src="./animais/omnifeed.png" class="crop-img">${Number(precoDaGemEmFlower).toFixed(4)})`
-
-    document.getElementById('comidaOvelhaAteLevel3').innerHTML = `${opcaoDeIdiomas.comidaUsadaAteLevel3}:`;
-    document.getElementById('comidaOvelhaDoLevel4ao6').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel4ao6}:`;
-    document.getElementById('comidaOvelhaDoLevel7ao10').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel7ao10}:`;
-    document.getElementById('comidaOvelhaDoLevel11ao15').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel11ao15}:`;
-    
-    document.getElementById('tempoDasOvelhas').innerHTML = `(${opcaoDeIdiomas.tempoDaOvelha}: <img src="./icones/tempo.png" class="crop-img">${formatarTempo(animais.ovelhas[0].tempo)})`;
-    document.getElementById('valorDaLa').innerHTML = `(${opcaoDeIdiomas.valorDaLa} <img src="./animais/wool.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['wool'].valor).toFixed(5)})`;
-    document.getElementById('valorDaLaMerino').innerHTML = `(${opcaoDeIdiomas.valorDaLaMerino} <img src="./animais/merinoWool.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['merinoWool'].valor).toFixed(5)})`;
+    document.getElementById('tempoDasOvelhas').innerHTML = `${opcaoDeIdiomas.tempoDaOvelha}: <img src="./icones/tempo.png" class="crop-img">${formatarTempo(animais.ovelhas[0].tempo)}`;
+    document.getElementById('valorDaLa').innerHTML = `${opcaoDeIdiomas.valorDaLa} <img src="./animais/wool.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['wool'].valor).toFixed(5)}`;
+    document.getElementById('valorDaLaMerino').innerHTML = `${opcaoDeIdiomas.valorDaLaMerino} <img src="./animais/merinoWool.png" class="crop-img"> ➜ <img src="./icones/flower.png" class="crop-img">${Number(mapaDosValoresDoMarket['merinoWool'].valor).toFixed(5)}`;
     document.getElementById('limparInfosOvelhas').innerHTML = `${opcaoDeIdiomas.limparOvelhas}`;
 
     //NFTs, Skills e Buffs Temporarios
@@ -148,6 +126,7 @@ function mudarIdioma() {
     document.getElementById('tab-sprout-mix').innerHTML = `* ${opcaoDeIdiomas.avisoSproutMix}`;
     document.getElementById('tab-rapid-root').innerHTML = `* ${opcaoDeIdiomas.avisoRapidRoot}`;
     document.getElementById('aviso-crop-to-coins').innerHTML = `${opcaoDeIdiomas.avisoCropToCoins}`;
+    document.getElementById('aviso-buds-nao-funcionam').innerHTML = `* ${opcaoDeIdiomas.avisoDeBuds}`;
 
     //Resultado Total do combo montado
     document.getElementById('accordionResultadoComboCompleto').innerHTML = `${opcaoDeIdiomas.tituloAccordionCombo}`
@@ -158,12 +137,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.6`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV022}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV023}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV024}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV025}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV026}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.7`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV023}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV024}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV025}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV026}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV027}`;
 
 
     pontosGastosEmSkills();
@@ -261,10 +240,16 @@ const idiomaEscolhido = {
         valorDaLaMerino: 'Preço da Lã Merino',
         limparOvelhas: 'Limpar Ovelhas',
 
-        comidaUsadaAteLevel3: 'Até Level 3',
-        comidaUsadaDoLevel4ao6: 'Level 4 ao 6',
-        comidaUsadaDoLevel7ao10: 'Level 7 ao 10',
-        comidaUsadaDoLevel11ao15: 'Level 11 ao 15',
+        comidaUsadaAteLevel3: 'Comida do Level 0 ao 3',
+        comidaUsadaDoLevel4ao6: 'Comida do Level 4 ao 6',
+        comidaUsadaDoLevel7ao10: 'Comida do Level 7 ao 10',
+        comidaUsadaDoLevel11ao15: 'Comida do Level 11 ao 15',
+
+        ferramentaDeCarinho: 'Ferr. Carinho',
+        tituloUsoDeCarinhos: 'Carinhos Realizados',
+        UsoDeUmCarinho: '1 Carinho',
+        UsoDeDoisCarinhos: '2 Carinhos',
+
 
         //dados Crop to Coins
         avisoCropToCoins: '* Aqui você pode comparar quais crops e frutas oferecem as melhores oportunidades de compra em Flower e venda por coins.<br>* Clique na coluna desejada para ordenar os parâmetros em ordem crescente ou decrescente.',
@@ -283,6 +268,8 @@ const idiomaEscolhido = {
         avisoCalculosMinerais: 'Se você optar por calcular por ferramenta ou por ciclo, tente manter o Tempo Total em, no máximo, 24 horas para obter resultados mais precisos. Caso ultrapasse esse limite, desconsidere a média de lucro diário e semanal.',
         avisoSproutMix: 'Ao selecionar qualquer crop, ela ganhará +0.2 por plot, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
         avisoRapidRoot: 'Ao selecionar qualquer crop, ela terá seu tempo reduzido pela metade, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
+        avisoDeBuds: 'Os Buds ainda não estão funcionando<br>',
+
     },
     ingles: {
         //dados iniciais
@@ -357,10 +344,14 @@ const idiomaEscolhido = {
         galinhas: 'Chickens',
         vacas: 'Cows',
         ovelhas: 'Sheep',
-        comidaUsadaAteLevel3: 'Up to Level 3',
-        comidaUsadaDoLevel4ao6: 'Level 4 to 6',
-        comidaUsadaDoLevel7ao10: 'Level 7 to 10',
-        comidaUsadaDoLevel11ao15: 'Level 11 to 15',
+        comidaUsadaAteLevel3: 'Food from Level 0 to 3',
+        comidaUsadaDoLevel4ao6: 'Food from Level 4 to 6',
+        comidaUsadaDoLevel7ao10: 'Food from Level 7 to 10',
+        comidaUsadaDoLevel11ao15: 'Food from Level 11 to 15',
+        ferramentaDeCarinho: 'Affection Tools',
+        tituloUsoDeCarinhos: 'Affections Given',
+        UsoDeUmCarinho: '1 Affection',
+        UsoDeDoisCarinhos: '2 Affections',
         tempoDaGalinha: 'Chicken Cooldown',
         valorDoOvo: 'Egg Price',
         valorDaPena: 'Feather Price',
@@ -393,6 +384,8 @@ const idiomaEscolhido = {
         avisoCalculosMinerais: 'If you choose to calculate by tool or by cycle, try to keep the Total Time at a maximum of 24 hours to obtain more accurate results. If this limit is exceeded, disregard the daily and weekly profit averages.',
         avisoSproutMix: 'When selecting any crop, it will gain +0.2 per plot, but remember that fertilizers are temporary buffs and you use one per seed. When you select it, the system will assume you’ll use the fertilizer on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
         avisoRapidRoot: 'When selecting any crop, its time will be reduced by half, but remember that fertilizers are temporary buffs and you use one per seed. When you select it, the system will assume you’re using it on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
+        avisoDeBuds: 'Buds are not available yet<br>',
+
     }
 
 
@@ -463,7 +456,25 @@ const idiomaDasAtualizacoes = {
         atualizacaoV026: `v0.2.6 - Data da Atualização: 10/01/2026 <br><br>
             • Remodelagem na tabela de animais e lucro individual por level do animal<br>`,
 
-        atualizacaoV027: `• ajustar o card dos minerios que mostra o custo errado`,
+        atualizacaoV027: `v0.2.7 – Data da atualização: 23/01/2026<br><br>
+
+            • Ajuste nos cálculos de lucro dos animais<br>
+            • Como no jogo não é possível fornecer apenas a quantidade exata de comida para completar um level,
+            agora o sistema calcula o XP excedente que passa para o próximo level — em alguns casos, não sendo
+            necessário usar comida no level seguinte!<br>
+            Obs: o XP ganho com carinhos é uma média e pode variar dentro do jogo.<br><br>
+
+            • Atualização visual na exibição dos preços das comidas<br>
+            • Novo método para selecionar a comida usada em cada level (agora via checkboxes)<br>
+            • Adição das ferramentas de carinho, permitindo simulações mais realistas (caso você não possua todas)<br>
+            • Adição da opção de quantas vezes o carinho é feito por ciclo (1 ou 2 vezes)<br>
+            • Alterar a comida dos levels agora afeta todos os animais, assim como as opções de carinho<br>
+            • Todas as configurações agora são salvas automaticamente ao recarregar a página<br><br>
+
+            • Como muitas mudanças foram feitas de uma só vez no sistema dos animais, é possível que existam
+            pequenos bugs. Caso encontre algum, clique no ícone do Discord e reporte no fórum 😉<br>`,
+
+        atualizacaoV028: `• ajustar o card dos minerios que mostra o custo errado`,
 
     },
     ingles: {
@@ -529,6 +540,24 @@ const idiomaDasAtualizacoes = {
 
         atualizacaoV026: `v0.2.6 - Update Date: 01/10/2026 <br><br>
             • Redesign of the animal table and individual profit per animal level<br>`,
+
+        atualizacaoV027: `v0.2.7 – Update date: 01/23/2026<br><br>
+
+            • Adjustments to animal profit calculations<br>
+            • Since in the game it’s not possible to feed only the exact amount needed to complete a level,
+            the system now calculates the excess XP that carries over to the next level — in some cases,
+            no food is required in the following level!<br>
+            Note: XP gained from petting is an average and may vary in-game.<br><br>
+
+            • Visual update to how food prices are displayed<br>
+            • New method for selecting the food used per level (now via checkboxes)<br>
+            • Added petting tools, allowing for more realistic simulations (in case you don’t own all of them)<br>
+            • Added the option to choose how many times the animal is petted per cycle (1 or 2 times)<br>
+            • Changing the food for levels now affects all animals, as well as the petting options<br>
+            • All settings are now automatically saved when reloading the page<br><br>
+
+            • Since many changes were made at once to the animal system, there may be minor bugs.
+            If you find any, click the Discord icon and report it on the forum 😉<br>`,
 
     }
 };

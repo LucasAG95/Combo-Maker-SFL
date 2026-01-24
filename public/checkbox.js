@@ -61,6 +61,21 @@ function configurarCheckbox() {
         };
     });
 
+    //todos buffs de buds
+    todosBuds.forEach(bud => {
+        let checkbox = document.getElementById(bud.idName);
+
+        if(checkbox) {
+            bud.possui = checkbox.checked;
+
+            checkbox.addEventListener('change', function() {
+                bud.possui = checkbox.checked;
+                chamadorDeBuffs();
+                ativarBonusDasNftsESkills();
+            });
+        };
+    });
+
     //todos buffs temporarios
     todosTemporarios.forEach(temporario => {
         let checkbox = document.getElementById(temporario.idName);
@@ -212,6 +227,17 @@ window.onload = function () {
     renderNFTs(wearables.pesca, 'wearables-container-minerals', './wearables');
     renderNFTs(wearables.animais, 'wearables-container-animais', './wearables');
     
+    //Buds
+    renderNFTs(buds.plaza, 'buds-plaza-container', './buds');
+    renderNFTs(buds.woodlands, 'buds-woodlands-container', './buds');
+    renderNFTs(buds.cave, 'buds-cave-container', './buds');
+    renderNFTs(buds.sea, 'buds-sea-container', './buds');
+    renderNFTs(buds.castle, 'buds-castle-container', './buds');
+    renderNFTs(buds.port, 'buds-port-container', './buds');
+    renderNFTs(buds.retreat, 'buds-retreat-container', './buds');
+    renderNFTs(buds.saphiro, 'buds-saphiro-container', './buds');
+    renderNFTs(buds.snow, 'buds-snow-container', './buds');
+    renderNFTs(buds.beach, 'buds-beach-container', './buds');
 
     //Shrines, Totems e buffs temporarios
     renderNFTs(shrines, 'shrines-container', './shrines');
@@ -262,8 +288,8 @@ function mostrarInfoCard(item, imgPath) {
     }
 
     document.querySelector(".card-img").src = imgPath || "./icones/flower.png";
-    document.getElementById("titulo-buff").textContent = item.name;
-    document.getElementById("descricao-do-buff").textContent = item.descricao[idioma] || "";
+    document.getElementById("titulo-buff").innerHTML = item.name;
+    document.getElementById("descricao-do-buff").innerHTML = item.descricao[idioma] || "";
     document.getElementById("preco-atual").innerHTML = precoAtual;
     document.getElementById("ultima-venda").innerHTML = ultimavenda;
 

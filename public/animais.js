@@ -63,9 +63,9 @@ let todosAnimais = [...animais.galinhas, ...animais.vacas, ...animais.ovelhas];
 //=================================================================================================================================================================
 
 const ferramentasAnimais = [
-    { idName: 'pettingHand', name: 'Petting Hand', xpPadrao: 25 },
-    { idName: 'brush',       name: 'Brush',        xpPadrao: 40 },
-    { idName: 'musicBox',    name: 'Music Box',    xpPadrao: 50 },
+    { idName: 'pettingHand', name: 'Petting Hand', xpPadrao: 25, possui: false },
+    { idName: 'brush',       name: 'Brush',        xpPadrao: 40, possui: false },
+    { idName: 'musicBox',    name: 'Music Box',    xpPadrao: 50, possui: false },
 ];
 
 let ferramentaDeCarinhoPedida = [
@@ -96,81 +96,192 @@ console.log(mapaDeCarinhos);
 
 //=================================================================================================================================================================
 
+//Defini qual comida esta sendo selecionado para o level
+document.querySelectorAll('input[type="checkbox"][data-group]')
+    .forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+        const group = checkbox.dataset.group;
+
+        const groupCheckboxes = document.querySelectorAll(
+            `input[type="checkbox"][data-group="${group}"]`
+        );
+
+        const checkedInGroup = [...groupCheckboxes].filter(cb => cb.checked);
+
+        // 🔁 se desmarcar tudo, volta pra padrão
+        if (checkedInGroup.length === 0) {
+            const defaultOption = [...groupCheckboxes].find(cb => cb.hasAttribute('checked'));
+            if (defaultOption) defaultOption.checked = true;
+            return;
+        }
+
+        // ✅ marcou uma nova → desmarca as outras
+        if (checkbox.checked) {
+            groupCheckboxes.forEach(cb => {
+            if (cb !== checkbox) cb.checked = false;
+            });
+        }
+        });
+    });
+
+
 function xpCarinhoXpComidaValores() {
-    let pettingHandXP = Number(ferramentasAnimais[0].xpFinal);
-    let brushXP = Number(ferramentasAnimais[1].xpFinal);
-    let musicBoxXP = Number(ferramentasAnimais[2].xpFinal);
+
+    //definir a imagem da comida Mixed Grain
+    document.querySelectorAll('img[id^="img-mixedGrain"]').forEach(img => {
+        img.src = mapaDeTodasSkillsComTier['kaleMix'].possui
+            ? './animais/kaleMix.png'
+            : './animais/mixedGrain.png';
+    });
+
+    //definir se possuo ou não a ferramenta de carinho!
+    const possuiPettingHand = document.getElementById('pettingHand').checked;
+    const possuiBrush = document.getElementById('brush').checked;
+    const possuiMusicBoxXP = document.getElementById('musicBox').checked;
+
+    let pettingHandXP = possuiPettingHand === true ? Number(ferramentasAnimais[0].xpFinal) : 0;
+    let brushXP = possuiBrush === true ?  Number(ferramentasAnimais[1].xpFinal) : 0;
+    let musicBoxXP = possuiMusicBoxXP === true ? Number(ferramentasAnimais[2].xpFinal) : 0;
 
     ferramentaDeCarinhoPedida.forEach(ferramenta => {
         ferramenta.mediaDeXpGanho = (pettingHandXP * ferramenta.pettingHand) + (brushXP * ferramenta.brush) + (musicBoxXP * ferramenta.musicBox);
         console.log(`xp ganho com carinho no level ${ferramenta.level}: ${ferramenta.mediaDeXpGanho} xp!`)
     });
 
+    //quantidade de vezes que vou fazer carinho por rodada!
+    let qtdDeCarinhos = document.getElementById(`qtd-carinho-feito`).value === '1' ? 1 : 2;
+
     //ir para outra função!
     todosAnimais.forEach(animal => {
 
         let mediaDeXpGanhoPorRodadaComCarinhos = mapaDeTodosCollectibles['babyCow'].possui && animal.name === 'vaca' &&  mapaDeCarinhos[animal.levelAnterior].mediaDeXpGanho > 0 ? 
-            (mapaDeCarinhos[animal.levelAnterior].mediaDeXpGanho + mapaDeTodosCollectibles['babyCow'].carinho[0].buff) * 2 :
-            mapaDeCarinhos[animal.levelAnterior].mediaDeXpGanho * 2;
+            (mapaDeCarinhos[animal.levelAnterior].mediaDeXpGanho + mapaDeTodosCollectibles['babyCow'].carinho[0].buff) * qtdDeCarinhos :
+            mapaDeCarinhos[animal.levelAnterior].mediaDeXpGanho * qtdDeCarinhos;
 
         animal.xpAdquiridoComCarinho = mediaDeXpGanhoPorRodadaComCarinhos;
         console.log(`${animal.name} level: ${animal.level} ganha: ${mediaDeXpGanhoPorRodadaComCarinhos} xp`);
 
-        animal.xpNecessario = animal.xpTotalDoLevel - animal.xpTotalAnterior - mediaDeXpGanhoPorRodadaComCarinhos;
+        animal.xpNecessario = animal.xpTotalDoLevel - animal.xpTotalAnterior;
         console.log(`${animal.name} level ${animal.levelAnterior} para level: ${animal.level} falta: ${animal.xpNecessario} xp para subir de nivel`);
 
-        let animalEscolhido = animal.name;
-
-        //Escolhendo a comida do level - isso deve mudar pra ser especifico pra cada animal
+        // Escolhendo a comida do level (agora com checkbox)
         if (animal.level <= 3) {
-            animal.idComida = document.getElementById(`${animalEscolhido}-comida-ate-level3`).value;
-            animal.xpDaComidaPadrao = animal.idComida === 'kernelBlend' || animal.idComida === 'omnifeed' ? 60 : 20;
-        } 
-        if (animal.level > 3 && animal.level <= 6) {
-            animal.idComida = document.getElementById(`${animalEscolhido}-comida-level4ao6`).value;
-            animal.xpDaComidaPadrao = animal.idComida === 'hay' || animal.idComida === 'omnifeed' ? 60 : 20;
-        }
-        if (animal.level > 6 && animal.level <= 10) {
-            animal.idComida = document.getElementById(`${animalEscolhido}-comida-level7ao10`).value;
-            animal.xpDaComidaPadrao = animal.idComida === 'nutriBarley' || animal.idComida === 'omnifeed' ? 60 : 20;
-        }
-        if (animal.level > 10) {
-            animal.idComida = document.getElementById(`${animalEscolhido}-comida-level11ao15`).value;
-            animal.xpDaComidaPadrao = animal.idComida === 'mixedGrain' || animal.idComida === 'omnifeed' ? 80 : 20;
+        animal.idComida = document.querySelector('input[data-group="3"]:checked').id;
+        animal.xpDaComidaPadrao =
+            animal.idComida === 'kernelBlend3' || animal.idComida === 'omnifeed3' ? 60 : 20;
         }
 
-        if (mapaDeTodasSkillsComTier['chonkyFeed'].possui) {
-            animal.xpDaComidaPadrao *= 2;
+        if (animal.level > 3 && animal.level <= 6) {
+        animal.idComida = document.querySelector('input[data-group="6"]:checked').id;
+        animal.xpDaComidaPadrao =
+            animal.idComida === 'hay6' || animal.idComida === 'omnifeed6' ? 60 : 20;
+        }
+
+        if (animal.level > 6 && animal.level <= 10) {
+        animal.idComida = document.querySelector('input[data-group="10"]:checked').id;
+        animal.xpDaComidaPadrao =
+            animal.idComida === 'nutriBarley10' || animal.idComida === 'omnifeed10' ? 60 : 20;
+        }
+
+        if (animal.level > 10) {
+        animal.idComida = document.querySelector('input[data-group="15"]:checked').id;
+        animal.xpDaComidaPadrao =
+            animal.idComida === 'mixedGrain15' || animal.idComida === 'omnifeed15' ? 80 : 20;
+        }
+
+        // Definir valor de cada unidade da comida (checkbox)
+        if (animal.idComida.includes('kernelBlend')) {
+        animal.custoDaComida = mapaDosValoresDoMarket['corn'].valor;
+        }
+
+        if (animal.idComida.includes('hay')) {
+        animal.custoDaComida = mapaDosValoresDoMarket['wheat'].valor;
+        }
+
+        if (animal.idComida.includes('nutriBarley')) {
+        animal.custoDaComida = mapaDosValoresDoMarket['barley'].valor;
+        }
+
+        if (animal.idComida.includes('mixedGrain')) {
+        if (mapaDeTodasSkillsComTier['kaleMix'].possui) {
+            animal.custoDaComida = mapaDosValoresDoMarket['kale'].valor * 3;
+        } else {
+            animal.custoDaComida =
+            mapaDosValoresDoMarket['corn'].valor +
+            mapaDosValoresDoMarket['wheat'].valor +
+            mapaDosValoresDoMarket['barley'].valor;
+        }
         };
 
-        //Definir valor de cada unidade da comida
-        if (animal.idComida === 'kernelBlend') animal.custoDaComida = mapaDosValoresDoMarket['corn'].valor;
-        if (animal.idComida === 'hay') animal.custoDaComida = mapaDosValoresDoMarket['wheat'].valor;
-        if (animal.idComida === 'nutriBarley') animal.custoDaComida = mapaDosValoresDoMarket['barley'].valor;
-        if (mapaDeTodasSkillsComTier['kaleMix'].possui) {
-            if (animal.idComida === 'mixedGrain') animal.custoDaComida = mapaDosValoresDoMarket['kale'].valor * 3;
-        } else {
-            if (animal.idComida === 'mixedGrain') animal.custoDaComida = mapaDosValoresDoMarket['corn'].valor + mapaDosValoresDoMarket['wheat'].valor + mapaDosValoresDoMarket['barley'].valor;
-        }
-        if (animal.idComida === 'omnifeed') animal.custoDaComida = precoDaGemEmFlower;
+        if (animal.idComida.includes('omnifeed')) {
+        animal.custoDaComida = precoDaGemEmFlower;
+        };
+
+        let xpDaComidaPrincipal = 60;
+        //Se possuir essa skill, todo xp deve ser dobrado
+        if (mapaDeTodasSkillsComTier['chonkyFeed'].possui) {
+            animal.xpDaComidaPadrao *= 2;
+            xpDaComidaPrincipal *= 2;
+        };
+        
     });
-    buffsAdicionadosRecursosAnimais();
-
+    calculoDeXpExcedenteDosAnimais();
 };
-document.getElementById('galinha-comida-ate-level3').addEventListener('change', xpCarinhoXpComidaValores);
-document.getElementById('galinha-comida-level4ao6').addEventListener('change', xpCarinhoXpComidaValores);
-document.getElementById('galinha-comida-level7ao10').addEventListener('change', xpCarinhoXpComidaValores);
-document.getElementById('galinha-comida-level11ao15').addEventListener('change', xpCarinhoXpComidaValores);
 
-document.getElementById('vaca-comida-ate-level3').addEventListener('change', xpCarinhoXpComidaValores);
-document.getElementById('vaca-comida-level4ao6').addEventListener('change', xpCarinhoXpComidaValores);
-document.getElementById('vaca-comida-level7ao10').addEventListener('change', xpCarinhoXpComidaValores);
-document.getElementById('vaca-comida-level11ao15').addEventListener('change', xpCarinhoXpComidaValores);
+document.getElementById('pettingHand').addEventListener('change', xpCarinhoXpComidaValores);
+document.getElementById('brush').addEventListener('change', xpCarinhoXpComidaValores);
+document.getElementById('musicBox').addEventListener('change', xpCarinhoXpComidaValores);
+document.getElementById('qtd-carinho-feito').addEventListener('change', xpCarinhoXpComidaValores);
 
-document.getElementById('ovelha-comida-ate-level3').addEventListener('change', xpCarinhoXpComidaValores);
-document.getElementById('ovelha-comida-level4ao6').addEventListener('change', xpCarinhoXpComidaValores);
-document.getElementById('ovelha-comida-level7ao10').addEventListener('change', xpCarinhoXpComidaValores);
-document.getElementById('ovelha-comida-level11ao15').addEventListener('change', xpCarinhoXpComidaValores);
+document.querySelectorAll('input[type="checkbox"][data-group]')
+  .forEach(checkbox => {
+    checkbox.addEventListener('change', xpCarinhoXpComidaValores);
+  });
 
 //=================================================================================================================================================================
 
+function calculoDeXpExcedenteDosAnimais() {
+    let xpRestanteParaProximoLevel = 0;
+    let tipoAnterior = null;
+
+    todosAnimais.forEach(animal => {
+        // Se o tipo mudou (galinha → vaca → ovelha), reseta o XP excedente
+        if (tipoAnterior !== animal.name) {
+            xpRestanteParaProximoLevel = 0;
+            tipoAnterior = animal.name;
+        }
+
+        // Caso tenha NFT que não precisa alimentar
+        if (animal.qtdComidaPadrao === 0) {
+            animal.xpAdquiridoComCarinho = 0;
+            xpRestanteParaProximoLevel = 0;
+        }
+
+        animal.xpExcedente = xpRestanteParaProximoLevel;
+
+        let qtdDeVezesQueIraAlimentar = Math.max(0, Math.ceil(
+            (animal.xpNecessario - (animal.xpExcedente + animal.xpAdquiridoComCarinho)) /
+            animal.xpDaComidaPadrao
+        ));
+
+        if (animal.xpExcedente + animal.xpAdquiridoComCarinho >= animal.xpNecessario) {
+            animal.comidaNecessaria = 0;
+        } else {
+            animal.comidaNecessaria = qtdDeVezesQueIraAlimentar * animal.qtdComidaPadrao;
+            animal.xpGanhoComendo = qtdDeVezesQueIraAlimentar * animal.xpDaComidaPadrao;
+        }
+
+        // Atualiza o XP excedente para o próximo animal do mesmo tipo
+        xpRestanteParaProximoLevel =
+            xpRestanteParaProximoLevel +
+            (qtdDeVezesQueIraAlimentar * animal.xpDaComidaPadrao) +
+            animal.xpAdquiridoComCarinho -
+            animal.xpNecessario;
+
+        xpRestanteParaProximoLevel = Math.max(0, xpRestanteParaProximoLevel);
+
+        console.log(`[${animal.name}] sobrou ${xpRestanteParaProximoLevel} XP para o próximo level`);
+    });
+
+    buffsAdicionadosRecursosAnimais();
+}
