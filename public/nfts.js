@@ -1212,7 +1212,7 @@ let collectibles = {
         {
             idNumber: 444,
             idName: 'blackBearry',
-            name: 'Black Bearryh',
+            name: 'Black Bearry',
             preco: '',
             descricao: {
                 portugues: '+1 Blueberry',
@@ -3448,5 +3448,6 @@ let todosWearables = [
     ...wearables.pesca,
     ...wearables.animais
 ];
+
 
 //=============================================================================================================================================================================
