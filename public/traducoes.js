@@ -137,12 +137,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.7`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV023}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV024}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV025}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV026}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV027}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.8`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV024}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV025}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV026}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV027}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV028}`;
 
 
     pontosGastosEmSkills();
@@ -474,7 +474,10 @@ const idiomaDasAtualizacoes = {
             • Como muitas mudanças foram feitas de uma só vez no sistema dos animais, é possível que existam
             pequenos bugs. Caso encontre algum, clique no ícone do Discord e reporte no fórum 😉<br>`,
 
-        atualizacaoV028: `• ajustar o card dos minerios que mostra o custo errado`,
+        atualizacaoV028: `v0.2.8 – Data da atualização: 02/02/2026<br><br>
+            • Adicionado as NFTs da nova temporada.`,
+
+        atualizacaoV029: `• ajustar o card dos minerios que mostra o custo errado e calculo de custo das ferramentas`,
 
     },
     ingles: {
@@ -558,6 +561,9 @@ const idiomaDasAtualizacoes = {
 
             • Since many changes were made at once to the animal system, there may be minor bugs.
             If you find any, click the Discord icon and report it on the forum 😉<br>`,
+
+        atualizacaoV028: `v0.2.8 – Data da atualização: 02/02/2026<br><br>
+            • Added the NFTs from the new season.`,
 
     }
 };

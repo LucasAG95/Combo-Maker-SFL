@@ -216,6 +216,7 @@ window.onload = function () {
     renderNFTs(collectibles.fruits, 'collectibles-container-fruits', './collectibles' );
     renderNFTs(collectibles.greenhouse, 'collectibles-container-greenhouse', './collectibles');
     renderNFTs(collectibles.animais, 'collectibles-container-animais', './collectibles');
+    renderNFTs(collectibles.temporada, 'collectibles-container-novas', './collectibles');
 
     // Wearables
     renderNFTs(wearables.factions, 'wearables-container-factions', './wearables');
@@ -226,6 +227,7 @@ window.onload = function () {
     renderNFTs(wearables.terouso, 'wearables-container-minerals', './wearables');
     renderNFTs(wearables.pesca, 'wearables-container-minerals', './wearables');
     renderNFTs(wearables.animais, 'wearables-container-animais', './wearables');
+    renderNFTs(wearables.temporada, 'wearables-container-novas', './wearables');
     
     //Buds
     renderNFTs(buds.plaza, 'buds-plaza-container', './buds');

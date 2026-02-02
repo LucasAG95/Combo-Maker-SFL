@@ -261,6 +261,166 @@ let collectibles = {
             ],  
         },
     ],
+    temporada: [
+        {
+            idNumber: '',
+            idName: 'oaken',
+            name: 'Oaken',
+            preco: '',
+            descricao: {
+                portugues: '25% de chance de obter +1 acorn por coleta',
+                ingles: '25% chance of 1+ acorn fetch yield'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.25,
+                    recursoAfetado: ['acorn'],
+                }   
+            ]         
+        },
+        {
+            idNumber: '',
+            idName: 'crimstoneClam',
+            name: 'Crimstone Clam',
+            preco: '',
+            descricao: {
+                portugues: '10% mais rápido para minerar Crimstone<br>10% de chance de respawn instantâneo',
+                ingles: '10% faster crimstone<br>10% chance to instant respawn'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.9,
+                    recursoAfetado: ['Crimstone'],
+                }   
+            ],
+            quantidade: [
+                {
+                    sinal: 'xI',
+                    buff: 1.1,
+                    recursoAfetado: ['Gold Pickaxe', 'Crimstone'],
+                }
+            ],     
+        },
+        {
+            idNumber: '',
+            idName: 'poseidonsThrone',
+            name: 'Poseidon\'s Throne',
+            preco: '',
+            descricao: {
+                portugues: '1+ Weed e Dung',
+                ingles: '1+ Weed and Dung Yield'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 1,
+                    recursoAfetado: ['weed', 'dung'],
+                }   
+            ]         
+        },
+        {
+            idNumber: '',
+            idName: 'meerkat',
+            name: 'Meerkat',
+            preco: '',
+            descricao: {
+                portugues: '+5 escavações<br>+1 areia',
+                ingles: '5+ digs<br>1+ sand'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 5,
+                    recursoAfetado: ['digs'],
+                }   
+            ],
+            quantidade2: [
+                {
+                    sinal: '+',
+                    buff: 1,
+                    recursoAfetado: ['sand'],
+                }   
+            ]         
+        },
+        {
+            idNumber: '',
+            idName: 'nautilus',
+            name: 'Nautilus',
+            preco: '',
+            descricao: {
+                portugues: 'Adiciona +5 pescas diárias.',
+                ingles: 'Adds +5 daily fishing attempts.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 5,
+                    recursoAfetado: ['pesca'],
+                }   
+            ]         
+        },
+        {
+            idNumber: '',
+            idName: 'squidChicken',
+            name: 'Squid Chicken',
+            preco: '',
+            descricao: {
+                portugues: '+0,1 de produção de ovos.',
+                ingles: '+0.1 egg yield.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['egg'],
+                }   
+            ]         
+        },
+        {
+            idNumber: '',
+            idName: 'mermaidSheep',
+            name: 'Mermaid Sheep',
+            preco: '',
+            descricao: {
+                portugues: '5% menos ração necessária para a ovelha',
+                ingles: '5% less feed required for sheep.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 0.95,
+                    recursoAfetado: ['ovelha'],
+                }   
+            ]         
+        },
+        {
+            idNumber: '',
+            idName: 'anemoneFlower',
+            name: 'Anemone Flower',
+            preco: '',
+            descricao: {
+                portugues: '+1 tentativa grátis no Fishing Puzzle',
+                ingles: '+1 free attempt in the Fishing Puzzle'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 1,
+                    recursoAfetado: [''],
+                }   
+            ]         
+        },
+    ],
     crops: [
         {
             idNumber: 420,
@@ -2335,11 +2495,11 @@ let collectibles = {
             ],
         },
     ]
-    
 };
 
 let todosCollectibles = [
     ...collectibles.ferreiro,
+    ...collectibles.temporada,
     ...collectibles.crops,
     ...collectibles.cropMachine, 
     ...collectibles.fruits, 
@@ -2358,6 +2518,103 @@ console.log(mapaDeTodosCollectibles)
 //=============================================================================================================================================================================
 
 let wearables = {
+    temporada: [
+        {
+            idNumber: '',
+            idName: 'crimstoneSpikesHair',
+            name: 'Crimstone Spikes Hair',
+            preco: '',
+            descricao: {
+                portugues: 'Mineração de Crimstone grátis',
+                ingles: 'Free crimstone mining'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 0,
+                    recursoAfetado: ['Gold Pickaxe'],
+                }
+            ]
+        },
+        {
+            idNumber: '',
+            idName: 'pawAura',
+            name: 'Paw Aura',
+            preco: '',
+            descricao: {
+                portugues: 'Alimentação gratuita de pets',
+                ingles: 'Free pet feeding'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 0,
+                    recursoAfetado: ['food pet'],
+                }   
+            ]         
+        },
+        {
+            idNumber: '',
+            idName: 'victoriasApron',
+            name: 'Victoria\'s Apron',
+            preco: '',
+            descricao: {
+                portugues: '33% de chance de redefinir o pedido do pet',
+                ingles: '33% chance to reset the pet request'
+            },
+            possui: false,
+            reset: [
+                {
+                    sinal: 'x',
+                    buff: 1.33,
+                    recursoAfetado: ['food pet'],
+                }   
+            ]         
+        },
+        {
+            idNumber: '',
+            idName: 'beastShoes',
+            name: 'Beast Shoes',
+            preco: '',
+            descricao: {
+                portugues: '+100 XP em pedidos médios de comida<br>+250 XP em pedidos difíceis de comida',
+                ingles: '+100 XP to medium food requests<br>+250 XP to hard food requests'
+            },
+            possui: false,
+            xpPet: [
+                {
+                    sinal: '+',
+                    buff: 100,
+                    recursoAfetado: ['food medium'],
+                },
+                {
+                    sinal: '+',
+                    buff: 250,
+                    recursoAfetado: ['food hard'],
+                }   
+            ]         
+        },
+        {
+            idNumber: '',
+            idName: 'cornSilkHair',
+            name: 'Corn Silk Hair',
+            preco: '',
+            descricao: {
+                portugues: '+2 Milhos',
+                ingles: '2+ Corn Yield'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 2,
+                    recursoAfetado: ['Corn'],
+                }   
+            ]         
+        },
+    ],
     factions: [
         {
             idName: 'factionQuiver',
@@ -3439,6 +3696,7 @@ let wearables = {
 };
 
 let todosWearables = [
+    ...wearables.temporada,
     ...wearables.factions,
     ...wearables.crops,
     ...wearables.fruits,
@@ -3448,6 +3706,5 @@ let todosWearables = [
     ...wearables.pesca,
     ...wearables.animais
 ];
-
 
 //=============================================================================================================================================================================
