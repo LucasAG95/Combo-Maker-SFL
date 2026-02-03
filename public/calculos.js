@@ -513,15 +513,19 @@ function mediaDeValorDasFerramentasEMinerais() {
             oilLaOuCouro = 'wool';
         } 
 
+        //olhar depois, criado para calcular direito o recurso quando a pessoa possui ferramentas de farm gratis
+        let gastosComFerramentas = 1;
+        if(ferramenta.qtdPrecisaPorNode === 0 || ferramenta.qtdUsada > 0 && ferramenta.quantidade == 0) gastosComFerramentas = 0;
+
         //Calcular media de custo em coins da ferramenta para mostrar nos cards!
-        ferramenta.custoEmCoins = ferramenta.recursosNecessarios['coins'] + 
+        ferramenta.custoEmCoins = (ferramenta.recursosNecessarios.coins + 
             ((ferramenta.recursosNecessarios['wood'] ?? 0) * (mapaDeMinerals['wood']?.mediaDeCustoCoins ?? 0)) +
             ((ferramenta.recursosNecessarios['stone'] ?? 0) * (mapaDeMinerals['stone']?.mediaDeCustoCoins ?? 0)) +
             ((ferramenta.recursosNecessarios['iron'] ?? 0) * (mapaDeMinerals['iron']?.mediaDeCustoCoins ?? 0)) + 
             ((ferramenta.recursosNecessarios['gold'] ?? 0) * (mapaDeMinerals['gold']?.mediaDeCustoCoins ?? 0)) +
             ((ferramenta.recursosNecessarios['crimstone'] ?? 0) * (mapaDeMinerals['crimstone']?.mediaDeCustoCoins ?? 0)) +
             ((ferramenta.recursosNecessarios['oil'] ?? 0) * (mapaDeMinerals['oil']?.mediaDeCustoCoins ?? 0)) +
-            ((ferramenta.recursosNecessarios[oilLaOuCouro] ?? 0) * (mapaDosValoresDoMarket[oilLaOuCouro]?.valor ?? 0) * flowerEmCoins);
+            ((ferramenta.recursosNecessarios[oilLaOuCouro] ?? 0) * (mapaDosValoresDoMarket[oilLaOuCouro]?.valor ?? 0) * flowerEmCoins)) * gastosComFerramentas;
 
             
         //feito para mostrar os gastos com as ferramentas nos cards!

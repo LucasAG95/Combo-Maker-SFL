@@ -21,6 +21,7 @@ const idiomaTabelaMinerios = {
         valorDeVendaMarket: 'Valor de Venda <br> Market P2P',
         qtdRestanteParaVenda: 'Qtd Restante<br>para Venda',
         lucroNoMarket: 'Lucro no Market P2P<br>Taxa',
+        lucroPorRecurso: 'Lucro por<br>recurso',
 
         //cards tabela
         mediaDeRecursosGastos: 'Média de Recursos Gastos',
@@ -49,6 +50,7 @@ const idiomaTabelaMinerios = {
         valorDeVendaMarket: 'Selling Price<br>P2P Market',
         qtdRestanteParaVenda: 'Remaining Quantity<br>for Sale',
         lucroNoMarket: 'Profit on P2P Market<br>Fee',
+        lucroPorRecurso: 'Profit per<br>resource',
 
         //cards tabela
         mediaDeRecursosGastos: 'Average Resources Spent',
@@ -95,6 +97,7 @@ function tabelaMinerios() {
             <th>${idiomaDoTextoMinerais.ferramentasUsadas}<br>${idiomaDoTextoMinerais.gastoTotal}</th>
             <th>${idiomaDoTextoMinerais.qtdDeRecursosAdquirida}<br>${idiomaDoTextoMinerais.custoPorUnidade}</th>
             <th>${idiomaDoTextoMinerais.valorDeVendaMarket}</th>
+            <th>${idiomaDoTextoMinerais.lucroPorRecurso}</th>
             <th>${idiomaDoTextoMinerais.qtdRestanteParaVenda}</th>
             <th>${idiomaDoTextoMinerais.lucroNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
         </tr>`
@@ -119,12 +122,28 @@ function tabelaMinerios() {
         let tempoDeRessurgimento = mapaDeMinerals[ferramenta.recursoObtido].tempoFinal;
         let qtdPorNode = mapaDeMinerals[ferramenta.recursoObtido].mediaPorNode;
         let valorDoRecurso = mapaDeMinerals[ferramenta.recursoObtido].valorDoMarket;
+        let textoValorDoRecurso = valorDoRecurso === 0 ? 
+            `` : `<img src="./minerais/${recurso}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${valorDoRecurso.toFixed(4)}`;
+
         let tempoTotal = mapaDeMinerals[ferramenta.recursoObtido].tempoTotal;
         let qtdRecursoFarmado = mapaDeMinerals[ferramenta.recursoObtido].totalDoRecurso;
         let valorMedioPorRecurso = mapaDeMinerals[ferramenta.recursoObtido].mediaDeCustoFlower;
         let qtdRecursoGasto = mapaDeMinerals[ferramenta.recursoObtido][`${ferramenta.recursoObtido}Gastas`];
         let recursoRestante = (qtdRecursoFarmado - qtdRecursoGasto) || 0;
+        let textoRecursoRestante = valorDoRecurso === 0 ? 
+            `` : `<img src="./minerais/${recurso}.png" class="crop-img">${recursoRestante.toFixed(2)}`;
+
         let lucroNoMarket = recursoRestante > 0 ? (recursoRestante * valorDoRecurso) * (1 - taxa) : recursoRestante * valorDoRecurso;
+        let textoLucroNoMarket = lucroNoMarket === 0 ? 
+            `` : `<img src="./minerais/${recurso}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroNoMarket.toFixed(4)}`;
+
+        let lucroPorRecurso = ((valorDoRecurso - valorMedioPorRecurso) * (1 - taxa));
+        let textoLucroPorRecurso = valorDoRecurso === 0 ? 
+            ``: `<img src="./icones/flower.png" class="crop-img">${lucroPorRecurso.toFixed(4)}`
+
+        let porcentagemPorRecurso = (((lucroPorRecurso * (1 - taxa)) / valorMedioPorRecurso) * 100);
+        let textoPorcentagemPorRecurso = textoLucroPorRecurso === '' ? 
+            `` : `<img src="./minerais/${recurso}.png" class="crop-img">${porcentagemPorRecurso.toFixed(0)}%`;
 
         let tempoOuRodadas; //Caso a pessoa preencha os dados por hora, vai mostrar quantas radadas fara nesse tempo, caso contrario mostrará quantas horas será gasta!
         if (textoDeComoVaiMinerar === idiomaDoTextoMinerais.calculoPorHora) {
@@ -150,9 +169,10 @@ function tabelaMinerios() {
             <td>${tempoOuRodadas}</td>
             <td><img src="./minerais/${ferramenta.id}.png" class="crop-img">${ferramentasUsadas}<br><img src="./icones/flower.png" class="crop-img">${ferramentaCustoEmFlower.toFixed(4)}</td>
             <td><img src="./minerais/${recurso}.png" class="crop-img">${Number(qtdRecursoFarmado.toFixed(2)) || ''}<br><img src="./icones/flower.png" class="crop-img">${(valorMedioPorRecurso.toFixed(4) || '')}</td>
-            <td><img src="./minerais/${recurso}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${valorDoRecurso.toFixed(4)}</td>
-            <td><img src="./minerais/${recurso}.png" class="crop-img">${recursoRestante.toFixed(2)}</td>
-            <td><img src="./minerais/${recurso}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroNoMarket.toFixed(4)}</td>
+            <td>${textoValorDoRecurso}</td>
+            <td>${textoPorcentagemPorRecurso}<br>${textoLucroPorRecurso}</td>
+            <td>${textoRecursoRestante}</td>
+            <td>${textoLucroNoMarket}</td>
         </tr>
         `;
 
@@ -252,21 +272,13 @@ function tabelaMinerios() {
                 <p>
                     <img src="./icones/coins.png" class="crop-img">${coinsGasta.toFixed(2)} |
                     <img src="./minerais/wood.png" class="crop-img">${madeiraGasta.toFixed(2)} | 
-                    <img src="./minerais/stone.png" class="crop-img">${pedraGasta.toFixed(2)}<br>
-                    <img src="./minerais/iron.png" class="crop-img">${ferroGasto.toFixed(2)} |
-                    <img src="./minerais/gold.png" class="crop-img">${ouroGasto.toFixed(2)} | 
-                    <img src="./minerais/crimstone.png" class="crop-img">${crimGasta.toFixed(2)}<br>
+                    <img src="./minerais/stone.png" class="crop-img">${pedraGasta.toFixed(2)} |
+                    <img src="./minerais/iron.png" class="crop-img">${ferroGasto.toFixed(2)} <br>
+                    <img src="./minerais/gold.png" class="crop-img">${ouroGasto.toFixed(2)} |
+                    <img src="./minerais/crimstone.png" class="crop-img">${crimGasta.toFixed(2)} |
                     <img src="./minerais/oil.png" class="crop-img">${oilGasto.toFixed(2)} | 
                     <img src="./animais/leather.png" class="crop-img">${couroGasto.toFixed(2)} | 
-                    <img src="./animais/wool.png" class="crop-img">${woolGasta.toFixed(2)}<br>
-                </p>
-            </div>
-
-            <div class="card-total-mineral">
-                <h3>${idiomaDoTextoMinerais.custoDosRecursos}</h3>
-                <p>
-                    <img src="./icones/flower.png" class="crop-img">${custoMedioEmFlower.toFixed(2)} ~ 
-                    <img src="./icones/usdc.png" class="crop-img"> ${(custoMedioEmFlower * precoDoFlower).toFixed(2)}
+                    <img src="./animais/wool.png" class="crop-img">${woolGasta.toFixed(2)}
                 </p>
             </div>
             

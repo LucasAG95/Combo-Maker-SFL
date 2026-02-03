@@ -137,12 +137,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.8`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV024}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV025}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV026}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV027}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV028}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.9`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV025}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV026}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV027}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV028}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV029}`;
 
 
     pontosGastosEmSkills();
@@ -477,7 +477,12 @@ const idiomaDasAtualizacoes = {
         atualizacaoV028: `v0.2.8 – Data da atualização: 02/02/2026<br><br>
             • Adicionado as NFTs da nova temporada.`,
 
-        atualizacaoV029: `• ajustar o card dos minerios que mostra o custo errado e calculo de custo das ferramentas`,
+        atualizacaoV029: `v0.2.9 – Data da atualização: 03/02/2026<br><br>
+            • Correção nos cálculos de minérios: havia um erro em que, ao selecionar NFTs que mineram gratuitamente, o recurso ainda era considerado com custo.<br>
+            • Adicionada uma nova aba em Minérios, exibindo o lucro por recurso e a porcentagem de lucro (já com a taxa descontada).<br>
+            • Caso encontrem qualquer erro, avisem no fórum do Discord — basta clicar no ícone do Discord no canto superior direito.`,
+
+        atualizacaoV030: `• ajustar o card dos minerios que mostra o custo errado e calculo de custo das ferramentas`,
 
     },
     ingles: {
@@ -564,6 +569,11 @@ const idiomaDasAtualizacoes = {
 
         atualizacaoV028: `v0.2.8 – Data da atualização: 02/02/2026<br><br>
             • Added the NFTs from the new season.`,
+
+        atualizacaoV029: `v0.2.9 – Update date: 03/02/2026<br><br>
+            • Fixed mineral calculations: there was an issue where resources were still being charged when selecting NFTs that provide free mining.<br>
+            • Added a new Minerals tab, showing profit per resource and profit percentage (fees already deducted).<br>
+            • If you find any issues, please report them on the Discord forum — just click the Discord icon in the top-right corner.`,
 
     }
 };
