@@ -21,6 +21,7 @@ const idiomaTabelaCrops = {
         lucroEmCoins: 'Lucro em Coins',
         valorDeVendaNoMarket: 'Valor de Venda <br> Market P2P',
         lucroVendendoNoMarket: 'Lucro no Market P2P<br>Taxa',
+        lucroPorHora: 'Lucro por hora<br>(Não desconta Gems)',
 
         //cards da tabela
         cardTempoTotal: 'Tempo Total',
@@ -45,6 +46,9 @@ const idiomaTabelaCrops = {
         totalDeFrutas: 'Total de Frutas',
         machadosUsados: 'Machados Usados',
         madeiraGanha: 'Madeiras Ganhas',
+
+        //greenhouse
+        opcaoCiclo: 'Selecione<br>opção por ciclo',
     },
     ingles: {
         //titulo tabela
@@ -63,6 +67,7 @@ const idiomaTabelaCrops = {
         lucroEmCoins: 'Profit in Coins',
         valorDeVendaNoMarket: 'Market P2P<br>Selling Price',
         lucroVendendoNoMarket: 'Profit on Market P2P<br>Fee',
+        lucroPorHora: 'Profit per hour<br>(Gems not included)',
 
         //cards da tabela
         cardTempoTotal: 'Total Time',
@@ -87,6 +92,9 @@ const idiomaTabelaCrops = {
         totalDeFrutas: 'Total Fruits',
         machadosUsados: 'Axes Used',
         madeiraGanha: 'Wood Gained',
+
+        //greenhouse
+        opcaoCiclo: 'Select the<br>option by cycle',
 
     },
 };
@@ -136,6 +144,7 @@ function tabelaDeCrops() {
             <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
             <th>${idiomaDoTextoCrops.valorDeVendaNoMarket}</th>
             <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
+            <th>${idiomaDoTextoCrops.lucroPorHora}</th>
         </tr>`
 
     // tabela principal continua igual
@@ -182,6 +191,12 @@ function tabelaDeCrops() {
         let estoque = Number(crop.estoqueTotal);
         let qtdDeRestock = (sementesUsadas / estoque);
 
+        //lucro por hora
+        let custoUmaSemente = Number((1 / flowerEmCoins) * custoPorSemente);
+        let vendaPorPlot = Number(valorPorCropEmFlower * qtdPorPlot) * (1 - taxa);
+        let lucroPorSementePlantada = (vendaPorPlot - custoUmaSemente) * plots;
+        let lucroPorHora = ((umaHora / tempoDaCrop) * lucroPorSementePlantada).toFixed(4);
+
         tabelaCrops += `
         <tr>
             <td><img src="./crops/${crop.name}.png" class="crop-img">${crop.name} <br> <img src="./icones/reestock.png" class="crop-img">${estoque}</td>
@@ -193,6 +208,7 @@ function tabelaDeCrops() {
             <td><img src="./crops/${crop.name}.png" class="crop-img"><br><img src="./icones/coins.png" class="crop-img">${lucroCoins.toFixed(2)}</td>
             <td><img src="./crops/${crop.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${valorPorCropEmFlower.toFixed(5)}</td>
             <td><img src="./crops/${crop.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroFlower.toFixed(5)}</td>
+            <td><img src="./crops/${crop.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroPorHora}</td>
         </tr>
         `;
 
@@ -336,6 +352,7 @@ function tabelaDeCrops() {
             <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
             <th>${idiomaDoTextoCrops.valorDeVendaNoMarket}</th>
             <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
+            <th>${idiomaDoTextoCrops.lucroPorHora}</th>
         </tr>`
 
     // tabela principal continua igual
@@ -375,6 +392,13 @@ function tabelaDeCrops() {
         let lucroFlower = cropM.seedsPlantadas == 0 || ilha === 'Basic' ? 0 : 
             Number(((valorPorCropEmFlower * colheitaTotal) * (1 - taxa)) - GastoComSementeEmFlower - ((mapaDeMinerals['oil'].mediaDeCustoFlower * oilGasto)));
 
+        //lucro por hora
+        let custoUmaSemente = Number((1 / flowerEmCoins) * custoPorSementeCoins);
+        let oilPorSemente = (oilPorHora / umaHora) * (tempoPorCropCM / plotsCM);
+        let vendaPorPlot = Number(valorPorCropEmFlower * quantidadeCM) * (1 - taxa);
+        let lucroPorSementePlantada = (vendaPorPlot - custoUmaSemente - (mapaDeMinerals['oil'].mediaDeCustoFlower * oilPorSemente)) * plotsCM;
+        let lucroPorHora = ((umaHora / tempoPorCropCM) * lucroPorSementePlantada).toFixed(4);
+
         tabelaCM += `
         <tr>
             <td><img src="./crops/${cropM.name}.png" class="crop-img">${cropM.name} <br> <img src="./icones/reestock.png" class="crop-img">${estoqueTotal}</td>
@@ -382,10 +406,11 @@ function tabelaDeCrops() {
             <td><img src="./crops/${cropM.name}.png" class="crop-img">${quantidadeCM.toFixed(2)}<br><img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoPorCropCM)}</td>
             <td><input type="number" placeholder="" data-name="${cropM.name}" class="quantidade-input sementesCM-input" value="${cropM.seedsPlantadas}"></td>
             <td><img src="./crops/seed${cropM.name}.png" class="crop-img">${sementesUsadasCM}<br><img src="./crops/${cropM.name}.png" class="crop-img">${colheitaTotal.toFixed(2)}</td>
-            <td><img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoTotalPorCropCM)}<br><img src="./minerais/oil.png" class="crop-img">${oilGasto.toFixed(2)}</td>
+            <td><img src="./icones/tempo.png" class="crop-img">${formatarTempo(tempoTotalPorCropCM)}<br><img src="./minerais/oil.png" class="crop-img">${oilGasto.toFixed(5)}</td>
             <td><img src="./crops/${cropM.name}.png" class="crop-img"><br><img src="./icones/coins.png" class="crop-img">${lucroCoins.toFixed(2)}</td>
             <td><img src="./crops/${cropM.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${valorPorCropEmFlower.toFixed(5)}</td>
             <td><img src="./crops/${cropM.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroFlower.toFixed(5)}</td>
+            <td><img src="./crops/${cropM.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroPorHora}</td>
         </tr>
         `;
 
@@ -523,6 +548,7 @@ function tabelaDeCrops() {
             <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
             <th>${idiomaDoTextoCrops.valorDeVendaNoMarket}</th>
             <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
+            <th>${idiomaDoTextoCrops.lucroPorHora}</th>
         </tr>`
 
     // tabela principal continua igual
@@ -565,6 +591,9 @@ function tabelaDeCrops() {
 
         let qtdDeRestock = (sementesUsadas / estoqueFinal);
 
+        //lucro por hora
+        let lucroPorHora = lucroFlower === 0 ? '' : ((umaHora / tempoTotal) * lucroFlower).toFixed(4);
+
         tabelaFrutas += `
         <tr>
             <td><img src="./crops/${fruta.name}.png" class="crop-img">${fruta.name} <br> <img src="./icones/reestock.png" class="crop-img">${estoqueFinal}</td>
@@ -577,6 +606,7 @@ function tabelaDeCrops() {
             <td><img src="./crops/${fruta.name}.png" class="crop-img">+ <img src="./minerais/wood.png" class="crop-img"><br><img src="./icones/coins.png" class="crop-img">${lucroCoins.toFixed(2)}</td>
             <td><img src="./crops/${fruta.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${valorPorFrutaNoMarket.toFixed(5)}</td>
             <td><img src="./crops/${fruta.name}.png" class="crop-img">+ <img src="./minerais/wood.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroFlower.toFixed(5)}</td>
+            <td><img src="./crops/${fruta.name}.png" class="crop-img">+ <img src="./minerais/wood.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroPorHora}</td>
         </tr>
         `;
 
@@ -709,6 +739,7 @@ function tabelaDeCrops() {
         <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
         <th>${idiomaDoTextoCrops.valorDeVendaNoMarket}</th>
         <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
+        <th>${idiomaDoTextoCrops.lucroPorHora}</th>
     </tr>`
 
     // tabela principal continua igual
@@ -751,6 +782,12 @@ function tabelaDeCrops() {
             Number(((valorPorCropEmFlower * colheitaTotal) * (1 - taxa)) - GastoComSementeEmFlower - ((mapaDeMinerals['oil'].mediaDeCustoFlower * oilTotalPorCrop)));
 
 
+        //lucro por hora (esse esta dando errado, não sei o motivo)
+        let lucroPorHora = lucroFlower === 0 ? '' : ((umaHora / tempoTotal) * lucroFlower).toFixed(4);
+        let textoLucroPorHora = document.getElementById('tipo-de-calculo-greenhouse').value === 'rodada' ? 
+            `<img src="./crops/${gh.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroPorHora}` : `${idiomaDoTextoCrops.opcaoCiclo}`;
+
+
         tabelaGreenhouse += `
         <tr>
             <td><img src="./crops/${gh.name}.png" class="crop-img">${gh.name} <br> <img src="./icones/reestock.png" class="crop-img">${estoqueFinal}</td>
@@ -762,6 +799,7 @@ function tabelaDeCrops() {
             <td><img src="./crops/${gh.name}.png" class="crop-img"><br><img src="./icones/coins.png" class="crop-img">${lucroCoins.toFixed(2)}</td>
             <td><img src="./crops/${gh.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${valorPorCropEmFlower.toFixed(5)}</td>
             <td><img src="./crops/${gh.name}.png" class="crop-img"><br><img src="./icones/flower.png" class="crop-img">${lucroFlower.toFixed(5)}</td>
+            $<td>${textoLucroPorHora}</td>
         </tr>
         `;
 

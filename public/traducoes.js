@@ -137,12 +137,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.2.9`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV025}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV026}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV027}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV028}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV029}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.3.0`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV026}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV027}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV028}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV029}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV030}`;
 
 
     pontosGastosEmSkills();
@@ -482,7 +482,13 @@ const idiomaDasAtualizacoes = {
             • Adicionada uma nova aba em Minérios, exibindo o lucro por recurso e a porcentagem de lucro (já com a taxa descontada).<br>
             • Caso encontrem qualquer erro, avisem no fórum do Discord — basta clicar no ícone do Discord no canto superior direito.`,
 
-        atualizacaoV030: `• ajustar o card dos minerios que mostra o custo errado e calculo de custo das ferramentas`,
+        atualizacaoV030: `v0.3.0 – Data da atualização: 09/02/2026<br><br>
+            • Adicionada a coluna Lucro por hora nas crops.<br>
+            • As sub-abas de Frutas e Greenhouse exigem, por enquanto, que você preencha o que irá plantar, pois ainda preciso recalcular tudo individualmente e isso está mais complexo do que eu gostaria no momento.<br>
+            • Na Greenhouse, o Lucro por Hora só aparecerá se você selecionar a opção de cálculo por ciclo.<br>
+            • Essa coluna é um teste para você observar quais crops estão dando mais retorno no momento. O restock não é descontado! Ela serve principalmente para visualizar a sequência de lucro das crops e ajudar na decisão do que plantar.`,
+
+        atualizacaoV031: `• ajustar o card dos minerios que mostra o custo errado e calculo de custo das ferramentas`,
 
     },
     ingles: {
@@ -574,6 +580,13 @@ const idiomaDasAtualizacoes = {
             • Fixed mineral calculations: there was an issue where resources were still being charged when selecting NFTs that provide free mining.<br>
             • Added a new Minerals tab, showing profit per resource and profit percentage (fees already deducted).<br>
             • If you find any issues, please report them on the Discord forum — just click the Discord icon in the top-right corner.`,
+
+        atualizacaoV030: `v0.3.0 – Update date: 09/02/2026<br><br>
+            • Added the Profit per hour column for crops.<br>
+            • The Fruits and Greenhouse sub-tabs currently require you to fill in what you plan to plant, as I still need to recalculate everything individually and it is more complex than I would like at the moment.<br>
+            • In the Greenhouse, Profit per Hour will only appear if you select the option to calculate by cycle.<br>
+            • This column is a test to help you observe which crops are giving the best returns at the moment. Restock is not deducted! It mainly helps you visualize the profit sequence of crops and decide which ones to plant.
+            `,
 
     }
 };
