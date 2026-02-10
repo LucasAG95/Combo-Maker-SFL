@@ -41,6 +41,7 @@ function mudarIdioma() {
     document.getElementById('qtdDeOils').innerHTML = `${opcaoDeIdiomas.qtdDeOils}:`;
     document.getElementById('salvarInfosMinerais').innerHTML = `${opcaoDeIdiomas.botaoSalvarInfos}`;
     document.getElementById('limparInfosMinerais').innerHTML = `${opcaoDeIdiomas.botaoLimparMinerais}`;
+    document.getElementById('recursos-comprados-market').innerHTML = `${opcaoDeIdiomas.recursosCompradosNoMarket}:`
 
     //informações Crop Machine
     document.getElementById('cropPlotsQuePossuiCM').innerHTML = `${opcaoDeIdiomas.quantidadeDePlotsCM} ➜ ${plotsCM}`;
@@ -137,12 +138,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.3.0`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV026}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV027}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV028}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV029}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV030}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.3.1`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV027}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV028}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV029}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV030}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV031}`;
 
 
     pontosGastosEmSkills();
@@ -193,6 +194,7 @@ const idiomaEscolhido = {
         qtdDeCrimstones: 'Quantidade de Crimstones',
         qtdDeOils: 'Quantidade de Oils',
         botaoLimparMinerais: 'Limpar Minerais',
+        recursosCompradosNoMarket: 'Comprado no Market',
 
         //dados CM
         modoDeCalcularCropsCM: 'Modo de Calcular',
@@ -312,6 +314,7 @@ const idiomaEscolhido = {
         qtdDeCrimstones: 'Number of Crimstones',
         qtdDeOils: 'Number of Oils',
         botaoLimparMinerais: 'Clear Minerals',
+        recursosCompradosNoMarket: 'Bought from Market',
 
         //dados CM
         modoDeCalcularCropsCM: 'Calculation Mode',
@@ -488,7 +491,13 @@ const idiomaDasAtualizacoes = {
             • Na Greenhouse, o Lucro por Hora só aparecerá se você selecionar a opção de cálculo por ciclo.<br>
             • Essa coluna é um teste para você observar quais crops estão dando mais retorno no momento. O restock não é descontado! Ela serve principalmente para visualizar a sequência de lucro das crops e ajudar na decisão do que plantar.`,
 
-        atualizacaoV031: `• ajustar o card dos minerios que mostra o custo errado e calculo de custo das ferramentas`,
+        atualizacaoV031: `v0.3.1 – Data da atualização: 10/02/2026<br><br>
+            • Adicionados checkboxes na aba de <b>Minerals</b>, permitindo selecionar quais recursos você compra no Market e ver como isso impacta os cálculos das outras ferramentas.<br>
+            • O valor de lucro total não foi alterado, pois o cálculo já considerava a compra de recursos necessários para produzir outras ferramentas. A novidade é que agora você pode visualizar claramente se vale mais a pena comprar o recurso ou produzi-lo.<br>
+            • Atenção: ao marcar um recurso como comprado, outros recursos podem sofrer alterações e até se tornarem positivos para farmar.<br>
+                &nbsp;&nbsp;Exemplo: madeira e pedra estavam negativas, sendo melhor comprá-las do que minerar. Ao marcar a madeira como comprada, o status da pedra mudou para positivo. Ou seja, comprando madeira, passa a valer a pena minerar pedra em vez de comprar.<br>
+            • Não sei se a explicação ficou perfeita, mas espero que ajude vocês! 😊`,
+
 
     },
     ingles: {
@@ -587,6 +596,13 @@ const idiomaDasAtualizacoes = {
             • In the Greenhouse, Profit per Hour will only appear if you select the option to calculate by cycle.<br>
             • This column is a test to help you observe which crops are giving the best returns at the moment. Restock is not deducted! It mainly helps you visualize the profit sequence of crops and decide which ones to plant.
             `,
+
+        updateV031: `v0.3.1 – Update date: 10/02/2026<br><br>
+            • Added checkboxes to the <b>Minerals</b> tab, allowing you to select which resources you buy from the Market and see how this impacts calculations across other tools.<br>
+            • The total profit value remains unchanged, as the calculation already accounted for cases where resources needed to be bought to craft other tools. What’s new is that you can now clearly see whether buying a resource is more profitable than producing it yourself.<br>
+            • Important: when you mark a resource as bought, other resources may change and can even become profitable to farm.<br>
+                &nbsp;&nbsp;Example: wood and stone were negative, meaning it was better to buy them than to mine them. After marking wood as bought, stone became positive. In other words, by buying wood, it becomes worth mining stone instead of purchasing it.<br>
+            • Not sure if the explanation is perfect, but I hope this helps! 😊`,
 
     }
 };

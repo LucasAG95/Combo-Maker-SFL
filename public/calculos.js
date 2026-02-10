@@ -517,6 +517,14 @@ function mediaDeValorDasFerramentasEMinerais() {
         let gastosComFerramentas = 1;
         if(ferramenta.qtdPrecisaPorNode === 0 || ferramenta.qtdUsada > 0 && ferramenta.quantidade == 0) gastosComFerramentas = 0;
 
+        //feito para caso a pessoa marque a checkbox, você use o valor de mercado do recurso e não o valor medio fazendo tudo sozinho!
+        mapaDeMinerals.wood.mediaDeCustoCoins = document.getElementById('wood-comprada').checked ? mapaDeMinerals.wood.valorDoMarket * flowerEmCoins : mapaDeMinerals.wood.mediaDeCustoCoins;
+        mapaDeMinerals.stone.mediaDeCustoCoins = document.getElementById('stone-comprada').checked ? mapaDeMinerals.stone.valorDoMarket * flowerEmCoins : mapaDeMinerals.stone.mediaDeCustoCoins;
+        mapaDeMinerals.iron.mediaDeCustoCoins = document.getElementById('iron-comprada').checked ? mapaDeMinerals.iron.valorDoMarket * flowerEmCoins : mapaDeMinerals.iron.mediaDeCustoCoins;
+        mapaDeMinerals.gold.mediaDeCustoCoins = document.getElementById('gold-comprada').checked ? mapaDeMinerals.gold.valorDoMarket * flowerEmCoins : mapaDeMinerals.gold.mediaDeCustoCoins;
+        mapaDeMinerals.crimstone.mediaDeCustoCoins = document.getElementById('crimstone-comprada').checked ? mapaDeMinerals.crimstone.valorDoMarket * flowerEmCoins : mapaDeMinerals.crimstone.mediaDeCustoCoins;
+
+
         //Calcular media de custo em coins da ferramenta para mostrar nos cards!
         ferramenta.custoEmCoins = (ferramenta.recursosNecessarios.coins + 
             ((ferramenta.recursosNecessarios['wood'] ?? 0) * (mapaDeMinerals['wood']?.mediaDeCustoCoins ?? 0)) +
@@ -554,6 +562,12 @@ function mediaDeValorDasFerramentasEMinerais() {
     });
     tabelaMinerios();
 };
+
+document.getElementById('wood-comprada').addEventListener('change', mediaDeValorDasFerramentasEMinerais);
+document.getElementById('stone-comprada').addEventListener('change', mediaDeValorDasFerramentasEMinerais);
+document.getElementById('iron-comprada').addEventListener('change', mediaDeValorDasFerramentasEMinerais);
+document.getElementById('gold-comprada').addEventListener('change', mediaDeValorDasFerramentasEMinerais);
+document.getElementById('crimstone-comprada').addEventListener('change', mediaDeValorDasFerramentasEMinerais);
 
 //======================================================================================================================================================================
 function buffsAdicionadosAnimais() {

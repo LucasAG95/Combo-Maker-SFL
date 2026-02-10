@@ -11,7 +11,7 @@
 
     <!-- ESQUERDA: Título + Select de idioma -->
     <div class="header-left">
-      <h1 class="title-bar">🌻 Combo Maker <span>v0.3.0</span></h1>
+      <h1 class="title-bar">🌻 Combo Maker <span>v0.3.1</span></h1>
 
       <div class="select-idioma">
         <label for="opcao-idioma">
@@ -841,7 +841,47 @@
           </select>
         </div>
 
-        
+        <div class="carinhos-possuido-group">
+          <label id="recursos-comprados-market" class="carinhos-possuido-titulo">Recurso comprado no Market:</label>
+
+          <div class="checkbox-carinho-container"> <!-- no caso vai definir estilo da checkbox(o mesmo usado para animais) -->
+            <label class="checkbox-carinho">
+              <input type="checkbox" id="wood-comprada">
+              <div class="checkbox-visual">
+                <img src="./minerais/wood.png" alt="Wood">
+              </div>
+            </label>
+
+            <label class="checkbox-carinho">
+              <input type="checkbox" id="stone-comprada">
+              <div class="checkbox-visual">
+                <img src="./minerais/stone.png" alt="Stone">
+              </div>
+            </label>
+
+            <label class="checkbox-carinho">
+              <input type="checkbox" id="iron-comprada">
+              <div class="checkbox-visual">
+                <img src="./minerais/iron.png" alt="Iron">
+              </div>
+            </label>
+
+            <label class="checkbox-carinho">
+              <input type="checkbox" id="gold-comprada">
+              <div class="checkbox-visual">
+                <img src="./minerais/gold.png" alt="Gold">
+              </div>
+            </label>
+
+            <label class="checkbox-carinho">
+              <input type="checkbox" id="crimstone-comprada">
+              <div class="checkbox-visual">
+                <img src="./minerais/crimstone.png" alt="Crimstone">
+              </div>
+            </label>
+
+          </div>
+        </div>
 
         <button id="limparInfosMinerais" onclick="limparMinerios()">Limpar Minerios</button>
 
