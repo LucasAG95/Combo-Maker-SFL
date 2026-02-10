@@ -597,7 +597,7 @@ const idiomaDasAtualizacoes = {
             • This column is a test to help you observe which crops are giving the best returns at the moment. Restock is not deducted! It mainly helps you visualize the profit sequence of crops and decide which ones to plant.
             `,
 
-        updateV031: `v0.3.1 – Update date: 10/02/2026<br><br>
+        atualizacaoV031: `v0.3.1 – Update date: 10/02/2026<br><br>
             • Added checkboxes to the <b>Minerals</b> tab, allowing you to select which resources you buy from the Market and see how this impacts calculations across other tools.<br>
             • The total profit value remains unchanged, as the calculation already accounted for cases where resources needed to be bought to craft other tools. What’s new is that you can now clearly see whether buying a resource is more profitable than producing it yourself.<br>
             • Important: when you mark a resource as bought, other resources may change and can even become profitable to farm.<br>
