@@ -1,12 +1,12 @@
 {
   "name": "planilha-sunflower",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Site com checkboxes e API no Cloudflare",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "echo 'Nothing to build, site usa API do Cloudflare'",
+    "start": "vercel dev"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC"
 }
