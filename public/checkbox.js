@@ -249,7 +249,6 @@ window.onload = function () {
 
     //chamando funções
     valoresDasGems();
-    valorDoFlowerEmDolar();
     selecionandoIdioma();
     mudarIdioma();
     configurarCheckbox();
@@ -257,10 +256,12 @@ window.onload = function () {
     chamadorDeBuffs();
     chamadorDeDesbloquearSkills();
     nftsDeTierQuePossuemBuffDoAntecessor();
-    buscarValoresAPI();
-    buscarValoresNFTs();
-    buscarValorFlower();
     cropToCoins();
+    
+    // ❌ REMOVIDO - as 3 chamadas abaixo foram substituídas pela função buscarTodasAPIs()
+    // buscarValoresAPI();
+    // buscarValoresNFTs();
+    // buscarValorFlower();
 };
 
 //================================================================================================================================================================
@@ -303,4 +304,3 @@ function esconderInfoCard() {
     const card = document.getElementById("info-card");
     card.style.display = "block";
 }
-
