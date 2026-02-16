@@ -1,32 +1,55 @@
-//full chat GPT com Felga, nao sei bem oque faz, só sei que importa api sem dar problema de cors
+// pages/api/proxy.js
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   const { url } = req.query;
 
+  // 🔹 CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") {
-    res.status(204).end();
-    return;
+    return res.status(204).end();
   }
 
   if (!url) {
-    res.status(400).json({ error: "Parâmetro 'url' não informado" });
-    return;
+    return res.status(400).json({
+      error: "Parâmetro 'url' não informado"
+    });
   }
 
   try {
-    const upstreamRes = await fetch(url);
+    console.log("🌎 Buscando da API original:", url);
 
-    // Repassa status e body da resposta original
-    const contentType = upstreamRes.headers.get("content-type");
-    res.setHeader("Content-Type", contentType || "application/json");
+    const upstreamRes = await fetch(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0"
+      }
+    });
 
-    const body = await upstreamRes.text(); // pega como texto para não limitar a JSON
-    res.status(upstreamRes.status).send(body);
+    if (!upstreamRes.ok) {
+      return res.status(upstreamRes.status).json({
+        error: "Erro na API upstream",
+        status: upstreamRes.status
+      });
+    }
+
+    const data = await upstreamRes.json();
+
+    // 🔥 Cache na CDN da Vercel (15 minutos)
+    res.setHeader(
+      "Cache-Control",
+      "s-maxage=900, stale-while-revalidate"
+    );
+
+    return res.status(200).json(data);
+
   } catch (err) {
-    res.status(502).json({ error: "Erro ao chamar API upstream", details: err.message });
+    console.error("Erro no proxy:", err);
+
+    return res.status(502).json({
+      error: "Erro ao chamar API upstream",
+      details: err.message
+    });
   }
-};
+}
