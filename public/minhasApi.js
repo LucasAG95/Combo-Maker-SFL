@@ -7,9 +7,9 @@ let precoDoFlower = 0; // ✅ Inicializa com 0 para evitar undefined
 
 function buscarTodasAPIs() {
     Promise.all([
-        fetch(`/api/proxy?url=https://sfl.world/api/v1/prices`).then(res => res.json()),
-        fetch(`/api/proxy?url=https://sfl.world/api/v1/nfts`).then(res => res.json()),
-        fetch(`/api/proxy?url=https://sfl.world/api/v1.1/exchange`).then(res => res.json())
+        fetch(`https://noisy-union-8474.lucas-alexandre-95.workers.dev?url=https://sfl.world/api/v1/prices`).then(res => res.json()),
+        fetch(`https://noisy-union-8474.lucas-alexandre-95.workers.dev?url=https://sfl.world/api/v1/nfts`).then(res => res.json()),
+        fetch(`https://noisy-union-8474.lucas-alexandre-95.workers.dev?url=https://sfl.world/api/v1.1/exchange`).then(res => res.json())
     ])
     .then(([precos, nfts, exchange]) => {
         // ✅ Atualiza valor do flower PRIMEIRO (antes de tudo)
@@ -40,11 +40,8 @@ function buscarTodasAPIs() {
     });
 }
 
-// Chama imediatamente ao carregar
-buscarTodasAPIs();
-
 // Atualiza a cada 15 minutos (900000 milissegundos)
-setInterval(buscarTodasAPIs, 900000);
+//setInterval(buscarTodasAPIs, 900000);
 
 //======================================================================================================================================================================
 
@@ -442,6 +439,5 @@ function valorDoFlowerEmDolar(valor) {
         valoresDasGems();
     }
 };
-
 
 //======================================================================================================================================================================

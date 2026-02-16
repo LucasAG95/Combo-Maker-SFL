@@ -255,6 +255,7 @@ window.onload = function () {
     numeroDaFarm();
     chamadorDeBuffs();
     chamadorDeDesbloquearSkills();
+    buscarTodasAPIs();
     nftsDeTierQuePossuemBuffDoAntecessor();
     cropToCoins();
     
