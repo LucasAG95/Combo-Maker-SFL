@@ -138,7 +138,7 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v0.3.1`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.0`;
     document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV028}`;
     document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV029}`;
     document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV030}`;
