@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabela de Crops - SunflowerLand</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  
+  <header class="header-bar">
+
+    <!-- ESQUERDA: Título + Select de idioma -->
+    <div class="header-left">
+      <h1 class="title-bar">🌻 Combo Maker <span>v0.3.1</span></h1>
+
+      <div class="select-idioma">
+        <label for="opcao-idioma">
+          <span id="selecione-idioma"></span>
+        </label>
+
+        <select id="opcao-idioma">
+          <option value="ingles">English</option>
+          <option value="portugues">Português</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- CENTRO: Informações do Criador -->
+    <div class="header-center">
+      Created by: <strong>LucasAG</strong> 
+      <a href="https://sunflower-land.com/play/#/visit/3661" target="_blank">
+        🏡 Farm 3661
+      </a><br>
+
+      Wallet: <strong id="wallet-address">0x9fc95d6Bdc18C3015D3e6403aAe2A24bcbb1F022</strong>
+      <button id="copy-wallet" class="copy-btn" title="Copiar wallet">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
+      <span id="copy-tooltip" class="copy-tooltip">Copied!</span>
+
+    </div>
+
+    <!-- DIREITA: Links com ícones -->
+    <div class="header-right">
+      <a href="https://www.youtube.com/@lucasag95" target="_blank" class="icon-btn yt">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M23.498 6.186a2.995 2.995 0 0 0-2.114-2.119C19.433 3.5 12 3.5 12 3.5s-7.433 0-9.384.567a2.995 2.995 0 0 0-2.114 2.119A31.156 31.156 0 0 0 0 12a31.156 31.156 0 0 0 .502 5.814 2.995 2.995 0 0 0 2.114 2.119c1.951.567 9.384.567 9.384.567s7.433 0 9.384-.567a2.995 2.995 0 0 0 2.114-2.119A31.156 31.156 0 0 0 24 12a31.156 31.156 0 0 0-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+      </a>
+
+      <a href="https://discord.com/channels/880987707214544966/1349739375268728833" target="_blank" class="icon-btn dc">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 71 55">
+          <path d="M60.104 4.552a58.41 58.41 0 0 0-14.276-4.552.08.08 0 0 0-.084.04c-.619 1.15-1.307 2.63-1.797 3.815-5.35-1.14-10.622-1.14-15.84 0a45.77 45.77 0 0 0-1.82-3.815.077.077 0 0 0-.084-.04C11.76 4.552 0 15.36 0 27.344c0 12.288 5.504 22.304 15.552 27.136a.078.078 0 0 0 .088-.028c1.2-1.63 2.27-3.34 3.17-5.1a.074.074 0 0 0-.04-.104c-1.08-.516-2.11-1.12-3.07-1.79a.078.078 0 0 1-.008-.132c.206-.156.412-.312.618-.464a.078.078 0 0 1 .08-.008c12.84 5.876 26.72 5.876 39.5 0a.077.077 0 0 1 .084.008c.206.152.412.308.618.464a.078.078 0 0 1-.008.132 41.53 41.53 0 0 1-3.07 1.79.078.078 0 0 0-.04.104c.88 1.76 1.94 3.47 3.17 5.1a.078.078 0 0 0 .088.028c10.048-4.832 15.552-14.848 15.552-27.136 0-11.984-11.76-22.792-27.896-22.792zM23.42 37.04c-3.122 0-5.672-2.858-5.672-6.368 0-3.51 2.52-6.367 5.672-6.367 3.18 0 5.72 2.857 5.672 6.368 0 3.51-2.492 6.368-5.672 6.368zm24.16 0c-3.122 0-5.672-2.858-5.672-6.368 0-3.51 2.52-6.367 5.672-6.367 3.18 0 5.72 2.857 5.672 6.368 0 3.51-2.492 6.368-5.672 6.368z"/>
+        </svg>
+      </a>
+    </div>
+
+  </header>
+  
+  
+
+  <!-- Scripts -->
+  <script src="./recursos.js"></script>
+  <script src="./animais.js"></script>
+  <script src="./skills.js"></script>
+  <script src="./nfts.js"></script>
+  <script src="./buds.js"></script>
+  <script src="./buffsTemporarios.js"></script>
+  <script src="./minhasApi.js"></script>
+  <script src="./formatarTempo.js"></script>
+  <script src="./calculos.js"></script>
+  <script src="./desbloquearSkills.js"></script>
+  <script src="./pontosSkillsEValorDasNfts.js"></script>
+  <script src="./opcoesSelects.js"></script>
+  <script src="./tabelaCrops.js"></script>
+  <script src="./tabelaMinerios.js"></script>
+  <script src="./tabelaAnimais.js"></script>
+  <script src="./tabelaCropToCoins.js"></script>
+  <script src="./resultadoTotalCombo.js"></script>
+  <script src="./statusFarm.js"></script>
+  <script src="./checkbox.js"></script>
+  <script src="./tabs.js"></script>
+  <script src="./tabsTabelas.js"></script>
+  <script src="./inputs.js"></script>
+  <script src="./traducoes.js"></script>
+  <script src="./scriptsSite.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+/* =========================================
+   SPRITES - Icones
+   Version: 1.0.0
+========================================= */
+
+/* categoria icones */
+.sprite-icones {
+    width: 15px;
+    height: 15px;
+    background-image: url('../Imagens/icones.png?v=1.0.0');
+}
+
+.bg-Autumn { background-position: -10px -10px; }
+.bg-ciclo { background-position: -45px -10px; }
+.bg-coins { background-position: -10px -45px; }
+.bg-bountifulHarvest { background-position: -45px -45px; }
+.bg-cropPlot { background-position: -80px -10px; }
+.bg-default { background-position: -80px -45px; }
+.bg-ferreiro { background-position: -10px -80px; }
+.bg-flower { background-position: -45px -80px; }
+.bg-gem { background-position: -80px -78px; }
+.bg-nenhum { background-position: -115px -10px; }
+.bg-novaTemporada { background-position: -115px -45px; }
+.bg-rapidRoot { background-position: -115px -80px; }
+.bg-restock { background-position: -10px -115px; }
+.bg-shrine { background-position: -45px -115px; }
+.bg-skillAnimal { background-position: -80px -115px; }
+.bg-skillCrop { background-position: -115px -115px; }
+.bg-skillFruit { background-position: -150px -10px; }
+.bg-seeds { background-position: -150px -45px; }
+.bg-faction { background-position: -150px -80px; }
+.bg-skillMachinery { background-position: -150px -115px; }
+.bg-skills { background-position: -10px -150px; }
+.bg-skillGreenhouse { background-position: -45px -150px; }
+.bg-skillTree { background-position: -80px -150px; }
+.bg-skillMineral { background-position: -115px -150px; }
+.bg-Spring { background-position: -150px -150px; }
+.bg-sproutMix { background-position: -185px -10px; }
+.bg-subirXP { background-position: -185px -45px; }
+.bg-Summer { background-position: -185px -80px; }
+.bg-sunshower { background-position: -185px -115px; }
+.bg-tempo { background-position: -185px -148px; }
+.bg-totem { background-position: -10px -185px; }
+.bg-usdc { background-position: -45px -185px; }
+.bg-vip { background-position: -80px -185px; }
+.bg-Winter { background-position: -115px -185px; }
+.bg-xp { background-position: -150px -185px; }

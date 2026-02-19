@@ -1,0 +1,119 @@
+/* =========================================
+   SPRITES - Skills
+   Version: 1.0.0
+========================================= */
+
+/* categoria Skills */
+.sprite-skills {
+    width: 25px;
+    height: 25px;
+    background-image: url('../Imagens/skills.png?v=1.0.0');
+}
+
+/* Skills individuais */
+.bg-acreFarm                 { background-position: -10px -10px; }
+.bg-abundantHarvest          { background-position: -55px -10px; }
+.bg-alternateMedicine        { background-position: -10px -55px; }
+.bg-baleEconomy              { background-position: -55px -55px; }
+.bg-barnManager              { background-position: -100px -10px; }
+.bg-barnyardRouse            { background-position: -100px -55px; }
+.bg-bettysFriend             { background-position: -10px -100px; }
+.bg-bountifulBounties        { background-position: -55px -100px; }
+.bg-chonkyFeed               { background-position: -100px -100px; }
+.bg-cluckyGrazing            { background-position: -145px -10px; }
+.bg-catchup                  { background-position: -145px -55px; }
+.bg-coder                     { background-position: -145px -100px; }
+.bg-chonkyScarecrow          { background-position: -10px -145px; }
+.bg-coinSwindler             { background-position: -55px -145px; }
+.bg-cow_SmartNutrition       { background-position: -100px -145px; }
+.bg-crimeFruit               { background-position: -145px -145px; }
+.bg-cropExtensionModuleI     { background-position: -190px -10px; }
+.bg-cropExtensionModuleIII   { background-position: -190px -55px; }
+.bg-cropExtensionModuleII    { background-position: -190px -100px; }
+.bg-discordMod               { background-position: -190px -145px; }
+.bg-cropProcessorUnit        { background-position: -10px -190px; }
+.bg-doubleBale               { background-position: -55px -190px; }
+.bg-experiencedFarmer        { background-position: -100px -190px; }
+.bg-efficientFeeding         { background-position: -145px -190px; }
+.bg-efficiencyExtensionModule{ background-position: -190px -190px; }
+.bg-ferrousFavor             { background-position: -235px -10px; }
+.bg-featherweight            { background-position: -235px -55px; }
+.bg-fellersDiscount          { background-position: -235px -100px; }
+.bg-fieldExtensionModule     { background-position: -235px -145px; }
+.bg-fineFibers               { background-position: -235px -190px; }
+.bg-fireKissed               { background-position: -10px -235px; }
+.bg-fieldExpansionModule     { background-position: -55px -235px; }
+.bg-firesideAlchemist        { background-position: -100px -235px; }
+.bg-frugalMiner              { background-position: -145px -235px; }
+.bg-fruitfulFumble           { background-position: -190px -235px; }
+.bg-forgeWardProfits         { background-position: -235px -235px; }
+.bg-fruityHeaven             { background-position: -280px -10px; }
+.bg-fruityProfit             { background-position: -280px -55px; }
+.bg-fruityWoody              { background-position: -280px -100px; }
+.bg-glassRoom                { background-position: -280px -145px; }
+.bg-generousOrchard          { background-position: -280px -190px; }
+.bg-goldenSunflower          { background-position: -280px -235px; }
+.bg-goldenTouch              { background-position: -10px -280px; }
+.bg-goldRush                 { background-position: -55px -280px; }
+.bg-greaseLightning          { background-position: -100px -280px; }
+.bg-greenThumb               { background-position: -145px -280px; }
+.bg-heartwarmingInstruments  { background-position: -190px -280px; }
+.bg-greenhouseGamble         { background-position: -235px -280px; }
+.bg-instantGrowth            { background-position: -280px -280px; }
+.bg-hectareFarm              { background-position: -325px -10px; }
+.bg-greenhouseGuru           { background-position: -325px -55px; }
+.bg-healthyLivestock         { background-position: -325px -100px; }
+.bg-ironHustle               { background-position: -325px -145px; }
+.bg-greasyPlants             { background-position: -325px -190px; }
+.bg-ironBumpkin              { background-position: -325px -235px; }
+.bg-greenThumb2              { background-position: -325px -280px; }
+.bg-kaleMix                  { background-position: -10px -325px; }
+.bg-leakProofTank            { background-position: -55px -325px; }
+.bg-lauriesGains             { background-position: -100px -325px; }
+.bg-loyalMacaw               { background-position: -145px -325px; }
+.bg-logger                   { background-position: -190px -325px; }
+.bg-longPickings             { background-position: -235px -325px; }
+.bg-lumberjack               { background-position: -280px -325px; }
+.bg-leathercraftMastery      { background-position: -325px -325px; }
+.bg-instaChop                { background-position: -370px -10px; }
+.bg-merinoWhisperer          { background-position: -370px -55px; }
+.bg-horrorMike               { background-position: -370px -100px; }
+.bg-moreAxes                 { background-position: -370px -145px; }
+.bg-morePicks                { background-position: -370px -190px; }
+.bg-midasRush                { background-position: -370px -235px; }
+.bg-midasSprint              { background-position: -370px -280px; }
+.bg-noAxeNoWorries           { background-position: -370px -325px; }
+.bg-oilBeBack                { background-position: -10px -370px; }
+.bg-oliveExpress             { background-position: -55px -370px; }
+.bg-oldFarmer                { background-position: -100px -370px; }
+.bg-oilExtraction            { background-position: -145px -370px; }
+.bg-oilRig                   { background-position: -190px -370px; }
+.bg-rapidRig                 { background-position: -235px -370px; }
+.bg-lumberjacksExtra         { background-position: -280px -370px; }
+.bg-riceAndShine             { background-position: -325px -370px; }
+.bg-restlessAnimals          { background-position: -370px -370px; }
+.bg-moneyTree                { background-position: -415px -10px; }
+.bg-oilGadget                { background-position: -415px -55px; }
+.bg-rockNRoll                { background-position: -415px -100px; }
+.bg-seedSpecialist           { background-position: -415px -145px; }
+.bg-pearTurbocharge          { background-position: -415px -190px; }
+.bg-prospector               { background-position: -415px -235px; }
+.bg-seededBounty             { background-position: -415px -280px; }
+.bg-seedyBusiness            { background-position: -415px -325px; }
+.bg-riceRocket               { background-position: -415px -370px; }
+.bg-rockyFavor               { background-position: -10px -415px; }
+.bg-sheepwiseDiet            { background-position: -55px -415px; }
+.bg-speedMiner               { background-position: -100px -415px; }
+.bg-toughTree                { background-position: -145px -415px; }
+.bg-slickSaver               { background-position: -190px -415px; }
+.bg-shortPickings            { background-position: -235px -415px; }
+.bg-tapProspector            { background-position: -280px -415px; }
+.bg-strongRoots              { background-position: -325px -415px; }
+.bg-treeBlitz                { background-position: -370px -415px; }
+.bg-treeCharge               { background-position: -415px -415px; }
+.bg-treeTurnaround           { background-position: -460px -10px; }
+.bg-VictoriasSecretary       { background-position: -460px -55px; }
+.bg-vineVelocity             { background-position: -460px -100px; }
+.bg-wrangler                 { background-position: -460px -145px; }
+.bg-youngFarmer              { background-position: -460px -190px; }
+.bg-zestyVibes               { background-position: -460px -235px; }

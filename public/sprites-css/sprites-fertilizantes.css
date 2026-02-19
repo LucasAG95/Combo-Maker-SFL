@@ -1,0 +1,62 @@
+/* =========================================
+   SPRITES - Fertilizantes
+   Version: 1.0.0
+========================================= */
+
+.sprite-fertilizantes {
+    width: 25px;
+    height: 25px;
+    background-image: url('../Imagens/fertilizantes.png?v=1.0.0');
+}
+
+/* Rapid Root */
+.bg-rapidRoot_artichoke    { background-position: -10px -10px; }
+.bg-rapidRoot_barley       { background-position: -55px -10px; }
+.bg-rapidRoot_beetroot     { background-position: -10px -55px; }
+.bg-rapidRoot_broccoli     { background-position: -55px -55px; }
+.bg-rapidRoot_cabbage      { background-position: -100px -10px; }
+.bg-rapidRoot_cauliflower  { background-position: -100px -55px; }
+.bg-rapidRoot_carrot       { background-position: -10px -100px; }
+.bg-rapidRoot_corn         { background-position: -55px -100px; }
+.bg-rapidRoot_eggplant     { background-position: -100px -100px; }
+.bg-rapidRoot_onion        { background-position: -145px -10px; }
+.bg-rapidRoot_parsnip      { background-position: -145px -55px; }
+.bg-rapidRoot_pepper       { background-position: -145px -100px; }
+.bg-rapidRoot_pumpkin      { background-position: -10px -145px; }
+.bg-rapidRoot_radish       { background-position: -55px -145px; }
+.bg-rapidRoot_orange       { background-position: -100px -145px; }
+.bg-rapidRoot_rhubarb      { background-position: -145px -145px; }
+.bg-rapidRoot_soybean      { background-position: -190px -10px; }
+.bg-rapidRoot_sunflower    { background-position: -190px -55px; }
+.bg-rapidRoot_zucchini     { background-position: -190px -100px; }
+.bg-rapidRoot_yam          { background-position: -190px -145px; }
+.bg-rapidRoot_turnip       { background-position: -10px -190px; }
+.bg-rapidRoot_potato       { background-position: -55px -190px; }
+.bg-rapidRoot_wheat        { background-position: -100px -190px; }
+.bg-rapidRoot_kale         { background-position: -145px -190px; }
+
+/* Sprout Mix */
+.bg-sproutMix_artichoke    { background-position: -190px -190px; }
+.bg-sproutMix_barley       { background-position: -235px -10px; }
+.bg-sproutMix_broccoli     { background-position: -235px -55px; }
+.bg-sproutMix_cabbage      { background-position: -235px -100px; }
+.bg-sproutMix_cauliflower  { background-position: -235px -145px; }
+.bg-sproutMix_onion        { background-position: -235px -190px; }
+.bg-sproutMix_potato       { background-position: -10px -235px; }
+.bg-sproutMix_parsnip      { background-position: -55px -235px; }
+.bg-sproutMix_soybean      { background-position: -100px -235px; }
+.bg-sproutMix_rhubarb      { background-position: -145px -235px; }
+.bg-sproutMix_sunflower    { background-position: -190px -235px; }
+.bg-sproutMix_turnip       { background-position: -235px -235px; }
+.bg-sproutMix_radish       { background-position: -280px -10px; }
+.bg-sproutMix_pumpkin      { background-position: -280px -55px; }
+.bg-sproutMix_pepper       { background-position: -280px -100px; }
+.bg-sproutMix_beetroot     { background-position: -280px -145px; }
+.bg-sproutMix_carrot       { background-position: -280px -190px; }
+.bg-sproutMix_eggplant     { background-position: -280px -235px; }
+.bg-sproutMix_orange       { background-position: -10px -280px; }
+.bg-sproutMix_corn         { background-position: -55px -280px; }
+.bg-sproutMix_wheat        { background-position: -100px -280px; }
+.bg-sproutMix_zucchini     { background-position: -145px -280px; }
+.bg-sproutMix_kale         { background-position: -190px -280px; }
+.bg-sproutMix_yam          { background-position: -235px -280px; }

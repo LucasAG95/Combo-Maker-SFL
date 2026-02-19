@@ -1,0 +1,85 @@
+/* estrutura */
+.sprite {
+    display: inline-block;
+    background-repeat: no-repeat;
+}
+
+/* =========================================
+   SPRITES - Crops e Frutas
+   Version: 1.0.0
+========================================= */
+
+.sprite-crops {
+    width: 15px;
+    height: 15px;
+    background-image: url('../Imagens/cropsEFrutas.png?v=1.0.0');
+}
+
+
+.bg-Banana { background-position: -10px -10px; }
+.bg-Blueberry { background-position: -45px -10px; }
+.bg-Beetroot { background-position: -10px -45px; }
+.bg-Apple { background-position: -45px -45px; }
+.bg-Barley { background-position: -80px -10px; }
+.bg-Broccoli { background-position: -80px -45px; }
+.bg-Carrot { background-position: -10px -80px; }
+.bg-Cabbage { background-position: -45px -80px; }
+.bg-Artichoke { background-position: -80px -80px; }
+.bg-Cauliflower { background-position: -115px -10px; }
+.bg-Corn { background-position: -115px -45px; }
+.bg-Duskberry { background-position: -115px -80px; }
+.bg-Eggplant { background-position: -10px -115px; }
+.bg-Grape { background-position: -45px -115px; }
+.bg-Kale { background-position: -80px -115px; }
+.bg-Celestine { background-position: -115px -115px; }
+.bg-Orange { background-position: -150px -10px; }
+.bg-Onion { background-position: -150px -45px; }
+.bg-Olive { background-position: -150px -80px; }
+.bg-Lemon { background-position: -150px -115px; }
+.bg-Lunara { background-position: -10px -150px; }
+.bg-Potato { background-position: -45px -150px; }
+.bg-Pumpkin { background-position: -80px -150px; }
+.bg-Radish { background-position: -115px -150px; }
+.bg-Rhubarb { background-position: -150px -150px; }
+.bg-Pepper { background-position: -185px -10px; }
+.bg-Parsnip { background-position: -185px -45px; }
+.bg-Rice { background-position: -185px -80px; }
+
+.bg-seedApple { background-position: -185px -115px; }
+.bg-seedBanana { background-position: -185px -150px; }
+.bg-seedBroccoli { background-position: -10px -185px; }
+.bg-seedBarley { background-position: -45px -185px; }
+.bg-seedCarrot { background-position: -80px -185px; }
+.bg-seedBeetroot { background-position: -115px -185px; }
+.bg-seedCorn { background-position: -150px -185px; }
+.bg-seedCauliflower { background-position: -185px -185px; }
+.bg-seedGrape { background-position: -220px -10px; }
+.bg-seedEggplant { background-position: -220px -45px; }
+.bg-seedCabbage { background-position: -220px -80px; }
+.bg-seedKale { background-position: -220px -115px; }
+.bg-seedOrange { background-position: -220px -150px; }
+.bg-seedBlueberry { background-position: -220px -185px; }
+.bg-seedOlive { background-position: -10px -220px; }
+.bg-seedParsnip { background-position: -45px -220px; }
+.bg-seedPepper { background-position: -80px -220px; }
+.bg-seedOnion { background-position: -115px -220px; }
+.bg-seedPotato { background-position: -150px -220px; }
+.bg-seedRadish { background-position: -185px -220px; }
+.bg-seedRhubarb { background-position: -220px -220px; }
+.bg-seedRice { background-position: -255px -10px; }
+.bg-seedYam { background-position: -255px -45px; }
+.bg-seedLemon { background-position: -255px -80px; }
+.bg-seedSoybean { background-position: -255px -115px; }
+.bg-seedWheat { background-position: -255px -150px; }
+.bg-seedPumpkin { background-position: -255px -185px; }
+.bg-seedTurnip { background-position: -255px -220px; }
+.bg-seedSunflower { background-position: -10px -255px; }
+
+.bg-Soybean { background-position: -45px -255px; }
+.bg-Sunflower { background-position: -80px -255px; }
+.bg-Tomato { background-position: -115px -255px; }
+.bg-seedZucchini { background-position: -150px -255px; }
+.bg-Yam { background-position: -185px -255px; }
+.bg-Zucchini { background-position: -220px -255px; }
+.bg-Turnip { background-position: -255px -255px; }
+.bg-Wheat { background-position: -290px -10px; }
