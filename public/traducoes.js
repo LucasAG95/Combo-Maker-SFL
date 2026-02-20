@@ -138,12 +138,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.0`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV028}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV029}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV030}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV031}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV100}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.1`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV029}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV030}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV031}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV100}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV101}`;
 
 
     pontosGastosEmSkills();
@@ -511,7 +511,12 @@ const idiomaDasAtualizacoes = {
 
             • Ainda estou monitorando para garantir que tudo esteja funcionando corretamente.  
             Se encontrar qualquer problema, por favor me avise pelo Discord através do fórum (ícone no canto superior direito do site).
-            `
+            `,
+        atualizacaoV101: `
+            v1.0.1 – Atualizado em 20/02/2026<br><br>
+
+            • Atualização da logo e melhorias visuais gerais na interface do site.<br>
+            • Correção de imagens que não estavam sendo exibidas corretamente ou apareciam cortadas.`
 
             
 
@@ -633,7 +638,13 @@ const idiomaDasAtualizacoes = {
 
             • I’m still monitoring everything to ensure stability.  
             If you notice any issues, please let me know on Discord through the forum (click the Discord icon in the top-right corner of the site).
-            `
+            `,
+            
+        atualizacaoV101: `
+            v1.0.1 – Updated on 02/20/2026<br><br>
+
+            • Updated the logo and implemented overall visual improvements to the website interface.<br>
+            • Fixed images that were not displaying correctly or were appearing cropped.`
 
 
     }

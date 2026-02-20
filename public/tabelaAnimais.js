@@ -202,7 +202,7 @@ function tabelaGalinhas() {
         const comidaBase = galinha.idComida.replace(/\d+/g, '');
 
         // quando a skill é escolhida, muda a imagem para deixar claro que houve a troca
-        let mudarImagemMixedGrain = comidaBase === 'mixedGrain' && mapaDeTodasSkillsComTier['kaleMix'].possui ? 'kaleMix' : comidaBase;
+        let mudarImagemMixedGrain = comidaBase === 'mixedGrain' && mapaDeTodasSkillsComTier['kaleMix2'].possui ? 'kaleMix' : comidaBase;
 
         //comida necessaria para subir de level!
         let totalComidaUsada = galinha.comidaNecessaria;
@@ -437,7 +437,7 @@ function tabelaVacas() {
         const comidaBase = vaca.idComida.replace(/\d+/g, '');
 
         // quando a skill é escolhida, muda a imagem para deixar claro que houve a troca
-        let mudarImagemMixedGrain = comidaBase === 'mixedGrain' && mapaDeTodasSkillsComTier['kaleMix'].possui ? 'kaleMix' : comidaBase;
+        let mudarImagemMixedGrain = comidaBase === 'mixedGrain' && mapaDeTodasSkillsComTier['kaleMix2'].possui ? 'kaleMix' : comidaBase;
 
         //comida necessaria para subir de level!
         let totalComidaUsada = vaca.comidaNecessaria;
@@ -672,7 +672,7 @@ function tabelaOvelhas() {
         const comidaBase = ovelha.idComida.replace(/\d+/g, '');
 
         // quando a skill é escolhida, muda a imagem para deixar claro que houve a troca
-        let mudarImagemMixedGrain = comidaBase === 'mixedGrain' && mapaDeTodasSkillsComTier['kaleMix'].possui ? 'kaleMix' : comidaBase;
+        let mudarImagemMixedGrain = comidaBase === 'mixedGrain' && mapaDeTodasSkillsComTier['kaleMix2'].possui ? 'kaleMix' : comidaBase;
 
         //comida necessaria para subir de level!
         let totalComidaUsada = ovelha.comidaNecessaria;

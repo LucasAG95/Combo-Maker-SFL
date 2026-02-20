@@ -128,10 +128,13 @@ document.querySelectorAll('input[type="checkbox"][data-group]')
 function xpCarinhoXpComidaValores() {
 
     //definir a imagem da comida Mixed Grain
-    document.querySelectorAll('img[id^="img-mixedGrain"]').forEach(img => {
-        img.src = mapaDeTodasSkillsComTier['kaleMix'].possui
-            ? './animais/kaleMix.png'
-            : './animais/mixedGrain.png';
+    document.querySelectorAll('.bg-mixedGrain, .bg-kaleMix').forEach(span => {
+
+        const possuiSkill = mapaDeTodasSkillsComTier['kaleMix2'].possui;
+
+        span.classList.remove('bg-mixedGrain', 'bg-kaleMix');
+        span.classList.add(`bg-${possuiSkill ? 'kaleMix' : 'mixedGrain'}`);
+
     });
 
     //definir se possuo ou não a ferramenta de carinho!
@@ -203,7 +206,7 @@ function xpCarinhoXpComidaValores() {
         }
 
         if (animal.idComida.includes('mixedGrain')) {
-        if (mapaDeTodasSkillsComTier['kaleMix'].possui) {
+        if (mapaDeTodasSkillsComTier['kaleMix2'].possui) {
             animal.custoDaComida = mapaDosValoresDoMarket['kale'].valor * 3;
         } else {
             animal.custoDaComida =

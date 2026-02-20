@@ -1787,7 +1787,7 @@ let skillsAnimais = {
             pontosNecessarios: 2
         },
         {
-            idName: 'kaleMix',
+            idName: 'kaleMix2',
             name: 'Kale Mix',
             descricao: {
                 portugues: 'Mixed Grain requer 3 couves para misturar.',
