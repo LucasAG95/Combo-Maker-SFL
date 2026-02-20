@@ -1029,7 +1029,7 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   align-items: center;
   background-color: #1e1e1e;
   color: #b6afaf;
-  padding: 8px 15px;
+  padding: 8px 0px;
   border-bottom: 2px solid #333;
   flex-wrap: wrap;
 }
@@ -1043,15 +1043,21 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
 }
 
 .logo-header {
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
+  image-rendering: pixelated;
+  margin-right: 0.3rem;
+  vertical-align: middle;
+  margin-top: -0.3rem;
 }
 
 .header-left h1.title-bar {
-  font-size: 29px;
+  font-size: 3.2rem;
   margin: 0;
+  font-family: "Micro 5", sans-serif;
 }
+
 
 .header-left span {
   font-size: 14px;
