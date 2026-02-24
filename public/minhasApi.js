@@ -204,7 +204,9 @@ function numeroDaFarm() {
                 wearablesQuePossui[wearables.fac1] ||
                 wearablesQuePossui[wearables.fac2] ||
                 wearablesQuePossui[wearables.fac3] ||
-                wearablesQuePossui[wearables.fac4]
+                wearablesQuePossui[wearables.fac4] ||
+                wearablesQuePossui[wearables.angel] ||
+                wearablesQuePossui[wearables.demon]
             ) {
                 checkbox.checked = true;
                 wearables.possui = true;

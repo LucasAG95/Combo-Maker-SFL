@@ -2744,6 +2744,8 @@ let wearables = {
             idNumber: [72, 73], //dps ver se isso da certo
             idName: 'devilOrAngelWings',
             name: ['Devil Wings - Angel Wings'], //dps ver se isso da certo
+            angel: 'Angel Wings',
+            demon: 'Devil Wings',
             preco: '',
             descricao: {
                 portugues: '30% de chance em colher crop instantaneamente',
