@@ -1,10 +1,9 @@
-/*
 const AURAS = [
-  { id: 'none', label: 'Sem Aura', mult: 1, class: 'aura-none' },
-  { id: 'basic', label: 'Basic Aura', mult: 1.05, class: 'aura-basic' },
-  { id: 'green', label: 'Green Aura', mult: 1.2, class: 'aura-green' },
-  { id: 'rare', label: 'Rare Aura', mult: 2, class: 'aura-rare' },
-  { id: 'mythical', label: 'Mythical Aura', mult: 5, class: 'aura-mythical' }
+    { id: 'semAura',     label: 'Sem Aura',     mult: 1    },
+    { id: 'basicAura',   label: 'Basic Aura',   mult: 1.05 },
+    { id: 'greenAura',   label: 'Green Aura',   mult: 1.2  },
+    { id: 'rareAura',    label: 'Rare Aura',    mult: 2    },
+    { id: 'myticalAura', label: 'Mythical Aura',mult: 5    },
 ];
 
 let buds = {
@@ -3578,29 +3577,6 @@ let buds = {
             ]
         },
         {
-            idName: 'beachFishHat',
-            name: 'Beach + Fish Hat',
-            descricao: {
-                portugues: '+0.2 Fruta<br>10% de chance de +1 Peixe (Chapéu)',
-                ingles: '+0.2 Fruit<br>10% Chance of +1 Fish (Stem)'
-            },
-            possui: false,
-            quantidade: [
-                {
-                    sinal: '+',
-                    buff: 0.2,
-                    recursoAfetado: ['Tomato','Lemon','Blueberry','Orange','Apple','Banana'],
-                }
-            ],
-            rng: [
-                {
-                    sinal: 'x',
-                    buff: 1.1,
-                    recursoAfetado: ['Fish'],
-                }
-            ]
-        },
-        {
             idName: 'beachDiamondGem',
             name: 'Beach + Diamond Gem',
             descricao: {
@@ -3923,4 +3899,51 @@ let todosBuds = [
     ...buds.snow,
     ...buds.beach
 ];
-*/
+
+function filtrarBudsMaiorBuff() {
+    const maiorBuffPorRecurso = {};
+    const budsMarcados = todosBuds.filter(bud => bud.possui);
+    const props = ['quantidade', 'quantidade2', 'rng', 'tempo', 'xp'];
+
+    budsMarcados.forEach(bud => {
+        const aura = bud.aura ?? 1;
+        props.forEach(prop => {
+            if (!bud[prop]) return;
+            bud[prop].forEach(entry => {
+                entry.recursoAfetado.forEach(recurso => {
+                    const chave = `${entry.sinal}__${recurso}`;
+                    const atual = maiorBuffPorRecurso[chave];
+                    const buffComAura = entry.buff * aura; // aplica aura na comparação
+                    const ehTempo = prop === 'tempo';
+                    const novoEMelhor = !atual ||
+                        (ehTempo ? buffComAura < atual.buff : buffComAura > atual.buff);
+
+                    if (novoEMelhor) {
+                        maiorBuffPorRecurso[chave] = { buff: buffComAura, budIdName: bud.idName };
+                    }
+                });
+            });
+        });
+    });
+
+    const budsFiltrados = budsMarcados.map(bud => {
+        const aura = bud.aura ?? 1;
+        const budCopia = { ...bud, possui: true };
+
+        props.forEach(prop => {
+            if (!bud[prop]) return;
+            budCopia[prop] = bud[prop].map(entry => {
+                const recursosFiltrados = entry.recursoAfetado.filter(recurso => {
+                    const chave = `${entry.sinal}__${recurso}`;
+                    return maiorBuffPorRecurso[chave]?.budIdName === bud.idName;
+                });
+                // retorna entry com buff multiplicado pela aura
+                return { ...entry, buff: entry.buff * aura, recursoAfetado: recursosFiltrados };
+            }).filter(entry => entry.recursoAfetado.length > 0);
+        });
+
+        return budCopia;
+    });
+
+    return budsFiltrados;
+}

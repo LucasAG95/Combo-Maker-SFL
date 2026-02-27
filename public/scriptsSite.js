@@ -104,6 +104,29 @@ const SaveManager = {
                 // Buffs Temporários
                 temporarios: todosTemporarios.map(t => ({ idName: t.idName, possui: t.possui })),
 
+                // Buds - checkbox principal + aura selecionada
+                buds: (() => {
+                    const todasCategorias = Object.keys(buds); // plaza, woodlands, cave, etc.
+                    const resultado = {};
+                    todasCategorias.forEach(categoria => {
+                        resultado[categoria] = buds[categoria].map(bud => ({
+                            idName: bud.idName,
+                            possui: bud.possui,
+                            aura: bud.aura, // 1 = sem aura, ou o mult da aura selecionada
+                            // Salva qual aura está marcada (id da aura, ou null)
+                            auraId: (() => {
+                                if (!bud.possui) return null;
+                                const auraSelecionada = AURAS.find(a => {
+                                    const cb = document.getElementById(`aura-${bud.idName}-${a.id}`);
+                                    return cb && cb.checked;
+                                });
+                                return auraSelecionada ? auraSelecionada.id : null;
+                            })()
+                        }));
+                    });
+                    return resultado;
+                })(),
+
                 // Animais - Quantidade usada e vendida
                 animais: {
                     galinhas: animais.galinhas.map(g => ({ 
@@ -410,7 +433,61 @@ const SaveManager = {
                 });
             }
 
-            // 11. Animais - Quantidade usada e vendida
+            // 11. Buds - checkbox principal + aura
+            if (estado.buds) {
+                Object.keys(estado.buds).forEach(categoria => {
+                    if (!buds[categoria]) return;
+
+                    estado.buds[categoria].forEach(saved => {
+                        // Encontra o bud correspondente
+                        const bud = buds[categoria].find(b => b.idName === saved.idName);
+                        if (!bud) return;
+
+                        // Restaura o estado do checkbox principal
+                        bud.possui = saved.possui;
+                        const checkbox = document.getElementById(saved.idName);
+                        if (checkbox) checkbox.checked = saved.possui;
+
+                        // Restaura a aura
+                        bud.aura = saved.aura || 1;
+
+                        const budWrapper = checkbox?.closest('.bud-wrapper');
+                        const auraPanel = budWrapper?.querySelector('.aura-panel');
+
+                        if (bud.possui && auraPanel) {
+                            // Mostra o painel de aura se o bud está marcado
+                            // (fica oculto após seleção de aura — comportamento original)
+                            // Só mostra se não tiver aura selecionada ainda
+                            if (!saved.auraId) {
+                                auraPanel.style.display = 'flex';
+                            }
+                        }
+
+                        // Restaura a aura selecionada
+                        if (saved.auraId) {
+                            const auraCheckbox = document.getElementById(`aura-${saved.idName}-${saved.auraId}`);
+                            if (auraCheckbox) {
+                                auraCheckbox.checked = true;
+
+                                // Aplica a classe de cor no wrapper
+                                if (budWrapper) {
+                                    AURAS.forEach(a => budWrapper.classList.remove(`aura-bg-${a.id}`));
+                                    budWrapper.classList.add(`aura-bg-${saved.auraId}`);
+                                }
+
+                                // Garante que o painel fique oculto (comportamento original)
+                                if (auraPanel) auraPanel.style.display = 'none';
+                            }
+                        } else if (!bud.possui) {
+                            // Bud desmarcado: garante painel oculto
+                            if (auraPanel) auraPanel.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+
+            // 12. Animais - Quantidade usada e vendida
             if (estado.animais) {
                 ['galinhas', 'vacas', 'ovelhas'].forEach(tipo => {
                     if (estado.animais[tipo]) {
@@ -425,7 +502,7 @@ const SaveManager = {
                 });
             }
 
-            // 12. ⭐ Comidas dos animais (checkboxes globais por level)
+            // 13. ⭐ Comidas dos animais (checkboxes globais por level)
             if (estado.comidasAnimais) {
                 const comidasIds = [
                     'kernelBlend3', 'hay3', 'nutriBarley3', 'mixedGrain3', 'omnifeed3',
@@ -444,7 +521,7 @@ const SaveManager = {
                 });
             }
 
-            // 13. ⭐ Ferramentas de carinho e quantidade
+            // 14. ⭐ Ferramentas de carinho e quantidade
             if (estado.carrinhos) {
                 const pettingHand = document.getElementById('pettingHand');
                 if (pettingHand && estado.carrinhos.pettingHand !== undefined) {
@@ -471,7 +548,7 @@ const SaveManager = {
                 }
             }
 
-            // 14. Valores em COINS dos animais
+            // 15. Valores em COINS dos animais
             if (estado.valoresAnimaisCoins) {
                 ['galinhas', 'vacas', 'ovelhas'].forEach(tipo => {
                     if (estado.valoresAnimaisCoins[tipo]) {
@@ -489,7 +566,7 @@ const SaveManager = {
                 });
             }
 
-            // 15. Seeds plantadas (depois de tudo configurado)
+            // 16. Seeds plantadas (depois de tudo configurado)
             if (estado.seedsPlantadas) {
                 if (estado.seedsPlantadas.crops) {
                     estado.seedsPlantadas.crops.forEach(saved => {
@@ -517,7 +594,7 @@ const SaveManager = {
                 }
             }
 
-            // 16. Ferramentas usadas
+            // 17. Ferramentas usadas
             if (estado.ferramentasUsadas) {
                 estado.ferramentasUsadas.forEach(saved => {
                     const ferramenta = todasFerramentas.find(f => f.id === saved.id);

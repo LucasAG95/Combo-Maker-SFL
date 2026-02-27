@@ -138,12 +138,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.1`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV029}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV030}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV031}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV100}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV101}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.2`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV030}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV031}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV100}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV101}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV102}`;
 
 
     pontosGastosEmSkills();
@@ -512,12 +512,21 @@ const idiomaDasAtualizacoes = {
             • Ainda estou monitorando para garantir que tudo esteja funcionando corretamente.  
             Se encontrar qualquer problema, por favor me avise pelo Discord através do fórum (ícone no canto superior direito do site).
             `,
+        
         atualizacaoV101: `
             v1.0.1 – Atualizado em 20/02/2026<br><br>
 
             • Atualização da logo e melhorias visuais gerais na interface do site.<br>
-            • Correção de imagens que não estavam sendo exibidas corretamente ou apareciam cortadas.`
+            • Correção de imagens que não estavam sendo exibidas corretamente ou apareciam cortadas.`,
+        
+        atualizacaoV102: `
+            v1.0.2 – Atualizado em 27/02/2026<br><br>
 
+            • Adição dos Buds ao site!<br><br>
+            • Agora você pode selecionar qual ou quais Buds possui e escolher a aura de cada um.<br><br>
+            • Ao preencher sua farm, o Bud não será marcado automaticamente. Você deve selecioná-lo manualmente, porém a escolha ficará salva mesmo após recarregar a página, não sendo necessário marcar novamente.<br><br>
+            • Os Buds possuem diversas variáveis para funcionamento, além de existirem vários tipos. Caso encontre qualquer informação incorreta ou erro no cálculo, informe no fórum do Discord. Basta clicar no ícone do Discord no canto superior direito para ser direcionado à página!
+        `,
             
 
     },
@@ -644,7 +653,16 @@ const idiomaDasAtualizacoes = {
             v1.0.1 – Updated on 02/20/2026<br><br>
 
             • Updated the logo and implemented overall visual improvements to the website interface.<br>
-            • Fixed images that were not displaying correctly or were appearing cropped.`
+            • Fixed images that were not displaying correctly or were appearing cropped.`,
+
+        atualizacaoV102: `
+            v1.0.2 – Updated on 02/27/2026<br><br>
+
+            • Buds have been added to the site!<br><br>
+            • You can now select which Buds you own and choose the aura for each one.<br><br>
+            • When filling in your farm, the Bud will not be selected automatically. You must select it manually, but your choice will be saved even after refreshing the page, so you won’t need to select it again.<br><br>
+            • Buds have several variables that affect how they work, and there are multiple types available. If you find any incorrect information or calculation errors, please report them on the Discord forum. Just click the Discord icon in the top-right corner to be redirected to the page!
+            `,
 
 
     }

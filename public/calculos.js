@@ -55,6 +55,22 @@ function calcularBuff(recurso, listasDeBuffs) {
                 });
             };
             //=============================================================================================================================================================
+            //Adiciona os buffs que afetam a quantidade de recursos 
+            if (nftOuSkill.quantidade2) {
+                nftOuSkill.quantidade2.forEach(qtd => {
+                    if (qtd.recursoAfetado?.includes(nomeRecurso)) {
+                        if (qtd.sinal === 'x') qtdMulti *= qtd.buff;
+                        if (qtd.sinal === '+') qtdSoma += qtd.buff;
+                        if (qtd.sinal === '-') qtdSubtrai += qtd.buff;
+                        if (qtd.sinal === '+A') qtdArea += qtd.buff;
+                        if (qtd.sinal === 'xI') qtdInsta *= qtd.buff;
+                        if (qtd.sinal === '+S') qtdSemente += qtd.buff;
+                        if (qtd.sinal === 'x-') qtdMenosRacao *= qtd.buff;
+                        if (qtd.sinal === 'x+') qtdMaisRacao *= qtd.buff;
+                    }
+                });
+            };
+            //=============================================================================================================================================================
             //Adiciona os buffs que afetam o tempo dos recursos 
             if (nftOuSkill.tempo) {
                 nftOuSkill.tempo.forEach(tempo => {
@@ -137,6 +153,8 @@ function calcularBuff(recurso, listasDeBuffs) {
 };
 
 function buffsAdicionadosCrops() {
+    const budsFiltrados = filtrarBudsMaiorBuff(); 
+
     crops.forEach(crop => {
         // chama a função genérica, passando todas as listas que afetam crops
         const buffs = calcularBuff(crop, [
@@ -154,6 +172,7 @@ function buffsAdicionadosCrops() {
             totems,
             fertilizantes.rapidRoot,
             fertilizantes.sproutMix,
+            budsFiltrados
         ]);
         
         crop.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai + (buffs.qtdArea / plots)) * buffs.qtdInsta;
@@ -181,6 +200,8 @@ function buffsAdicionadosCrops() {
     //======================================================================================================================================================================
 
     cropMachine.forEach(cropM => {
+        const budsFiltrados = filtrarBudsMaiorBuff();
+
         const buffs = calcularBuff(cropM, [
             skillsLegacy,
             skillsCrops.tier1,
@@ -194,7 +215,8 @@ function buffsAdicionadosCrops() {
             collectibles.cropMachine,
             wearables.factions,
             wearables.crops,
-            shrines
+            shrines,
+            budsFiltrados
         ]);
 
         //atualizar a quantidade de plots que a CM possui e quantos Oil ela gasta por hora!
@@ -256,6 +278,8 @@ function buffsAdicionadosCrops() {
 
 //======================================================================================================================================================================
 function buffsAdicionadosFrutas() {
+    const budsFiltrados = filtrarBudsMaiorBuff();
+
     fruits.forEach(fruta => {
         const buffs = calcularBuff(fruta, [
             skillsLegacy,
@@ -269,7 +293,8 @@ function buffsAdicionadosFrutas() {
             wearables.temporada,
             wearables.factions,
             wearables.fruits,
-            shrines
+            shrines,
+            budsFiltrados
         ]);
 
         //rodadas que uma arvore de frutas dura
@@ -319,6 +344,8 @@ function buffsAdicionadosFrutas() {
 
 //======================================================================================================================================================================
 function buffsAdicionadosGreenhouse() {
+    const budsFiltrados = filtrarBudsMaiorBuff();
+
     greenhouse.forEach(gh => {
         const buffs = calcularBuff(gh, [
             skillsLegacy,
@@ -334,7 +361,8 @@ function buffsAdicionadosGreenhouse() {
             wearables.crops,
             wearables.greenhouse,
             totems,
-            shrines
+            shrines,
+            budsFiltrados
         ]);
 
         gh.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai) * buffs.qtdInsta;
@@ -367,6 +395,7 @@ function buffsAdicionadosGreenhouse() {
 //======================================================================================================================================================================
 
 function buffsAdicionadosMinerais() {
+    const budsFiltrados = filtrarBudsMaiorBuff();
 
     minerals.forEach(mineral => {
         const buffs = calcularBuff(mineral, [
@@ -388,7 +417,8 @@ function buffsAdicionadosMinerais() {
             wearables.factions,
             wearables.minerals,
             shrines,
-            totems
+            totems,
+            budsFiltrados
         ]);
         //buff que todas lands possuem!
         let buffMineralLand = (mineral.name.includes('Wood') || mineral.name.includes('Stone') || mineral.name.includes('Iron') ||  mineral.name.includes('Gold')) ? 0.2 : 0;
@@ -571,6 +601,7 @@ document.getElementById('crimstone-comprada').addEventListener('change', mediaDe
 
 //======================================================================================================================================================================
 function buffsAdicionadosAnimais() {
+    const budsFiltrados = filtrarBudsMaiorBuff();
 
     ferramentasAnimais.forEach(carinho => {
         const buffs = calcularBuff(carinho, [
@@ -631,6 +662,7 @@ function buffsAdicionadosAnimais() {
 
 
 function buffsAdicionadosRecursosAnimais() {
+    const budsFiltrados = filtrarBudsMaiorBuff();
 
     let contadorGalinhas = 0;
     let somadorDeOvos = 0;
@@ -659,6 +691,7 @@ function buffsAdicionadosRecursosAnimais() {
             wearables.animais,
             shrines,
             totems,
+            budsFiltrados
         ]);
         
         // Calcula buffs para feather
@@ -674,6 +707,7 @@ function buffsAdicionadosRecursosAnimais() {
             wearables.animais,
             shrines,
             totems,
+            budsFiltrados
         ]);
 
         galinha.eggFinal = (galinha.egg * buffsEgg.qtdMulti) + buffsEgg.qtdSoma - buffsEgg.qtdSubtrai;
@@ -726,6 +760,7 @@ function buffsAdicionadosRecursosAnimais() {
             wearables.animais,
             shrines,
             totems,
+            budsFiltrados
         ]);
         
         // Calcula buffs para feather
@@ -741,6 +776,7 @@ function buffsAdicionadosRecursosAnimais() {
             wearables.animais,
             shrines,
             totems,
+            budsFiltrados
         ]);
 
         vaca.milkFinal = (vaca.milk * buffsMilk.qtdMulti) + buffsMilk.qtdSoma - buffsMilk.qtdSubtrai;
@@ -793,6 +829,7 @@ function buffsAdicionadosRecursosAnimais() {
             wearables.animais,
             shrines,
             totems,
+            budsFiltrados
         ]);
         
         // Calcula buffs para feather
@@ -808,6 +845,7 @@ function buffsAdicionadosRecursosAnimais() {
             wearables.animais,
             shrines,
             totems,
+            budsFiltrados
         ]);
 
         //definir quanto falta de comida para subir de level

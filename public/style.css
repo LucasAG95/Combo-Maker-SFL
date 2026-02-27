@@ -1363,3 +1363,9 @@ no momento só para ela
   object-fit: contain;
   pointer-events: none; /* evita bug ao clicar */
 }
+
+.bud-wrapper.aura-bg-basicAura   .sprite-box { background-color: #606060 !important; box-shadow: 0 0 10px 2px #ffffffcc !important; }
+.bud-wrapper.aura-bg-greenAura   .sprite-box { background-color: #1e6e1e !important; box-shadow: 0 0 10px 2px #32c850cc !important; }
+.bud-wrapper.aura-bg-rareAura    .sprite-box { background-color: #6e5a00 !important; box-shadow: 0 0 10px 2px #ffc800cc !important; }
+.bud-wrapper.aura-bg-myticalAura .sprite-box { background-color: #006e6e !important; box-shadow: 0 0 10px 2px #01d9ff !important; }
+.bud-wrapper.aura-bg-semAura     .sprite-box { background-color: #2c2c2c !important; box-shadow: none !important; }

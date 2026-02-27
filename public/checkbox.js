@@ -62,19 +62,61 @@ function configurarCheckbox() {
     });
 
     //todos buffs de buds
-    /*todosBuds.forEach(bud => {
-        let checkbox = document.getElementById(bud.idName);
+    todosBuds.forEach(bud => {
+        bud.aura = 1;
 
-        if(checkbox) {
+        const checkbox = document.getElementById(bud.idName);
+        if (!checkbox) return;
+
+        bud.possui = checkbox.checked;
+
+        checkbox.addEventListener('change', function () {
             bud.possui = checkbox.checked;
 
-            checkbox.addEventListener('change', function() {
-                bud.possui = checkbox.checked;
+            const budWrapper = checkbox.closest('.bud-wrapper');
+            const auraPanel = budWrapper?.querySelector('.aura-panel');
+
+            if (bud.possui) {
+                auraPanel.style.display = 'flex';
+            } else {
+                auraPanel.style.display = 'none';
+                bud.aura = 1;
+                auraPanel.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+                // Remove cor da aura ao desmarcar
+                AURAS.forEach(a => budWrapper.classList.remove(`aura-bg-${a.id}`));
+            }
+
+            chamadorDeBuffs();
+            ativarBonusDasNftsESkills();
+        });
+
+        AURAS.forEach(aura => {
+            const auraCheckbox = document.getElementById(`aura-${bud.idName}-${aura.id}`);
+            if (!auraCheckbox) return;
+
+            auraCheckbox.addEventListener('change', function () {
+                const auraPanel = auraCheckbox.closest('.aura-panel');
+                const budWrapper = auraCheckbox.closest('.bud-wrapper');
+
+                if (auraCheckbox.checked) {
+                    auraPanel.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                        if (cb !== auraCheckbox) cb.checked = false;
+                    });
+                    bud.aura = aura.mult;
+                    // Troca a classe de cor
+                    AURAS.forEach(a => budWrapper.classList.remove(`aura-bg-${a.id}`));
+                    budWrapper.classList.add(`aura-bg-${aura.id}`);
+                } else {
+                    bud.aura = 1;
+                    AURAS.forEach(a => budWrapper.classList.remove(`aura-bg-${a.id}`));
+                }
+
+                auraPanel.style.display = 'none';
                 chamadorDeBuffs();
                 ativarBonusDasNftsESkills();
             });
-        };
-    });*/
+        });
+    });
 
     //todos buffs temporarios
     todosTemporarios.forEach(temporario => {
@@ -167,8 +209,56 @@ function renderNFTs(lista, containerId, pastaImagens) {
 }
 
 //=============================================================================================================================================
+function renderBuds(lista, containerId) {
+    const container = document.getElementById(containerId);
 
+    lista.forEach(bud => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'nft-wrapper bud-wrapper';
 
+        const label = document.createElement('label');
+        label.setAttribute('for', bud.idName);
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = bud.idName;
+
+        label.appendChild(checkbox);
+        label.insertAdjacentHTML('beforeend', `<div class="sprite-box">${sprite(bud.idName, 'buds')}</div>`);
+
+        wrapper.addEventListener("mouseenter", () => mostrarInfoCard(bud, bud.idName, 'buds'));
+        wrapper.addEventListener("mouseleave", () => esconderInfoCard());
+
+        wrapper.appendChild(label);
+
+        // Painel de auras
+        const auraPanel = document.createElement('div');
+        auraPanel.className = 'aura-panel';
+        auraPanel.style.display = 'none';
+
+        AURAS.forEach(aura => {
+            const auraWrapper = document.createElement('div');
+            auraWrapper.className = 'nft-wrapper aura-wrapper';
+
+            const auraLabel = document.createElement('label');
+            auraLabel.setAttribute('for', `aura-${bud.idName}-${aura.id}`);
+
+            const auraCheckbox = document.createElement('input');
+            auraCheckbox.type = 'checkbox';
+            auraCheckbox.id = `aura-${bud.idName}-${aura.id}`;
+            auraCheckbox.value = aura.id;
+
+            auraLabel.appendChild(auraCheckbox);
+            auraLabel.insertAdjacentHTML('beforeend', `<div class="sprite-box">${sprite(aura.id, 'auras')}</div>`);
+
+            auraWrapper.appendChild(auraLabel);
+            auraPanel.appendChild(auraWrapper);
+        });
+
+        wrapper.appendChild(auraPanel);
+        container.appendChild(wrapper);
+    });
+}
 
 //=============================================================================================================================================
 
@@ -228,16 +318,16 @@ window.onload = function () {
     renderNFTs(wearables.temporada, 'wearables-container-novas', './wearables');
     
     //Buds
-    /*renderNFTs(buds.plaza, 'buds-plaza-container', './buds');
-    renderNFTs(buds.woodlands, 'buds-woodlands-container', './buds');
-    renderNFTs(buds.cave, 'buds-cave-container', './buds');
-    renderNFTs(buds.sea, 'buds-sea-container', './buds');
-    renderNFTs(buds.castle, 'buds-castle-container', './buds');
-    renderNFTs(buds.port, 'buds-port-container', './buds');
-    renderNFTs(buds.retreat, 'buds-retreat-container', './buds');
-    renderNFTs(buds.saphiro, 'buds-saphiro-container', './buds');
-    renderNFTs(buds.snow, 'buds-snow-container', './buds');
-    renderNFTs(buds.beach, 'buds-beach-container', './buds');*/
+    renderBuds(buds.plaza, 'buds-plaza-container', './buds');
+    renderBuds(buds.woodlands, 'buds-woodlands-container', './buds');
+    renderBuds(buds.cave, 'buds-cave-container', './buds');
+    renderBuds(buds.sea, 'buds-sea-container', './buds');
+    renderBuds(buds.castle, 'buds-castle-container', './buds');
+    renderBuds(buds.port, 'buds-port-container', './buds');
+    renderBuds(buds.retreat, 'buds-retreat-container', './buds');
+    renderBuds(buds.saphiro, 'buds-saphiro-container', './buds');
+    renderBuds(buds.snow, 'buds-snow-container', './buds');
+    renderBuds(buds.beach, 'buds-beach-container', './buds');
 
     //Shrines, Totems e buffs temporarios
     renderNFTs(shrines, 'shrines-container', './shrines');
