@@ -127,7 +127,7 @@ function mudarIdioma() {
     document.getElementById('tab-sprout-mix').innerHTML = `* ${opcaoDeIdiomas.avisoSproutMix}`;
     document.getElementById('tab-rapid-root').innerHTML = `* ${opcaoDeIdiomas.avisoRapidRoot}`;
     document.getElementById('aviso-crop-to-coins').innerHTML = `${opcaoDeIdiomas.avisoCropToCoins}`;
-    //document.getElementById('aviso-buds-nao-funcionam').innerHTML = `* ${opcaoDeIdiomas.avisoDeBuds}`;
+    document.getElementById('buds-não-marcam-automaticamente').innerHTML = `* ${opcaoDeIdiomas.avisoDeBuds}`;
 
     //Resultado Total do combo montado
     document.getElementById('accordionResultadoComboCompleto').innerHTML = `${opcaoDeIdiomas.tituloAccordionCombo}`
@@ -270,7 +270,7 @@ const idiomaEscolhido = {
         avisoCalculosMinerais: 'Se você optar por calcular por ferramenta ou por ciclo, tente manter o Tempo Total em, no máximo, 24 horas para obter resultados mais precisos. Caso ultrapasse esse limite, desconsidere a média de lucro diário e semanal.',
         avisoSproutMix: 'Ao selecionar qualquer crop, ela ganhará +0.2 por plot, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
         avisoRapidRoot: 'Ao selecionar qualquer crop, ela terá seu tempo reduzido pela metade, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
-        //avisoDeBuds: 'Os Buds ainda não estão funcionando<br>',
+        avisoDeBuds: 'Selecione os Buds que você possui ou deseja possuir, pois no momento eles ainda não são marcados automaticamente ao preencher sua farm! Suas seleções ficam salvas ao recarregar ou acessar o site novamente!',
 
     },
     ingles: {
@@ -387,7 +387,7 @@ const idiomaEscolhido = {
         avisoCalculosMinerais: 'If you choose to calculate by tool or by cycle, try to keep the Total Time at a maximum of 24 hours to obtain more accurate results. If this limit is exceeded, disregard the daily and weekly profit averages.',
         avisoSproutMix: 'When selecting any crop, it will gain +0.2 per plot, but remember that fertilizers are temporary buffs and you use one per seed. When you select it, the system will assume you’ll use the fertilizer on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
         avisoRapidRoot: 'When selecting any crop, its time will be reduced by half, but remember that fertilizers are temporary buffs and you use one per seed. When you select it, the system will assume you’re using it on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
-        //avisoDeBuds: 'Buds are not available yet<br>',
+        avisoDeBuds: 'Select the Buds you own or wish to own, as they are not automatically selected when filling in your farm at the moment! Your selections will be saved when you refresh or revisit the site!',
 
     }
 
