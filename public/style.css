@@ -3,9 +3,9 @@
 ======================= */
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #1e1e1e; /* preto claro estilo dark mode */
+  background: #1e1e1e;
   padding: 30px;
-  color: #e0e0e0; /* texto claro */
+  color: #e0e0e0;
   overflow-x: hidden;
 }
 
@@ -153,23 +153,42 @@ h5 {
 ======================= */
 .tabela-crops {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+  border-collapse: collapse;
   margin-top: 30px;
   font-size: 14px;
   border-radius: 10px;
   overflow: hidden;
-  border: 2px solid #333;
+  border: 2px solid #555;
+  box-shadow: 0 0 8px #ff990066;
 }
 
-.tabela-crops th, .tabela-crops td {
-  padding: 5px 1px;
+.tabela-crops th,
+.tabela-crops td {
+  padding: 7px 8px;
   text-align: center;
+  border-right: 1px solid #3a3a3a;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.tabela-crops th:last-child,
+.tabela-crops td:last-child {
+  border-right: none;
+}
+
+.tabela-crops tr:last-child td {
+  border-bottom: none;
 }
 
 .tabela-crops th {
-  background-color: #333333;
-  color: #ffffff;
+  background-color: #383838;
+  color: #ffa726;
+  font-weight: bold;
+  border-bottom: 2px solid #4a4a4a;
+  border-right: 1px solid #4a4a4a;
+}
+
+.tabela-crops th:last-child {
+  border-right: none;
 }
 
 .tabela-crops tr:nth-child(even) {
@@ -178,6 +197,10 @@ h5 {
 
 .tabela-crops tr:nth-child(odd) {
   background-color: #242424;
+}
+
+.tabela-crops tr:hover td {
+  background-color: #2f2820;
 }
 
 .crop-img {
@@ -192,17 +215,16 @@ h5 {
 td input.quantidade-input {
   display: block;
   margin: 0 auto;
-  width: 125px;        /* 🔹 largura */
-  height: 28px;       /* 🔹 altura */
-  padding: 2px 4px;   /* 🔹 espaço interno */
-  font-size: 13px;    /* 🔹 texto menor */
+  width: 125px;
+  height: 28px;
+  padding: 2px 4px;
+  font-size: 13px;
   border-radius: 6px;
   border: 1px solid #555;
   background-color: #1e1e1e;
   color: #ffffff;
   text-align: center;
 }
-
 
 td input.quantidade-input-cm {
   display: block;
@@ -220,16 +242,16 @@ td input.quantidade-input-cm {
 ======================= */
 .select-idioma {
   display: flex;
-  flex-direction: row; /* <-- muda para linha */
-  align-items: center; /* alinha no meio */
-  gap: 8px; /* espaço entre o texto e o select */
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }
 
 .select-idioma label {
   font-weight: bold;
-  margin: 0;        /* <-- remove a margem inferior */
+  margin: 0;
   color: #ffa726;
-  white-space: nowrap; /* evita quebrar linha */
+  white-space: nowrap;
 }
 
 /* ====================
@@ -237,9 +259,9 @@ td input.quantidade-input-cm {
 ======================= */
 .input-numero-da-farm {
   font-weight: bold;
-  margin: 0;        /* <-- remove a margem inferior */
+  margin: 0;
   color: #ffa726;
-  white-space: nowrap; /* evita quebrar linha */
+  white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -250,9 +272,9 @@ td input.quantidade-input-cm {
 ======================= */
 .visualizar-combo-completo {
   font-weight: bold;
-  margin: 0;        /* <-- remove a margem inferior */
+  margin: 0;
   color: #ffa726;
-  white-space: nowrap; /* evita quebrar linha */
+  white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -288,17 +310,17 @@ select {
    CONTAINER PRINCIPAL DAS TABS E CARD
 ======================= */
 .items-row {
-  display: flex; /* coloca tabs e card lado a lado */
-  gap: 20px; /* espaço entre a tab e o card */
-  align-items: flex-start; /* alinha topo das tabs com topo do card */
-  justify-content: flex-start; /* alinha à esquerda */
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 /* ====================
    TAB CONTAINER
 ======================= */
 .tab-container {
-  flex: 1; /* ocupa o espaço restante */
+  flex: 1;
   max-width: 1000px;
   box-sizing: border-box;
   overflow-x: auto;
@@ -308,28 +330,23 @@ select {
    ESTILOS GERAIS PARA TABS E SUB-TABS
 ======================= */
 .tab-content {
-    display: none;
-    padding: 15px;
-    border-radius: 0 0 12px 12px;
-
-    /* ✅ Borda dourada igual ao card */
-    border: 3px solid #d0a25a;
-
-    /* ✅ fundo e brilho do estilo SFL */
-    background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
-    box-shadow:
-        0 0 10px #0008,
-        0 0 12px #d0a25a33 inset,
-        0 6px 12px rgba(0,0,0,0.5);
+  display: none;
+  padding: 15px;
+  border-radius: 0 0 12px 12px;
+  border: 3px solid #d0a25a;
+  background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
+  box-shadow:
+    0 0 10px #0008,
+    0 0 12px #d0a25a33 inset,
+    0 6px 12px rgba(0,0,0,0.5);
 }
 
 .tab-btn.active {
-    background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
-    border-color: #d0a25a;
-    border-bottom: 3px solid #2b241a; /* para conectar com o conteúdo */
-    color: #ffe2aa;
+  background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
+  border-color: #d0a25a;
+  border-bottom: 3px solid #2b241a;
+  color: #ffe2aa;
 }
-
 
 .tab-content.active {
   display: block;
@@ -423,17 +440,15 @@ select {
   font-weight: bold;
 }
 
-
 /* ====================
    NFTS, SKILLS E CHECKBOXES
 ======================= */
 .nft-container, .skill-container {
   display: flex;
   flex-wrap: wrap;
-  row-gap: 3px;     /* distância vertical */
-  column-gap: 11px; /* distância horizontal */
+  row-gap: 3px;
+  column-gap: 11px;
 }
-
 
 .nft-wrapper, .skill-wrapper {
   position: relative;
@@ -473,7 +488,6 @@ input[type="checkbox"]:checked + .sprite-box {
   transform: scale(1.15);
 }
 
-/* Ícones */
 .icon-btn {
   width: 20px;
   height: 20px;
@@ -483,65 +497,57 @@ input[type="checkbox"]:checked + .sprite-box {
 }
 
 /* ============================
-   ✅ CARD DE BUFFS AO LADO DAS TABS
+   CARD DE BUFFS AO LADO DAS TABS
 =============================== */
-
 #info-card {
-    position: relative;          /* ✅ não é mais fixo */
-    width: 260px;
-    padding: 12px;
-    margin-left: 10px;           /* ✅ separa da tab */
-    margin-top: 40px; /* ajuste conforme necessário */
-    background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
-    border: 3px solid #d0a25a;
-    border-radius: 14px;
-    display: none;
-    color: #fff;
-    text-align: center;
-    flex-shrink: 0;               /* ✅ não encolhe */
-    box-shadow:
-        0 0 10px #0008,
-        0 0 12px #d0a25a33 inset,
-        0 6px 12px rgba(0,0,0,0.5);
-    animation: fadeIn 0.25s ease-out;
+  position: relative;
+  width: 260px;
+  padding: 12px;
+  margin-left: 10px;
+  margin-top: 40px;
+  background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
+  border: 3px solid #d0a25a;
+  border-radius: 14px;
+  display: none;
+  color: #fff;
+  text-align: center;
+  flex-shrink: 0;
+  box-shadow:
+    0 0 10px #0008,
+    0 0 12px #d0a25a33 inset,
+    0 6px 12px rgba(0,0,0,0.5);
+  animation: fadeIn 0.25s ease-out;
 }
 
-/* Fade in */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(4px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 #info-card img.card-img {
-    width: 30px;
-    height: 50px;
-    object-fit: contain;
-    display: block;
-    margin: 5px auto 10px auto;
+  width: 30px;
+  height: 50px;
+  object-fit: contain;
+  display: block;
+  margin: 5px auto 10px auto;
 }
 
 #info-card .card-titulo {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 5px 0 8px 0;
-    color: #ffcf7a;
-    text-align: center !important;
-    text-shadow: 1px 1px 2px #000;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0 8px 0;
+  color: #ffcf7a;
+  text-align: center !important;
+  text-shadow: 1px 1px 2px #000;
 }
 
 #info-card .card-descricao {
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 1.4em;
-    padding: 0 12px 10px 12px;
-    color: #e9ddc7;
-    text-shadow: 1px 1px 1px #000;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.4em;
+  padding: 0 12px 10px 12px;
+  color: #e9ddc7;
+  text-shadow: 1px 1px 1px #000;
 }
 
 /* ====================
@@ -555,18 +561,6 @@ input[type="checkbox"]:checked + .sprite-box {
   margin-bottom: 10px;
   flex-wrap: wrap;
   align-items: flex-end;
-}
-
-.select-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.select-group label {
-  font-weight: bold;
-  margin-bottom: 1px;
-  color: #ffa726;
 }
 
 select, input[type="number"] {
@@ -586,7 +580,6 @@ select:focus, input[type="number"]:focus {
   box-shadow: 0 0 6px #ffb74d80;
 }
 
-/* Botão fofinho */
 button {
   padding: 8px 18px;
   background-color: #fa9600;
@@ -626,12 +619,10 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
 }
 
 /* ====================
-   SPRITE-BOX — caixa da checkbox com sprite centralizado
-   🔧 Edite --checkbox-size para mudar o tamanho
+   SPRITE-BOX
 ======================= */
 .sprite-box {
   --checkbox-size: 33px;
-
   width: var(--checkbox-size);
   height: var(--checkbox-size);
   border-radius: 5px;
@@ -662,10 +653,9 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   gap: 15px;
   margin-bottom: 20px;
   flex-wrap: wrap;
-  justify-content: center; /* centraliza horizontalmente */
-  align-items: center;     /* centraliza verticalmente */
+  justify-content: center;
+  align-items: center;
 }
-
 
 .card-total-crops {
   background: #222;
@@ -689,7 +679,6 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   color: #fff;
 }
 
-
 /* CARDS DOS MINERAIS */
 .cards-totais-minerais {
   display: flex;
@@ -705,16 +694,13 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   border: 1px solid #444;
   padding: 15px 20px;
   border-radius: 12px;
-
-  height: 110px;        /* 🔥 altura fixa */
-  min-width: 120px;     /* 🔥 largura mínima */
-  width: auto;          /* 🔥 largura flexível */
-
-  display: flex;             /* para centralizar conteúdo */
+  height: 110px;
+  min-width: 120px;
+  width: auto;
+  display: flex;
   flex-direction: column;
-  justify-content: center;   /* centraliza verticalmente */
-  align-items: center;       /* centraliza horizontalmente */
-
+  justify-content: center;
+  align-items: center;
   text-align: center;
   color: #ffa726;
   box-shadow: 0 0 10px #0005;
@@ -737,8 +723,8 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   gap: 15px;
   margin-bottom: 20px;
   flex-wrap: wrap;
-  justify-content: center; /* centraliza horizontalmente */
-  align-items: center;     /* centraliza verticalmente */
+  justify-content: center;
+  align-items: center;
 }
 
 .card-total-animal {
@@ -765,13 +751,13 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
 
 .header {
   display: flex;
-  flex-direction: column;   /* empilha verticalmente */
-  align-items: center;      /* centraliza horizontalmente */
-  gap: 2px;                 /* espaço mínimo entre título e idioma */
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
 
 .header h1 {
-  margin: 0;                /* remove margem padrão do h1 */
+  margin: 0;
 }
 
 .loader {
@@ -784,9 +770,7 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
 /* ====================
@@ -794,23 +778,42 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
 ======================= */
 .tabela-minerios {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+  border-collapse: collapse;
   margin-top: 30px;
   font-size: 14px;
   border-radius: 10px;
   overflow: hidden;
-  border: 2px solid #333;
+  border: 2px solid #555;
+  box-shadow: 0 0 8px #ff990066;
 }
 
-.tabela-minerios th, .tabela-minerios td {
-  padding: 5px 1px;
+.tabela-minerios th,
+.tabela-minerios td {
+  padding: 7px 8px;
   text-align: center;
+  border-right: 1px solid #3a3a3a;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.tabela-minerios th:last-child,
+.tabela-minerios td:last-child {
+  border-right: none;
+}
+
+.tabela-minerios tr:last-child td {
+  border-bottom: none;
 }
 
 .tabela-minerios th {
-  background-color: #333333;
-  color: #ffffff;
+  background-color: #383838;
+  color: #ffa726;
+  font-weight: bold;
+  border-bottom: 2px solid #4a4a4a;
+  border-right: 1px solid #4a4a4a;
+}
+
+.tabela-minerios th:last-child {
+  border-right: none;
 }
 
 .tabela-minerios tr:nth-child(even) {
@@ -821,31 +824,53 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   background-color: #242424;
 }
 
+.tabela-minerios tr:hover td {
+  background-color: #2f2820;
+}
+
 /* ====================
    TABELA SECUNDÁRIA COM TAMANHO FIXO
 ======================= */
 .tabela-minerios-secundaria {
-  width: 600px;        /* 🔧 ajuste como quiser */
-  height: 220px;       /* 🔧 ajuste como quiser */
-  overflow-y: auto;    /* adiciona scroll interno */
-  border-collapse: separate;
-  border-spacing: 0;
+  width: 600px;
+  height: 220px;
+  overflow-y: auto;
+  border-collapse: collapse;
   margin-top: 30px;
   font-size: 14px;
   border-radius: 10px;
   overflow: hidden;
-  border: 2px solid #333;
+  border: 2px solid #555;
+  box-shadow: 0 0 8px #ff990066;
 }
 
 .tabela-minerios-secundaria th,
 .tabela-minerios-secundaria td {
-  padding: 5px 1px;
+  padding: 7px 8px;
   text-align: center;
+  border-right: 1px solid #3a3a3a;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.tabela-minerios-secundaria th:last-child,
+.tabela-minerios-secundaria td:last-child {
+  border-right: none;
+}
+
+.tabela-minerios-secundaria tr:last-child td {
+  border-bottom: none;
 }
 
 .tabela-minerios-secundaria th {
-  background-color: #333333;
-  color: #ffffff;
+  background-color: #383838;
+  color: #ffa726;
+  font-weight: bold;
+  border-bottom: 2px solid #4a4a4a;
+  border-right: 1px solid #4a4a4a;
+}
+
+.tabela-minerios-secundaria th:last-child {
+  border-right: none;
 }
 
 .tabela-minerios-secundaria tr:nth-child(even) {
@@ -856,9 +881,12 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   background-color: #242424;
 }
 
+.tabela-minerios-secundaria tr:hover td {
+  background-color: #2f2820;
+}
 
 /* ====================
-   IMPUT DOS ICONES DE PREENCHIMENTO DOS MINERIOS
+   INPUT DOS ICONES DE PREENCHIMENTO DOS MINERIOS
 ======================= */
 .input-icon {
   width: 25px;
@@ -869,41 +897,57 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   border-radius: 6px;
 }
 
-
-/* Afasta todos os títulos (labels) dos grupos de minerais para a direita,
-   deixando espaço antes do texto sem mexer nos inputs */
 #qtdDeArvores,
 #qtdDePedras,
 #qtdDeFerros,
 #qtdDeOuros,
 #qtdDeCrimstones,
 #qtdDeOils {
-  margin-left: 35px; 
+  margin-left: 35px;
   display: block;
 }
 
 /* ====================
-   TABELA DE Animais
+   TABELA DE ANIMAIS
 ======================= */
 .tabela-animais {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+  border-collapse: collapse;
   margin-top: 30px;
   font-size: 14px;
   border-radius: 10px;
   overflow: hidden;
-  border: 2px solid #333;
+  border: 2px solid #555;
+  box-shadow: 0 0 8px #ff990066;
 }
 
-.tabela-animais th, .tabela-animais td {
-  padding: 5px 1px;
+.tabela-animais th,
+.tabela-animais td {
+  padding: 7px 8px;
   text-align: center;
+  border-right: 1px solid #3a3a3a;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.tabela-animais th:last-child,
+.tabela-animais td:last-child {
+  border-right: none;
+}
+
+.tabela-animais tr:last-child td {
+  border-bottom: none;
 }
 
 .tabela-animais th {
-  background-color: #333333;
-  color: #ffffff;
+  background-color: #383838;
+  color: #ffa726;
+  font-weight: bold;
+  border-bottom: 2px solid #4a4a4a;
+  border-right: 1px solid #4a4a4a;
+}
+
+.tabela-animais th:last-child {
+  border-right: none;
 }
 
 .tabela-animais tr:nth-child(even) {
@@ -914,59 +958,63 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   background-color: #242424;
 }
 
+.tabela-animais tr:hover td {
+  background-color: #2f2820;
+}
+
 /* ============================================================
    TABS SECUNDÁRIAS - CROPS / MINERIOS (ESTILO SUNFLOWERLAND)
    ============================================================ */
 
 .tabs-secundarias-buttons {
-    display: flex;
-    margin-top: 30px;
-    margin-bottom: -1px;
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: -1px;
 }
 
 .tab2-btn {
-    padding: 8px 18px;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: #333333;
-    color: #ffa726;
-    border: 1px solid #444;
-    border-bottom: none;
-    border-radius: 10px 10px 0 0;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
-    margin-right: 2px;
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #333333;
+  color: #ffa726;
+  border: 1px solid #444;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  margin-right: 2px;
 }
 
 .tab2-btn:hover {
-    background-color: #444444;
+  background-color: #444444;
 }
 
 .tab2-btn.active {
-    background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
-    color: #ffe2aa;
-    border: 3px solid #d0a25a;
-    border-bottom: 3px solid #2b241a; /* junta com o conteúdo igual as tabs principais */
+  background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
+  color: #ffe2aa;
+  border: 3px solid #d0a25a;
+  border-bottom: 3px solid #2b241a;
 }
 
 .tab2-content {
-    display: none;
-    padding: 15px;
-    border-radius: 0 0 12px 12px;
-    border: 3px solid #d0a25a;
-    background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
-    box-shadow:
-        0 0 10px #0008,
-        0 0 12px #d0a25a33 inset,
-        0 6px 12px rgba(0,0,0,0.5);
+  display: none;
+  padding: 15px;
+  border-radius: 0 0 12px 12px;
+  border: 3px solid #d0a25a;
+  background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
+  box-shadow:
+    0 0 10px #0008,
+    0 0 12px #d0a25a33 inset,
+    0 6px 12px rgba(0,0,0,0.5);
 }
 
 .tab2-content.active {
-    display: block;
+  display: block;
 }
 
 /* ============================================
-   SUBTABS — NOVO ESTILO (O CINZA QUE VOCÊ QUER)
+   SUBTABS
 =============================================== */
 
 .subtabs-crops-buttons,
@@ -976,7 +1024,7 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   gap: 10px;
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #333; /* igual ao estilo novo */
+  border-bottom: 2px solid #333;
 }
 
 .subtab-btn,
@@ -1004,10 +1052,6 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   font-weight: bold;
 }
 
-/* ============================================
-   CONTEÚDO DAS SUBTABS (mantém igual)
-=============================================== */
-
 .subtab-content {
   display: none;
   animation: fadeIn 0.25s ease-in-out;
@@ -1017,12 +1061,14 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   display: block;
 }
 
-/* animação */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ====================
+   HEADER BAR
+======================= */
 .header-bar {
   display: flex;
   justify-content: space-between;
@@ -1034,7 +1080,6 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   flex-wrap: wrap;
 }
 
-/* ESQUERDA */
 .header-left {
   display: flex;
   align-items: center;
@@ -1058,7 +1103,6 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   font-family: "Micro 5", sans-serif;
 }
 
-
 .header-left span {
   font-size: 14px;
   color: #b6afaf;
@@ -1074,75 +1118,66 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   font-weight: bold;
 }
 
-/* CENTRO */
 .header-center {
   font-size: 14px;
   text-align: center;
   flex: 1;
   min-width: 250px;
   margin: 5px 10px;
-  font-weight: bold; /* ✅ Negrito das informações */
+  font-weight: bold;
 }
 
 .header-center a {
   color: #ffa726;
   text-decoration: none;
-  font-weight: bold; /* ✅ Negrito dos links */
+  font-weight: bold;
 }
 
 .header-center a:hover {
   text-decoration: underline;
 }
 
-/* DIREITA */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 12px; /* um pouco mais de espaço entre os ícones */
+  gap: 12px;
 }
 
 .icon-btn {
-  color: #b6afaf; /* cor padrão branca para o ícone */
+  color: #b6afaf;
 }
 
 .icon-btn svg {
-  width: 26px; /* ✅ aumentei um pouco */
-  height: 26px; /* ✅ aumentei um pouco */
+  width: 26px;
+  height: 26px;
   fill: currentColor;
   transition: 0.2s;
 }
 
 .icon-btn:hover svg {
-  transform: scale(1.3); /* aumenta o efeito no hover */
+  transform: scale(1.3);
 }
 
-.icon-btn.yt:hover {
-  color: #ff4d4d;
-}
+.icon-btn.yt:hover { color: #ff4d4d; }
+.icon-btn.dc:hover { color: #7289da; }
 
-.icon-btn.dc:hover {
-  color: #7289da;
-}
-
-/* RESPONSIVO */
 @media (max-width: 800px) {
   .header-bar {
     flex-direction: column;
     align-items: center;
     gap: 8px;
   }
-
-  .header-center {
-    margin: 0;
-  }
+  .header-center { margin: 0; }
 }
 
-/* Botão de copiar wallet */
+/* ====================
+   BOTÃO COPIAR WALLET
+======================= */
 .copy-btn {
-  background: none;      /* sem fundo */
-  border: none;          /* sem borda */
+  background: none;
+  border: none;
   cursor: pointer;
-  color: inherit;        /* herda a cor da wallet */
+  color: inherit;
   margin-left: 5px;
   vertical-align: middle;
   padding: 0;
@@ -1169,53 +1204,47 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   pointer-events: none;
   transition: opacity 0.3s;
   white-space: nowrap;
-  transform: translateY(-30px); /* acima do botão */
+  transform: translateY(-30px);
 }
 
-.copy-tooltip.show {
-  opacity: 1;
-}
+.copy-tooltip.show { opacity: 1; }
 
 /* =========================
-para tabela CROP TO COINS
-no momento só para ela 
+   TABELA CROP TO COINS
 ============================*/
 
-/* Colunas ordenáveis */
 .th-ordenavel {
-    cursor: pointer;
-    user-select: none;
-    position: relative;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
 }
 
 .th-ordenavel:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Seta de ordenação crescente (▲) */
 .th-ordenavel.asc::after {
-    content: '';
-    display: inline-block;
-    margin-left: 8px;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 7px solid #27ae60;
-    vertical-align: middle;
+  content: '';
+  display: inline-block;
+  margin-left: 8px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid #27ae60;
+  vertical-align: middle;
 }
 
-/* Seta de ordenação decrescente (▼) */
 .th-ordenavel.desc::after {
-    content: '';
-    display: inline-block;
-    margin-left: 8px;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 7px solid #e74c3c;
-    vertical-align: middle;
+  content: '';
+  display: inline-block;
+  margin-left: 8px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid #e74c3c;
+  vertical-align: middle;
 }
 
 /* ================= ACCORDION RESULTADO DO COMBO ================= */
@@ -1224,44 +1253,32 @@ no momento só para ela
   margin: 25px 0;
   border-radius: 14px;
   overflow: hidden;
-
-  /* mesmo fundo das tabs */
   background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
   border: 3px solid #d0a25a;
-
   box-shadow:
     0 0 10px #0008,
     0 0 12px #d0a25a33 inset,
     0 6px 12px rgba(0,0,0,0.5);
 }
 
-/* HEADER = cara de TAB */
 .accordion-header-combo {
   width: 100%;
   padding: 12px 18px;
-
   background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
   color: #ffe2aa;
-
   font-size: 16px;
   font-weight: bold;
-
   border: none;
   border-bottom: 3px solid #d0a25a;
-
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   text-shadow: 1px 1px 2px #000;
 }
 
-.accordion-header-combo:hover {
-  filter: brightness(1.1);
-}
+.accordion-header-combo:hover { filter: brightness(1.1); }
 
-/* seta */
 .accordion-icon {
   transition: transform 0.25s ease;
   font-size: 14px;
@@ -1271,12 +1288,10 @@ no momento só para ela
   transform: rotate(180deg);
 }
 
-/* CONTEÚDO */
 .accordion-content-combo {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.35s ease;
-
   background: #1c1812;
 }
 
@@ -1285,8 +1300,7 @@ no momento só para ela
   padding: 20px;
 }
 
-
-/* ================= Ajuste de carinhos e comidas ================= */
+/* ================= Carinhos e comidas ================= */
 
 .checkbox-carinho-container {
   display: flex;
@@ -1299,38 +1313,31 @@ no momento só para ela
   cursor: pointer;
 }
 
-/* checkbox invisível (igual NFT / Skill) */
 .checkbox-carinho input[type="checkbox"] {
   position: absolute;
   opacity: 0;
   pointer-events: none;
 }
 
-/* visual do checkbox */
 .checkbox-visual {
   width: 25px;
   height: 25px;
   border-radius: 12px;
   background-color: #2c2c2c;
   border: 2px solid transparent;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 14px;
-
   transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
 }
 
-/* hover igual NFT */
 .checkbox-visual:hover {
   transform: scale(1.15) rotate(-3deg);
   border-color: #ffb74d;
   box-shadow: 0 4px 8px rgba(255, 183, 77, 0.5);
 }
 
-/* checked = MESMO STYLE DO SEU SISTEMA */
 .checkbox-carinho input[type="checkbox"]:checked + .checkbox-visual {
   border: 2px solid #ffa726;
   background-color: #4a4035;
@@ -1347,25 +1354,142 @@ no momento só para ela
 .carinhos-possuido-titulo {
   font-weight: bold;
   margin-bottom: 4px;
-  color: #ffa726; /* mesmo tom dos outros labels */
+  color: #ffa726;
   white-space: nowrap;
-}
-
-.checkbox-carinho-container {
-  display: flex;
-  gap: 10px;
-  align-items: center;
 }
 
 .checkbox-visual img {
   width: 20px;
   height: 20px;
   object-fit: contain;
-  pointer-events: none; /* evita bug ao clicar */
+  pointer-events: none;
 }
 
+/* ================= AURAS DOS BUDS ================= */
 .bud-wrapper.aura-bg-basicAura   .sprite-box { background-color: #606060 !important; box-shadow: 0 0 10px 2px #ffffffcc !important; }
 .bud-wrapper.aura-bg-greenAura   .sprite-box { background-color: #1e6e1e !important; box-shadow: 0 0 10px 2px #32c850cc !important; }
 .bud-wrapper.aura-bg-rareAura    .sprite-box { background-color: #6e5a00 !important; box-shadow: 0 0 10px 2px #ffc800cc !important; }
 .bud-wrapper.aura-bg-myticalAura .sprite-box { background-color: #006e6e !important; box-shadow: 0 0 10px 2px #01d9ff !important; }
 .bud-wrapper.aura-bg-semAura     .sprite-box { background-color: #2c2c2c !important; box-shadow: none !important; }
+
+/* ================= MODAL DE AJUDA ================= */
+.modal-ajuda-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000000aa;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-ajuda-caixa {
+  background: linear-gradient(180deg, #2b241a 0%, #1c1812 100%);
+  border: 3px solid #d0a25a;
+  border-radius: 16px;
+  padding: 24px 28px;
+  max-width: 560px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow:
+    0 0 20px #0009,
+    0 0 14px #d0a25a33 inset;
+  animation: fadeIn 0.2s ease;
+  position: relative;
+}
+
+.modal-ajuda-titulo {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffcf7a;
+  margin-bottom: 18px;
+  text-shadow: 1px 1px 2px #000;
+  border-bottom: 2px solid #d0a25a55;
+  padding-bottom: 10px;
+}
+
+.modal-ajuda-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-ajuda-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.modal-ajuda-item-titulo {
+  font-size: 13px;
+  font-weight: bold;
+  color: #ffa726;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.modal-ajuda-item-desc {
+  font-size: 13px;
+  color: #e9ddc7;
+  line-height: 1.5em;
+}
+
+.modal-ajuda-fechar {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #ffa726;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.modal-ajuda-fechar:hover {
+  color: #fff;
+  box-shadow: none;
+  background: none;
+}
+
+.btn-ajuda-tabela {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid #d0a25a88;
+  border-radius: 8px;
+  color: #ffcf7a;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 5px 12px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.2s;
+  box-shadow: none;
+}
+
+.btn-ajuda-tabela:hover {
+  background: #2b241a;
+  border-color: #d0a25a;
+  box-shadow: 0 0 8px #d0a25a44;
+  color: #fff;
+}
+
+.btn-ajuda-tabela span.icone-interrogacao {
+  background: #d0a25a;
+  color: #1c1812;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+

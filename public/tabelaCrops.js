@@ -9,7 +9,7 @@ const idiomaTabelaCrops = {
         crop: 'Crops',
         estoque: 'Estoque',
         custoDaSemente: 'Custo da Semente',
-        vendaDaCrop: 'Venda da Crop',
+        vendaDaCropNaBetty: 'Valor de Venda<br>da Crop na Betty',
         mediaPorPlot: 'Média por Plot',
         tempoDaCrop: 'Tempo da Crop',
         calculoPorSemente: 'Inserir Sementes',
@@ -18,10 +18,11 @@ const idiomaTabelaCrops = {
         tempoTotal: 'Tempo Total',
         sementesUsadas: 'Sementes Usadas',
         totalDeCrops: 'Total de Crops',
-        lucroEmCoins: 'Lucro em Coins',
-        valorDeVendaNoMarket: 'Valor de Venda <br> Market P2P',
-        lucroVendendoNoMarket: 'Lucro no Market P2P<br>Taxa',
-        lucroPorHora: 'Lucro por hora<br>(Não desconta Gems)',
+        lucroEmCoins: 'Lucro Total<br>Vendendo na Betty',
+        valorDeVendaNoMarket: 'Valor no Market P2P<br>Taxa Retirada:',
+        lucroVendendoNoMarket: 'Lucro Total<br>no Market P2P',
+        lucroPorHora: 'Lucro Por Hora<br>Betty vs Market',
+        melhorOpcao: 'Melhor Opção<br>de Venda',
 
         //cards da tabela
         cardTempoTotal: 'Tempo Total',
@@ -40,7 +41,7 @@ const idiomaTabelaCrops = {
 
         //exclusivo Frutas
         frutas: 'Frutas',
-        vendaDaFruta: 'Venda da Fruta',
+        vendaDaFrutaNaBetty: 'Valor de Venda<br>da Fruta na Betty',
         mediaPorColeta: 'Média por Coleta',
         tempoDaFruta: 'Tempo da Fruta',
         totalDeFrutas: 'Total de Frutas',
@@ -55,7 +56,7 @@ const idiomaTabelaCrops = {
         crop: 'Crops',
         estoque: 'Stock',
         custoDaSemente: 'Seed Cost',
-        vendaDaCrop: 'Crop Sale',
+        vendaDaCropNaBetty: 'Crop Selling<br>Price at Betty',
         mediaPorPlot: 'Average per Plot',
         tempoDaCrop: 'Crop Time',
         calculoPorSemente: 'Enter Seeds',
@@ -64,10 +65,11 @@ const idiomaTabelaCrops = {
         tempoTotal: 'Total Time',
         sementesUsadas: 'Seeds Used',
         totalDeCrops: 'Total Crops',
-        lucroEmCoins: 'Profit in Coins',
-        valorDeVendaNoMarket: 'Market P2P<br>Selling Price',
-        lucroVendendoNoMarket: 'Profit on Market P2P<br>Fee',
-        lucroPorHora: 'Profit per hour<br>(Gems not included)',
+        lucroEmCoins: 'Total Profit<br>at Betty',
+        valorDeVendaNoMarket: 'P2P Market Value<br>Withdrawal Fee:',
+        lucroVendendoNoMarket: 'Total Profit<br>P2P Market',
+        lucroPorHora: 'Hourly Profit<br>Betty vs Market',
+        melhorOpcao: 'Best Selling<br>Option',
 
         //cards da tabela
         cardTempoTotal: 'Total Time',
@@ -86,7 +88,7 @@ const idiomaTabelaCrops = {
 
         //exclusivo Frutas
         frutas: 'Fruits',
-        vendaDaFruta: 'Fruit Sale',
+        vendaDaFrutaNaBetty: 'Fruit Selling<br>Price at Betty',
         mediaPorColeta: 'Average per Harvest',
         tempoDaFruta: 'Fruit Time',
         totalDeFrutas: 'Total Fruits',
@@ -137,14 +139,16 @@ function tabelaDeCrops() {
     let tabelaTituloCrops = `
         <tr>   
             <th>${idiomaDoTextoCrops.crop}<br>${idiomaDoTextoCrops.estoque}</th>
-            <th>${idiomaDoTextoCrops.custoDaSemente}<br>${idiomaDoTextoCrops.vendaDaCrop}</th>
+            <th>${idiomaDoTextoCrops.custoDaSemente}</th>
             <th>${idiomaDoTextoCrops.mediaPorPlot}<br>${idiomaDoTextoCrops.tempoDaCrop}</th>
             <th>${textoDefinirModoDeCalcularCrops} <br><button onclick="sementesPlantadas()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
             <th>${idiomaDoTextoCrops.sementesUsadas}<br>${idiomaDoTextoCrops.totalDeCrops}</th>
             <th>${idiomaDoTextoCrops.tempoTotal}</th>
+            <th>${idiomaDoTextoCrops.vendaDaCropNaBetty}</th>
+            <th>${idiomaDoTextoCrops.valorDeVendaNoMarket} ${(taxa * 100).toFixed(2)}%</th>
+            <th>${idiomaDoTextoCrops.melhorOpcao}</th>
             <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
-            <th>${idiomaDoTextoCrops.valorDeVendaNoMarket}</th>
-            <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
+            <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}</th>
             <th>${idiomaDoTextoCrops.lucroPorHora}</th>
         </tr>`
 
@@ -163,43 +167,60 @@ function tabelaDeCrops() {
     let ganhoTotalComComboCropFlower = 0;
     let restockDoCombo = 0;
 
-
-
     crops.forEach(crop => {
         if (!crop.estacao.includes(estacao)) return;
 
-        //quantidade
+        //sementes usadas!
         let sementesUsadas = Number(crop.qtdSementeUsadas) || Number(0);
-        let qtdPorPlot = Number(crop.quantidade);
-        let qtdTotal = Number(crop.colheitaTotal) || Number(0);
 
-        //tempo
+        //quantidade e tempo por Crop!
+        let qtdPorPlot = Number(crop.quantidade);
         let tempoDaCrop = Number(crop.tempoFinal);
+
+        //quantidade e tempo total de acordo com a quantidade de sementes plantadas!
+        let qtdTotal = Number(crop.colheitaTotal) || Number(0);
         let tempoTotalDaCrop = Number(crop.tempoTotal) || Number(0);
 
-        //coins individual
-        let custoPorSemente = Number(crop.custoPorSemente) < 0.1 ? Number(crop.custoPorSemente).toFixed(3) : Number(crop.custoPorSemente).toFixed(2);
-        let vendaPorCrop = Number(crop.vendaPorCrop) < 0.1 ? Number(crop.vendaPorCrop).toFixed(3) : Number(crop.vendaPorCrop).toFixed(2);
-        //coins calculos para resultado final
-        let custoTotal = Number(sementesUsadas * custoPorSemente);
-        let vendaTotal = Number(vendaPorCrop * qtdTotal);
-        let lucroCoins = vendaTotal - custoTotal;
+        //Custos das Sementes!
+        let custoPorSementeCoins = Number(crop.custoPorSemente);
+        let custoPorSementeFlower = (1 / flowerEmCoins) * custoPorSementeCoins;
 
-        //Resultado em Flower
+        //Valor de venda das Crops!
+        let vendaPorCropEmCoins = Number(crop.vendaPorCrop);
+        let vendaPorCropEmCoinsConvertidas = (1 / flowerEmCoins) * vendaPorCropEmCoins;
         let valorPorCropEmFlower = Number(crop.valorDoMarket);
-        let GastoComSementeEmFlower = Number(((1 / flowerEmCoins) * custoPorSemente) * sementesUsadas);
-        let lucroFlower = crop.seedsPlantadas == 0 || ilha === 'Basic' ? 0 : Number((valorPorCropEmFlower * qtdTotal) * (1 - taxa) - GastoComSementeEmFlower);
+        let valorPorCropEmFlowerMenosTaxa = valorPorCropEmFlower * (1 - taxa);
+        
+        //Resultado do calculo em Coins!
+        let custoTotalCoins = Number(sementesUsadas * custoPorSementeCoins);
+        let vendaTotalCoins = Number(vendaPorCropEmCoins * qtdTotal);
+        let lucroCoins = vendaTotalCoins - custoTotalCoins;
+        let lucroCoinsConvertido = (1 / flowerEmCoins) * lucroCoins;
+
+        //Resultado do calculo em Flower!
+        let custoTotalFlower = Number(((1 / flowerEmCoins) * custoPorSementeCoins) * sementesUsadas);
+        let vendaTotalFlower = (valorPorCropEmFlowerMenosTaxa * qtdTotal);
+        let lucroFlower = crop.seedsPlantadas == 0 || ilha === 'Basic' ? 0 : vendaTotalFlower - custoTotalFlower;
         
         //estoque
         let estoque = Number(crop.estoqueTotal);
         let qtdDeRestock = (sementesUsadas / estoque);
 
-        //lucro por hora
-        let custoUmaSemente = Number((1 / flowerEmCoins) * custoPorSemente);
-        let vendaPorPlot = Number(valorPorCropEmFlower * qtdPorPlot) * (1 - taxa);
-        let lucroPorSementePlantada = (vendaPorPlot - custoUmaSemente) * plots;
-        let lucroPorHora = ((umaHora / tempoDaCrop) * lucroPorSementePlantada).toFixed(4);
+        //lucro por hora Coins
+        let vendaPorPlotCoins = Number(vendaPorCropEmCoins * qtdPorPlot);
+        let lucroPorCicloPlantadoCoins = (vendaPorPlotCoins - custoPorSementeCoins) * plots;
+        let lucroPorHoraCoins = ((umaHora / tempoDaCrop) * lucroPorCicloPlantadoCoins);
+        let lucroPorHoraCoinsConvertido = (1 / flowerEmCoins) * lucroPorHoraCoins;
         console.log(crop.name);
+
+        //lucro por hora Flower
+        let vendaPorPlot = Number(valorPorCropEmFlowerMenosTaxa * qtdPorPlot);
+        let lucroPorCicloPlantado = (vendaPorPlot - custoPorSementeFlower) * plots;
+        let lucroPorHora = ((umaHora / tempoDaCrop) * lucroPorCicloPlantado);
+        console.log(crop.name);
+
+        //melhor opção de venda
+        let melhorOpcao = valorPorCropEmFlowerMenosTaxa > vendaPorCropEmCoinsConvertidas ? `${imgFlower} Flower` : `${imgCoins} Coins`;
 
         //imagens que vão na tabela
         let imgCrop = sprite(crop.name);
@@ -208,15 +229,17 @@ function tabelaDeCrops() {
         tabelaCrops += `
         <tr>
             <td>${imgCrop} ${crop.name}<br>${imgRestock} ${estoque}</td>
-            <td>${imgCoins} ${custoPorSemente}<br>${imgCoins} ${vendaPorCrop}</td>
+            <td>${imgCoins} ${custoPorSementeCoins}<br>${imgFlower} ${custoPorSementeFlower.toFixed(6)}</td>
             <td>${imgCrop} ${qtdPorPlot.toFixed(2)}<br>${imgTempo} ${formatarTempo(tempoDaCrop)}</td>
             <td><input type="number" placeholder="" data-name="${crop.name}" class="quantidade-input sementes-input" value="${crop.seedsPlantadas}"></td>
             <td>${imgSemente} ${sementesUsadas}<br>${imgCrop} ${qtdTotal.toFixed(2)}</td>
             <td>${imgTempo} ${formatarTempo(tempoTotalDaCrop)}</td>
-            <td>${imgCrop}<br>${imgCoins} ${lucroCoins.toFixed(2)}</td>
-            <td>${imgCrop}<br>${imgFlower} ${valorPorCropEmFlower.toFixed(5)}</td>
+            <td>${imgCoins} ${vendaPorCropEmCoins.toFixed(3)}<br>${imgFlower} ${vendaPorCropEmCoinsConvertidas.toFixed(6)}</td>
+            <td>${imgCrop}<br>${imgFlower} ${valorPorCropEmFlowerMenosTaxa.toFixed(5)}</td>
+            <td>${melhorOpcao}</td>
+            <td>${imgCoins} ${lucroCoins.toFixed(2)}<br>${imgFlower} ${lucroCoinsConvertido.toFixed(5)}</td>
             <td>${imgCrop}<br>${imgFlower} ${lucroFlower.toFixed(5)}</td>
-            <td>${imgCrop}<br>${imgFlower} ${lucroPorHora}</td>
+            <td>B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertido.toFixed(4)}<br>M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}</td>
         </tr>
         `;
 
@@ -320,6 +343,7 @@ function tabelaDeCrops() {
     // renderiza tudo da parte de crops
     mostrarResultadoCrops.innerHTML = `
         <div class="tabelas-em-ordem">
+            ${btnAjuda('crops')}
             ${cardResultados}
             ${tabelaCrops}        
         </div>
@@ -350,18 +374,20 @@ function tabelaDeCrops() {
     }
 
     let tabelaTituloCM = `
-        <tr>
+        <tr>   
             <th>${idiomaDoTextoCrops.crop}<br>${idiomaDoTextoCrops.estoque}</th>
-            <th>${idiomaDoTextoCrops.custoDaSemente}<br>${idiomaDoTextoCrops.vendaDaCrop}</th>
+            <th>${idiomaDoTextoCrops.custoDaSemente}</th>
             <th>${idiomaDoTextoCrops.mediaPorPlot}<br>${idiomaDoTextoCrops.tempoDaCrop}</th>
-            <th>${textoDefinirModoDeCalcularCropsCM} <br><button onclick="sementesPlantadasCM()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
-            <th>${idiomaDoTextoCrops.sementesUsadas}<br>${idiomaDoTextoCrops.totalDeCrops}</th>      
-            <th>${idiomaDoTextoCrops.tempoTotal}<br>${idiomaDoTextoCrops.oilGasto}</th>
+            <th>${textoDefinirModoDeCalcularCrops} <br><button onclick="sementesPlantadas()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
+            <th>${idiomaDoTextoCrops.sementesUsadas}<br>${idiomaDoTextoCrops.totalDeCrops}</th>
+            <th>${idiomaDoTextoCrops.tempoTotal}</th>
+            <th>${idiomaDoTextoCrops.vendaDaCropNaBetty}</th>
+            <th>${idiomaDoTextoCrops.valorDeVendaNoMarket} ${(taxa * 100).toFixed(2)}%</th>
+            <th>${idiomaDoTextoCrops.melhorOpcao}</th>
             <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
-            <th>${idiomaDoTextoCrops.valorDeVendaNoMarket}</th>
-            <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
+            <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}</th>
             <th>${idiomaDoTextoCrops.lucroPorHora}</th>
-        </tr>`
+        </tr>`;
 
     // tabela principal continua igual
     let tabelaCM = `
@@ -377,59 +403,94 @@ function tabelaDeCrops() {
     cropMachine.forEach(cropM => {
         if (!cropM.permitido) return;
 
-        let quantidadeCM = Number(cropM.quantidade);
-        let sementesUsadasCM = Number(cropM.qtdSementeUsadas) || 0;
-        let colheitaTotal = Number(cropM.colheitaTotal) || 0;
+        //sementes usadas!
+        let sementesUsadas = Number(cropM.qtdSementeUsadas) || 0;
+
+        //quantidade e tempo por Crop!
+        let qtdPorPlot = Number(cropM.quantidade);
+        let tempoDaCrop = Number(cropM.tempoFinal);
+
+        //quantidade e tempo total de acordo com a quantidade de sementes plantadas!
+        let qtdTotal = Number(cropM.colheitaTotal) || 0;
+        let tempoTotalDaCrop = (cropM.tempoTotal || 0);
+
+        //custo do Oil!
+        let custoDoOilEmCoins = mapaDeMinerals['oil'].mediaDeCustoCoins;
+        let custoDoOilEmFlower = mapaDeMinerals['oil'].mediaDeCustoFlower;
+
+        //Oil gasto por Crop e custo!
+        let oilPorCrop = ((oilPorHora / umaHora) * tempoDaCrop) / plotsCM; //teste ainda
+        let custoDoOilPorCropCoins = oilPorCrop * custoDoOilEmCoins;
+        let custoDoOilPorCropFlower = oilPorCrop * custoDoOilEmFlower;
+
+        //Total de Oil gasto com as Sementes plantadas e custo!
+        let oilGasto = (oilPorHora / umaHora) * tempoTotalDaCrop;
+        let custoTotalComOilCoins = Number(oilGasto * custoDoOilEmCoins);
+        let custoTotalComOilFlower = Number(oilGasto * custoDoOilEmFlower);
         
-        let tempoPorCropCM = Number(cropM.tempoFinal);
-        let tempoTotalPorCropCM = (cropM.tempoTotal || 0);
+        //Custos das Sementes!
+        let custoPorSementeCoins = Number(cropM.custoPorSemente);
+        let custoPorSementeFlower = (1 / flowerEmCoins) * custoPorSementeCoins;
 
-        let custoPorSementeCoins = Number(cropM.custoPorSemente) < 0.1 ? Number(cropM.custoPorSemente).toFixed(3) : Number(cropM.custoPorSemente).toFixed(2);
-        let vendaDaCropPorCoins = Number(cropM.vendaPorCrop) < 0.1 ? Number(cropM.vendaPorCrop).toFixed(3) : Number(cropM.vendaPorCrop).toFixed(2);
-        
-        let custoTotal = sementesUsadasCM * custoPorSementeCoins;
-        let vendaTotal = colheitaTotal * vendaDaCropPorCoins;
-
-        let oilGasto = (oilPorHora / umaHora) * tempoTotalPorCropCM;
-        let lucroCoins = sementesUsadasCM > 0 ? (vendaTotal - custoTotal - (mapaDeMinerals['oil'].mediaDeCustoCoins * oilGasto)) : 0;
-
-        let estoqueTotal = Number(cropM.estoqueTotal);
-        let qtdDeRestock = (sementesUsadasCM / estoqueTotal);
-
+        //Valor de venda das Crops!
+        let vendaPorCropEmCoins = Number(cropM.vendaPorCrop);
+        let vendaPorCropEmCoinsConvertidas = (1 / flowerEmCoins) * vendaPorCropEmCoins;
         let valorPorCropEmFlower = Number(cropM.valorDoMarket);
+        let valorPorCropEmFlowerMenosTaxa = valorPorCropEmFlower * (1 - taxa);
 
-        let GastoComSementeEmFlower = Number(((1 / flowerEmCoins) * custoPorSementeCoins) * sementesUsadasCM);
-        let lucroFlower = cropM.seedsPlantadas == 0 || ilha === 'Basic' ? 0 : 
-            Number(((valorPorCropEmFlower * colheitaTotal) * (1 - taxa)) - GastoComSementeEmFlower - ((mapaDeMinerals['oil'].mediaDeCustoFlower * oilGasto)));
+        //Resultado do calculo em Coins!
+        let custoTotalComSementesCoins = Number(sementesUsadas * custoPorSementeCoins);
+        let vendaTotalCoins = Number(qtdTotal * vendaPorCropEmCoins);
+        let lucroCoins = vendaTotalCoins - (custoTotalComSementesCoins + custoTotalComOilCoins);
+        let lucroCoinsConvertido = (1 / flowerEmCoins) * lucroCoins;
+
+        //Resultado do calculo em Flower!
+        let custoTotalComSementesFlower = Number((1 / flowerEmCoins) * (custoPorSementeCoins * sementesUsadas));
+        let vendaTotalFlower = (valorPorCropEmFlowerMenosTaxa * qtdTotal);
+        let lucroFlower = cropM.seedsPlantadas == 0 || ilha === 'Basic' ? 0 : vendaTotalFlower - (custoTotalComSementesFlower + custoTotalComOilFlower);
+
+        //estoque
+        let estoque = Number(cropM.estoqueTotal);
+        let qtdDeRestock = (sementesUsadas / estoque);
+
+        //lucro por hora em coins
+        let vendaPorPlotCoins = Number(vendaPorCropEmCoins * qtdPorPlot);
+        let lucroPorCicloPlantadoCoins = ((vendaPorPlotCoins - (custoPorSementeCoins + custoDoOilPorCropCoins)) * plotsCM);
+        let lucroPorHoraCoins = ((umaHora / tempoDaCrop) * lucroPorCicloPlantadoCoins);
+        let lucroPorHoraCoinsConvertido = (1 / flowerEmCoins) * lucroPorHoraCoins;
 
         //lucro por hora
-        let custoUmaSemente = Number((1 / flowerEmCoins) * custoPorSementeCoins);
-        let oilPorSemente = (oilPorHora / umaHora) * (tempoPorCropCM / plotsCM);
-        let vendaPorPlot = Number(valorPorCropEmFlower * quantidadeCM) * (1 - taxa);
-        let lucroPorSementePlantada = (vendaPorPlot - custoUmaSemente - (mapaDeMinerals['oil'].mediaDeCustoFlower * oilPorSemente)) * plotsCM;
-        let lucroPorHora = ((umaHora / tempoPorCropCM) * lucroPorSementePlantada).toFixed(4);
+        let vendaPorPlot = Number(valorPorCropEmFlowerMenosTaxa * qtdPorPlot);
+        let lucroPorCicloPlantado = ((vendaPorPlot - (custoPorSementeFlower + custoDoOilPorCropFlower)) * plotsCM);
+        let lucroPorHora = ((umaHora / tempoDaCrop) * lucroPorCicloPlantado);
+        console.log(cropM.name);
 
         //imagens que vão na tabela
-        let imgCropM = sprite(cropM.name);
+        let imgCrop = sprite(cropM.name);
         let imgSemente = sprite(`seed` + cropM.name);
+        
+        //melhor opção de venda
+        let melhorOpcao = valorPorCropEmFlowerMenosTaxa > vendaPorCropEmCoinsConvertidas ? `${imgFlower} Flower` : `${imgCoins} Coins`;
 
         tabelaCM += `
         <tr>
-            <td>${imgCropM} ${cropM.name} <br> ${imgRestock} ${estoqueTotal}</td>
-            <td>${imgCoins} ${custoPorSementeCoins}<br>${imgCoins} ${vendaDaCropPorCoins}</td>
-            <td>${imgCropM} ${quantidadeCM.toFixed(2)}<br>${imgTempo} ${formatarTempo(tempoPorCropCM)}</td>
+            <td>${imgCrop} ${cropM.name}<br>${imgRestock} ${estoque}</td>
+            <td>${imgCoins} ${custoPorSementeCoins}<br>${imgFlower} ${custoPorSementeFlower.toFixed(6)}</td>
+            <td>${imgCrop} ${qtdPorPlot.toFixed(2)}<br>${imgTempo} ${formatarTempo(tempoDaCrop)}</td>
             <td><input type="number" placeholder="" data-name="${cropM.name}" class="quantidade-input sementesCM-input" value="${cropM.seedsPlantadas}"></td>
-            <td>${imgSemente} ${sementesUsadasCM}<br>${imgCropM} ${colheitaTotal.toFixed(2)}</td>
-            <td>${imgTempo} ${formatarTempo(tempoTotalPorCropCM)}<br>${imgOil} ${oilGasto.toFixed(2)}</td>
-            <td>${imgCropM}<br>${imgCoins} ${lucroCoins.toFixed(2)}</td>
-            <td>${imgCropM}<br>${imgFlower} ${valorPorCropEmFlower.toFixed(5)}</td>
-            <td>${imgCropM}<br>${imgFlower} ${lucroFlower.toFixed(5)}</td>
-            <td>${imgCropM}<br>${imgFlower} ${lucroPorHora}</td>
+            <td>${imgSemente} ${sementesUsadas}<br>${imgCrop} ${qtdTotal.toFixed(2)}</td>
+            <td>${imgTempo} ${formatarTempo(tempoTotalDaCrop)}</td>
+            <td>${imgCoins} ${vendaPorCropEmCoins.toFixed(3)}<br>${imgFlower} ${vendaPorCropEmCoinsConvertidas.toFixed(6)}</td>
+            <td>${imgCrop}<br>${imgFlower} ${valorPorCropEmFlowerMenosTaxa.toFixed(5)}</td>
+            <td>${melhorOpcao}</td>
+            <td>${imgCoins} ${lucroCoins.toFixed(2)}<br>${imgFlower} ${lucroCoinsConvertido.toFixed(5)}</td>
+            <td>${imgCrop}<br>${imgFlower} ${lucroFlower.toFixed(5)}</td>
+            <td>B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertido.toFixed(4)}<br>M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}</td>
         </tr>
         `;
 
         oilTotalUsado += oilGasto;
-        tempoTotalDoComboNaCM += tempoTotalPorCropCM;
+        tempoTotalDoComboNaCM += tempoTotalDaCrop;
         lucroTotalDoComboCoinsNaCM += lucroCoins;
         ganhoTotalDoComboFlowerNaCM += lucroFlower;
         if (qtdDeRestock > restockDoComboCM) restockDoComboCM = qtdDeRestock;
@@ -553,17 +614,19 @@ function tabelaDeCrops() {
     let tabelaTituloFrutas = `
         <tr>
             <th>${idiomaDoTextoCrops.frutas}<br>${idiomaDoTextoCrops.estoque}</th>
-            <th>${idiomaDoTextoCrops.custoDaSemente}<br>${idiomaDoTextoCrops.vendaDaFruta}</th>
+            <th>${idiomaDoTextoCrops.custoDaSemente}</th>
             <th>${idiomaDoTextoCrops.mediaPorColeta}<br>${idiomaDoTextoCrops.tempoDaFruta}</th>
             <th>${textoDefinirModoDeCalcularFrutas} <br><button onclick="sementesPlantadasFrutas()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
             <th>${idiomaDoTextoCrops.sementesUsadas}<br>${idiomaDoTextoCrops.totalDeFrutas}</th>      
             <th>${idiomaDoTextoCrops.tempoTotal}</th>
             <th>${idiomaDoTextoCrops.machadosUsados}<br>${idiomaDoTextoCrops.madeiraGanha}</th>
+            <th>${idiomaDoTextoCrops.vendaDaFrutaNaBetty}</th>
+            <th>${idiomaDoTextoCrops.valorDeVendaNoMarket} ${(taxa * 100).toFixed(2)}%</th>
+            <th>${idiomaDoTextoCrops.melhorOpcao}</th>
             <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
-            <th>${idiomaDoTextoCrops.valorDeVendaNoMarket}</th>
-            <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
+            <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}</th>
             <th>${idiomaDoTextoCrops.lucroPorHora}</th>
-        </tr>`
+        </tr>`;
 
     // tabela principal continua igual
     let tabelaFrutas = `
@@ -577,36 +640,90 @@ function tabelaDeCrops() {
     fruits.forEach(fruta => {
         if (!fruta.estacao.includes(estacao)) return;
 
-        let qtdPorColeta = Number(fruta.quantidade);
-
-        let tempoPorColeta = fruta.tempoFinal;
-        let tempoTotal = fruta.tempoTotal;
-
-        let custoPorSemente = Number(fruta.custoPorSemente);
-        let vendaDaFruta = Number(fruta.vendaPorFruta);
-
-        let estoqueFinal = Number(fruta.estoqueFinal);
-
-        let valorPorFrutaNoMarket = Number(fruta.valorDoMarket);
-
+        //sementes usadas!
         let sementesUsadas = Number(fruta.qtdSementeUsadas);
-        let colheitaTotal = Number(fruta.colheitaTotal);
 
+        //quantidade e tempo por semente da Fruta!
+        let qtdPorSemente = Number(fruta.quantidade);
+        let tempoPorSemente = Number(fruta.tempoFinal);
+
+        //quantidade e tempo por coleta (frutas possuem varias coletas com apenas 1 semente)
+        let qtdPorColeta = qtdPorSemente / frutiferasDuram;
+        let tempoPorColeta = fruta.tempoFinal / frutiferasDuram;
+
+        //quantidade e tempo total de acordo com a quantidade de sementes plantadas!
+        let qtdTotal = Number(fruta.colheitaTotal);
+        let tempoTotalDaFruta = fruta.tempoTotal;
+
+        //Custo do Machado!
+        let custoDoMachadoCoins = mapaDeFerramentas['axe'].custoEmCoins;
+        let custoDoMachadoConvertidoEmFlower = (1 / flowerEmCoins) * custoDoMachadoCoins;
+
+        //Valor da Madeira com a taxa retirada!
+        let valorDaMadeiraFlower = (mapaDeMinerals['wood'].valorDoMarket) * (1 - taxa);
+        let valorDaMadeiraConvertidaEmCoins = valorDaMadeiraFlower * flowerEmCoins;
+
+        //Machado gasto por semente de Fruta e custo!
+        let machadoPorSemente = fruta.axe;
+        let custoDoMachadoPorSementeCoins = machadoPorSemente * custoDoMachadoCoins;
+        let custoDoMachadoPorSementeFlower = machadoPorSemente * custoDoMachadoConvertidoEmFlower;
+
+        //Madeiras ganhas por semente de Fruta e rendimento!
+        let madeiraPorSemente = fruta.wood;
+        let ganhoComMadeiraPorSementeCoins = madeiraPorSemente * valorDaMadeiraConvertidaEmCoins;
+        let ganhoComMadeiraPorSementeFlower = madeiraPorSemente * valorDaMadeiraFlower;
+
+        //Total de Machados usados e gasto!
         let machadosUsados = fruta.totalAxe;
+        let custoTotalComMachadosCoins = machadosUsados * custoDoMachadoCoins;
+        let custoTotalComMachadosFlower = machadosUsados * custoDoMachadoConvertidoEmFlower;
+
+        //Total de Madeiras ganhas e rendimento(taxa ja retirada)!
         let madeirasGanhas = fruta.totalWood;
+        let ganhoTotalComMadeiraCoins = madeirasGanhas * valorDaMadeiraConvertidaEmCoins;
+        let ganhoTotalComMadeiraFlower = madeirasGanhas * valorDaMadeiraFlower;
 
-        let custoTotalCoins = (custoPorSemente * sementesUsadas) + (mapaDeFerramentas['axe'].custoEmCoins * machadosUsados);
-        let vendaTotalCoins = (vendaDaFruta * colheitaTotal) + (((mapaDeMinerals['wood'].valorDoMarket * (1 - taxa)) * madeirasGanhas) * flowerEmCoins);
-        let lucroCoins = sementesUsadas > 0 ? vendaTotalCoins - custoTotalCoins : 0;
+        //Custos das Sementes!
+        let custoPorSementeCoins = Number(fruta.custoPorSemente);
+        let custoPorSementeFlower = (1 / flowerEmCoins) * custoPorSementeCoins;
 
-        let custoTotalFlower = (1 / flowerEmCoins) * custoTotalCoins;
-        let vendaTotalFlower = ((colheitaTotal * valorPorFrutaNoMarket) + (mapaDeMinerals['wood'].valorDoMarket * madeirasGanhas)) * (1 - taxa);
-        let lucroFlower = sementesUsadas > 0 ? vendaTotalFlower - custoTotalFlower : 0;
+        //Valor de venda das Frutas!
+        let vendaPorFrutaEmCoins = Number(fruta.vendaPorFruta);
+        let vendaPorFrutaEmCoinsConvertidas = (1 / flowerEmCoins) * vendaPorFrutaEmCoins;
+        let valorPorFrutaEmFlower = Number(fruta.valorDoMarket);
+        let valorPorFrutaEmFlowerMenosTaxa = valorPorFrutaEmFlower * (1 - taxa);
 
-        let qtdDeRestock = (sementesUsadas / estoqueFinal);
+        //Resultado do calculo em Coins!
+        let custoTotalCoins = Number((sementesUsadas * custoPorSementeCoins) + custoTotalComMachadosCoins);
+        let vendaTotalCoins = Number((qtdTotal * vendaPorFrutaEmCoins) + ganhoTotalComMadeiraCoins);
+        let lucroCoins = vendaTotalCoins - custoTotalCoins;
+        let lucroCoinsConvertido = (1 / flowerEmCoins) * lucroCoins;
+
+        //Resultado do calculo em Flower!
+        let custoTotalFlower = Number((sementesUsadas * custoPorSementeFlower) + custoTotalComMachadosFlower);
+        let vendaTotalFlower = ((valorPorFrutaEmFlowerMenosTaxa * qtdTotal) + ganhoTotalComMadeiraFlower);
+        let lucroFlower = fruta.seedsPlantadas == 0 || ilha === 'Basic' ? 0 : vendaTotalFlower - custoTotalFlower;
+
+        //estoque
+        let estoque = Number(fruta.estoqueFinal);
+        let qtdDeRestock = (sementesUsadas / estoque);
+
+        //lucro por hora em coins
+        let vendaPorSementePlantadaCoins = Number((vendaPorFrutaEmCoins * qtdPorSemente) + ganhoComMadeiraPorSementeCoins);
+        let custoPorSementePlantadaCoins = Number(custoPorSementeCoins + custoDoMachadoPorSementeCoins);
+        let lucroPorCicloPlantadoCoins = ((vendaPorSementePlantadaCoins - custoPorSementePlantadaCoins) * plotsFrutas);
+        let lucroPorHoraCoins = ((umaHora / tempoPorSemente) * lucroPorCicloPlantadoCoins);
+        let lucroPorHoraCoinsConvertida = (1 / flowerEmCoins) * lucroPorHoraCoins;
 
         //lucro por hora
-        let lucroPorHora = lucroFlower === 0 ? '' : ((umaHora / tempoTotal) * lucroFlower).toFixed(4);
+        let vendaPorSementePlantada = Number((valorPorFrutaEmFlowerMenosTaxa * qtdPorSemente) + ganhoComMadeiraPorSementeFlower);
+        let custoPorSementePlantada = Number(custoPorSementeFlower + custoDoMachadoPorSementeFlower);
+        let lucroPorCicloPlantado = ((vendaPorSementePlantada - custoPorSementePlantada) * plotsFrutas);
+        let lucroPorHora = ((umaHora / tempoPorSemente) * lucroPorCicloPlantado);
+        console.log(fruta.name);
+        
+        //melhor opção de venda
+        let melhorOpcao = valorPorFrutaEmFlowerMenosTaxa > vendaPorFrutaEmCoinsConvertidas ? `${imgFlower} Flower` : `${imgCoins} Coins`;
 
         //imagens que vão na tabela
         let imgFrutas = sprite(fruta.name);
@@ -614,21 +731,23 @@ function tabelaDeCrops() {
 
         tabelaFrutas += `
         <tr>
-            <td>${imgFrutas} ${fruta.name}<br>${imgRestock} ${estoqueFinal}</td>
-            <td>${imgCoins} ${custoPorSemente.toFixed(2)}<br>${imgCoins} ${vendaDaFruta.toFixed(2)}</td>
+            <td>${imgFrutas} ${fruta.name}<br>${imgRestock} ${estoque}</td>
+            <td>${imgCoins} ${custoPorSementeCoins.toFixed(2)}<br>${imgFlower} ${custoPorSementeFlower.toFixed(6)}</td>
             <td>${imgFrutas} ${qtdPorColeta.toFixed(2)}<br>${imgTempo} ${formatarTempo(tempoPorColeta)}</td>
             <td><input type="number" placeholder="" data-name="${fruta.name}" class="quantidade-input sementesFrutas-input" value="${fruta.seedsPlantadas}"></td>
-            <td>${imgSemente} ${sementesUsadas}<br>${imgFrutas} ${colheitaTotal.toFixed(2)}</td>
-            <td>${imgTempo} ${formatarTempo(tempoTotal)}</td>
+            <td>${imgSemente} ${sementesUsadas}<br>${imgFrutas} ${qtdTotal.toFixed(2)}</td>
+            <td>${imgTempo} ${formatarTempo(tempoTotalDaFruta)}</td>
             <td>${imgMachado} ${machadosUsados}<br>${imgMadeira} ${madeirasGanhas}</td>
+            <td>${imgCoins} ${vendaPorFrutaEmCoins.toFixed(2)}<br>${imgFlower} ${vendaPorFrutaEmCoinsConvertidas.toFixed(6)}</td>
+            <td>${imgFrutas}<br>${imgFlower} ${valorPorFrutaEmFlower.toFixed(5)}</td>
+            <td>${melhorOpcao}</td>
             <td>${imgFrutas} + ${imgMadeira}<br>${imgCoins} ${lucroCoins.toFixed(2)}</td>
-            <td>${imgFrutas}<br>${imgFlower} ${valorPorFrutaNoMarket.toFixed(5)}</td>
             <td>${imgFrutas} + ${imgMadeira}<br>${imgFlower} ${lucroFlower.toFixed(5)}</td>
-            <td>${imgFrutas} + ${imgMadeira}<br>${imgFlower} ${lucroPorHora}</td>
+            <td>B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertida.toFixed(4)}<br>M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}</td>
         </tr>
         `;
 
-        tempoTotalComboFrutas += tempoTotal;
+        tempoTotalComboFrutas += tempoTotalDaFruta;
         lucroTotalDoComboFrutasCoins += lucroCoins;
         ganhoTotalDoComboFrutasFlower += lucroFlower;
         if (qtdDeRestock > restockDoComboFrutas) restockDoComboFrutas = qtdDeRestock;
@@ -749,16 +868,18 @@ function tabelaDeCrops() {
     let tabelaTituloGH = `
     <tr>
         <th>${idiomaDoTextoCrops.crop}<br>${idiomaDoTextoCrops.estoque}</th>
-        <th>${idiomaDoTextoCrops.custoDaSemente}<br>${idiomaDoTextoCrops.vendaDaCrop}</th>
+        <th>${idiomaDoTextoCrops.custoDaSemente}</th>
         <th>${idiomaDoTextoCrops.mediaPorPlot}<br>${idiomaDoTextoCrops.tempoDaCrop}</th>
         <th>${textoDefinirModoDeCalcularGH} <br><button onclick="sementesPlantadasGH()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
         <th>${idiomaDoTextoCrops.sementesUsadas}<br>${idiomaDoTextoCrops.totalDeCrops}</th>      
         <th>${idiomaDoTextoCrops.tempoTotal}<br>${idiomaDoTextoCrops.oilGasto}</th>
+        <th>${idiomaDoTextoCrops.vendaDaCropNaBetty}</th>
+        <th>${idiomaDoTextoCrops.valorDeVendaNoMarket} ${(taxa * 100).toFixed(2)}%</th>
+        <th>${idiomaDoTextoCrops.melhorOpcao}</th>
         <th>${idiomaDoTextoCrops.lucroEmCoins}</th>
-        <th>${idiomaDoTextoCrops.valorDeVendaNoMarket}</th>
-        <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}: ${(taxa * 100).toFixed(2)}%</th>
+        <th>${idiomaDoTextoCrops.lucroVendendoNoMarket}</th>
         <th>${idiomaDoTextoCrops.lucroPorHora}</th>
-    </tr>`
+    </tr>`;
 
     // tabela principal continua igual
     let tabelaGreenhouse = `
@@ -771,59 +892,92 @@ function tabelaDeCrops() {
 
     greenhouse.forEach(gh => {
 
-        let quantidadeGH = Number(gh.quantidade);
+        //sementes usadas!
         let sementesUsadas = Number(gh.qtdSementeUsadas);
 
-        let tempoFinal = Number(gh.tempoFinal);
+        //quantidade tempo por Crop!
+        let qtdPorPlot = Number(gh.quantidade);
+        let tempoDaCrop = Number(gh.tempoFinal);
+        
+        //quantidade e tempo total de acordo com a quantidade de sementes plantadas!
+        let qtdTotal = Number(gh.colheitaTotal);
+        let tempoTotalDaGH = Number(gh.tempoTotal);
+        
+        //custo do Oil!
+        let custoDoOilEmCoins = mapaDeMinerals['oil'].mediaDeCustoCoins;
+        let custoDoOilEmFlower = mapaDeMinerals['oil'].mediaDeCustoFlower;
 
-        let custoDaSementeCoins = Number(gh.custoPorSemente);
-        let vendaDaCropPorCoins = Number(gh.vendaPorCrop);
+        //Oil por Crop e custo!
+        let oilPorCrop = Number(gh.oilFinal);
+        let custoDoOilPorCropCoins = oilPorCrop * custoDoOilEmCoins;
+        let custoDoOilPorCropFlower = oilPorCrop * custoDoOilEmFlower;
 
-        let oilFinal = Number(gh.oilFinal);
-        let estoqueFinal = Number(gh.estoqueFinal);
+        //Total de Oil gasto com as Sementes plantadas e custo!
+        let oilTotal = Number(gh.oilTotal);
+        let custoTotalComOilCoins = oilTotal * custoDoOilEmCoins;
+        let custoTotalComOilFlower = oilTotal * custoDoOilEmFlower;
 
-        let colheitaTotal = Number(gh.colheitaTotal);
-        let tempoTotal = Number(gh.tempoTotal);
-        let oilTotalPorCrop = Number(gh.oilTotal);
+        //Custos das Sementes!
+        let custoPorSementeCoins = Number(gh.custoPorSemente);
+        let custoPorSementeFlower = (1 / flowerEmCoins) * custoPorSementeCoins;
 
-        let custoTotal = sementesUsadas * custoDaSementeCoins;
-        let vendaTotal = colheitaTotal * vendaDaCropPorCoins;
-
-        let qtdDeRestock = sementesUsadas / estoqueFinal;
-
-        let lucroCoins = sementesUsadas > 0 ? (vendaTotal - custoTotal - (mapaDeMinerals['oil'].mediaDeCustoCoins * oilTotalPorCrop)) : 0;
-
+        //Valor de venda das Crops!
+        let vendaPorCropEmCoins = Number(gh.vendaPorCrop);
+        let vendaPorCropEmCoinsConvertidas = (1 / flowerEmCoins) * vendaPorCropEmCoins;
         let valorPorCropEmFlower = Number(gh.valorDoMarket);
+        let valorPorCropEmFlowerMenosTaxa = valorPorCropEmFlower * (1 - taxa);
 
-        let GastoComSementeEmFlower = Number(((1 / flowerEmCoins) * custoDaSementeCoins) * sementesUsadas);
-        let lucroFlower = gh.seedsPlantadas == 0 || ilha === 'Basic' ? 0 : 
-            Number(((valorPorCropEmFlower * colheitaTotal) * (1 - taxa)) - GastoComSementeEmFlower - ((mapaDeMinerals['oil'].mediaDeCustoFlower * oilTotalPorCrop)));
+        //Resultado do calculo em Coins!
+        let custoTotalComSementesCoins = Number(sementesUsadas * custoPorSementeCoins);
+        let vendaTotalCoins = Number(qtdTotal * vendaPorCropEmCoins);
+        let lucroCoins = vendaTotalCoins - (custoTotalComSementesCoins + custoTotalComOilCoins);
+        let lucroCoinsConvertido = (1 / flowerEmCoins) * lucroCoins;
+
+        //Resultado do calculo em Flower!
+        let custoTotalComSementesFlower = Number(custoPorSementeFlower * sementesUsadas);
+        let vendaTotalFlower = (valorPorCropEmFlowerMenosTaxa * qtdTotal);
+        let lucroFlower = gh.seedsPlantadas == 0 || ilha === 'Basic' ? 0 : vendaTotalFlower - (custoTotalComSementesFlower + custoTotalComOilFlower);
+
+        //estoque
+        let estoque = Number(gh.estoqueFinal);
+        let qtdDeRestock = sementesUsadas / estoque;
+
+        //lucro por hora Coins
+        let vendaPorPlotCoins = Number(vendaPorCropEmCoins * qtdPorPlot);
+        let lucroPorCicloPlantadoCoins = ((vendaPorPlotCoins - (custoPorSementeCoins + custoDoOilPorCropCoins)) * plotsGH);
+        let lucroPorHoraCoins = ((umaHora / tempoDaCrop) * lucroPorCicloPlantadoCoins);
+        let lucroPorHoraCoinsConvertido = (1 / flowerEmCoins) * lucroPorHoraCoins;
+
+        //lucro por hora
+        let vendaPorPlot = Number(valorPorCropEmFlowerMenosTaxa * qtdPorPlot);
+        let lucroPorCicloPlantado = ((vendaPorPlot - (custoPorSementeFlower + custoDoOilPorCropFlower)) * plotsGH);
+        let lucroPorHora = ((umaHora / tempoDaCrop) * lucroPorCicloPlantado);
+
+        //melhor opção de venda
+        let melhorOpcao = valorPorCropEmFlowerMenosTaxa > vendaPorCropEmCoinsConvertidas ? `${imgFlower} Flower` : `${imgCoins} Coins`;
 
         //imagens que vão na tabela
         let imgCropGH = sprite(gh.name);
         let imgSemente = sprite(`seed` + gh.name);
-
-        //lucro por hora (esse esta dando errado, não sei o motivo)
-        let lucroPorHora = lucroFlower === 0 ? '' : ((umaHora / tempoTotal) * lucroFlower).toFixed(4);
-        let textoLucroPorHora = document.getElementById('tipo-de-calculo-greenhouse').value === 'rodada' ? 
-            `${imgCropGH}<br>${imgFlower} ${lucroPorHora}` : `${idiomaDoTextoCrops.opcaoCiclo}`;
-
+        
         tabelaGreenhouse += `
         <tr>
-            <td>${imgCropGH} ${gh.name}<br>${imgRestock} ${estoqueFinal}</td>
-            <td>${imgCoins} ${custoDaSementeCoins}<br>${imgCoins} ${vendaDaCropPorCoins}</td>
-            <td>${imgCropGH} ${quantidadeGH.toFixed(2)} (${imgOil} ${oilFinal})<br>${imgTempo} ${formatarTempo(tempoFinal)}</td>
+            <td>${imgCropGH} ${gh.name}<br>${imgRestock} ${estoque}</td>
+            <td>${imgCoins} ${custoPorSementeCoins}<br>${imgFlower} ${custoPorSementeFlower.toFixed(5)}</td>
+            <td>${imgCropGH} ${qtdPorPlot.toFixed(2)} (${imgOil} ${oilPorCrop})<br>${imgTempo} ${formatarTempo(tempoDaCrop)}</td>
             <td><input type="number" placeholder="" data-name="${gh.name}" class="quantidade-input sementesGH-input" value="${gh.seedsPlantadas}"></td>
-            <td>${imgSemente} ${sementesUsadas}<br>${imgCropGH} ${colheitaTotal.toFixed(2)}</td>
-            <td>${imgTempo} ${formatarTempo(tempoTotal)}<br>${imgOil} ${oilTotalPorCrop}</td>
-            <td>${imgCropGH}<br>${imgCoins} ${lucroCoins.toFixed(2)}</td>
-            <td>${imgCropGH}<br>${imgFlower} ${valorPorCropEmFlower.toFixed(5)}</td>
+            <td>${imgSemente} ${sementesUsadas}<br>${imgCropGH} ${qtdTotal.toFixed(2)}</td>
+            <td>${imgTempo} ${formatarTempo(tempoTotalDaGH)}<br>${imgOil} ${oilTotal}</td>
+            <td>${imgCoins} ${vendaPorCropEmCoins}<br>${imgFlower} ${vendaPorCropEmCoinsConvertidas.toFixed(4)}</td>
+            <td>${imgCropGH}<br>${imgFlower} ${valorPorCropEmFlowerMenosTaxa.toFixed(5)}</td>
+            <td>${melhorOpcao}</td>
+            <td>${imgCoins} ${lucroCoins.toFixed(2)}<br>${imgFlower} ${lucroCoinsConvertido.toFixed(5)}</td>
             <td>${imgCropGH}<br>${imgFlower} ${lucroFlower.toFixed(5)}</td>
-            $<td>${textoLucroPorHora}</td>
+            <td>B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertido.toFixed(4)}<br>M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}</td>
         </tr>
         `;
 
-        tempoTotalComboGH += tempoTotal;
+        tempoTotalComboGH += tempoTotalDaGH;
         lucroTotalDoComboGHCoins += lucroCoins;
         ganhoTotalDoComboGHFlower += lucroFlower;
         if (qtdDeRestock > restockDoComboGH) restockDoComboGH = qtdDeRestock;
@@ -937,7 +1091,8 @@ function tabelaDeCrops() {
 
 function tabelaCropMachine(tabelaCM, cardResultadosCM) {
     mostrarResultadoCropMachine.innerHTML = `
-        <div class="tabelas-em-ordem">    
+        <div class="tabelas-em-ordem">
+            ${btnAjuda('cropMachine')}
             ${cardResultadosCM}    
             ${tabelaCM}
         </div>
@@ -948,7 +1103,8 @@ function tabelaCropMachine(tabelaCM, cardResultadosCM) {
 
 function tabelaDeFrutas(tabelaFrutas, cardResultadosFrutas) {
     mostrarResultadoFrutas.innerHTML = `
-        <div class="tabelas-em-ordem"> 
+        <div class="tabelas-em-ordem">
+            ${btnAjuda('frutas')}
             ${cardResultadosFrutas}   
             ${tabelaFrutas}    
         </div>
@@ -960,6 +1116,7 @@ function tabelaDeFrutas(tabelaFrutas, cardResultadosFrutas) {
 function tabelaDaGreenhouse(tabelaGreenhouse, cardResultadosGH) {
     mostrarResultadoGreenhouse.innerHTML = `
         <div class="tabelas-em-ordem">
+            ${btnAjuda('greenhouse')}
             ${cardResultadosGH} 
             ${tabelaGreenhouse}    
         </div>

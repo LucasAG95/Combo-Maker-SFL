@@ -174,21 +174,26 @@ function buffsAdicionadosCrops() {
             fertilizantes.sproutMix,
             budsFiltrados
         ]);
-        
-        crop.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai + (buffs.qtdArea / plots)) * buffs.qtdInsta;
-        
-        crop.tempoFinal = (crop.tempo * buffs.tempoMulti) - buffs.tempoSubtrai;
-        
+
+        //Estoque de crops!
+        crop.estoqueTotal = (crop.estoque * buffs.estoqueMulti) + buffs.estoqueSoma;
+
+        //Custo da semente e valor da crop em coins!
         crop.custoPorSemente = crop.custoSemente * buffs.multiCusto; 
         crop.vendaPorCrop = crop.valorDeVenda * buffs.multiVenda;
 
-        crop.estoqueTotal = (crop.estoque * buffs.estoqueMulti) + buffs.estoqueSoma;
+        //tempo para ficar pronta a crop!
+        crop.tempoFinal = (crop.tempo * buffs.tempoMulti) - buffs.tempoSubtrai;
+        
+        //quantidade de crops recebida por semente!
+        crop.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai + (buffs.qtdArea / plots)) * buffs.qtdInsta;
 
         //Calculo para o tipo de conta que a pessoa quer fazer
         if (modoDeCalularCrops === 'manual') {
             crop.colheitaTotal = crop.quantidade * crop.seedsPlantadas; 
             crop.qtdSementeUsadas = crop.seedsPlantadas * buffs.qtdInsta;
-            crop.tempoTotal = crop.tempoFinal * Math.ceil(crop.seedsPlantadas / plots);
+            crop.tempoTotal = crop.tempoFinal * (crop.seedsPlantadas / plots); // retirei Math.ceil que arredonda para cima!
+
         } else if (modoDeCalularCrops === 'rodada') {
             crop.colheitaTotal = (crop.seedsPlantadas * plots) * crop.quantidade ;
             crop.qtdSementeUsadas = (crop.seedsPlantadas * plots) * buffs.qtdInsta;
@@ -220,7 +225,7 @@ function buffsAdicionadosCrops() {
         ]);
 
         //atualizar a quantidade de plots que a CM possui e quantos Oil ela gasta por hora!
-        plotsCM = mapaDeTodasSkillsComTier['fieldExtensionModule'].possui ? 15 : 10
+        plotsCM = mapaDeTodasSkillsComTier['fieldExtensionModule'].possui ? 15 : 10;
         oilPorHora = (1 - buffs.oilDiminuido) * (1 + buffs.oilAumentado);
 
         //liberar as crops com as skills
@@ -246,14 +251,18 @@ function buffsAdicionadosCrops() {
             mapaDeTodasCropsEFrutas['Broccoli'].permitido = false;
         }
 
-        cropM.quantidade = Number(buffs.qtdMulti + buffs.qtdSoma - buffs.qtdSubtrai);
+        //Estoque de crops!
+        cropM.estoqueTotal = (cropM.estoque * buffs.estoqueMulti) + buffs.estoqueSoma;
 
-        cropM.tempoFinal = cropM.tempo * buffs.tempoCM;
-        
+        //Custo da semente e valor da crop em coins!
         cropM.custoPorSemente = cropM.custoSemente * buffs.multiCusto; 
         cropM.vendaPorCrop = cropM.valorDeVenda * buffs.multiVenda;
 
-        cropM.estoqueTotal = (cropM.estoque * buffs.estoqueMulti) + buffs.estoqueSoma;
+        //tempo para ficar pronta a crop!
+        cropM.tempoFinal = cropM.tempo * buffs.tempoCM;
+
+        //quantidade de crops recebida por semente!
+        cropM.quantidade = Number(buffs.qtdMulti + buffs.qtdSoma - buffs.qtdSubtrai);
 
         if (modoDeCalularCropsNaCM === 'manual') {
             cropM.qtdSementeUsadas = cropM.seedsPlantadas;
@@ -314,26 +323,30 @@ function buffsAdicionadosFrutas() {
         if (mapaDeTodasSkillsComTier['noAxeNoWorries'].possui) fruta.wood *= mapaDeTodasSkillsComTier['noAxeNoWorries'].quantidade[0].buff;
         if (mapaDeTodasSkillsComTier['fruityWoody'].possui) fruta.wood += mapaDeTodasSkillsComTier['fruityWoody'].quantidade[0].buff;
 
-        fruta.quantidade = (1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai;
+        //quantidade de fruta por colheita
+        fruta.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai) * frutiferasDuram;
         
-        fruta.tempoFinal = fruta.tempo * buffs.tempoMulti;
+        //tempo que demora pra crescer a fruta
+        fruta.tempoFinal = (fruta.tempo * buffs.tempoMulti) * frutiferasDuram;
 
+        //custo da semente e valor da fruta por coins
         fruta.custoPorSemente = fruta.custoSemente * buffs.multiCusto;
         fruta.vendaPorFruta = fruta.valorDeVenda * buffs.multiVenda;
 
+        //estoque que possue!
         fruta.estoqueFinal = (fruta.estoque * buffs.estoqueMulti) + buffs.estoqueSoma;
 
         if (modoDeCalularCropsFruta === 'manual') {
             fruta.qtdSementeUsadas = fruta.seedsPlantadas;
-            fruta.colheitaTotal = ((fruta.seedsPlantadas * frutiferasDuram) * fruta.quantidade);
-            fruta.tempoTotal = fruta.tempoFinal * (Math.ceil(fruta.seedsPlantadas / plotsFrutas) * frutiferasDuram); 
+            fruta.colheitaTotal = fruta.seedsPlantadas * fruta.quantidade;
+            fruta.tempoTotal = fruta.tempoFinal * ((fruta.seedsPlantadas / plotsFrutas)); 
             fruta.totalAxe = fruta.axe * fruta.seedsPlantadas;
             fruta.totalWood = fruta.wood * fruta.seedsPlantadas;
 
         } else if (modoDeCalularCropsFruta === 'rodada') {
             fruta.qtdSementeUsadas = fruta.seedsPlantadas * plotsFrutas;
-            fruta.colheitaTotal = ((fruta.seedsPlantadas * frutiferasDuram) * fruta.quantidade) * plotsFrutas;
-            fruta.tempoTotal = fruta.tempoFinal * (fruta.seedsPlantadas * frutiferasDuram);
+            fruta.colheitaTotal = (fruta.seedsPlantadas * fruta.quantidade) * plotsFrutas;
+            fruta.tempoTotal = fruta.tempoFinal * fruta.seedsPlantadas;
             fruta.totalAxe = (fruta.axe * fruta.seedsPlantadas) * plotsFrutas;
             fruta.totalWood = (fruta.wood * fruta.seedsPlantadas) * plotsFrutas;
         }
@@ -365,20 +378,26 @@ function buffsAdicionadosGreenhouse() {
             budsFiltrados
         ]);
 
-        gh.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai) * buffs.qtdInsta;
-
-        gh.tempoFinal = (gh.tempo * buffs.tempoMulti);
-
+        //Estoque de crops!
         gh.estoqueFinal = (gh.estoque * buffs.estoqueMulti) + buffs.estoqueSoma;
-        gh.oilFinal = (gh.oil * buffs.oilMulti) - buffs.oilDiminuido;
 
+        //Custo da semente e valor da crop em coins!
         gh.custoPorSemente = gh.custoSemente * buffs.multiCusto;
         gh.vendaPorCrop = gh.valorDeVenda * buffs.multiVenda;
+
+        //tempo para ficar pronta a crop!
+        gh.tempoFinal = (gh.tempo * buffs.tempoMulti);
+
+        //quantidade de crops recebida por semente!
+        gh.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai) * buffs.qtdInsta;
+
+        //Oil por crop
+        gh.oilFinal = (gh.oil * buffs.oilMulti) - buffs.oilDiminuido;
 
         if (modoDeCalcularGreenhouse === 'manual') {
             gh.qtdSementeUsadas = (buffs.qtdSemente * gh.seedsPlantadas);
             gh.colheitaTotal = gh.quantidade * gh.seedsPlantadas;
-            gh.tempoTotal = gh.tempoFinal * Math.ceil(gh.seedsPlantadas / plotsGH);
+            gh.tempoTotal = gh.tempoFinal * (gh.seedsPlantadas / plotsGH);
             gh.oilTotal = gh.oilFinal * gh.seedsPlantadas;
         } else if (modoDeCalcularGreenhouse === 'rodada') {
             gh.qtdSementeUsadas = (gh.seedsPlantadas * buffs.qtdSemente) * plotsGH;

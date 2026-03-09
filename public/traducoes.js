@@ -138,12 +138,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.2`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV030}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV031}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV100}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV101}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV102}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.3`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV031}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV100}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV101}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV102}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV103}`;
 
 
     pontosGastosEmSkills();
@@ -175,9 +175,9 @@ const idiomaEscolhido = {
         naoDescontarCusto: 'Não descontar',
         
         //dados das Crops
-        modoDeCalcularCrops: 'Modo de calcular as Crops',
-        calcularCropPorSemente: 'Quantidade de Sementes',
-        calcularCropPorRodada: 'Quantidade de Ciclos',
+        modoDeCalcularCrops: 'Modo de calcular',
+        calcularCropPorSemente: 'Por Semente',
+        calcularCropPorRodada: 'Por Ciclo',
         plotsQuePossui: 'Qtd. de Crop Plots',
         botaoSalvarInfos: 'Salvar',
         botaoLimparCrops: 'Limpar Crops',
@@ -198,7 +198,7 @@ const idiomaEscolhido = {
 
         //dados CM
         modoDeCalcularCropsCM: 'Modo de Calcular',
-        quantidadeDePlotsCM: 'Plots Crop Machine',
+        quantidadeDePlotsCM: 'Plots da Crop Machine',
         quantidadeDeOilPorHora: 'Oil gasto por Hora',
         calcularCMPorSemente: 'Por Semente',
         calcularCMPorRodada: 'Por Ciclo',
@@ -295,9 +295,9 @@ const idiomaEscolhido = {
         naoDescontarCusto: 'Do not deduct',
         
         //dados das Crops
-        modoDeCalcularCrops: 'Crop Calculation Mode',
-        calcularCropPorSemente: 'Quantity of Seeds',
-        calcularCropPorRodada: 'Number of Cycles',
+        modoDeCalcularCrops: 'Calculation Mode',
+        calcularCropPorSemente: 'Per Seed',
+        calcularCropPorRodada: 'Per Cycle',
         plotsQuePossui: 'Number of Crop Plots',
         botaoSalvarInfos: 'Save',
         botaoLimparCrops: 'Clear Crops',
@@ -318,7 +318,7 @@ const idiomaEscolhido = {
 
         //dados CM
         modoDeCalcularCropsCM: 'Calculation Mode',
-        quantidadeDePlotsCM: 'Plots Crop Machine',
+        quantidadeDePlotsCM: 'Crop Machine Plots',
         quantidadeDeOilPorHora: 'Oil consumed per hour',
         calcularCMPorSemente: 'Per Seed',
         calcularCMPorRodada: 'Per Cycle',
@@ -527,6 +527,25 @@ const idiomaDasAtualizacoes = {
             • Ao preencher sua farm, o Bud não será marcado automaticamente. Você deve selecioná-lo manualmente, porém a escolha ficará salva mesmo após recarregar a página, não sendo necessário marcar novamente.<br><br>
             • Os Buds possuem diversas variáveis para funcionamento, além de existirem vários tipos. Caso encontre qualquer informação incorreta ou erro no cálculo, informe no fórum do Discord. Basta clicar no ícone do Discord no canto superior direito para ser direcionado à página!
         `,
+
+        atualizacaoV103: `
+            v1.0.3 – Atualizado em 09/03/2026<br><br>
+
+            • Ajustes visuais para facilitar a identificação de onde cada informação da tabela pertence.<br><br>
+            • Mudança na forma de cálculo ao escolher "Por Sementes". Agora o sistema calcula o tempo médio total com base na quantidade de sementes e plots.<br>
+                A opção "Por Ciclo" continua funcionando da mesma forma de antes.<br><br>
+            • Ao visualizar o valor da Crop no Market P2P, o preço já aparece com a taxa descontada, de acordo com sua farm ou com as opções selecionadas.<br><br>
+            • Adição da coluna "Vendendo na Betty", que mostra o lucro em Coins. Nessa coluna, o valor em Coins também é convertido para Flower, permitindo visualizar quanto Flower equivaleria a esse valor.<br><br>
+            • Adição da coluna "Melhor Opção de Venda", que indica se é mais vantajoso vender a Crop por Coins (Betty) ou por Flower no Market.<br><br>
+            • Adição da coluna "Lucro por Hora Betty vs Market", para ajudar você a visualizar qual Crop gera mais lucro por hora e facilitar suas decisões de plantio.<br>
+                Obs: O cálculo não desconta o custo de Gems.<br><br>
+            • Detalhe importante: o valor da Betty exibido em "Lucro por Hora Betty vs Market" representa o lucro em Coins convertido para Flower.<br>
+                B = valor recebido vendendo na Betty.<br>
+                M = valor recebido vendendo no Market P2P.<br><br>
+            • Adição de um menu de Ajuda nas tabelas de Crops. Ainda está em fase de testes, mas espero que ajude vocês!<br><br>
+            • Como várias melhorias foram feitas de uma vez, pode ser que eu tenha esquecido de mencionar alguma. Espero que essa atualização ajude vocês a entender melhor o site!<br>
+                Se tudo correr bem, pretendo adicionar mais menus de ajuda no site para explicar outras partes que possam gerar dúvidas.
+            `,
             
 
     },
@@ -664,6 +683,24 @@ const idiomaDasAtualizacoes = {
             • Buds have several variables that affect how they work, and there are multiple types available. If you find any incorrect information or calculation errors, please report them on the Discord forum. Just click the Discord icon in the top-right corner to be redirected to the page!
             `,
 
+        atualizacaoV103: `
+            v1.0.3 – Updated on 09/03/2026<br><br>
+
+            • Visual adjustments to make it easier to identify where each piece of information in the table belongs.<br><br>
+            • Changes to the calculation method when selecting "By Seeds". The system now calculates the average total time based on the number of seeds and plots.<br>
+                The "By Cycle" option continues to work the same way as before.<br><br>
+            • When viewing the Crop price in the P2P Market, the value already appears with the market fee deducted according to your farm or the options you selected.<br><br>
+            • Added the "Selling to Betty" column, which shows the profit in Coins. In this column, the Coins value is also converted to Flower so you can see how much Flower those Coins would be worth.<br><br>
+            • Added the "Best Selling Option" column, which indicates whether it is more profitable to sell the Crop for Coins (Betty) or for Flower in the Market.<br><br>
+            • Added the "Profit per Hour Betty vs Market" column, allowing you to see which Crop generates more profit per hour and helping you make better planting decisions.<br>
+                Note: This calculation does not include the cost of Gems.<br><br>
+            • Important detail: the Betty value shown in "Profit per Hour Betty vs Market" represents the profit in Coins converted to Flower.<br>
+                B = value received when selling to Betty.<br>
+                M = value received when selling on the P2P Market.<br><br>
+            • Added a Help menu to the Crops tables. It is still being tested, but I hope it works well!<br><br>
+            • Since many improvements were made at once, I may have forgotten to mention something. I hope this update helps you better understand the site!<br>
+                If everything goes well, I plan to add more help menus across the site to explain other confusing features.
+            `,
 
     }
 };
