@@ -10,5 +10,8 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/cropToCoins", "destination": "/cropToCoins/crop-to-coins.html" }
   ]
 }
