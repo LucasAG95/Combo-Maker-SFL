@@ -1,11 +1,36 @@
 //Idioma
 let idioma = 'ingles';
+// Função chamada quando o usuário muda o idioma no select
 function selecionandoIdioma() {
+
+    // Pega o valor selecionado no <select id="opcao-idioma">
+    // Ex: "ingles" ou "portugues"
+    // e salva na variável global "idioma"
     idioma = document.getElementById('opcao-idioma').value;
-    chamadorDeBuffs();
-    mudarIdioma();
+
+    // Verifica se existe uma função chamada "chamadorDeBuffs"
+    // Isso é necessário porque essa função só existe na página do Combo Maker
+    // Se existir, executa ela
+    if (typeof chamadorDeBuffs === "function") {
+        chamadorDeBuffs();
+    }
+
+    // Verifica se existe a função "mudarIdioma"
+    // Essa função provavelmente troca os textos do site para o idioma selecionado
+    // Se existir, executa ela
+    if (typeof mudarIdioma === "function") {
+        mudarIdioma();
+    }
+
+    // Verifica se existe a função "tabelaCropsParaCoins"
+    // Essa função atualiza a tabela da página Crop to Coins
+    // Se existir, executa ela para atualizar os textos no idioma novo
+    if (typeof tabelaCropsParaCoins === "function") {
+        tabelaCropsParaCoins();
+    }
+
 }
-document.getElementById('opcao-idioma').addEventListener('change', selecionandoIdioma);
+document.getElementById('opcao-idioma')?.addEventListener('change', selecionandoIdioma);
 
 //=======================================================================================================================================================================
 
@@ -15,7 +40,7 @@ function selecionandoEstacao() {
     estacao = document.getElementById('estacaoSelect').value;
     chamadorDeBuffs();//dps mudar qual chamar
 };
-document.getElementById('estacaoSelect').addEventListener('change', selecionandoEstacao);
+document.getElementById('estacaoSelect')?.addEventListener('change', selecionandoEstacao);
 
 //=======================================================================================================================================================================
 
@@ -60,22 +85,22 @@ function selecionarModoDeCalculo() {
     chamadorDeBuffs();
 
 };
-document.getElementById('tipo-de-calculo-crop').addEventListener('change', selecionarModoDeCalculo);
-document.getElementById('descontar-restock-crops').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('tipo-de-calculo-crop')?.addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('descontar-restock-crops')?.addEventListener('change', selecionarModoDeCalculo);
 
-document.getElementById('tipo-de-calculo-crop-cm').addEventListener('change', selecionarModoDeCalculo);
-document.getElementById('descontar-restock-cm').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('tipo-de-calculo-crop-cm')?.addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('descontar-restock-cm')?.addEventListener('change', selecionarModoDeCalculo);
 
-document.getElementById('tipo-de-calculo-fruta').addEventListener('change', selecionarModoDeCalculo);
-document.getElementById('descontar-restock-frutas').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('tipo-de-calculo-fruta')?.addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('descontar-restock-frutas')?.addEventListener('change', selecionarModoDeCalculo);
 
-document.getElementById('tipo-de-calculo-greenhouse').addEventListener('change', selecionarModoDeCalculo);
-document.getElementById('descontar-restock-greenhouse').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('tipo-de-calculo-greenhouse')?.addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('descontar-restock-greenhouse')?.addEventListener('change', selecionarModoDeCalculo);
 
-document.getElementById('tipo-de-calculo-mineral').addEventListener('change', selecionarModoDeCalculo);
-document.getElementById('descontar-restock-minerais').addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('tipo-de-calculo-mineral')?.addEventListener('change', selecionarModoDeCalculo);
+document.getElementById('descontar-restock-minerais')?.addEventListener('change', selecionarModoDeCalculo);
 
-document.getElementById('visualizar-resultado-do-combo').addEventListener('change',selecionarModoDeCalculo);
+document.getElementById('visualizar-resultado-do-combo')?.addEventListener('change',selecionarModoDeCalculo);
 
 //=======================================================================================================================================================================
 
@@ -96,7 +121,7 @@ function valoresDasGems() {
     mudarIdioma();
 
 }
-document.getElementById('pack-gems').addEventListener('change', valoresDasGems);
+document.getElementById('pack-gems')?.addEventListener('change', valoresDasGems);
 
 //=============================================================================================================================================
 

@@ -455,9 +455,6 @@ const SaveManager = {
                         const auraPanel = budWrapper?.querySelector('.aura-panel');
 
                         if (bud.possui && auraPanel) {
-                            // Mostra o painel de aura se o bud está marcado
-                            // (fica oculto após seleção de aura — comportamento original)
-                            // Só mostra se não tiver aura selecionada ainda
                             if (!saved.auraId) {
                                 auraPanel.style.display = 'flex';
                             }
@@ -469,23 +466,19 @@ const SaveManager = {
                             if (auraCheckbox) {
                                 auraCheckbox.checked = true;
 
-                                // Aplica a classe de cor no wrapper
                                 if (budWrapper) {
                                     AURAS.forEach(a => budWrapper.classList.remove(`aura-bg-${a.id}`));
                                     budWrapper.classList.add(`aura-bg-${saved.auraId}`);
                                 }
 
-                                // Garante que o painel fique oculto (comportamento original)
                                 if (auraPanel) auraPanel.style.display = 'none';
                             }
                         } else if (!bud.possui) {
-                            // Bud desmarcado: garante painel oculto
                             if (auraPanel) auraPanel.style.display = 'none';
                         }
                     });
                 });
             }
-
 
             // 12. Animais - Quantidade usada e vendida
             if (estado.animais) {
@@ -515,7 +508,6 @@ const SaveManager = {
                     const checkbox = document.getElementById(id);
                     if (checkbox && estado.comidasAnimais[id] !== undefined) {
                         checkbox.checked = estado.comidasAnimais[id];
-                        // Disparar evento de change para atualizar visual
                         checkbox.dispatchEvent(new Event('change', { bubbles: true }));
                     }
                 });
@@ -843,7 +835,7 @@ const SaveManager = {
     },
 
     // ========================================================================
-    // INICIALIZAR SISTEMA DE SAVE
+    // INICIALIZAR SISTEMA DE SAVE (apenas Combo Maker)
     // ========================================================================
     inicializar() {
         console.log('🎮 Inicializando SaveManager v2.0.0...');
@@ -858,7 +850,6 @@ const SaveManager = {
         const eventos = ['change', 'input'];
         eventos.forEach(evento => {
             document.addEventListener(evento, (e) => {
-                // Verifica se o elemento tem ID ou é um checkbox/select
                 if (e.target.id || e.target.type === 'checkbox' || e.target.tagName === 'SELECT') {
                     this.salvarComDebounce();
                 }
@@ -887,20 +878,129 @@ const SaveManager = {
 };
 
 // ============================================================================
-// AUTO-INICIALIZAR
+// AUTO-INICIALIZAR — Combo Maker (index.html)
+// Só roda se existir um elemento exclusivo do Combo Maker na página
 // ============================================================================
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => SaveManager.inicializar(), 100);
+        if (document.getElementById('chamadorDeBuffs') || typeof chamadorDeBuffs !== 'undefined') {
+            setTimeout(() => SaveManager.inicializar(), 100);
+        }
     });
 } else {
-    setTimeout(() => SaveManager.inicializar(), 100);
+    if (document.getElementById('chamadorDeBuffs') || typeof chamadorDeBuffs !== 'undefined') {
+        setTimeout(() => SaveManager.inicializar(), 100);
+    }
 }
 
 // ============================================================================
-// 🎯 FUNÇÕES GLOBAIS (para usar no console)
+// FUNÇÕES GLOBAIS (para usar no console)
 // ============================================================================
 window.SaveManager = SaveManager;
 window.limparSave = () => SaveManager.limparSave();
 window.exportarSave = () => SaveManager.exportarSave();
 window.importarSave = () => SaveManager.importarSave();
+
+
+// ============================================================================
+// MÓDULO CROP TO COINS — SaveManager C2C
+// Só ativa quando está na página crop-to-coins.html
+// Compartilha a chave de idioma com o Combo Maker
+// ============================================================================
+const SaveManagerC2C = {
+    SAVE_KEY: 'sfl_c2c_save',
+    IDIOMA_KEY: 'sfl_idioma',  // chave compartilhada entre as duas páginas
+
+    // -------------------------------------------------------------------------
+    // SALVAR
+    // -------------------------------------------------------------------------
+    salvar() {
+        try {
+            const estado = {
+                idioma: document.getElementById('opcao-idioma')?.value || 'ingles',
+                greenThumb:   document.getElementById('greenThumb-coins')?.checked  || false,
+                coinSwindler: document.getElementById('coinSwindler-coins')?.checked || false,
+            };
+            // Salva o idioma na chave compartilhada para refletir no Combo Maker também
+            localStorage.setItem(this.IDIOMA_KEY, estado.idioma);
+            localStorage.setItem(this.SAVE_KEY, JSON.stringify(estado));
+            console.log('✅ C2C salvo:', estado);
+        } catch (e) {
+            console.error('❌ Erro ao salvar C2C:', e);
+        }
+    },
+
+    // -------------------------------------------------------------------------
+    // RESTAURAR — chamado ANTES da primeira renderização da tabela
+    // -------------------------------------------------------------------------
+    restaurar() {
+        try {
+            // 1. Idioma — tenta primeiro o save do C2C, depois o compartilhado do Combo Maker
+            const idiomaC2C      = (() => { try { return JSON.parse(localStorage.getItem(this.SAVE_KEY))?.idioma; } catch { return null; } })();
+            const idiomaComboMaker = localStorage.getItem(this.IDIOMA_KEY);
+            const idiomaSalvo    = idiomaC2C || idiomaComboMaker;
+
+            if (idiomaSalvo) {
+                const select = document.getElementById('opcao-idioma');
+                if (select) {
+                    select.value = idiomaSalvo;
+                    // Atualiza a variável global usada pelo opcoesSelects.js
+                    if (typeof idioma !== 'undefined') window.idioma = idiomaSalvo;
+                    // Dispara o change para o resto do site reagir (mudarIdioma, etc.)
+                    select.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            }
+
+            // 2. Skills — restaura antes de tabelaCropsParaCoins() ser chamada
+            const saved = JSON.parse(localStorage.getItem(this.SAVE_KEY) || '{}');
+
+            const gt = document.getElementById('greenThumb-coins');
+            const cs = document.getElementById('coinSwindler-coins');
+
+            if (gt && saved.greenThumb   !== undefined) gt.checked = saved.greenThumb;
+            if (cs && saved.coinSwindler !== undefined) cs.checked = saved.coinSwindler;
+
+            console.log('✅ C2C restaurado:', saved);
+        } catch (e) {
+            console.error('❌ Erro ao restaurar C2C:', e);
+        }
+    },
+
+    // -------------------------------------------------------------------------
+    // INICIALIZAR — observa mudanças e salva automaticamente
+    // -------------------------------------------------------------------------
+    inicializar() {
+        // Restaura primeiro (antes de qualquer renderização)
+        this.restaurar();
+
+        // Salva sempre que idioma ou skills mudarem
+        document.getElementById('opcao-idioma')?.addEventListener('change', () => this.salvar());
+        document.getElementById('greenThumb-coins')?.addEventListener('change',   () => this.salvar());
+        document.getElementById('coinSwindler-coins')?.addEventListener('change', () => this.salvar());
+
+        // Salva ao sair da página
+        window.addEventListener('beforeunload', () => this.salvar());
+
+        console.log('✅ SaveManager C2C pronto!');
+    }
+};
+
+// ============================================================================
+// AUTO-INICIALIZAR — Crop to Coins
+// Só roda se a checkbox da skill existir na página
+// ============================================================================
+(function () {
+    function tentarInicializarC2C() {
+        if (document.getElementById('greenThumb-coins')) {
+            SaveManagerC2C.inicializar();
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', tentarInicializarC2C);
+    } else {
+        tentarInicializarC2C();
+    }
+})();
+
+window.SaveManagerC2C = SaveManagerC2C;

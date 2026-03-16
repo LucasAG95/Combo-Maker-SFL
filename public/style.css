@@ -1493,3 +1493,51 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   flex-shrink: 0;
 }
 
+/* ===================== MENU DE NAVEGAÇÃO DO HEADER ===================== */
+
+.header-nav-menu {
+  display: none;
+}
+
+.nav-menu-toggle,
+.nav-menu-dropdown {
+  display: none !important;
+}
+
+/* ===================== BARRA DE NAV ABAIXO DO HEADER ===================== */
+
+.nav-bar-abaixo {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background-color: #1e1e1e;
+  border-bottom: 2px solid #333;
+  padding: 0 16px;
+}
+
+.nav-bar-item {
+  position: relative;
+  padding: 10px 18px;
+  color: #b6afaf;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-bar-item:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.nav-bar-item-active {
+  color: #ffa726;
+  border-bottom: 3px solid #ffa726;
+}
+
+.nav-bar-item-active:hover {
+  color: #ffc55e;
+}

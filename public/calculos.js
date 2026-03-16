@@ -302,6 +302,7 @@ function buffsAdicionadosFrutas() {
             wearables.temporada,
             wearables.factions,
             wearables.fruits,
+            totems,
             shrines,
             budsFiltrados
         ]);

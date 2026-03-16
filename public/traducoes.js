@@ -126,7 +126,7 @@ function mudarIdioma() {
     document.getElementById('aviso-de-manter-horas').innerHTML = `* ${opcaoDeIdiomas.avisoCalculosMinerais}`
     document.getElementById('tab-sprout-mix').innerHTML = `* ${opcaoDeIdiomas.avisoSproutMix}`;
     document.getElementById('tab-rapid-root').innerHTML = `* ${opcaoDeIdiomas.avisoRapidRoot}`;
-    document.getElementById('aviso-crop-to-coins').innerHTML = `${opcaoDeIdiomas.avisoCropToCoins}`;
+    //document.getElementById('aviso-crop-to-coins').innerHTML = `${opcaoDeIdiomas.avisoCropToCoins}`;
     document.getElementById('buds-não-marcam-automaticamente').innerHTML = `* ${opcaoDeIdiomas.avisoDeBuds}`;
 
     //Resultado Total do combo montado
@@ -138,12 +138,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.3`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV031}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV100}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV101}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV102}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV103}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.4`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV100}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV101}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV102}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV103}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV104}`;
 
 
     pontosGastosEmSkills();
@@ -546,8 +546,13 @@ const idiomaDasAtualizacoes = {
             • Como várias melhorias foram feitas de uma vez, pode ser que eu tenha esquecido de mencionar alguma. Espero que essa atualização ajude vocês a entender melhor o site!<br>
                 Se tudo correr bem, pretendo adicionar mais menus de ajuda no site para explicar outras partes que possam gerar dúvidas.
             `,
+        
+        atualizacaoV104: `v1.0.4 – Atualizado em 16/03/2026<br><br>
+            • O Super Totem não estava funcionando corretamente com árvores frutíferas. Esse problema foi corrigido.<br><br>
+            • Adicionada uma página exclusiva para visualizar o Crop To Coins.<br><br>
+            • A tabela de Crop To Coins foi atualizada e pode apresentar erros iniciais. Caso encontre algum problema ou algo não funcione corretamente, reporte no fórum do Discord.
+            `,
             
-
     },
     ingles: {
         nomeDaAbaAtualizacao: 'Updates Made',
@@ -700,6 +705,12 @@ const idiomaDasAtualizacoes = {
             • Added a Help menu to the Crops tables. It is still being tested, but I hope it works well!<br><br>
             • Since many improvements were made at once, I may have forgotten to mention something. I hope this update helps you better understand the site!<br>
                 If everything goes well, I plan to add more help menus across the site to explain other confusing features.
+            `,
+
+        atualizacaoV104: `v1.0.4 – Updated on 03/16/2026<br><br>
+            • The Super Totem was not working correctly with fruit trees. This issue has been fixed.<br><br>
+            • An exclusive page to view Crop To Coins has been added.<br><br>
+            • The Crop To Coins table has been updated and may contain initial errors. If you find any issues or something does not work correctly, please report it in the Discord forum.
             `,
 
     }
