@@ -378,7 +378,7 @@ function tabelaDeCrops() {
             <th>${idiomaDoTextoCrops.crop}<br>${idiomaDoTextoCrops.estoque}</th>
             <th>${idiomaDoTextoCrops.custoDaSemente}</th>
             <th>${idiomaDoTextoCrops.mediaPorPlot}<br>${idiomaDoTextoCrops.tempoDaCrop}</th>
-            <th>${textoDefinirModoDeCalcularCrops} <br><button onclick="sementesPlantadas()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
+            <th>${textoDefinirModoDeCalcularCrops} <br><button onclick="sementesPlantadasCM()">${idiomaDoTextoCrops.botaoSalvar}</button></th>
             <th>${idiomaDoTextoCrops.sementesUsadas}<br>${idiomaDoTextoCrops.totalDeCrops}</th>
             <th>${idiomaDoTextoCrops.tempoTotal}</th>
             <th>${idiomaDoTextoCrops.vendaDaCropNaBetty}</th>
