@@ -222,6 +222,11 @@ function tabelaDeCrops() {
         //melhor opção de venda
         let melhorOpcao = valorPorCropEmFlowerMenosTaxa > vendaPorCropEmCoinsConvertidas ? `${imgFlower} Flower` : `${imgCoins} Coins`;
 
+        //lucro por hora com destaque verde na melhor opção
+        let tdLucroPorHora = melhorOpcao.includes('Coins')
+            ? `<span style="color:#4caf50;font-weight:bold">B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertido.toFixed(4)}</span><br>M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}`
+            : `B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertido.toFixed(4)}<br><span style="color:#4caf50;font-weight:bold">M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}</span>`;
+
         //imagens que vão na tabela
         let imgCrop = sprite(crop.name);
         let imgSemente = sprite(`seed` + crop.name);
@@ -239,7 +244,7 @@ function tabelaDeCrops() {
             <td>${melhorOpcao}</td>
             <td>${imgCoins} ${lucroCoins.toFixed(2)}<br>${imgFlower} ${lucroCoinsConvertido.toFixed(5)}</td>
             <td>${imgCrop}<br>${imgFlower} ${lucroFlower.toFixed(5)}</td>
-            <td>B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertido.toFixed(4)}<br>M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}</td>
+            <td>${tdLucroPorHora}</td>
         </tr>
         `;
 
@@ -472,6 +477,11 @@ function tabelaDeCrops() {
         //melhor opção de venda
         let melhorOpcao = valorPorCropEmFlowerMenosTaxa > vendaPorCropEmCoinsConvertidas ? `${imgFlower} Flower` : `${imgCoins} Coins`;
 
+        //lucro por hora com destaque verde na melhor opção
+        let tdLucroPorHora = melhorOpcao.includes('Coins')
+            ? `<span style="color:#4caf50;font-weight:bold">B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertido.toFixed(4)}</span><br>M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}`
+            : `B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertido.toFixed(4)}<br><span style="color:#4caf50;font-weight:bold">M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}</span>`;
+
         tabelaCM += `
         <tr>
             <td>${imgCrop} ${cropM.name}<br>${imgRestock} ${estoque}</td>
@@ -485,7 +495,7 @@ function tabelaDeCrops() {
             <td>${melhorOpcao}</td>
             <td>${imgCoins} ${lucroCoins.toFixed(2)}<br>${imgFlower} ${lucroCoinsConvertido.toFixed(5)}</td>
             <td>${imgCrop}<br>${imgFlower} ${lucroFlower.toFixed(5)}</td>
-            <td>B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertido.toFixed(4)}<br>M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}</td>
+            <td>${tdLucroPorHora}</td>
         </tr>
         `;
 
@@ -725,6 +735,11 @@ function tabelaDeCrops() {
         //melhor opção de venda
         let melhorOpcao = valorPorFrutaEmFlowerMenosTaxa > vendaPorFrutaEmCoinsConvertidas ? `${imgFlower} Flower` : `${imgCoins} Coins`;
 
+        //lucro por hora com destaque verde na melhor opção
+        let tdLucroPorHora = melhorOpcao.includes('Coins')
+            ? `<span style="color:#4caf50;font-weight:bold">B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertida.toFixed(4)}</span><br>M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}`
+            : `B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertida.toFixed(4)}<br><span style="color:#4caf50;font-weight:bold">M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}</span>`;
+
         //imagens que vão na tabela
         let imgFrutas = sprite(fruta.name);
         let imgSemente = sprite(`seed` + fruta.name);
@@ -743,7 +758,7 @@ function tabelaDeCrops() {
             <td>${melhorOpcao}</td>
             <td>${imgFrutas} + ${imgMadeira}<br>${imgCoins} ${lucroCoins.toFixed(2)}</td>
             <td>${imgFrutas} + ${imgMadeira}<br>${imgFlower} ${lucroFlower.toFixed(5)}</td>
-            <td>B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertida.toFixed(4)}<br>M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}</td>
+            <td>${tdLucroPorHora}</td>
         </tr>
         `;
 
@@ -956,6 +971,11 @@ function tabelaDeCrops() {
         //melhor opção de venda
         let melhorOpcao = valorPorCropEmFlowerMenosTaxa > vendaPorCropEmCoinsConvertidas ? `${imgFlower} Flower` : `${imgCoins} Coins`;
 
+        //lucro por hora com destaque verde na melhor opção
+        let tdLucroPorHora = melhorOpcao.includes('Coins')
+            ? `<span style="color:#4caf50;font-weight:bold">B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertido.toFixed(4)}</span><br>M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}`
+            : `B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertido.toFixed(4)}<br><span style="color:#4caf50;font-weight:bold">M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}</span>`;
+
         //imagens que vão na tabela
         let imgCropGH = sprite(gh.name);
         let imgSemente = sprite(`seed` + gh.name);
@@ -973,7 +993,7 @@ function tabelaDeCrops() {
             <td>${melhorOpcao}</td>
             <td>${imgCoins} ${lucroCoins.toFixed(2)}<br>${imgFlower} ${lucroCoinsConvertido.toFixed(5)}</td>
             <td>${imgCropGH}<br>${imgFlower} ${lucroFlower.toFixed(5)}</td>
-            <td>B ➜ ${imgFlower} ${lucroPorHoraCoinsConvertido.toFixed(4)}<br>M ➜ ${imgFlower} ${lucroPorHora.toFixed(4)}</td>
+            <td>${tdLucroPorHora}</td>
         </tr>
         `;
 
