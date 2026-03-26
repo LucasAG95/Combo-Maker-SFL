@@ -24,6 +24,7 @@ function mudarIdioma() {
     document.getElementById('modoDeCalcularCrops').innerHTML = `${opcaoDeIdiomas.modoDeCalcularCrops}:`; 
     document.getElementById('tipo-de-calculo-crop').options[0].innerHTML = `${opcaoDeIdiomas.calcularCropPorSemente}`;
     document.getElementById('tipo-de-calculo-crop').options[1].innerHTML = `${opcaoDeIdiomas.calcularCropPorRodada}`;
+    document.getElementById('tipo-de-calculo-crop').options[2].innerHTML = `${opcaoDeIdiomas.calcularCropPorEstoque}`;
     document.getElementById('cropPlotsQuePossui').innerHTML = `${opcaoDeIdiomas.plotsQuePossui}:`;
     document.getElementById('salvarInfosCrops').innerHTML = `${opcaoDeIdiomas.botaoSalvarInfos}`;
     document.getElementById('limparInfosCrops').innerHTML = `${opcaoDeIdiomas.botaoLimparCrops}`;
@@ -138,12 +139,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.4`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV100}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV101}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV102}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV103}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV104}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.5`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV101}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV102}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV103}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV104}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV105}`;
 
 
     pontosGastosEmSkills();
@@ -178,6 +179,7 @@ const idiomaEscolhido = {
         modoDeCalcularCrops: 'Modo de calcular',
         calcularCropPorSemente: 'Por Semente',
         calcularCropPorRodada: 'Por Ciclo',
+        calcularCropPorEstoque: 'Por Estoque',
         plotsQuePossui: 'Qtd. de Crop Plots',
         botaoSalvarInfos: 'Salvar',
         botaoLimparCrops: 'Limpar Crops',
@@ -298,6 +300,7 @@ const idiomaEscolhido = {
         modoDeCalcularCrops: 'Calculation Mode',
         calcularCropPorSemente: 'Per Seed',
         calcularCropPorRodada: 'Per Cycle',
+        calcularCropPorEstoque: 'By Stock',
         plotsQuePossui: 'Number of Crop Plots',
         botaoSalvarInfos: 'Save',
         botaoLimparCrops: 'Clear Crops',
@@ -548,9 +551,15 @@ const idiomaDasAtualizacoes = {
             `,
         
         atualizacaoV104: `v1.0.4 – Atualizado em 16/03/2026<br><br>
+
             • O Super Totem não estava funcionando corretamente com árvores frutíferas. Esse problema foi corrigido.<br><br>
             • Adicionada uma página exclusiva para visualizar o Crop To Coins.<br><br>
             • A tabela de Crop To Coins foi atualizada e pode apresentar erros iniciais. Caso encontre algum problema ou algo não funcione corretamente, reporte no fórum do Discord.
+            `,
+
+        atualizacaoV105: `v1.0.5 – Atualizado em 16/03/2026<br><br>
+
+            • Adição do modo de calcular por estoque em: Crops, Frutas e Greenhouse.<br><br>
             `,
             
     },
@@ -711,6 +720,11 @@ const idiomaDasAtualizacoes = {
             • The Super Totem was not working correctly with fruit trees. This issue has been fixed.<br><br>
             • An exclusive page to view Crop To Coins has been added.<br><br>
             • The Crop To Coins table has been updated and may contain initial errors. If you find any issues or something does not work correctly, please report it in the Discord forum.
+            `,
+
+        atualizacaoV105: `v1.0.5 – Updated on 03/16/2026<br><br>
+
+            • Added stock-based calculation mode in: Crops, Fruits, and Greenhouse.<br><br>
             `,
 
     }

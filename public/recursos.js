@@ -297,6 +297,41 @@ todasFerramentas.forEach(ferramenta => { //vai verificar e organizar por id das 
 
 //==============================================================================================================================================================================
 
+const lavaPit = {
+    spring: [
+        { name: "celestine",   quantidade: 2 },
+        { name: "lunara",      quantidade: 2 },
+        { name: "duskberry",   quantidade: 2 },
+        { name: "rhubarb",     quantidade: 2000 },
+        { name: "crimstone",   quantidade: 10 }
+    ],
+
+    summer: [
+        { name: "oil",         quantidade: 70 },
+        { name: "pepper",      quantidade: 750 },
+        { name: "zucchini",    quantidade: 1000 },
+        { name: "crimstone",   quantidade: 4 }
+    ],
+
+    autumn: [
+        { name: "artichoke",   quantidade: 30 },
+        { name: "broccoli",    quantidade: 750 },
+        { name: "yam",         quantidade: 1000 },
+        { name: "gold",        quantidade: 5 },
+        { name: "crimstone",   quantidade: 6 }
+    ],
+
+    winter: [
+        { name: "merinoWool",  quantidade: 150 },
+        { name: "onion",       quantidade: 400 },
+        { name: "turnip",      quantidade: 200 },
+        { name: "crimstone",   quantidade: 5 }
+    ]
+};
+
+
+//==============================================================================================================================================================================
+
 const valorDosRecursosMarket = [
     //Crops
     { id: 'sunflower',   name: 'Sunflower',   valor: '' },
@@ -367,35 +402,3 @@ console.log(mapaDosValoresDoMarket);
 
 //==============================================================================================================================================================================    
 
-/*function mediaDeValorDasFerramentasEMinerais() {
-    ferramentas.forEach(ferramenta => {
-
-        // Começa com o custo base em coins
-        ferramenta.custoEmCoins = ferramenta.recursosNecessarios['coins'] ?? 0;
-
-        // Soma custo dos recursos (wood, stone, iron, gold...)
-        for (const recurso in ferramenta.recursosNecessarios) {
-
-            if (recurso === 'coins') continue; // coins é custo direto, não multiplica
-
-            const qtd = ferramenta.recursosNecessarios[recurso] ?? 0;
-
-            // Se o mineral existir no mapa, multiplica pelo seu custo médio
-            if (mapaDeMinerals[recurso]) {
-                ferramenta.custoEmCoins += qtd * (mapaDeMinerals[recurso].mediaDeCustoCoins ?? 0);
-            }
-        }
-
-        // Calcular custo médio do mineral obtido pela ferramenta
-        mapaDeMinerals[ferramenta.recursoObtido].mediaDeCustoCoins =
-            ferramenta.custoEmCoins / mapaDeMinerals[ferramenta.recursoObtido].mediaPorNode;
-
-        console.log(
-            `${mapaDeMinerals[ferramenta.recursoObtido].name}: ` +
-            mapaDeMinerals[ferramenta.recursoObtido].mediaDeCustoCoins +
-            ` coins`
-        );
-
-    });
-}
-*/

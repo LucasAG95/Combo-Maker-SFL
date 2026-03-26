@@ -198,6 +198,11 @@ function buffsAdicionadosCrops() {
             crop.colheitaTotal = (crop.seedsPlantadas * plots) * crop.quantidade ;
             crop.qtdSementeUsadas = (crop.seedsPlantadas * plots) * buffs.qtdInsta;
             crop.tempoTotal = crop.tempoFinal * crop.seedsPlantadas;
+
+        } else if (modoDeCalularCrops === 'estoque') {
+            crop.qtdSementeUsadas = crop.seedsPlantadas * crop.estoqueTotal;
+            crop.colheitaTotal = (crop.seedsPlantadas * crop.quantidade) * crop.estoqueTotal;
+            crop.tempoTotal = crop.tempoFinal * (crop.qtdSementeUsadas / plots);
         };
 
     });
@@ -350,7 +355,15 @@ function buffsAdicionadosFrutas() {
             fruta.tempoTotal = fruta.tempoFinal * fruta.seedsPlantadas;
             fruta.totalAxe = (fruta.axe * fruta.seedsPlantadas) * plotsFrutas;
             fruta.totalWood = (fruta.wood * fruta.seedsPlantadas) * plotsFrutas;
-        }
+
+        } else if (modoDeCalularCropsFruta === 'estoque') {
+            fruta.qtdSementeUsadas = fruta.seedsPlantadas * fruta.estoqueFinal;
+            fruta.colheitaTotal = (fruta.seedsPlantadas * fruta.quantidade) * fruta.estoqueFinal;
+            fruta.tempoTotal = fruta.tempoFinal * (fruta.qtdSementeUsadas / plotsFrutas);
+            fruta.totalAxe = (fruta.axe * fruta.seedsPlantadas) * fruta.estoqueFinal;
+            fruta.totalWood = (fruta.wood * fruta.seedsPlantadas) * fruta.estoqueFinal;
+        };
+
 
     })
     tabelaDeCrops();
@@ -400,12 +413,19 @@ function buffsAdicionadosGreenhouse() {
             gh.colheitaTotal = gh.quantidade * gh.seedsPlantadas;
             gh.tempoTotal = gh.tempoFinal * (gh.seedsPlantadas / plotsGH);
             gh.oilTotal = gh.oilFinal * gh.seedsPlantadas;
+
         } else if (modoDeCalcularGreenhouse === 'rodada') {
             gh.qtdSementeUsadas = (gh.seedsPlantadas * buffs.qtdSemente) * plotsGH;
             gh.colheitaTotal = gh.quantidade * (gh.seedsPlantadas * plotsGH);
             gh.tempoTotal = gh.tempoFinal * gh.seedsPlantadas;
             gh.oilTotal = gh.oilFinal * (gh.seedsPlantadas * plotsGH);
-        };
+        
+        } else if (modoDeCalcularGreenhouse === 'estoque') {
+            gh.qtdSementeUsadas = gh.seedsPlantadas * gh.estoqueFinal;
+            gh.colheitaTotal = (gh.seedsPlantadas * gh.quantidade) * gh.estoqueFinal;
+            gh.tempoTotal = gh.tempoFinal * (gh.qtdSementeUsadas / plotsGH);
+        }
+        
 
     });
     tabelaDeCrops();
