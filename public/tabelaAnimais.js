@@ -569,7 +569,7 @@ function tabelaVacas() {
             <div class="card-total-animal">
                 <h3>${idiomaSelecionadoAnimais.cardCustoSemanalDaComida}</h3>
                 <p>
-                    <${imgFlower} ${totalGastoComComidaSemanalDaVaca.toFixed(0)} ~ 
+                    ${imgFlower} ${totalGastoComComidaSemanalDaVaca.toFixed(0)} ~ 
                     ${imgUsdc} ${(totalGastoComComidaSemanalDaVaca * precoDoFlower).toFixed(2)}
                 </p>
             </div>
