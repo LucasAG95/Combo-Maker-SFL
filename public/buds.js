@@ -375,7 +375,7 @@ let buds = {
                 }
             ]
         },
-    ],  
+    ],
     woodlands: [
         {
             idName: 'woodlands',
@@ -1032,13 +1032,6 @@ let buds = {
             quantidade: [
                 {
                     sinal: '+',
-                    buff: 0.2,
-                    recursoAfetado: ['Stone', 'Iron', 'Gold'],
-                }
-            ],
-            quantidade: [
-                {
-                    sinal: '+',
                     buff: 0.1,
                     recursoAfetado: ['Wood'],
                 }
@@ -1445,9 +1438,9 @@ let buds = {
             possui: false,
             quantidade: [
                 {
-                    sinal: '+',
-                    buff: 0.2,
-                    recursoAfetado: ['Wood'],
+                    sinal: 'x',
+                    buff: 1.1,
+                    recursoAfetado: ['Fish'],
                 }
             ],
             quantidade2: [
@@ -1491,7 +1484,7 @@ let buds = {
             possui: false,
             quantidade: [
                 {
-                    sinal: '+',
+                    sinal: 'x',
                     buff: 1.1,
                     recursoAfetado: ['Fish'],
                 }
@@ -1533,7 +1526,7 @@ let buds = {
             idName: 'castle',
             name: 'Castle',
             descricao: {
-                portugues: '10% de chance de +1 Peixe',
+                portugues: '+0.3 Crops Médias',
                 ingles: '+0.3 Medium Crops'
             },
             possui: false,
@@ -3900,6 +3893,23 @@ let todosBuds = [
     ...buds.beach
 ];
 
+/**
+ * Calcula o buff efetivo de tempo levando em conta a aura.
+ *
+ * O buff base de tempo é 0.9 (reduz 10% do tempo).
+ * A aura adiciona mais redução proporcional à redução base:
+ *   reducaoBase = 1 - buff          (ex: 1 - 0.9 = 0.1 → 10%)
+ *   reducaoComAura = reducaoBase * aura (ex: 0.1 * 1.05 = 0.105)
+ *   buffFinal = 1 - reducaoComAura  (ex: 1 - 0.105 = 0.895 → -10.5%)
+ *
+ * Quanto menor o valor final, melhor (mais tempo reduzido).
+ */
+function calcularBuffTempo(buffBase, aura) {
+    const reducaoBase = 1 - buffBase;
+    const reducaoComAura = reducaoBase * aura;
+    return 1 - reducaoComAura;
+}
+
 function filtrarBudsMaiorBuff() {
     const maiorBuffPorRecurso = {};
     const budsMarcados = todosBuds.filter(bud => bud.possui);
@@ -3909,17 +3919,23 @@ function filtrarBudsMaiorBuff() {
         const aura = bud.aura ?? 1;
         props.forEach(prop => {
             if (!bud[prop]) return;
+            const ehTempo = prop === 'tempo';
             bud[prop].forEach(entry => {
                 entry.recursoAfetado.forEach(recurso => {
                     const chave = `${entry.sinal}__${recurso}`;
                     const atual = maiorBuffPorRecurso[chave];
-                    const buffComAura = entry.buff * aura; // aplica aura na comparação
-                    const ehTempo = prop === 'tempo';
+
+                    // Para tempo: aplica aura reduzindo mais o tempo (menor = melhor)
+                    // Para demais: multiplica pela aura (maior = melhor)
+                    const buffEfetivo = ehTempo
+                        ? calcularBuffTempo(entry.buff, aura)
+                        : entry.buff * aura;
+
                     const novoEMelhor = !atual ||
-                        (ehTempo ? buffComAura < atual.buff : buffComAura > atual.buff);
+                        (ehTempo ? buffEfetivo < atual.buff : buffEfetivo > atual.buff);
 
                     if (novoEMelhor) {
-                        maiorBuffPorRecurso[chave] = { buff: buffComAura, budIdName: bud.idName };
+                        maiorBuffPorRecurso[chave] = { buff: buffEfetivo, budIdName: bud.idName };
                     }
                 });
             });
@@ -3932,13 +3948,19 @@ function filtrarBudsMaiorBuff() {
 
         props.forEach(prop => {
             if (!bud[prop]) return;
+            const ehTempo = prop === 'tempo';
             budCopia[prop] = bud[prop].map(entry => {
                 const recursosFiltrados = entry.recursoAfetado.filter(recurso => {
                     const chave = `${entry.sinal}__${recurso}`;
                     return maiorBuffPorRecurso[chave]?.budIdName === bud.idName;
                 });
-                // retorna entry com buff multiplicado pela aura
-                return { ...entry, buff: entry.buff * aura, recursoAfetado: recursosFiltrados };
+
+                // Retorna o buff efetivo correto conforme o tipo
+                const buffEfetivo = ehTempo
+                    ? calcularBuffTempo(entry.buff, aura)
+                    : entry.buff * aura;
+
+                return { ...entry, buff: buffEfetivo, recursoAfetado: recursosFiltrados };
             }).filter(entry => entry.recursoAfetado.length > 0);
         });
 

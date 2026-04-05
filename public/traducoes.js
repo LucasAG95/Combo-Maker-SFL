@@ -139,12 +139,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.5`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV101}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV102}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV103}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV104}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV105}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.6`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV102}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV103}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV104}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV105}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV106}`;
 
 
     pontosGastosEmSkills();
@@ -558,10 +558,13 @@ const idiomaDasAtualizacoes = {
             `,
 
         atualizacaoV105: `v1.0.5 – Atualizado em 16/03/2026<br><br>
-
             • Adição do modo de calcular por estoque em: Crops, Frutas e Greenhouse.<br><br>
             `,
-            
+        
+        atualizacaoV106: `v1.0.6 – Atualizado em 04/04/2026<br><br>
+            • Correção no cálculo do Bud Saphiro. Anteriormente, quanto maior a aura, pior era o desempenho. O problema foi identificado e já está corrigido.<br><br>
+            `,
+        
     },
     ingles: {
         nomeDaAbaAtualizacao: 'Updates Made',
@@ -725,6 +728,10 @@ const idiomaDasAtualizacoes = {
         atualizacaoV105: `v1.0.5 – Updated on 03/16/2026<br><br>
 
             • Added stock-based calculation mode in: Crops, Fruits, and Greenhouse.<br><br>
+            `,
+        
+        atualizacaoV106: `v1.0.6 – Updated on 04/04/2026<br><br>
+            • Fixed an issue with Bud Saphiro's calculation. Previously, the higher the aura, the worse its performance. This issue has been identified and resolved.<br><br>
             `,
 
     }

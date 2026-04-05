@@ -228,6 +228,7 @@ function tabelaMinerios() {
 
     //=====================================================================================================================================================================
 
+
     let gemsGastasComRestock = restockDoCombo * 10;
     let custoRestockDoComboFlower = Number(gemsGastasComRestock * precoDaGemEmFlower);
     let custoRestockDoComboDolar = Number(gemsGastasComRestock * precoPorGem);

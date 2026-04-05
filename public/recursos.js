@@ -299,33 +299,33 @@ todasFerramentas.forEach(ferramenta => { //vai verificar e organizar por id das 
 
 const lavaPit = {
     spring: [
-        { name: "celestine",   quantidade: 2 },
-        { name: "lunara",      quantidade: 2 },
-        { name: "duskberry",   quantidade: 2 },
-        { name: "rhubarb",     quantidade: 2000 },
-        { name: "crimstone",   quantidade: 10 }
+        { id: "celestine",   name: "Celestine",   quantidade: 2 },
+        { id: "lunara",      name: "Lunara",      quantidade: 2 },
+        { id: "duskberry",   name: "Duskberry",   quantidade: 2 },
+        { id: "rhubarb",     name: "Rhubarb",     quantidade: 2000 },
+        { id: "crimstone",   name: "Crimstone",   quantidade: 10 }
     ],
 
     summer: [
-        { name: "oil",         quantidade: 70 },
-        { name: "pepper",      quantidade: 750 },
-        { name: "zucchini",    quantidade: 1000 },
-        { name: "crimstone",   quantidade: 4 }
+        { id: "oil",         name: "Oil",         quantidade: 70 },
+        { id: "pepper",      name: "Pepper",      quantidade: 750 },
+        { id: "zucchini",    name: "Zucchini",    quantidade: 1000 },
+        { id: "crimstone",   name: "Crimstone",   quantidade: 4 }
     ],
 
     autumn: [
-        { name: "artichoke",   quantidade: 30 },
-        { name: "broccoli",    quantidade: 750 },
-        { name: "yam",         quantidade: 1000 },
-        { name: "gold",        quantidade: 5 },
-        { name: "crimstone",   quantidade: 6 }
+        { id: "artichoke",   name: "Artichoke",   quantidade: 30 },
+        { id: "broccoli",    name: "Broccoli",    quantidade: 750 },
+        { id: "yam",         name: "Yam",         quantidade: 1000 },
+        { id: "gold",        name: "Gold",        quantidade: 5 },
+        { id: "crimstone",   name: "Crimstone",   quantidade: 6 }
     ],
 
     winter: [
-        { name: "merinoWool",  quantidade: 150 },
-        { name: "onion",       quantidade: 400 },
-        { name: "turnip",      quantidade: 200 },
-        { name: "crimstone",   quantidade: 5 }
+        { id: "merinoWool",  name: "Merino Wool",  quantidade: 150 },
+        { id: "onion",       name: "Onion",       quantidade: 400 },
+        { id: "turnip",      name: "Turnip",      quantidade: 200 },
+        { id: "crimstone",   name: "Crimstone",   quantidade: 5 }
     ]
 };
 
