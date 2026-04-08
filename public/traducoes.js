@@ -123,6 +123,9 @@ function mudarIdioma() {
     document.getElementById('buffs-temporarios').innerHTML = `${opcaoDeIdiomas.abaBuffsTemporarios}`;
     document.getElementById('total-valor-em-shrines').innerHTML = `${opcaoDeIdiomas.tituloDentroDaAbaBuffsTemporarios}`;
 
+    //evento Bonus
+    document.getElementById('eventoBonus').innerHTML = `${opcaoDeIdiomas.eventoBonus}`;
+
     //Avisos
     document.getElementById('aviso-de-manter-horas').innerHTML = `* ${opcaoDeIdiomas.avisoCalculosMinerais}`
     document.getElementById('tab-sprout-mix').innerHTML = `* ${opcaoDeIdiomas.avisoSproutMix}`;
@@ -139,12 +142,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.6`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV102}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV103}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV104}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV105}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV106}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.7`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV103}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV104}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV105}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV106}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV107}`;
 
 
     pontosGastosEmSkills();
@@ -254,13 +257,16 @@ const idiomaEscolhido = {
         UsoDeUmCarinho: '1 Carinho',
         UsoDeDoisCarinhos: '2 Carinhos',
 
-
         //dados Crop to Coins
         avisoCropToCoins: '* Aqui você pode comparar quais crops e frutas oferecem as melhores oportunidades de compra em Flower e venda por coins.<br>* Clique na coluna desejada para ordenar os parâmetros em ordem crescente ou decrescente.',
 
         //nome das abas de NFTs/Skills quando precisa de tradução
         abaBuffsTemporarios: 'Buffs Temporários',
         tituloDentroDaAbaBuffsTemporarios: 'Buffs Temporários', //tirar talvez
+
+        //evento Bonus
+        eventoBonus: 'Evento Bonus',
+        avisoDoBonus: 'Um Evento Bônus foi selecionado. Considere apenas os resultados diários e ignore os semanais.',
 
         //dados accordion resultado do combo total
         tituloAccordionCombo: '📊 Resultado do Combo Completo',
@@ -371,14 +377,16 @@ const idiomaEscolhido = {
         valorDaLaMerino: 'Merino Wool Price',
         limparOvelhas: 'Clear Sheep',
 
-
-
         //dados Crop to Coins
         avisoCropToCoins: '* Here you can compare which crops and fruits offer the best opportunities to buy with Flower and sell for coins.<br>* Click on the desired column to sort the parameters in ascending or descending order.',
 
         //nome das abas de NFTs/Skills quando precisa de tradução
         abaBuffsTemporarios: 'Temporary Buffs',
         tituloDentroDaAbaBuffsTemporarios: 'Temporary Buffs',
+
+        //evento Bonus
+        eventoBonus: 'Bonus Event',
+        avisoDoBonus: 'A Bonus Event has been selected. Consider only the daily results and ignore the weekly ones.',
 
         //dados accordion resultado do combo total
         tituloAccordionCombo: '📊 Full Combo Result',
@@ -564,6 +572,11 @@ const idiomaDasAtualizacoes = {
         atualizacaoV106: `v1.0.6 – Atualizado em 04/04/2026<br><br>
             • Correção no cálculo do Bud Saphiro. Anteriormente, quanto maior a aura, pior era o desempenho. O problema foi identificado e já está corrigido.<br><br>
             `,
+
+        atualizacaoV107: `v1.0.7 – Atualizado em 08/04/2026<br><br>
+            • Adicionado o Evento Bônus (Bountiful Harvest e Sunshower). Agora você pode selecionar um dos eventos da semana — ele só será ativado se a estação correspondente estiver ativa.<br><br>
+            • Selecionar o Guardião da semana do evento também multiplica o bônus. Os buffs de cada Guardião foram adicionados!<br><br>
+            • Ao escolher um Evento Bônus, desconsidere os resultados semanais e considere apenas o lucro diário.`
         
     },
     ingles: {
@@ -733,6 +746,11 @@ const idiomaDasAtualizacoes = {
         atualizacaoV106: `v1.0.6 – Updated on 04/04/2026<br><br>
             • Fixed an issue with Bud Saphiro's calculation. Previously, the higher the aura, the worse its performance. This issue has been identified and resolved.<br><br>
             `,
+
+        atualizacaoV107: `v1.0.7 – Updated on 04/08/2026<br><br>
+            • Added Bonus Events (Bountiful Harvest and Sunshower). You can now select one of the weekly events — it will only be activated if the corresponding season is active.<br><br>
+            • Selecting the Guardian of the event week also multiplies the bonus. Their buffs have been added!<br><br>
+            • When selecting a Bonus Event, ignore weekly results and consider only daily profit.`
 
     }
 };

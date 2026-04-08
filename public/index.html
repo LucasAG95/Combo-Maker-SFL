@@ -41,7 +41,7 @@
         </select>
 
       </div>
-      <h4 class="title-bar"> &nbsp v1.0.6</h4>
+      <h4 class="title-bar"> &nbsp v1.0.7</h4>
     </div>
 
     <!-- CENTRO: Informações do Criador -->
@@ -546,6 +546,15 @@
       </select>
     </div>
 
+    <div class="select-group"> 
+      <label id="eventoBonus" for="evento-bonus">Eventos Bonus:</label>
+      <select id="evento-bonus">
+        <option value="semEvento">-</option>
+        <option value="bountifulHarvest">Bountiful Harvest</option>
+        <option value="sunshower">Sunshower</option>
+      </select>
+    </div>
+
     <div class="select-group">
       <label id="flowerPorCoins" for="flower-em-coins">Flower por coins:</label>
       <input id="flower-em-coins" type="number" placeholder="Ex: 320">
@@ -605,6 +614,8 @@
         <button id="frutaTabName" class="subtab-btn" data-subtab="frutas-tab2">Frutas</button>
         <button class="subtab-btn" data-subtab="greenhouse-tab2">Greenhouse</button>
       </div>
+
+      <h4 id="aviso-bonus-selecionado"></h4>
 
       <!-- ===================================================================== -->
       <!-- ===============================  CROPS  =============================== -->

@@ -28,6 +28,17 @@ function calcularBuff(recurso, listasDeBuffs) {
     let oilAumentado = 0;
     let oilDiminuido = 0;
 
+    //evento bonus
+    let bountifulHarvest = 0; //+1 crops e frutas
+    let sunshower = 1; //redução de 50% nas crops
+    if (eventoSelecionado === 'bountifulHarvest' && (estacao === 'spring' || estacao === 'summer')) {
+        bountifulHarvest = 1;
+    }
+    if (eventoSelecionado === 'sunshower' && (estacao === 'autumn' || estacao === 'winter')) {
+        sunshower = 0.5;
+    }
+
+
     //esse 'lista' pode ser skills e NFTs, vai percorrer todos os buffs e adicionar o valor as variaveis criadas acima de acordo com regra
     function aplicarBuffs(lista) { 
         lista.forEach(nftOuSkill => {
@@ -117,6 +128,17 @@ function calcularBuff(recurso, listasDeBuffs) {
                     if (oil.sinal === '-') oilDiminuido += oil.buff;
                 })
             };
+            //=============================================================================================================================================================
+            //Adiciona os buffs que afetam os eventos Bonus
+            if (nftOuSkill.upEvento) {
+                nftOuSkill.upEvento.forEach(evento => {
+                    if (evento.recursoAfetado.includes(estacao)) {
+                        bountifulHarvest *= 2;
+                        if (eventoSelecionado === 'sunshower') sunshower /= 2;
+                    }
+                })
+            };
+            
 
         });
         
@@ -147,7 +169,10 @@ function calcularBuff(recurso, listasDeBuffs) {
 
         oilMulti,
         oilAumentado,
-        oilDiminuido 
+        oilDiminuido,
+
+        bountifulHarvest,
+        sunshower
     };
 
 };
@@ -175,6 +200,7 @@ function buffsAdicionadosCrops() {
             budsFiltrados
         ]);
 
+
         //Estoque de crops!
         crop.estoqueTotal = (crop.estoque * buffs.estoqueMulti) + buffs.estoqueSoma;
 
@@ -183,10 +209,10 @@ function buffsAdicionadosCrops() {
         crop.vendaPorCrop = crop.valorDeVenda * buffs.multiVenda;
 
         //tempo para ficar pronta a crop!
-        crop.tempoFinal = (crop.tempo * buffs.tempoMulti) - buffs.tempoSubtrai;
+        crop.tempoFinal = (crop.tempo * buffs.tempoMulti * buffs.sunshower) - buffs.tempoSubtrai;
         
         //quantidade de crops recebida por semente!
-        crop.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai + (buffs.qtdArea / plots)) * buffs.qtdInsta;
+        crop.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai + (buffs.qtdArea / plots) + buffs.bountifulHarvest) * buffs.qtdInsta;
 
         //Calculo para o tipo de conta que a pessoa quer fazer
         if (modoDeCalularCrops === 'manual') {
@@ -267,7 +293,7 @@ function buffsAdicionadosCrops() {
         cropM.tempoFinal = cropM.tempo * buffs.tempoCM;
 
         //quantidade de crops recebida por semente!
-        cropM.quantidade = Number(buffs.qtdMulti + buffs.qtdSoma - buffs.qtdSubtrai);
+        cropM.quantidade = Number(buffs.qtdMulti + buffs.qtdSoma + buffs.bountifulHarvest - buffs.qtdSubtrai);
 
         if (modoDeCalularCropsNaCM === 'manual') {
             cropM.qtdSementeUsadas = cropM.seedsPlantadas;
@@ -330,7 +356,7 @@ function buffsAdicionadosFrutas() {
         if (mapaDeTodasSkillsComTier['fruityWoody'].possui) fruta.wood += mapaDeTodasSkillsComTier['fruityWoody'].quantidade[0].buff;
 
         //quantidade de fruta por colheita
-        fruta.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai) * frutiferasDuram;
+        fruta.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma + buffs.bountifulHarvest - buffs.qtdSubtrai) * frutiferasDuram;
         
         //tempo que demora pra crescer a fruta
         fruta.tempoFinal = (fruta.tempo * buffs.tempoMulti) * frutiferasDuram;
@@ -403,7 +429,7 @@ function buffsAdicionadosGreenhouse() {
         gh.tempoFinal = (gh.tempo * buffs.tempoMulti);
 
         //quantidade de crops recebida por semente!
-        gh.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma - buffs.qtdSubtrai) * buffs.qtdInsta;
+        gh.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma + buffs.bountifulHarvest - buffs.qtdSubtrai) * buffs.qtdInsta;
 
         //Oil por crop
         gh.oilFinal = (gh.oil * buffs.oilMulti) - buffs.oilDiminuido;
