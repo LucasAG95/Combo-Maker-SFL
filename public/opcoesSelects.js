@@ -39,9 +39,9 @@ let estacao = 'spring';
 let eventoSelecionado = '-';
 function selecionandoEstacao() {
     estacao = document.getElementById('estacaoSelect').value;
+    eventoSelecionado = document.getElementById('evento-bonus').value;
     chamadorDeBuffs();//dps mudar qual chamar
 
-    eventoSelecionado = document.getElementById('evento-bonus').value;
     //aviso que o bonus foi selecionado
     if (document.getElementById('evento-bonus').value != 'semEvento') {
         document.getElementById('aviso-bonus-selecionado').innerHTML = `* ${idiomaEscolhido[idioma].avisoDoBonus}`;
