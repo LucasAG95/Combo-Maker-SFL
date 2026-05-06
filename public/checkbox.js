@@ -294,6 +294,26 @@ window.onload = function () {
     renderSkills(skillsMachinery.tier1, 'skills-machinery-tier1-container', './skills');
     renderSkills(skillsMachinery.tier2, 'skills-machinery-tier2-container', './skills');
     renderSkills(skillsMachinery.tier3, 'skills-machinery-tier3-container', './skills');
+    //Skills Fishing
+    renderSkills(skillsFishing.tier1, 'skills-fishing-tier1-container', './skills');
+    renderSkills(skillsFishing.tier2, 'skills-fishing-tier2-container', './skills');
+    renderSkills(skillsFishing.tier3, 'skills-fishing-tier3-container', './skills');
+    //Skills Cooking
+    renderSkills(skillsCooking.tier1, 'skills-cooking-tier1-container', './skills');
+    renderSkills(skillsCooking.tier2, 'skills-cooking-tier2-container', './skills');
+    renderSkills(skillsCooking.tier3, 'skills-cooking-tier3-container', './skills');
+    //Skills Compost
+    renderSkills(skillsCompost.tier1, 'skills-compost-tier1-container', './skills');
+    renderSkills(skillsCompost.tier2, 'skills-compost-tier2-container', './skills');
+    renderSkills(skillsCompost.tier3, 'skills-compost-tier3-container', './skills');
+    //Skills Bees & Flowers
+    renderSkills(skillsBeesFlowers.tier1, 'skills-beesFlowers-tier1-container', './skills');
+    renderSkills(skillsBeesFlowers.tier2, 'skills-beesFlowers-tier2-container', './skills');
+    renderSkills(skillsBeesFlowers.tier3, 'skills-beesFlowers-tier3-container', './skills');
+    //Aging
+    renderSkills(skillsAging.tier1, 'skills-aging-tier1-container', './skills');
+    renderSkills(skillsAging.tier2, 'skills-aging-tier2-container', './skills');
+    renderSkills(skillsAging.tier3, 'skills-aging-tier3-container', './skills');
 
     // Collectibles
     renderNFTs(collectibles.ferreiro, 'collectibles-container-ferreiro', './collectibles');

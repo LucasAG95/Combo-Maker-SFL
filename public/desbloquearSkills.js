@@ -337,6 +337,236 @@ function skillsMachineryBloqueadas() {
     textoParaDesbloquearSkill(2, 5, totalDePontosGastos, aroveDeAbilidades, tituloDoAcordion);
 };
 
+function skillsFishingBloqueadas() {
+    let aroveDeAbilidades = 'fishing';
+    let tituloDoAcordion = 'Fishing';
+    let pontosTier1 = 0;
+    let pontosTier2 = 0;
+    let pontosTier3 = 0;
+    let totalDePontosGastos = 0;
+
+    todasSkillsFishing.forEach(skill => {
+        let checkbox = document.getElementById(skill.idName)
+
+        // Tier 1 sempre pode ser contado
+        if(skill.pontosNecessarios === 1 && checkbox.checked) {
+            pontosTier1 += skill.pontosNecessarios;
+        };
+
+        // Tier 2 só conta se já tiver pontos suficientes no Tier 1
+        if(skill.pontosNecessarios === 2 && checkbox.checked && pontosTier1 >= 2) {
+            pontosTier2 += skill.pontosNecessarios;
+        };
+
+        // Tier 3 só conta se já tiver pontos suficientes no Tier 1 + 2
+        if(skill.pontosNecessarios === 3 && checkbox.checked && (pontosTier1 + pontosTier2) >= 5) {
+            pontosTier3 += skill.pontosNecessarios;
+        };
+
+        //Bloquear tier 2 e 3 das skills ate condições serem falsas
+        if (pontosTier1 < 2 && skill.pontosNecessarios === 2) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            skill.possui = false;
+        } else if ((pontosTier1 + pontosTier2) < 5 && skill.pontosNecessarios === 3) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            skill.possui = false;
+        } else {
+            checkbox.disabled = false;
+        };
+        
+    });
+    totalDePontosGastos = pontosTier1 + pontosTier2 + pontosTier3;
+    console.log(totalDePontosGastos);
+
+    textoParaDesbloquearSkill(2, 5, totalDePontosGastos, aroveDeAbilidades, tituloDoAcordion);
+};
+
+function skillsCookingBloqueadas() {
+    let aroveDeAbilidades = 'cooking';
+    let tituloDoAcordion = 'Cooking';
+    let pontosTier1 = 0;
+    let pontosTier2 = 0;
+    let pontosTier3 = 0;
+    let totalDePontosGastos = 0;
+
+    todasSkillsCooking.forEach(skill => {
+        let checkbox = document.getElementById(skill.idName)
+
+        // Tier 1 sempre pode ser contado
+        if(skill.pontosNecessarios === 1 && checkbox.checked) {
+            pontosTier1 += skill.pontosNecessarios;
+        };
+
+        // Tier 2 só conta se já tiver pontos suficientes no Tier 1
+        if(skill.pontosNecessarios === 2 && checkbox.checked && pontosTier1 >= 2) {
+            pontosTier2 += skill.pontosNecessarios;
+        };
+
+        // Tier 3 só conta se já tiver pontos suficientes no Tier 1 + 2
+        if(skill.pontosNecessarios === 3 && checkbox.checked && (pontosTier1 + pontosTier2) >= 5) {
+            pontosTier3 += skill.pontosNecessarios;
+        };
+
+        //Bloquear tier 2 e 3 das skills ate condições serem falsas
+        if (pontosTier1 < 2 && skill.pontosNecessarios === 2) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            skill.possui = false;
+        } else if ((pontosTier1 + pontosTier2) < 5 && skill.pontosNecessarios === 3) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            skill.possui = false;
+        } else {
+            checkbox.disabled = false;
+        };
+        
+    });
+    totalDePontosGastos = pontosTier1 + pontosTier2 + pontosTier3;
+    console.log(totalDePontosGastos);
+
+    textoParaDesbloquearSkill(2, 5, totalDePontosGastos, aroveDeAbilidades, tituloDoAcordion);
+};
+
+function skillsCompostBloqueadas() {
+    let aroveDeAbilidades = 'compost';
+    let tituloDoAcordion = 'Compost';
+    let pontosTier1 = 0;
+    let pontosTier2 = 0;
+    let pontosTier3 = 0;
+    let totalDePontosGastos = 0;
+
+    todasSkillsCompost.forEach(skill => {
+        let checkbox = document.getElementById(skill.idName)
+
+        // Tier 1 sempre pode ser contado
+        if(skill.pontosNecessarios === 1 && checkbox.checked) {
+            pontosTier1 += skill.pontosNecessarios;
+        };
+
+        // Tier 2 só conta se já tiver pontos suficientes no Tier 1
+        if(skill.pontosNecessarios === 2 && checkbox.checked && pontosTier1 >= 3) {
+            pontosTier2 += skill.pontosNecessarios;
+        };
+
+        // Tier 3 só conta se já tiver pontos suficientes no Tier 1 + 2
+        if(skill.pontosNecessarios === 3 && checkbox.checked && (pontosTier1 + pontosTier2) >= 7) {
+            pontosTier3 += skill.pontosNecessarios;
+        };
+
+        //Bloquear tier 2 e 3 das skills ate condições serem falsas
+        if (pontosTier1 < 3 && skill.pontosNecessarios === 2) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            skill.possui = false;
+        } else if ((pontosTier1 + pontosTier2) < 7 && skill.pontosNecessarios === 3) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            skill.possui = false;
+        } else {
+            checkbox.disabled = false;
+        };
+        
+    });
+    totalDePontosGastos = pontosTier1 + pontosTier2 + pontosTier3;
+    console.log(totalDePontosGastos);
+
+    textoParaDesbloquearSkill(3, 7, totalDePontosGastos, aroveDeAbilidades, tituloDoAcordion);
+};
+
+function skillsBeesFlowersBloqueadas() {
+    let aroveDeAbilidades = 'beesFlowers';
+    let tituloDoAcordion = 'Bees & Flowers';
+    let pontosTier1 = 0;
+    let pontosTier2 = 0;
+    let pontosTier3 = 0;
+    let totalDePontosGastos = 0;
+
+    todasSkillsBeesFlowers.forEach(skill => {
+        let checkbox = document.getElementById(skill.idName)
+
+        // Tier 1 sempre pode ser contado
+        if(skill.pontosNecessarios === 1 && checkbox.checked) {
+            pontosTier1 += skill.pontosNecessarios;
+        };
+
+        // Tier 2 só conta se já tiver pontos suficientes no Tier 1
+        if(skill.pontosNecessarios === 2 && checkbox.checked && pontosTier1 >= 2) {
+            pontosTier2 += skill.pontosNecessarios;
+        };
+
+        // Tier 3 só conta se já tiver pontos suficientes no Tier 1 + 2
+        if(skill.pontosNecessarios === 3 && checkbox.checked && (pontosTier1 + pontosTier2) >= 5) {
+            pontosTier3 += skill.pontosNecessarios;
+        };
+
+        //Bloquear tier 2 e 3 das skills ate condições serem falsas
+        if (pontosTier1 < 2 && skill.pontosNecessarios === 2) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            skill.possui = false;
+        } else if ((pontosTier1 + pontosTier2) < 5 && skill.pontosNecessarios === 3) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            skill.possui = false;
+        } else {
+            checkbox.disabled = false;
+        };
+        
+    });
+    totalDePontosGastos = pontosTier1 + pontosTier2 + pontosTier3;
+    console.log(totalDePontosGastos);
+
+    textoParaDesbloquearSkill(2, 5, totalDePontosGastos, aroveDeAbilidades, tituloDoAcordion);
+};
+
+function skillsAgingBloqueadas() {
+    let aroveDeAbilidades = 'aging';
+    let tituloDoAcordion = 'Aging';
+    let pontosTier1 = 0;
+    let pontosTier2 = 0;
+    let pontosTier3 = 0;
+    let totalDePontosGastos = 0;
+
+    todasSkillsAging.forEach(skill => {
+        let checkbox = document.getElementById(skill.idName)
+
+        // Tier 1 sempre pode ser contado
+        if(skill.pontosNecessarios === 1 && checkbox.checked) {
+            pontosTier1 += skill.pontosNecessarios;
+        };
+
+        // Tier 2 só conta se já tiver pontos suficientes no Tier 1
+        if(skill.pontosNecessarios === 2 && checkbox.checked && pontosTier1 >= 2) {
+            pontosTier2 += skill.pontosNecessarios;
+        };
+
+        // Tier 3 só conta se já tiver pontos suficientes no Tier 1 + 2
+        if(skill.pontosNecessarios === 3 && checkbox.checked && (pontosTier1 + pontosTier2) >= 5) {
+            pontosTier3 += skill.pontosNecessarios;
+        };
+
+        //Bloquear tier 2 e 3 das skills ate condições serem falsas
+        if (pontosTier1 < 2 && skill.pontosNecessarios === 2) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            skill.possui = false;
+        } else if ((pontosTier1 + pontosTier2) < 5 && skill.pontosNecessarios === 3) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            skill.possui = false;
+        } else {
+            checkbox.disabled = false;
+        };
+        
+    });
+    totalDePontosGastos = pontosTier1 + pontosTier2 + pontosTier3;
+    console.log(totalDePontosGastos);
+
+    textoParaDesbloquearSkill(2, 5, totalDePontosGastos, aroveDeAbilidades, tituloDoAcordion);
+};
+
 //função que vai ser responsavel por mudar os textos que mostram a quantidade de pontos faltantes para desbloquear skill!
 function textoParaDesbloquearSkill(pontosProNivel2, pontosProNivel3, totalPontosGastos, aroveDeAbilidades, tituloDoAcordion) {
 
@@ -373,4 +603,9 @@ function chamadorDeDesbloquearSkills() {
     skillsMineralsBloqueadas();
     skillsAnimaisBloqueadas();
     skillsMachineryBloqueadas();
+    skillsFishingBloqueadas();
+    skillsCookingBloqueadas();
+    skillsCompostBloqueadas();
+    skillsBeesFlowersBloqueadas();
+    skillsAgingBloqueadas();
 };

@@ -11,7 +11,8 @@ function sprite(nome, categoria = "crops", tipo = "normal") {
         temporarios: "sprite-temporarios",
         wearables: "sprite-wearables",
         auras: "sprite-auras",
-        buds: "sprite-buds",   
+        buds: "sprite-buds",
+        treasures: "sprite-treasures"
     };
 
     const classeCategoria = categorias[categoria] || "sprite-crops";

@@ -655,7 +655,11 @@ function mediaDeValorDasFerramentasEMinerais() {
         //calcular média em coins e flower que cada mineral sai!
         mineral.mediaDeCustoCoins = (ferramenta.custoEmCoins * (ferramenta.qtdPrecisaPorNode || 1)) / (mineral.mediaPorNode || 1);
         mineral.mediaDeCustoFlower = mineral.mediaDeCustoCoins / flowerEmCoins;
+
     });
+    //salvar o custo da pá de cavar para usar o valor em treasures.js
+    localStorage.setItem('sandShovelCusto', JSON.stringify(mapaDeFerramentas['sandShovel'].custoEmCoins));
+
     tabelaMinerios();
 };
 

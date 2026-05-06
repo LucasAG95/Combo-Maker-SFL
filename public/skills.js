@@ -1992,25 +1992,1091 @@ let skillsAnimais = {
 };
 
 //============================================================================================================================================================================
+//rever depois
+let skillsFishing = {
+    tier1: [
+        {
+            idName: 'fishermans5Fold',
+            name: 'Fisherman\'s 5 Fold',
+            descricao: {
+                portugues: '+5 tentativas de pesca diárias',
+                ingles: '+5 daily fishing reels'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 5,
+                    recursoAfetado: ['fishing'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'fishyChance',
+            name: 'Fishy Chance',
+            descricao: {
+                portugues: '10% de chance de obter +1 peixe básico.',
+                ingles: '10% chance to get +1 basic fish.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['basic fish'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'fishyRoll',
+            name: 'Fishy Roll',
+            descricao: {
+                portugues: '10% de chance de obter +1 peixe avançado.',
+                ingles: '10% chance to get +1 advanced fish.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['advenced fish'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'reelDeal',
+            name: 'Reel Deal',
+            descricao: {
+                portugues: '-50% no custo de coins das varas',
+                ingles: '-50% rod coin cost'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 0.5,
+                    recursoAfetado: ['rod'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+    ],
+    tier2: [
+        {
+            idName: 'fishermans10Fold',
+            name: 'Fisherman\'s 10 Fold',
+            descricao: {
+                portugues: '+10 tentativas de pesca diárias',
+                ingles: '+10 daily fishing reels'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 10,
+                    recursoAfetado: ['fishing'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'fishyFortune',
+            name: 'Fishy Fortune',
+            descricao: {
+                portugues: '+100% de coins nas entregas da Corale',
+                ingles: '+100% coins from Corale\'s deliveries'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 2,
+                    recursoAfetado: ['delivery'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'fishyGamble',
+            name: 'Fishy Gamble',
+            descricao: {
+                portugues: '20% de chance de obter +1 peixe especialista',
+                ingles: '20% chance of +1 expert fish'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.2,
+                    recursoAfetado: ['expert fish'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+    ],
+    tier3: [
+        {
+            idName: 'frenziedFish',
+            name: 'Frenzied Fish',
+            descricao: {
+                portugues: 'Durante o Frenesi de Pesca, +1 peixe e 50% de chance de +1 peixe adicional',
+                ingles: 'During fish frenzy, +1 fish and 50% chance of +1 fish'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 1.5,
+                    recursoAfetado: ['fish'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'moreWithLess',
+            name: 'More With Less',
+            descricao: {
+                portugues: '+15 tentativas de pesca diárias | -1 minhoca de todos os compostores',
+                ingles: '+15 daily fishing reels | -1 worm from all composters'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 15,
+                    recursoAfetado: ['fishing'],
+                },
+                {
+                    sinal: '-',
+                    buff: 1,
+                    recursoAfetado: ['worm'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'fishyFeast',
+            name: 'Fishy Feast',
+            descricao: {
+                portugues: '+20% de XP do Bumpkin em peixes',
+                ingles: '+20% Bumpkin XP from Fish'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 1.2,
+                    recursoAfetado: ['xp'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+    ]
+};
+
+//============================================================================================================================================================================
+//rever depois
+let skillsCooking = {
+    tier1: [
+        {
+            idName: 'fastFeasts',
+            name: 'Fast Feasts',
+            descricao: {
+                portugues: '-10% no tempo de preparo no Fire Pit e na Kitchen.',
+                ingles: '-10% cooking time for Firepit and Kitchen.'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.9,
+                    recursoAfetado: ['cooking'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'nomNom',
+            name: 'Nom Nom',
+            descricao: {
+                portugues: '+10% de receita nas entregas de comida.',
+                ingles: '+10% in food delivery revenue.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 1.1,
+                    recursoAfetado: ['delivery'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'munchingMastery',
+            name: 'Munching Mastery',
+            descricao: {
+                portugues: '+5% de XP do Bumpkin',
+                ingles: '+5% Bumpkin XP'
+            },
+            possui: false,
+            xp: [
+                {
+                    sinal: 'x',
+                    buff: 1.05,
+                    recursoAfetado: ['xp'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'swiftSizzle',
+            name: 'Swift Sizzle',
+            descricao: {
+                portugues: '-40% no tempo de preparo no Fire Pit usando óleo',
+                ingles: '-40% Fire Pit cooking time with oil'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.6,
+                    recursoAfetado: ['firepit oil'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+    ],
+    tier2: [
+        {
+            idName: 'frostedCakes',
+            name: 'Frosted Cakes',
+            descricao: {
+                portugues: '-10% no tempo de preparo de bolos',
+                ingles: '-10% Cakes cooking time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.9,
+                    recursoAfetado: ['cake'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'juicyBoost',
+            name: 'Juicy Boost',
+            descricao: {
+                portugues: '+10% de XP do Bumpkin ao preparar bebidas',
+                ingles: '+10% Bumpkin XP from drinks'
+            },
+            possui: false,
+            xp: [
+                {
+                    sinal: 'x',
+                    buff: 1.1,
+                    recursoAfetado: ['drink'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'turboFry',
+            name: 'Turbo Fry',
+            descricao: {
+                portugues: '-50% no tempo de preparo na cozinha usando óleo',
+                ingles: '-50% Kitchen cooking time with oil'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.5,
+                    recursoAfetado: ['kitchen oil'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'drive-ThroughDeli',
+            name: 'Drive-Through Deli',
+            descricao: {
+                portugues: '+15% de XP do Bumpkin ao preparar no Deli',
+                ingles: '+15% Bumpkin XP from Deli'
+            },
+            possui: false,
+            xp: [
+                {
+                    sinal: 'x',
+                    buff: 1.15,
+                    recursoAfetado: ['deli'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+    ],
+    tier3: [
+        {
+            idName: 'instantGratification',
+            name: 'Instant Gratification',
+            descricao: {
+                portugues: 'Torna todas as comidas em preparo prontas instantaneamente (1 vez a cada 72h).',
+                ingles: 'Makes all currently cooking meals ready to be consumed (1/72h).'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 1,
+                    recursoAfetado: ['cooking'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'doubleNom',
+            name: 'Double Nom',
+            descricao: {
+                portugues: '+1 comida ao cozinhar | 2x ingredientes necessários',
+                ingles: '+1 food from cooking | 2x ingredients required for cooking'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 1,
+                    recursoAfetado: ['food'],
+                },
+                {
+                    sinal: 'x',
+                    buff: 2,
+                    recursoAfetado: ['ingredientes'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'fieryJackpot',
+            name: 'Fiery Jackpot',
+            descricao: {
+                portugues: '20% de chance de obter +1 comida no Fire Pit',
+                ingles: '+20% Chance of +1 food from Firepit'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.2,
+                    recursoAfetado: ['firepit food'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'fryFrenzy',
+            name: 'Fry Frenzy',
+            descricao: {
+                portugues: '-50% no tempo de preparo no Deli usando óleo',
+                ingles: '-50% Deli cooking time with oil'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.4,
+                    recursoAfetado: ['deli oil'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+    ]
+};
+
+//============================================================================================================================================================================
+//rever depois
+let skillsCompost = {
+    tier1: [
+        {
+            idName: 'efficientBin',
+            name: 'Efficient Bin',
+            descricao: {
+                portugues: '+5 Sprout Mix.',
+                ingles: '+5 Sprout Mix.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 5,
+                    recursoAfetado: ['sproutMix'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'turboCharged',
+            name: 'Turbo Charged',
+            descricao: {
+                portugues: '+5 Fruitful Blend',
+                ingles: '+5 Fruitful Blend'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 5,
+                    recursoAfetado: ['fruitfulBlend'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'wormyTreat',
+            name: 'Wormy Treat',
+            descricao: {
+                portugues: '+1 Minhoca',
+                ingles: '+1 Worm'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 1,
+                    recursoAfetado: ['worm'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'featheryBusiness',
+            name: 'Feathery Business',
+            descricao: {
+                portugues: 'Use penas em vez de ovos para acelerar composteiras | 2x penas para acelerar composteiras',
+                ingles: 'Use feathers instead of eggs to boost composters | 2x feathers to boost composters'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 2,
+                    recursoAfetado: ['feathers'],
+                },
+            ],
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.5,
+                    recursoAfetado: ['composter'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'sproutSurge',
+            name: 'Sprout Surge',
+            descricao: {
+                portugues: 'Aplica Sprout Mix em todos os terrenos.',
+                ingles: 'Place Sprout Mix in all plots.'
+            },
+            possui: false,
+            insta: [
+                {
+                    sinal: '',
+                    buff: 0,
+                    recursoAfetado: ['plots'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'blend-tastic',
+            name: 'Blend-tastic',
+            descricao: {
+                portugues: 'Aplica Fruitful Blend em todos os terrenos de árvores frutíferas.',
+                ingles: 'Place Fruitful Blend in all fruit tree plots.'
+            },
+            possui: false,
+            insta: [
+                {
+                    sinal: '',
+                    buff: 0,
+                    recursoAfetado: ['fruitPlots'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+    ],
+    tier2: [
+        {
+            idName: 'premiumWorms',
+            name: 'Premium Worms',
+            descricao: {
+                portugues: '+10 Rapid Root',
+                ingles: '+10 Rapid Root'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 10,
+                    recursoAfetado: ['rapidRoot'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'fruitfulBounty',
+            name: 'Fruitful Bounty',
+            descricao: {
+                portugues: 'Dobra o efeito do Fruitful Blend.',
+                ingles: 'Double the effect of Fruitful Blendz\'s.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 2,
+                    recursoAfetado: ['fruitBlend'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'swiftDecomposer',
+            name: 'Swift Decomposer',
+            descricao: {
+                portugues: '-10% no tempo de compostagem.',
+                ingles: '-10% in composting time.'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.9,
+                    recursoAfetado: ['composter'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'compostingBonanza',
+            name: 'Composting Bonanza',
+            descricao: {
+                portugues: 'Acelera composteiras em 1 hora adicional ao usar boost | 2x recursos para acelerar composteiras',
+                ingles: 'Speed up composters by an additional hour when boosting | 2x resources to boost composters'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: '-',
+                    buff: 3_600_000,
+                    recursoAfetado: ['composter'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'rootRocket',
+            name: 'Root Rocket',
+            descricao: {
+                portugues: 'Aplica Rapid Root em todos os terrenos.',
+                ingles: 'Place Rapid Root in all plots.'
+            },
+            possui: false,
+            insta: [
+                {
+                    sinal: '',
+                    buff: 0,
+                    recursoAfetado: ['rapidRoot'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+    ],
+    tier3: [
+        {
+            idName: 'compostingOverhaul',
+            name: 'Composting Overhaul',
+            descricao: {
+                portugues: '+2 Minhocas, -5 fertilizantes',
+                ingles: '+2 Worms, -5 fertilisers'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 2,
+                    recursoAfetado: ['worm'],
+                },
+                {
+                    sinal: '-',
+                    buff: 5,
+                    recursoAfetado: ['fertilisers'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'compostingRevamp',
+            name: 'Composting Revamp',
+            descricao: {
+                portugues: '+5 fertilizantes, -3 Minhocas',
+                ingles: '+5 fertilisers, -3 Worms'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 5,
+                    recursoAfetado: ['fertilisers'],
+                },
+                {
+                    sinal: '-',
+                    buff: 3,
+                    recursoAfetado: ['worms'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+    ]
+};
+
+//============================================================================================================================================================================
+//rever depois
+let skillsBeesFlowers = {
+    tier1: [
+        {
+            idName: 'sweetBonus',
+            name: 'Sweet Bonus',
+            descricao: {
+                portugues: '+0.1 de Mel por colmeia.',
+                ingles: '+0.1 Honey per hive.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['honey'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'hyperBees',
+            name: 'Hyper Bees',
+            descricao: {
+                portugues: '+10% na velocidade de produção de mel.',
+                ingles: '+0.1 in honey production speed.'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.9,
+                    recursoAfetado: ['honey'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'bloomingBoost',
+            name: 'Blooming Boost',
+            descricao: {
+                portugues: '-10% no tempo de crescimento das flores.',
+                ingles: '-10% in the growth time of flowers.'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.9,
+                    recursoAfetado: ['flowers'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'flowerSale',
+            name: 'Flower Sale',
+            descricao: {
+                portugues: '-20% no custo das sementes de flores.',
+                ingles: '-20% in the cost of flower seeds.'
+            },
+            possui: false,
+            coins: [
+                {
+                    sinal: 'x',
+                    buff: 0.8,
+                    recursoAfetado: ['flowers'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+    ],
+    tier2: [
+        {
+            idName: 'buzzworthyTreats',
+            name: 'Buzzworthy Treats',
+            descricao: {
+                portugues: '+10% de experiência em comidas feitas com mel.',
+                ingles: '+10% Experience in foods made with honey.'
+            },
+            possui: false,
+            xp: [
+                {
+                    sinal: 'x',
+                    buff: 1.1,
+                    recursoAfetado: ['food honey'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'blossomBonding',
+            name: 'Blossom Bonding',
+            descricao: {
+                portugues: '+2 pontos de relacionamento ao presentear flores.',
+                ingles: '+2 relationship points when gifting flowers.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 2,
+                    recursoAfetado: ['relationship'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'pollenPowerUp',
+            name: 'Pollen Power Up',
+            descricao: {
+                portugues: '+0.1 de colheita adicional após polinização.',
+                ingles: 'Additional yield of +0.1 harvest after pollination.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['pollination'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'petalledPerk',
+            name: 'Petalled Perk',
+            descricao: {
+                portugues: '10% de chance de obter +1 flor.',
+                ingles: '10% chance to get +1 flower.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.1,
+                    recursoAfetado: ['flowers'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+    ],
+    tier3: [
+        {
+            idName: 'beeCollective',
+            name: 'Bee Collective',
+            descricao: {
+                portugues: '+20% de chance de enxame de abelhas.',
+                ingles: '+20% chance of a bee swarm.'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 1.2,
+                    recursoAfetado: ['beeSwarm'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'flowerPower',
+            name: 'Flower Power',
+            descricao: {
+                portugues: '-20% no tempo de crescimento das flores.',
+                ingles: '-20% in the growth time of flowers.'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.8,
+                    recursoAfetado: ['flowers'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'floweryAbode',
+            name: 'Flowery Abode',
+            descricao: {
+                portugues: '+50% na velocidade de produção de mel | +50% no tempo de crescimento das flores',
+                ingles: '+0.5 Honey production speed | +50% Flower growth time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.5,
+                    recursoAfetado: ['honey'],
+                },
+                {
+                    sinal: 'x',
+                    buff: 1.5,
+                    recursoAfetado: ['flowers'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'petalBlessed',
+            name: 'Petal Blessed',
+            descricao: {
+                portugues: 'Skill: torna todas as flores em crescimento prontas para colheita (1 vez a cada 96h).',
+                ingles: 'Skill: make all currently growing flowers ready to be harvested (1/96h).'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '',
+                    buff: 0,
+                    recursoAfetado: ['flowers'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+    ]
+};
+
+//============================================================================================================================================================================
+//rever depois
+let skillsAging = {
+    tier1: [
+        {
+            idName: 'cheapRakes',
+            name: 'Cheap Rakes',
+            descricao: {
+                portugues: '',
+                ingles: '-20% salt rake coin cost'
+            },
+            possui: false,
+            coins: [
+                {
+                    sinal: 'x',
+                    buff: 0.8,
+                    recursoAfetado: ['salt'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'speedyAging',
+            name: 'Speedy Aging',
+            descricao: {
+                portugues: '',
+                ingles: '-10% Fish Aging time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.9,
+                    recursoAfetado: ['fish aging'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'saltySeas',
+            name: 'Salty Seas',
+            descricao: {
+                portugues: '',
+                ingles: '-10% salt charge replenishment time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.9,
+                    recursoAfetado: ['salt'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'wideRakes',
+            name: 'Wide Rakes',
+            descricao: {
+                portugues: '',
+                ingles: '+2 Salt per harvest'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 2,
+                    recursoAfetado: ['salt'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+        {
+            idName: 'bacalhau',
+            name: 'Bacalhau',
+            descricao: {
+                portugues: '',
+                ingles: '+1 Bait yield from fermentation rack'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 1,
+                    recursoAfetado: ['bait'],
+                },
+            ],
+            pontosNecessarios: 1
+        },
+    ],
+    tier2: [
+        {
+            idName: 'fishSmoking',
+            name: 'Fish Smoking',
+            descricao: {
+                portugues: '',
+                ingles: 'Doubled chance Aged Fish becomes Prime Aged'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 2,
+                    recursoAfetado: ['fish'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'refiner',
+            name: 'Refiner',
+            descricao: {
+                portugues: '',
+                ingles: '15% chance of +1 Refined Salt when making Refined Salt'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 0.15,
+                    recursoAfetado: ['salt'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+        {
+            idName: 'seaBlessed',
+            name: 'Sea Blessed',
+            descricao: {
+                portugues: '',
+                ingles: '5% chance to restore 1 charge to 4 Salt hodes on harvest'
+            },
+            possui: false,
+            insta: [
+                {
+                    sinal: 'x',
+                    buff: 0.05,
+                    recursoAfetado: ['salt'],
+                },
+            ],
+            pontosNecessarios: 2
+        },
+    ],
+    tier3: [
+        {
+            idName: 'ager',
+            name: 'Ager',
+            descricao: {
+                portugues: '',
+                ingles: '2x output from Aging Shed Racks | 2x Aging Shed inputs (ingredients, fish & salt)'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: 'x',
+                    buff: 2,
+                    recursoAfetado: ['anging', 'recursos'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+        {
+            idName: 'saltSurge',
+            name: 'Salt Surge',
+            descricao: {
+                portugues: '',
+                ingles: 'Recharge all Salt hodes to max'
+            },
+            possui: false,
+            insta: [
+                {
+                    sinal: '',
+                    buff: 0,
+                    recursoAfetado: ['salt'],
+                },
+            ],
+            pontosNecessarios: 3
+        },
+    ]
+};
+
+//============================================================================================================================================================================
 //Todas arvores de skills separadas
-let todasSkillsCrops      = [...skillsCrops.tier1,      ...skillsCrops.tier2,      ...skillsCrops.tier3];
-let todasSkillsFruits     = [...skillsFruits.tier1,     ...skillsFruits.tier2,     ...skillsFruits.tier3];
-let todasSkillsTrees      = [...skillsTrees.tier1,      ...skillsTrees.tier2,      ...skillsTrees.tier3];
-let todasSkillsMinerals   = [...skillsMinerals.tier1,   ...skillsMinerals.tier2,   ...skillsMinerals.tier3];
-let todasSkillsMachinery  = [...skillsMachinery.tier1,  ...skillsMachinery.tier2,  ...skillsMachinery.tier3];
-let todasSkillsGreenhouse = [...skillsGreenhouse.tier1, ...skillsGreenhouse.tier2, ...skillsGreenhouse.tier3];
-let todasSkillsAnimais    = [...skillsAnimais.tier1,    ...skillsAnimais.tier2,    ...skillsAnimais.tier3]
+let todasSkillsCrops       = [...skillsCrops.tier1,       ...skillsCrops.tier2,        ...skillsCrops.tier3];
+let todasSkillsFruits      = [...skillsFruits.tier1,      ...skillsFruits.tier2,       ...skillsFruits.tier3];
+let todasSkillsTrees       = [...skillsTrees.tier1,       ...skillsTrees.tier2,        ...skillsTrees.tier3];
+let todasSkillsMinerals    = [...skillsMinerals.tier1,    ...skillsMinerals.tier2,     ...skillsMinerals.tier3];
+let todasSkillsMachinery   = [...skillsMachinery.tier1,   ...skillsMachinery.tier2,    ...skillsMachinery.tier3];
+let todasSkillsGreenhouse  = [...skillsGreenhouse.tier1,  ...skillsGreenhouse.tier2,   ...skillsGreenhouse.tier3];
+let todasSkillsAnimais     = [...skillsAnimais.tier1,     ...skillsAnimais.tier2,      ...skillsAnimais.tier3];
+let todasSkillsFishing     = [...skillsFishing.tier1,     ...skillsFishing.tier2,      ...skillsFishing.tier3];
+let todasSkillsCooking     = [...skillsCooking.tier1,     ...skillsCooking.tier2,      ...skillsCooking.tier3];
+let todasSkillsCompost     = [...skillsCompost.tier1,     ...skillsCompost.tier2,      ...skillsCompost.tier3];
+let todasSkillsBeesFlowers = [...skillsBeesFlowers.tier1, ...skillsBeesFlowers.tier2,  ...skillsBeesFlowers.tier3];
+let todasSkillsAging       = [...skillsAging.tier1,       ...skillsAging.tier2,        ...skillsAging.tier3];
 
 //============================================================================================================================================================================
 //Todas arvores de skills juntas
 let todasSkillsComTier = [
-    ...skillsCrops.tier1,      ...skillsCrops.tier2,      ...skillsCrops.tier3,
-    ...skillsFruits.tier1,     ...skillsFruits.tier2,     ...skillsFruits.tier3,
-    ...skillsTrees.tier1,      ...skillsTrees.tier2,      ...skillsTrees.tier3,
-    ...skillsMinerals.tier1,   ...skillsMinerals.tier2,   ...skillsMinerals.tier3,
-    ...skillsMachinery.tier1,  ...skillsMachinery.tier2,  ...skillsMachinery.tier3,
-    ...skillsGreenhouse.tier1, ...skillsGreenhouse.tier2, ...skillsGreenhouse.tier3,
-    ...skillsAnimais.tier1,    ...skillsAnimais.tier2,    ...skillsAnimais.tier3,
+    ...skillsCrops.tier1,       ...skillsCrops.tier2,        ...skillsCrops.tier3,
+    ...skillsFruits.tier1,      ...skillsFruits.tier2,       ...skillsFruits.tier3,
+    ...skillsTrees.tier1,       ...skillsTrees.tier2,        ...skillsTrees.tier3,
+    ...skillsMinerals.tier1,    ...skillsMinerals.tier2,     ...skillsMinerals.tier3,
+    ...skillsMachinery.tier1,   ...skillsMachinery.tier2,    ...skillsMachinery.tier3,
+    ...skillsGreenhouse.tier1,  ...skillsGreenhouse.tier2,   ...skillsGreenhouse.tier3,
+    ...skillsAnimais.tier1,     ...skillsAnimais.tier2,      ...skillsAnimais.tier3,
+    ...skillsFishing.tier1,     ...skillsFishing.tier2,      ...skillsFishing.tier3,
+    ...skillsCooking.tier1,     ...skillsCooking.tier2,      ...skillsCooking.tier3,
+    ...skillsCompost.tier1,     ...skillsCompost.tier2,      ...skillsCompost.tier3,
+    ...skillsBeesFlowers.tier1, ...skillsBeesFlowers.tier2,  ...skillsBeesFlowers.tier3,
+    ...skillsAging.tier1,       ...skillsAging.tier2,        ...skillsAging.tier3
 ];
 //============================================================================================================================================================================
 //Mapas
