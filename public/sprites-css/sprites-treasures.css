@@ -1,0 +1,32 @@
+/* =========================================
+   SPRITES - Treasures
+   Version: 1.0.0
+========================================= */
+
+/* categoria Treasures */
+.sprite-treasures {
+    width: 25px;
+    height: 25px;
+    background-image: url('../Imagens/treasures.png?v=1.0.0');
+}
+
+/* Treasures individuais */
+.bg-camelBone        { background-position: -10px -10px; }
+.bg-clamShell        { background-position: -55px -10px; }
+.bg-cockleShell      { background-position: -10px -55px; }
+.bg-coral            { background-position: -55px -55px; }
+.bg-emeraldCompass   { background-position: -100px -10px; }
+.bg-crab             { background-position: -100px -55px; }
+.bg-ironCompass      { background-position: -10px -100px; }
+.bg-hieroglyph       { background-position: -55px -100px; }
+.bg-pipi             { background-position: -100px -100px; }
+.bg-oldBottle        { background-position: -145px -10px; }
+.bg-saltDinoEgg      { background-position: -145px -55px; }
+.bg-pirateBounty     { background-position: -145px -100px; }
+.bg-sand             { background-position: -10px -145px; }
+.bg-pearl            { background-position: -55px -145px; }
+.bg-seaweed          { background-position: -100px -145px; }
+.bg-starfish         { background-position: -145px -145px; }
+.bg-seaCucumber      { background-position: -190px -10px; }
+.bg-vase             { background-position: -190px -55px; }
+.bg-woodenCompass    { background-position: -190px -100px; }
