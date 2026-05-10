@@ -616,19 +616,19 @@ let skillsFruits = {
             idName: 'longPickings',
             name: 'Long Pickings',
             descricao: {
-                portugues: '-50% no tempo de crescimento das maçãs e bananas, +100% no tempo de crescimento para todas as outras frutas.',
-                ingles: '-50% in the growth time of apples and bananas, +100% in the growth time for all other fruits.'
+                portugues: '-25% no tempo de crescimento da Maçã e Banana, +10% no tempo de crescimento de todas as outras frutas da Fruit Patch',
+                ingles: '-25% Apple and Banana growth time, +10% growth time for all other fruit patch fruits'
             },
             possui: false,
             tempo: [
                 {
                     sinal: 'x',
-                    buff: 0.5,
+                    buff: 0.75,
                     recursoAfetado: ['Apple', 'Banana'],
                 },
                 {
                     sinal: 'x',
-                    buff: 2,
+                    buff: 1.1,
                     recursoAfetado: ['Tomato', 'Lemon', 'Blueberry', 'Orange'],
                 },
             ],
@@ -638,19 +638,19 @@ let skillsFruits = {
             idName: 'shortPickings',
             name: 'Short Pickings',
             descricao: {
-                portugues: '-50% no tempo de crescimento dos mirtilos e laranjas, +100% no tempo de crescimento para todas as outras frutas.',
-                ingles: '-50% in the growth time of blueberries and oranges, +100% in the growth time for all other fruits.'
+                portugues: '-25% no tempo de crescimento da Laranja e Blueberry, +10% no tempo de crescimento de todas as outras frutas da Fruit Patch',
+                ingles: '-25% Orange and Blueberry growth time, +10% growth time for all other fruit patch fruits'
             },
             possui: false,
             tempo: [
                 {
                     sinal: 'x',
-                    buff: 0.5,
+                    buff: 0.75,
                     recursoAfetado: ['Blueberry', 'Orange'],
                 },
                 {
                     sinal: 'x',
-                    buff: 2,
+                    buff: 1.1,
                     recursoAfetado: ['Tomato', 'Lemon', 'Apple', 'Banana'],
                 },
             ],
@@ -1732,19 +1732,19 @@ let skillsAnimais = {
             idName: 'featherweight',
             name: 'Featherweight',
             descricao: {
-                portugues: '+0,25 rendimento de Pena, -0,35 rendimento de Couro & Lã Merino',
-                ingles: '+0.25 feather yield, -0.35 leather & merino wool yield.'
+                portugues: '+0,35 rendimento de Pena, -0,1 rendimento de Couro & Lã Merino',
+                ingles: '+0.35 feather yield, -0.1 leather & merino wool yield.'
             },
             possui: false,
             quantidade: [
                 {
                     sinal: '+',
-                    buff: 0.25,
+                    buff: 0.35,
                     recursoAfetado: ['feather'],
                 },
                 {
                     sinal: '-',
-                    buff: 0.35,
+                    buff: 0.1,
                     recursoAfetado: ['leather', 'merinoWool'],
                 }
             ],
@@ -1841,19 +1841,19 @@ let skillsAnimais = {
             idName: 'merinoWhisperer',
             name: 'Merino Whisperer',
             descricao: {
-                portugues: '+0,25 rendimento de Lã Merino, -0,35 rendimento de Couro & Pena',
-                ingles: '+0.25 merino wool yield, -0.35 leather & feather yield.'
+                portugues: '+0,35 rendimento de Lã Merino, -0,1 rendimento de Couro & Pena',
+                ingles: '+0.35 merino wool yield, -0.1 leather & feather yield.'
             },
             possui: false,
             quantidade: [
                 {
                     sinal: '+',
-                    buff: 0.25,
+                    buff: 0.35,
                     recursoAfetado: ['merinoWool'],
                 },
                 {
                     sinal: '-',
-                    buff: 0.35,
+                    buff: 0.1,
                     recursoAfetado: ['leather', 'feather'],
                 }
             ],
@@ -1953,19 +1953,19 @@ let skillsAnimais = {
             idName: 'leathercraftMastery',
             name: 'Leathercraft Mastery',
             descricao: {
-                portugues: '+0,25 rendimento de Couro, -0,35 rendimento de Pena & Lã Merino',
-                ingles: '+0.25 leather yield, -0.35 feather & merino wool yield.'
+                portugues: '+0,35 rendimento de Couro, -0,1 rendimento de Pena & Lã Merino',
+                ingles: '+0.35 leather yield, -0.1 feather & merino wool yield.'
             },
             possui: false,
             quantidade: [
                 {
                     sinal: '+',
-                    buff: 0.25,
+                    buff: 0.35,
                     recursoAfetado: ['leather'],
                 },
                 {
                     sinal: '-',
-                    buff: 0.35,
+                    buff: 0.1,
                     recursoAfetado: ['feather', 'merinoWool'],
                 }
             ],
@@ -2139,20 +2139,15 @@ let skillsFishing = {
             idName: 'moreWithLess',
             name: 'More With Less',
             descricao: {
-                portugues: '+15 tentativas de pesca diárias | -1 minhoca de todos os compostores',
-                ingles: '+15 daily fishing reels | -1 worm from all composters'
+                portugues: '+10 tentativas de pesca diárias',
+                ingles: '+10 daily fishing reels'
             },
             possui: false,
             quantidade: [
                 {
                     sinal: '+',
-                    buff: 15,
+                    buff: 10,
                     recursoAfetado: ['fishing'],
-                },
-                {
-                    sinal: '-',
-                    buff: 1,
-                    recursoAfetado: ['worm'],
                 },
             ],
             pontosNecessarios: 3
@@ -2603,8 +2598,8 @@ let skillsCompost = {
             idName: 'compostingOverhaul',
             name: 'Composting Overhaul',
             descricao: {
-                portugues: '+2 Minhocas, -5 fertilizantes',
-                ingles: '+2 Worms, -5 fertilisers'
+                portugues: '+2 Minhocas',
+                ingles: '+2 Worms'
             },
             possui: false,
             quantidade: [
@@ -2613,11 +2608,6 @@ let skillsCompost = {
                     buff: 2,
                     recursoAfetado: ['worm'],
                 },
-                {
-                    sinal: '-',
-                    buff: 5,
-                    recursoAfetado: ['fertilisers'],
-                },
             ],
             pontosNecessarios: 3
         },
@@ -2625,8 +2615,8 @@ let skillsCompost = {
             idName: 'compostingRevamp',
             name: 'Composting Revamp',
             descricao: {
-                portugues: '+5 fertilizantes, -3 Minhocas',
-                ingles: '+5 fertilisers, -3 Worms'
+                portugues: '+5 fertilizantes, -2 Minhocas',
+                ingles: '+5 fertilisers, -2 Worms'
             },
             possui: false,
             quantidade: [
@@ -2637,7 +2627,7 @@ let skillsCompost = {
                 },
                 {
                     sinal: '-',
-                    buff: 3,
+                    buff: 2,
                     recursoAfetado: ['worms'],
                 },
             ],

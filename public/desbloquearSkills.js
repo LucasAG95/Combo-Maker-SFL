@@ -538,21 +538,21 @@ function skillsAgingBloqueadas() {
         };
 
         // Tier 2 só conta se já tiver pontos suficientes no Tier 1
-        if(skill.pontosNecessarios === 2 && checkbox.checked && pontosTier1 >= 2) {
+        if(skill.pontosNecessarios === 2 && checkbox.checked && pontosTier1 >= 3) {
             pontosTier2 += skill.pontosNecessarios;
         };
 
         // Tier 3 só conta se já tiver pontos suficientes no Tier 1 + 2
-        if(skill.pontosNecessarios === 3 && checkbox.checked && (pontosTier1 + pontosTier2) >= 5) {
+        if(skill.pontosNecessarios === 3 && checkbox.checked && (pontosTier1 + pontosTier2) >= 7) {
             pontosTier3 += skill.pontosNecessarios;
         };
 
         //Bloquear tier 2 e 3 das skills ate condições serem falsas
-        if (pontosTier1 < 2 && skill.pontosNecessarios === 2) {
+        if (pontosTier1 < 3 && skill.pontosNecessarios === 2) {
             checkbox.disabled = true;
             checkbox.checked = false;
             skill.possui = false;
-        } else if ((pontosTier1 + pontosTier2) < 5 && skill.pontosNecessarios === 3) {
+        } else if ((pontosTier1 + pontosTier2) < 7 && skill.pontosNecessarios === 3) {
             checkbox.disabled = true;
             checkbox.checked = false;
             skill.possui = false;
@@ -564,7 +564,7 @@ function skillsAgingBloqueadas() {
     totalDePontosGastos = pontosTier1 + pontosTier2 + pontosTier3;
     console.log(totalDePontosGastos);
 
-    textoParaDesbloquearSkill(2, 5, totalDePontosGastos, aroveDeAbilidades, tituloDoAcordion);
+    textoParaDesbloquearSkill(3, 7, totalDePontosGastos, aroveDeAbilidades, tituloDoAcordion);
 };
 
 //função que vai ser responsavel por mudar os textos que mostram a quantidade de pontos faltantes para desbloquear skill!

@@ -142,12 +142,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.8`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV104}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV105}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV106}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV107}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV108}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.9`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV105}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV106}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV107}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV108}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV109}`;
 
 
     pontosGastosEmSkills();
@@ -582,7 +582,12 @@ const idiomaDasAtualizacoes = {
             • Adicionadas todas as skills atualmente existentes no jogo. A maior parte das novas skills não afeta diretamente os combos, mas já pode ser utilizada para simular corretamente a quantidade de pontos de skill gastos.<br><br>
             • NFTs da temporada passada foram reorganizadas em suas respectivas categorias. Algumas NFTs que ainda não impactam os combos não foram adicionadas por enquanto, mas serão incluídas em futuras atualizações.<br><br>
             • NFTs da nova temporada adicionadas.<br><br>
-            • Ótima temporada a todos! Ando um pouco corrido ultimamente, então as atualizações podem acabar saindo com menos frequência por enquanto.`
+            • Ótima temporada a todos! Ando um pouco corrido ultimamente, então as atualizações podem acabar saindo com menos frequência por enquanto.`,
+
+        atualizacaoV109: `v1.0.9 – Atualizado em 10/05/2026<br><br>
+            • Ajustadas as imagens das skills de animais que estavam desalinhadas.<br><br>
+            • Atualizados os buffs das skills: More With Less, Composting Overhaul, Composting Revamp, Long Pickings, Short Pickings, Featherweight, Merino Whisperer e Leathercraft Mastery, seguindo as mudanças recentes do jogo.<br><br>
+            • Corrigida a pontuação necessária para desbloquear os níveis 2 e 3 da árvore de skills Aging, que estava configurada incorretamente.`
         
     },
     ingles: {
@@ -762,7 +767,12 @@ const idiomaDasAtualizacoes = {
             • Added all skills currently available in the game. Most of the new skills do not directly affect combos, but they can now be used to properly simulate the amount of skill points spent.<br><br>
             • NFTs from the previous season have been reorganized into their respective categories. Some NFTs that still do not impact combos have not been added yet, but will be included in future updates.<br><br>
             • New season NFTs added.<br><br>
-            • Have a great season everyone! I've been a bit busy lately, so updates may come out less frequently for now.`
+            • Have a great season everyone! I've been a bit busy lately, so updates may come out less frequently for now.`,
+
+        atualizacaoV109: `v1.0.9 – Updated on 10/05/2026<br><br>
+            • Adjusted the animal skill images that were misaligned.<br><br>
+            • Updated the buffs for the following skills: More With Less, Composting Overhaul, Composting Revamp, Long Pickings, Short Pickings, Featherweight, Merino Whisperer, and Leathercraft Mastery, following the recent in-game changes.<br><br>
+            • Fixed the required points to unlock levels 2 and 3 of the Aging skill tree, which were incorrectly configured.`
 
     }
 };
