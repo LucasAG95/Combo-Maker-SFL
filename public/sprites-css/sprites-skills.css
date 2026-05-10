@@ -11,7 +11,7 @@
 }
 
 /* Skills individuais */
-bg-abundantHarvest { background-position: -10px -10px; }
+.bg-abundantHarvest { background-position: -10px -10px; }
 .bg-baleEconomy { background-position: -55px -10px; }
 .bg-acreFarm { background-position: -10px -55px; }
 .bg-alternateMedicine { background-position: -55px -55px; }
@@ -65,7 +65,7 @@ bg-abundantHarvest { background-position: -10px -10px; }
 .bg-horrorMike { background-position: -325px -100px; }
 .bg-instantGrowth { background-position: -325px -145px; }
 .bg-ironHustle { background-position: -325px -190px; }
-.bg-kaleMix { background-position: -325px -235px; }
+.bg-kaleMix2 { background-position: -325px -235px; }
 .bg-leakProofTank { background-position: -325px -280px; }
 .bg-lauriesGains { background-position: -10px -325px; }
 .bg-logger { background-position: -55px -325px; }
@@ -125,7 +125,7 @@ bg-abundantHarvest { background-position: -10px -10px; }
 .bg-compostingBonanza { background-position: -55px -460px; }
 .bg-compostingOverhaul { background-position: -100px -460px; }
 .bg-compostingRevamp { background-position: -145px -460px; }
-.bg-cow_SmartNutrition { background-position: -190px -460px; }
+.bg-cow-SmartNutrition { background-position: -190px -460px; }
 .bg-doubleNom { background-position: -235px -460px; }
 .bg-drive-ThroughDeli { background-position: -280px -460px; }
 .bg-efficientBin { background-position: -325px -460px; }
