@@ -1,61 +1,74 @@
 /* =========================================
    SPRITES - Minerais
-   Version: 1.0.0
+   Version: 1.0.1
 ========================================= */
 
 /* categoria minerais */
 .sprite-minerais {
     width: 15px;
     height: 15px;
-    background-image: url('../Imagens/minerais.png?v=1.0.0');
+    background-image: url('../Imagens/minerais.png?v=1.0.1');
+    background-repeat: no-repeat;
+    display: inline-block;
 }
 
 /* posições */
-.bg-crimstone { background-position: -10px -10px; }
-.bg-axe { background-position: -45px -10px; }
-.bg-crimstoneRock { background-position: -10px -44px; }
-.bg-escavacao { background-position: -45px -45px; }
-.bg-ferroT1 { background-position: -80px -09px; }
-.bg-escavacao2 { background-position: -80px -45px; }
-.bg-ferroT2 { background-position: -10px -79px; }
-.bg-ferroT3 { background-position: -45px -79px; }
-.bg-gold { background-position: -80px -80px; }
-.bg-goldNode { background-position: -115px -10px; }
-.bg-iron { background-position: -115px -45px; }
-.bg-ironNode { background-position: -115px -80px; }
-.bg-goldPickaxe { background-position: -10px -115px; }
-.bg-ironPickaxe { background-position: -45px -115px; }
-.bg-oil { background-position: -80px -113px; }
-.bg-oilDrill { background-position: -115px -115px; }
-.bg-oilReserve { background-position: -150px -10px; }
-.bg-ouroT2 { background-position: -150px -44px; }
-.bg-peixe { background-position: -150px -80px; }
-.bg-pedraT3 { background-position: -150px -114px; }
-.bg-ouroT3 { background-position: -10px -149px; }
-.bg-ouroT1 { background-position: -45px -149px; }
-.bg-stone { background-position: -80px -150px; }
-.bg-rod { background-position: -115px -150px; }
-.bg-stonePickaxe { background-position: -150px -150px; }
-.bg-treeT2 { background-position: -185px -10px; }
-.bg-pedraT2 { background-position: -185px -44px; }
-.bg-treeT1 { background-position: -185px -80px; }
-.bg-sandShovel { background-position: -185px -115px; }
-.bg-tree { background-position: -185px -150px; }
-.bg-pedraT1 { background-position: -10px -184px; }
-.bg-pickaxe { background-position: -45px -185px; }
-.bg-treeT3 { background-position: -80px -185px; }
-.bg-stoneNode { background-position: -115px -185px; }
-.bg-sandDrill { background-position: -150px -185px; }
-.bg-wood { background-position: -185px -185px; }
-.bg-pesquisar { background-position: -220px -10px; }
+.bg-sandDrill     { background-position: -10px -10px; }
+.bg-sandShovel    { background-position: -45px -10px; }
+.bg-stonePickaxe  { background-position: -10px -45px; }
+.bg-stoneNode     { background-position: -45px -45px; }
+.bg-stone         { background-position: -80px -10px; }
 
+.bg-tree          { background-position: -80px -45px; }
+.bg-treeT2        { background-position: -10px -80px; }
+.bg-treeT1        { background-position: -45px -80px; }
+.bg-treeT3        { background-position: -80px -80px; }
+.bg-wood          { background-position: -115px -10px; }
+
+.bg-axe           { background-position: -115px -45px; }
+.bg-crimstone     { background-position: -115px -80px; }
+.bg-crimstoneRock { background-position: -10px -115px; }
+.bg-escavacao     { background-position: -45px -115px; }
+.bg-escavacao2    { background-position: -80px -115px; }
+
+.bg-ferroT1       { background-position: -115px -115px; }
+.bg-ferroT2       { background-position: -150px -10px; }
+.bg-ferroT3       { background-position: -150px -45px; }
+.bg-gold          { background-position: -150px -80px; }
+.bg-goldNode      { background-position: -150px -115px; }
+
+.bg-iron          { background-position: -10px -150px; }
+.bg-goldPickaxe   { background-position: -45px -150px; }
+.bg-ironPickaxe   { background-position: -80px -150px; }
+.bg-oil           { background-position: -115px -150px; }
+.bg-ironNode      { background-position: -150px -150px; }
+
+.bg-oilDrill      { background-position: -185px -10px; }
+.bg-oilReserve    { background-position: -185px -45px; }
+.bg-ouroT1        { background-position: -185px -80px; }
+.bg-ouroT2        { background-position: -185px -115px; }
+.bg-ouroT3        { background-position: -185px -150px; }
+
+.bg-pedraT1       { background-position: -10px -185px; }
+.bg-pedraT2       { background-position: -45px -185px; }
+.bg-pedraT3       { background-position: -80px -185px; }
+.bg-peixe         { background-position: -115px -185px; }
+.bg-pesquisar     { background-position: -150px -185px; }
+
+.bg-rod           { background-position: -185px -185px; }
+.bg-pickaxe       { background-position: -220px -10px; }
+.bg-salt          { background-position: -220px -45px; }
+.bg-saltRake      { background-position: -220px -80px; }
+.bg-saltFarm      { background-position: -220px -115px; }
+
+.bg-download      { background-position: -220px -150px; }
 
 .icon-mineral {
-  transform: scale(1.4);
-  transform-origin: right;
+    transform: scale(1.4);
+    transform-origin: right;
 }
 
 .icon-mineral-center {
-  transform: scale(1.3);
-  transform-origin: center;
+    transform: scale(1.3);
+    transform-origin: center;
 }
