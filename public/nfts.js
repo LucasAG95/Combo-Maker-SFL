@@ -315,7 +315,7 @@ let collectibles = {
                 {
                     sinal: '+',
                     buff: 1,
-                    recursoAfetado: ['Salt']
+                    recursoAfetado: ['']
                 }
             ]
         },
@@ -372,7 +372,7 @@ let collectibles = {
                 {
                     sinal: '+',
                     buff: 1,
-                    recursoAfetado: ['Salt']
+                    recursoAfetado: ['']
                 }
             ]
         },
