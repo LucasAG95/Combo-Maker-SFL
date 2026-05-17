@@ -574,6 +574,16 @@ select, input[type="number"] {
   transition: all 0.2s;
 }
 
+/* ====================
+   INPUTS DOS MINERAIS
+======================= */
+.input-wrap input[type="number"] {
+  width: 160px;
+  height: 25px;
+  padding: 2px 6px;
+  font-size: 15px;
+}
+
 select:focus, input[type="number"]:focus {
   border-color: #ffa726;
   outline: none;
@@ -902,7 +912,8 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
 #qtdDeFerros,
 #qtdDeOuros,
 #qtdDeCrimstones,
-#qtdDeOils {
+#qtdDeOils,
+#qtdDeSaltFarm {
   margin-left: 35px;
   display: block;
 }
@@ -1541,3 +1552,4 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
 .nav-bar-item-active:hover {
   color: #ffc55e;
 }
+

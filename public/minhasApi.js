@@ -85,8 +85,9 @@ function numeroDaFarm() {
             const collectiblesQuePossui = data.farm.inventory;
             const wearablesQuePossui = data.farm.wardrobe;
             const buffsTemporariosQuePossui = todosCollectiblesColocados;
+            const saltSculptureQuePossui = data.farm.sculptures['Salt Sculpture'];
             
-            marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui, buffsTemporariosQuePossui);
+            marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui, buffsTemporariosQuePossui, saltSculptureQuePossui);
 
             //=====================================================================================================================================================
             
@@ -116,13 +117,15 @@ function numeroDaFarm() {
             const crimstoneQuePossui = data.farm.inventory['Crimstone Rock'];
 
             const oilQuePossui = data.farm.inventory['Oil Reserve'];
+
+            const saltQuePossui = Object.keys(data.farm.saltFarm?.nodes ?? {}).length;
             
             preencherInformacoesDaFarm(cropPlotsQuePossui, frutasQuePossui,
                 treeT1QuePossui, treeT2QuePossui, treeT3QuePossui,
                 stoneT1QuePossui, stoneT2QuePossui, stoneT3QuePossui,
                 ironT1QuePossui, ironT2QuePossui, ironT3QuePossui,
                 goldT1QuePossui, goldT2QuePossui, goldT3QuePossui,
-                crimstoneQuePossui, oilQuePossui);
+                crimstoneQuePossui, oilQuePossui, saltQuePossui);
 
             //=====================================================================================================================================================
             //preencher valor quantidade de animais
@@ -164,7 +167,7 @@ function numeroDaFarm() {
         });
 
     //funções no qual a API vai fazer suas marcações de acordo com a farm pesquisada!
-    function marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui, buffsTemporariosQuePossui) {
+    function marcarNftsESkillsQuePossui(skillsLegacyQuePossui, skillQuePossui, collectiblesQuePossui, wearablesQuePossui, buffsTemporariosQuePossui, saltSculptureQuePossui) {
         skillsLegacy.forEach(legacy => {
             let checkbox = document.getElementById(legacy.idName);
             if (skillsLegacyQuePossui[legacy.name]) {
@@ -189,13 +192,31 @@ function numeroDaFarm() {
 
         todosCollectibles.forEach(collectibles => {
             let checkbox = document.getElementById(collectibles.idName);
-            if (collectiblesQuePossui[collectibles.name]) {
-                checkbox.checked = true;
-                collectibles.possui = true;
-            } else {
-                checkbox.checked = false;
-                collectibles.possui = false;
-            };    
+
+            // collectibles que possuem sistema de level
+            if (collectibles.level !== undefined) {
+
+                if (saltSculptureQuePossui?.level >= collectibles.level) {
+                    checkbox.checked = true;
+                    collectibles.possui = true;
+                } else {
+                    checkbox.checked = false;
+                    collectibles.possui = false;
+                }
+            } 
+            
+            //collectibles normais
+            else {
+
+                if (collectiblesQuePossui[collectibles.name]) {
+                    checkbox.checked = true;
+                    collectibles.possui = true;
+                } else {
+                    checkbox.checked = false;
+                    collectibles.possui = false;
+                }
+
+            }
         });
 
         todosWearables.forEach(wearables => {
@@ -217,14 +238,50 @@ function numeroDaFarm() {
         });
 
         todosTemporarios.forEach(temporarios => {
+
+            // Pega o checkbox no HTML
             let checkbox = document.getElementById(temporarios.idName);
-            if (buffsTemporariosQuePossui[temporarios.name]) {
-                checkbox.checked = true;
-                temporarios.possui = true;
-            } else {
-                checkbox.checked = false;
-                temporarios.possui = false;
-            };    
+
+            // Procura o temporário na API da farm
+            let temporarioNaFarm = buffsTemporariosQuePossui?.[temporarios.name];
+
+            // Se vier como array, pega o primeiro objeto
+            if (Array.isArray(temporarioNaFarm)) {
+                temporarioNaFarm = temporarioNaFarm[0];
+            }
+
+            // Temporários que possuem duração
+            if (temporarios.dias !== undefined) {
+
+                // Data de criação do temporário
+                const createdAt = temporarioNaFarm?.createdAt;
+
+                // Converte dias para milissegundos
+                const diasEmMs = temporarios.dias * 24 * 60 * 60 * 1000;
+
+                // Verifica se ainda está ativo
+                const aindaAtivo = createdAt !== undefined &&
+                    (Date.now() - createdAt < diasEmMs);
+
+                // Marca/desmarca checkbox
+                checkbox.checked = aindaAtivo;
+
+                // Atualiza se possui ou não
+                temporarios.possui = aindaAtivo;
+            }
+
+            // Temporários sem duração
+            else {
+
+                // Verifica apenas se existe
+                const possui = !!temporarioNaFarm;
+
+                // Marca/desmarca checkbox
+                checkbox.checked = possui;
+
+                // Atualiza se possui ou não
+                temporarios.possui = possui;
+            }
         });
 
         //esta sendo usado skillsLegacyQuePossui pra facilitar, ja que as ferramentas de carinhos estao dentro de inventory!
@@ -252,7 +309,7 @@ function numeroDaFarm() {
         stoneT1QuePossui, stoneT2QuePossui, stoneT3QuePossui,
         ironT1QuePossui, ironT2QuePossui, ironT3QuePossui,
         goldT1QuePossui, goldT2QuePossui, goldT3QuePossui,
-        crimstoneQuePossui, oilQuePossui) {
+        crimstoneQuePossui, oilQuePossui, saltQuePossui) {
         
         //Crop Plots
         plots = cropPlotsQuePossui;
@@ -309,6 +366,10 @@ function numeroDaFarm() {
         //Oil
         mapaDeMinerals['oil'].qtdNodes.t1 = oilQuePossui;
         document.getElementById('oilReserve').value = mapaDeMinerals['oil'].qtdNodes.t1;
+
+        //Salt
+        mapaDeMinerals['salt'].qtdNodes.t1 = saltQuePossui;
+        document.getElementById('saltFarm').value = mapaDeMinerals['salt'].qtdNodes.t1;
 
         salvarInformacoes();
     }

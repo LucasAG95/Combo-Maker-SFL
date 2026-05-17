@@ -2864,15 +2864,15 @@ let skillsAging = {
             idName: 'cheapRakes',
             name: 'Cheap Rakes',
             descricao: {
-                portugues: '',
+                portugues: '-20% no custo em coins do Salt Rake',
                 ingles: '-20% salt rake coin cost'
             },
             possui: false,
             coins: [
                 {
-                    sinal: 'x',
+                    sinal: 'xC',
                     buff: 0.8,
-                    recursoAfetado: ['salt'],
+                    recursoAfetado: ['Salt Rake'],
                 },
             ],
             pontosNecessarios: 1
@@ -2881,7 +2881,7 @@ let skillsAging = {
             idName: 'speedyAging',
             name: 'Speedy Aging',
             descricao: {
-                portugues: '',
+                portugues: '-10% no tempo de envelhecimento de peixes',
                 ingles: '-10% Fish Aging time'
             },
             possui: false,
@@ -2898,7 +2898,7 @@ let skillsAging = {
             idName: 'saltySeas',
             name: 'Salty Seas',
             descricao: {
-                portugues: '',
+                portugues: '-10% no tempo de recarga do sal',
                 ingles: '-10% salt charge replenishment time'
             },
             possui: false,
@@ -2906,7 +2906,7 @@ let skillsAging = {
                 {
                     sinal: 'x',
                     buff: 0.9,
-                    recursoAfetado: ['salt'],
+                    recursoAfetado: ['Salt'],
                 },
             ],
             pontosNecessarios: 1
@@ -2915,7 +2915,7 @@ let skillsAging = {
             idName: 'wideRakes',
             name: 'Wide Rakes',
             descricao: {
-                portugues: '',
+                portugues: '+2 de Sal por colheita',
                 ingles: '+2 Salt per harvest'
             },
             possui: false,
@@ -2923,7 +2923,7 @@ let skillsAging = {
                 {
                     sinal: '+',
                     buff: 2,
-                    recursoAfetado: ['salt'],
+                    recursoAfetado: ['Salt'],
                 },
             ],
             pontosNecessarios: 1
@@ -2932,7 +2932,7 @@ let skillsAging = {
             idName: 'bacalhau',
             name: 'Bacalhau',
             descricao: {
-                portugues: '',
+                portugues: '+1 de isca produzida no Fermentation Rack',
                 ingles: '+1 Bait yield from fermentation rack'
             },
             possui: false,
@@ -2951,7 +2951,7 @@ let skillsAging = {
             idName: 'fishSmoking',
             name: 'Fish Smoking',
             descricao: {
-                portugues: '',
+                portugues: 'Chance dobrada de um peixe envelhecido virar Prime Aged',
                 ingles: 'Doubled chance Aged Fish becomes Prime Aged'
             },
             possui: false,
@@ -2968,7 +2968,7 @@ let skillsAging = {
             idName: 'refiner',
             name: 'Refiner',
             descricao: {
-                portugues: '',
+                portugues: '15% de chance de obter +1 Refined Salt ao produzir Refined Salt',
                 ingles: '15% chance of +1 Refined Salt when making Refined Salt'
             },
             possui: false,
@@ -2976,7 +2976,7 @@ let skillsAging = {
                 {
                     sinal: '+',
                     buff: 0.15,
-                    recursoAfetado: ['salt'],
+                    recursoAfetado: ['refined salt'],
                 },
             ],
             pontosNecessarios: 2
@@ -2985,15 +2985,15 @@ let skillsAging = {
             idName: 'seaBlessed',
             name: 'Sea Blessed',
             descricao: {
-                portugues: '',
+                portugues: '5% de chance de restaurar 1 carga em 4 nodes de sal ao coletar',
                 ingles: '5% chance to restore 1 charge to 4 Salt hodes on harvest'
             },
             possui: false,
-            insta: [
+            quantidade: [
                 {
-                    sinal: 'x',
-                    buff: 0.05,
-                    recursoAfetado: ['salt'],
+                    sinal: 'xI',
+                    buff: 1.2,
+                    recursoAfetado: ['Salt', 'Salt Rake'],
                 },
             ],
             pontosNecessarios: 2
@@ -3004,7 +3004,7 @@ let skillsAging = {
             idName: 'ager',
             name: 'Ager',
             descricao: {
-                portugues: '',
+                portugues: '2x produção nos racks do Aging Shed | 2x consumo de ingredientes, peixes e sal',
                 ingles: '2x output from Aging Shed Racks | 2x Aging Shed inputs (ingredients, fish & salt)'
             },
             possui: false,
@@ -3021,7 +3021,7 @@ let skillsAging = {
             idName: 'saltSurge',
             name: 'Salt Surge',
             descricao: {
-                portugues: '',
+                portugues: 'Recarrega todos os nodes de sal ao máximo',
                 ingles: 'Recharge all Salt hodes to max'
             },
             possui: false,

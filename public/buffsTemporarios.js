@@ -2,6 +2,7 @@ let shrines = [
     {
         idName: 'boarShrine',
         name: 'Boar Shrine',
+        dias: 7,
         descricao: {
             portugues: `-20% no tempo de cozimento - Dura por 7 dias`,
             ingles: `-20% Cooking Time - Lasts for 7days`
@@ -18,6 +19,7 @@ let shrines = [
     {
         idName: 'houndShrine',
         name: 'Hound Shrine',
+        dias: 7,
         descricao: {
             portugues: `+100 de XP de Pet - Dura por 7 dias`,
             ingles: `+100 Pet XP - Lasts for 7days`
@@ -34,6 +36,7 @@ let shrines = [
     {
         idName: 'sparrowShrine',
         name: 'Sparrow Shrine',
+        dias: 7,
         descricao: {
             portugues: `-25% no tempo de crescimento das plantações - Dura por 7 dias`,
             ingles: `-25% Crop Growth Time - Lasts for 7days`
@@ -52,6 +55,7 @@ let shrines = [
     {
         idName: 'foxShrine',
         name: 'Fox Shrine',
+        dias: 7,
         descricao: {
             portugues: `-25% no tempo da Crafting Box / 10% de chance de criar uma receita instantaneamente - Dura por 7 dias`,
             ingles: `-25% Crafting Box Time / 10% chance to instantly craft a recipe - Lasts for 7days`
@@ -75,6 +79,7 @@ let shrines = [
     {
         idName: 'toucanShrine',
         name: 'Toucan Shrine',
+        dias: 7,
         descricao: {
             portugues: `-25% no tempo de crescimento das frutas - Dura por 7 dias`,
             ingles: `-25% Fruit Growth Time - Lasts for 7days`
@@ -91,6 +96,7 @@ let shrines = [
     {
         idName: 'collieShrine',
         name: 'Collie Shrine',
+        dias: 7,
         descricao: {
             portugues: `-25% no tempo das vacas / -25% no tempo das ovelhas / -5% de Ração para animais da Barn - Dura por 7 dias`,
             ingles: `-25% Cow Sleep Time / -25% Sheep Sleep Time / -5% Feed to feed barn animals - Lasts for 7days`
@@ -114,6 +120,7 @@ let shrines = [
     {
         idName: 'mothShrine',
         name: 'Moth Shrine',
+        dias: 7,
         descricao: {
             portugues: `-25% no tempo de crescimento das flores / 20% de chance de receber +1 flor - Dura por 7 dias`,
             ingles: `-25% Flower Growth Time / 20% chance to get +1 Flower - Lasts for 7days`
@@ -137,6 +144,7 @@ let shrines = [
     {
         idName: 'badgerShrine',
         name: 'Badger Shrine',
+        dias: 7,
         descricao: {
             portugues: `-25% no tempo das árvores / -25% no tempo das pedras - Dura por 7 dias`,
             ingles: `-25% Tree Recovery Time / -25% Stone Recovery Time - Lasts for 7days`
@@ -153,6 +161,7 @@ let shrines = [
     {
         idName: 'moleShrine',
         name: 'Mole Shrine',
+        dias: 7,
         descricao: {
             portugues: `-25% no tempo do ferro / -25% no tempo do ouro / -25% no tempo da crimstone - Dura por 7 dias`,
             ingles: `-25% Iron Recovery Time / -25% Gold Recovery Time / -25% Crimstone Recovery Time - Lasts for 7days`
@@ -169,6 +178,7 @@ let shrines = [
     {
         idName: 'tortoiseShrine',
         name: 'Tortoise Shrine',
+        dias: 7,
         descricao: {
             portugues: `-33% no tempo da Greenhouse / -10% no tempo da Crop Machine - Dura por 7 dias`,
             ingles: `-33% Greenhouse Growth Time / -10% Crop Machine Growth Time - Lasts for 7days`
@@ -191,6 +201,7 @@ let shrines = [
     {
         idName: 'stagShrine',
         name: 'Stag Shrine',
+        dias: 7,
         descricao: {
             portugues: `-25% no tempo de recuperação do Oil / +15 Oil every 3rd drill - Dura por 7 dias`,
             ingles: `-25% Oil Recovery Time / +15 Óleo a cada 3 perfurações - Lasts for 7days`
@@ -214,6 +225,7 @@ let shrines = [
     {
         idName: 'bearShrine',
         name: 'Bear Shrine',
+        dias: 7,
         descricao: {
             portugues: `+0.5 na velocidade de produção de mel / +20% de chance de enxame de abelhas - Dura por 7 dias`,
             ingles: `+0.5 Honey Production Speed / +20% chance of bee swarm - Lasts for 7days`
@@ -237,6 +249,7 @@ let shrines = [
     {
         idName: 'bantamShrine',
         name: 'Bantam Shrine',
+        dias: 7,
         descricao: {
             portugues: `-25% no tempo de descanso das galinhas / -5% de ração para galinhas - Dura por 7 dias`,
             ingles: `-25% Chicken Sleep Time / -5% Feed to feed chickens - Lasts for 7days`
@@ -260,6 +273,7 @@ let shrines = [
     {
         idName: 'legendaryShrine',
         name: 'Legendary Shrine',
+        dias: 1,
         descricao: {
             portugues: `+1 nas crops / +1 nas frutas / +1 de madeira / +1 de pedra / + 1 Flor / -50% no Tempo de Cozimento - Dura por 1 dia`,
             ingles: `+1 to crops / +1 to fruits / +1 to wood / +1 to stone / +1 Flower / -50% Cooking Time - Lasts for 1 day`
@@ -285,6 +299,7 @@ let shrines = [
     {
         idName: 'tradingShrine',
         name: 'Trading Shrine',
+        dias: 30,
         descricao: {
             portugues: `-2,5% de imposto sobre recursos - Dura por 30 dias`,
             ingles: `-2.5% resource tax - Lasts for 30days`
@@ -301,6 +316,7 @@ let shrines = [
     {
         idName: 'obsidianShrine',
         name: 'Obsidian Shrine',
+        dias: 14,
         descricao: {
             portugues: `Colha em massa todas as crops prontas e plante sementes - Dura por 14 dias`,
             ingles: `Bulk harvest all ready crops and plant seeds - Lasts for 14days`
@@ -322,6 +338,7 @@ let totems = [
     {
         idName: 'superTotem',
         name: 'Super Totem',
+        dias: 7,
         descricao: {
             portugues: `Velocidade 2x para crops, árvores, frutas, culinária e minerais - Dura 7 dias`,
             ingles: `2x speed for crops, trees, fruits, cooking & minerals - Lasts for 7 days`
@@ -368,7 +385,20 @@ let fertilizantes = {
                 recursoAfetado: [crop.name]
             }
         ]
-    }))
+    })),
+    fruitfulBlend: fruits.map(fruit => ({
+        idName: `fruitfulBlend_${fruit.name.toLowerCase()}`,
+        name: fruit.name,
+        descricao: '',
+        possui: false,
+        quantidade: [
+            {
+                sinal: '+',
+                buff: 0.1,
+                recursoAfetado: [fruit.name]
+            }
+        ]
+    })),
 };
 
 //=============================================================================================================================================================================
@@ -376,6 +406,7 @@ let fertilizantes = {
 let todosTemporarios = [
     ...fertilizantes.sproutMix,
     ...fertilizantes.rapidRoot,
+    ...fertilizantes.fruitfulBlend,
     ...shrines,
     ...totems
 ];

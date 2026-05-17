@@ -41,7 +41,7 @@
         </select>
 
       </div>
-      <h4 class="title-bar"> &nbsp v1.0.9</h4>
+      <h4 class="title-bar"> &nbsp v1.1.0</h4>
     </div>
 
     <!-- CENTRO: Informações do Criador -->
@@ -530,6 +530,10 @@
             <span class="sprite sprite-icones bg-rapidRoot icon-btn"></span>Rapid Root
           </button>
 
+          <button class="sub-tab-btn" data-sub-tab="fruitfulBlend-sub">
+            <span class="sprite sprite-icones bg-fruitfulBlend icon-btn"></span>Fruitful Blend
+          </button>
+
         </div>
 
 
@@ -546,6 +550,10 @@
         <div class="sub-tab-content" id="rapidRoot-sub">
           <div id="rapidRoot-container" class="nft-container"></div>
           <h4 id="tab-rapid-root"></h4>
+        </div>
+        <div class="sub-tab-content" id="fruitfulBlend-sub">
+          <div id="fruitfulBlend-container" class="nft-container"></div>
+          <h4 id="tab-fruitful-blend"></h4>
         </div>
       </section>
 
@@ -992,11 +1000,25 @@
           </div>
         </div>
 
+        <!-- ========================= SALT ========================= -->
+        <div class="select-group">
+          <label id="qtdDeSaltFarm">Quantidade de Salt Farm:</label>
+
+          <div class="input-wrap">
+            <span class="sprite sprite-minerais bg-saltFarm icon-mineral"></span>
+            <input id="saltFarm" type="number" placeholder="Salt Farm">
+          </div>
+        </div>
+
 
         <!-- ========================= BOTÃO SALVAR ========================= -->
         <button id="salvarInfosMinerais" onclick="salvarInformacoes()">Salvar</button>
 
+      </section>
+
         <!-- ========================= TIPO DE CÁLCULO ========================= -->
+      <section class="linha-selects">
+
         <div class="select-group">
           <label id="modoDeCalcularMinerios" for="tipo-de-calculo-mineral">Calcular os Minerios:</label>
           <select id="tipo-de-calculo-mineral">

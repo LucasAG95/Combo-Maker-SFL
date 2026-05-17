@@ -157,6 +157,20 @@ const minerals = [
         },
         qtdMediaPorNode: 16.66666667, 
     },
+    {
+        id: 'salt',
+        name: 'Salt',
+        tempo: 25_200_000,
+        mediaDeCustoCoins: '',
+        mediaDeCustoFlower: '',
+        valorDoMarket: 0,
+        qtdNodes: {
+            t1: 1,
+            t2: 0,
+            t3: 0,
+        },
+        qtdMediaPorNode: 10,
+    },
 ];
 
 const ferramentas = [
@@ -235,6 +249,18 @@ const ferramentas = [
             iron: 9,
             leather: 10, 
             wool: 20
+        },
+        custoEmCoins: ''
+    },
+    {
+        id: 'saltRake',
+        name: 'Salt Rake',
+        recursoObtido: 'salt',
+        estoque: 50,
+        recursosNecessarios: {
+            coinsOriginal: 20,
+            coins: 20,
+            wood: 3,
         },
         custoEmCoins: ''
     },

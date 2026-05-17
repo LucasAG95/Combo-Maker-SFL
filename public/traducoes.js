@@ -40,6 +40,7 @@ function mudarIdioma() {
     document.getElementById('qtdDeOuros').innerHTML = `${opcaoDeIdiomas.qtdDeOuros}:`;
     document.getElementById('qtdDeCrimstones').innerHTML = `${opcaoDeIdiomas.qtdDeCrimstones}:`;
     document.getElementById('qtdDeOils').innerHTML = `${opcaoDeIdiomas.qtdDeOils}:`;
+    document.getElementById('qtdDeSaltFarm').innerHTML = `${opcaoDeIdiomas.qtdDeSaltFarm}:`;
     document.getElementById('salvarInfosMinerais').innerHTML = `${opcaoDeIdiomas.botaoSalvarInfos}`;
     document.getElementById('limparInfosMinerais').innerHTML = `${opcaoDeIdiomas.botaoLimparMinerais}`;
     document.getElementById('recursos-comprados-market').innerHTML = `${opcaoDeIdiomas.recursosCompradosNoMarket}:`
@@ -130,6 +131,7 @@ function mudarIdioma() {
     document.getElementById('aviso-de-manter-horas').innerHTML = `* ${opcaoDeIdiomas.avisoCalculosMinerais}`
     document.getElementById('tab-sprout-mix').innerHTML = `* ${opcaoDeIdiomas.avisoSproutMix}`;
     document.getElementById('tab-rapid-root').innerHTML = `* ${opcaoDeIdiomas.avisoRapidRoot}`;
+    document.getElementById('tab-fruitful-blend').innerHTML = `* ${opcaoDeIdiomas.avisoFruitfulBlend}`;
     //document.getElementById('aviso-crop-to-coins').innerHTML = `${opcaoDeIdiomas.avisoCropToCoins}`;
     document.getElementById('buds-não-marcam-automaticamente').innerHTML = `* ${opcaoDeIdiomas.avisoDeBuds}`;
 
@@ -142,12 +144,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.0.9`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV105}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV106}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV107}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV108}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV109}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.1.0`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV106}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV107}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV108}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV109}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV110}`;
 
 
     pontosGastosEmSkills();
@@ -192,12 +194,13 @@ const idiomaEscolhido = {
         calcularMineriosPorFerramenta: 'Por Ferramenta',
         calcularMineriosPorRodada: 'Por Rodada',
         calcularMineriosPorHora: 'Por Hora',
-        qtdDeArvores: 'Quantidade de Árvores',
-        qtdDePedras: 'Quantidade de Pedras',
-        qtdDeFerros: 'Quantidade de Ferros',
-        qtdDeOuros: 'Quantidade de Ouros',
-        qtdDeCrimstones: 'Quantidade de Crimstones',
-        qtdDeOils: 'Quantidade de Oils',
+        qtdDeArvores: 'Qtd. Árvores',
+        qtdDePedras: 'Qtd. Pedras',
+        qtdDeFerros: 'Qtd. Ferros',
+        qtdDeOuros: 'Qtd. Ouros',
+        qtdDeCrimstones: 'Qtd. Crimstones',
+        qtdDeOils: 'Qtd. Oils',
+        qtdDeSaltFarm: 'Qtd. Salt Farm',
         botaoLimparMinerais: 'Limpar Minerais',
         recursosCompradosNoMarket: 'Comprado no Market',
 
@@ -278,6 +281,7 @@ const idiomaEscolhido = {
         avisoCalculosMinerais: 'Se você optar por calcular por ferramenta ou por ciclo, tente manter o Tempo Total em, no máximo, 24 horas para obter resultados mais precisos. Caso ultrapasse esse limite, desconsidere a média de lucro diário e semanal.',
         avisoSproutMix: 'Ao selecionar qualquer crop, ela ganhará +0.2 por plot, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
         avisoRapidRoot: 'Ao selecionar qualquer crop, ela terá seu tempo reduzido pela metade, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
+        avisoFruitfulBlend: 'Ao selecionar qualquer fruta, ela ganhará +0.1 por coleta, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da fruta escolhida, então selecione com cuidado para não obter resultados irreais!',
         avisoDeBuds: 'Selecione os Buds que você possui ou deseja possuir, pois no momento eles ainda não são marcados automaticamente ao preencher sua farm! Suas seleções ficam salvas ao recarregar ou acessar o site novamente!',
 
     },
@@ -316,12 +320,13 @@ const idiomaEscolhido = {
         calcularMineriosPorFerramenta: 'Per Tool',
         calcularMineriosPorRodada: 'Per Round',
         calcularMineriosPorHora: 'Per Hour',
-        qtdDeArvores: 'Number of Trees',
-        qtdDePedras: 'Number of Stones',
-        qtdDeFerros: 'Number of Irons',
-        qtdDeOuros: 'Number of Golds',
-        qtdDeCrimstones: 'Number of Crimstones',
-        qtdDeOils: 'Number of Oils',
+        qtdDeArvores: 'Trees',
+        qtdDePedras: 'Stone Rocks',
+        qtdDeFerros: 'Iron Rocks',
+        qtdDeOuros: 'Gold Rocks',
+        qtdDeCrimstones: 'Crimstone Rocks',
+        qtdDeOils: 'Oil Reserves',
+        qtdDeSaltFarm: 'Salt Nodes',
         botaoLimparMinerais: 'Clear Minerals',
         recursosCompradosNoMarket: 'Bought from Market',
 
@@ -398,6 +403,7 @@ const idiomaEscolhido = {
         avisoCalculosMinerais: 'If you choose to calculate by tool or by cycle, try to keep the Total Time at a maximum of 24 hours to obtain more accurate results. If this limit is exceeded, disregard the daily and weekly profit averages.',
         avisoSproutMix: 'When selecting any crop, it will gain +0.2 per plot, but remember that fertilizers are temporary buffs and you use one per seed. When you select it, the system will assume you’ll use the fertilizer on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
         avisoRapidRoot: 'When selecting any crop, its time will be reduced by half, but remember that fertilizers are temporary buffs and you use one per seed. When you select it, the system will assume you’re using it on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
+        avisoFruitfulBlend: 'When selecting any fruit, it will gain +0.1 per harvest, but keep in mind that fertilizers are temporary buffs and you use one per fruit patch. Once selected, the system will assume you are using the fertilizer on all fruit patches of the chosen fruit, so choose carefully to avoid unrealistic results!',
         avisoDeBuds: 'Select the Buds you own or wish to own, as they are not automatically selected when filling in your farm at the moment! Your selections will be saved when you refresh or revisit the site!',
 
     }
@@ -587,7 +593,17 @@ const idiomaDasAtualizacoes = {
         atualizacaoV109: `v1.0.9 – Atualizado em 10/05/2026<br><br>
             • Ajustadas as imagens das skills de animais que estavam desalinhadas.<br><br>
             • Atualizados os buffs das skills: More With Less, Composting Overhaul, Composting Revamp, Long Pickings, Short Pickings, Featherweight, Merino Whisperer e Leathercraft Mastery, seguindo as mudanças recentes do jogo.<br><br>
-            • Corrigida a pontuação necessária para desbloquear os níveis 2 e 3 da árvore de skills Aging, que estava configurada incorretamente.`
+            • Corrigida a pontuação necessária para desbloquear os níveis 2 e 3 da árvore de skills Aging, que estava configurada incorretamente.`,
+
+        atualizacaoV110: `v1.1.0 – Atualizado em 17/05/2026<br><br>
+            • Adicionada a mineração de sal na aba Minerals.<br><br>
+            • NFTs e Skills que afetam a mineração de sal agora estão funcionando corretamente.<br><br>
+            • Adicionado o buff da Temporada de +2 Sais para jogadores VIP. Basta ativar nos Collectibles da Season 14.<br><br>
+            • Salt Sculpture adicionada aos Collectibles/Ferreiro, com suporte para todos os níveis. Ao preencher a farm pela API, todos os níveis correspondentes serão marcados automaticamente.<br><br>
+            • Flamingo Chicken adicionada aos Collectibles da Season 14.<br><br>
+            • Shrines e Totems agora serão desmarcados automaticamente ao puxar a API caso estejam expirados na farm.<br><br>
+            • Adicionado o buff temporário do fertilizante de frutas Fruitful Blend.<br><br>
+            • Adicionadas as traduções em português das descrições das Skills Aging que ainda estavam faltando.`      
         
     },
     ingles: {
@@ -772,7 +788,17 @@ const idiomaDasAtualizacoes = {
         atualizacaoV109: `v1.0.9 – Updated on 10/05/2026<br><br>
             • Adjusted the animal skill images that were misaligned.<br><br>
             • Updated the buffs for the following skills: More With Less, Composting Overhaul, Composting Revamp, Long Pickings, Short Pickings, Featherweight, Merino Whisperer, and Leathercraft Mastery, following the recent in-game changes.<br><br>
-            • Fixed the required points to unlock levels 2 and 3 of the Aging skill tree, which were incorrectly configured.`
+            • Fixed the required points to unlock levels 2 and 3 of the Aging skill tree, which were incorrectly configured.`,
+
+        atualizacaoV110: `v1.1.0 – Updated on 05/17/2026<br><br>
+            • Added salt mining to the Minerals tab.<br><br>
+            • NFTs and Skills that affect salt mining are now working correctly.<br><br>
+            • Added the Season bonus of +2 Salt for VIP players. Simply enable it in the Season 14 Collectibles.<br><br>
+            • Salt Sculpture added to the Blacksmith/Collectibles section, with support for all levels. When loading your farm through the API, all corresponding levels will be automatically selected.<br><br>
+            • Flamingo Chicken added to the Season 14 Collectibles.<br><br>
+            • Shrines and Totems will now automatically uncheck when loading the API if they have expired on your farm.<br><br>
+            • Added the temporary buff from the Fruitful Blend fruit fertilizer.<br><br>
+            • Added the missing Portuguese translations for the Aging Skills descriptions.`
 
     }
 };

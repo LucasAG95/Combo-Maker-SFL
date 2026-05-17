@@ -335,6 +335,7 @@ function buffsAdicionadosFrutas() {
             wearables.fruits,
             totems,
             shrines,
+            fertilizantes.fruitfulBlend,
             budsFiltrados
         ]);
 
@@ -475,6 +476,9 @@ function buffsAdicionadosMinerais() {
             skillsMachinery.tier1,
             skillsMachinery.tier2,
             skillsMachinery.tier3,
+            skillsAging.tier1,
+            skillsAging.tier2,
+            skillsAging.tier3,
             collectibles.ferreiro,
             collectibles.trees,
             collectibles.minerals,
@@ -484,7 +488,8 @@ function buffsAdicionadosMinerais() {
             wearables.minerals,
             shrines,
             totems,
-            budsFiltrados
+            budsFiltrados,
+            
         ]);
         //buff que todas lands possuem!
         let buffMineralLand = (mineral.name.includes('Wood') || mineral.name.includes('Stone') || mineral.name.includes('Iron') ||  mineral.name.includes('Gold')) ? 0.2 : 0;
@@ -513,6 +518,9 @@ function buffsAdicionadosMinerais() {
             skillsMachinery.tier1,
             skillsMachinery.tier2,
             skillsMachinery.tier3,
+            skillsAging.tier1,
+            skillsAging.tier2,
+            skillsAging.tier3,
             collectibles.ferreiro,
             collectibles.trees,
             collectibles.minerals,
@@ -568,6 +576,9 @@ function buffsAdicionadosMinerais() {
             skillsMachinery.tier1,
             skillsMachinery.tier2,
             skillsMachinery.tier3,
+            skillsAging.tier1,
+            skillsAging.tier2,
+            skillsAging.tier3,
             collectibles.ferreiro,
             collectibles.trees,
             collectibles.minerals,
@@ -598,6 +609,7 @@ function mediaDeValorDasFerramentasEMinerais() {
     mapaDeMinerals['gold'].goldGastas = Number(0);
     mapaDeMinerals['crimstone'].crimstoneGastas = Number(0);
     mapaDeMinerals['oil'].oilGastas = Number(0);
+    mapaDeMinerals['salt'].saltGastas = Number(0);
     mapaDeMinerals.coinsGastas = Number(0);
     mapaDeMinerals.leatherGastas = Number(0);
     mapaDeMinerals.woolGastas = Number(0);

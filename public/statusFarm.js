@@ -75,6 +75,8 @@ function salvarInformacoes() {
     // OIL
     mapaDeMinerals['oil'].qtdNodes.t1 = document.getElementById('oilReserve').value;
 
+    // SALT
+    mapaDeMinerals['salt'].qtdNodes.t1 = document.getElementById('saltFarm').value;
     
     //chama as funções para atualizar
     chamadorDeBuffs();

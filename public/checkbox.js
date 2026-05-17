@@ -352,8 +352,9 @@ window.onload = function () {
     //Shrines, Totems e buffs temporarios
     renderNFTs(shrines, 'shrines-container', './shrines');
     renderNFTs(totems, 'totems-container', './shrines');
-    renderNFTs(fertilizantes.sproutMix, 'sproutMix-container', './fertilizantes');
-    renderNFTs(fertilizantes.rapidRoot, 'rapidRoot-container', './fertilizantes');
+    renderNFTs(fertilizantes.sproutMix,     'sproutMix-container', './fertilizantes');
+    renderNFTs(fertilizantes.rapidRoot,     'rapidRoot-container', './fertilizantes');
+    renderNFTs(fertilizantes.fruitfulBlend, 'fruitfulBlend-container', './fertilizantes');
 
     //chamando funções
     valoresDasGems();

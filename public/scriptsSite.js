@@ -76,6 +76,7 @@ const SaveManager = {
                     },
                     crimstone: { t1: mapaDeMinerals['crimstone'].qtdNodes.t1 },
                     oil: { t1: mapaDeMinerals['oil'].qtdNodes.t1 },
+                    salt: { t1: mapaDeMinerals['salt'].qtdNodes.t1},
                 },
 
                 // Seeds plantadas
@@ -357,7 +358,8 @@ const SaveManager = {
                             iron: ['ironT1', 'ironT2', 'ironT3'],
                             gold: ['goldT1', 'goldT2', 'goldT3'],
                             crimstone: ['crimstoneRock'],
-                            oil: ['oilReserve']
+                            oil: ['oilReserve'],
+                            salt: ['saltFarm'],
                         };
 
                         if (updates[mineral]) {

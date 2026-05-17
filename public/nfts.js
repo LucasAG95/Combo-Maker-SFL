@@ -260,8 +260,142 @@ let collectibles = {
                 }   
             ],  
         },
+        //Salt
+                //Salt
+        {
+            idNumber: '',
+            idName: 'saltSculpture1',
+            name: 'Salt Sculpture',
+            level: 1,
+            preco: '',
+            descricao: {
+                portugues: 'LEVEL 1<br>-5% no tempo de recarga das cargas de Sal',
+                ingles: 'LEVEL 1<br>-5% salt charge replenishment time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.95,
+                    recursoAfetado: ['Salt']
+                }
+            ]
+        },
+        {
+            idNumber: '',
+            idName: 'saltSculpture2',
+            name: 'Salt Sculpture',
+            level: 2,
+            preco: '',
+            descricao: {
+                portugues: 'LEVEL 2<br>+4% de chance de Prime Aging',
+                ingles: 'LEVEL 2<br>+4% Prime Aging chance'
+            },
+            possui: false,
+            rng: [
+                {
+                    sinal: 'x',
+                    buff: 1.04,
+                    recursoAfetado: ['aging chance']
+                }
+            ]
+        },
+        {
+            idNumber: '',
+            idName: 'saltSculpture3',
+            name: 'Salt Sculpture',
+            level: 3,
+            preco: '',
+            descricao: {
+                portugues: 'LEVEL 3<br>+1 no limite máximo de coleta de Sal por node',
+                ingles: 'LEVEL 3<br>+1 max salt harvest cap per node'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 1,
+                    recursoAfetado: ['Salt']
+                }
+            ]
+        },
+        {
+            idNumber: '',
+            idName: 'saltSculpture4',
+            name: 'Salt Sculpture',
+            level: 4,
+            preco: '',
+            descricao: {
+                portugues: 'LEVEL 4<br>-10% no custo em coins do Salt Rake',
+                ingles: 'LEVEL 4<br>-10% salt rake coin cost'
+            },
+            possui: false,
+            coins: [
+                {
+                    sinal: 'xC',
+                    buff: 0.9,
+                    recursoAfetado: ['Salt Rake']
+                }
+            ]
+        },
+        {
+            idNumber: '',
+            idName: 'saltSculpture5',
+            name: 'Salt Sculpture',
+            level: 5,
+            preco: '',
+            descricao: {
+                portugues: 'LEVEL 5<br>-5% no tempo do Aging Rack',
+                ingles: 'LEVEL 5<br>-5% Aging Rack Time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.95,
+                    recursoAfetado: ['Aging Rack']
+                }
+            ]
+        },
+        {
+            idNumber: '',
+            idName: 'saltSculpture6',
+            name: 'Salt Sculpture',
+            level: 6,
+            preco: '',
+            descricao: {
+                portugues: 'LEVEL 6<br>+1 no limite máximo de coleta de Sal por node',
+                ingles: 'LEVEL 6<br>+1 max salt harvest cap per node'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 1,
+                    recursoAfetado: ['Salt']
+                }
+            ]
+        },
     ],
     temporada: [
+        {
+            idNumber: '',
+            idName: 'saltAwakeningBanner',
+            name: 'Salt Awakening Banner',
+            preco: '',
+            descricao: {
+                portugues: '+2 Salt por Rake durante o capítulo Salt Awakening (Possuir VIP)',
+                ingles: '+2 Salt per Rake during the Salt Awakening chapter (Requires VIP)'
+            },
+            possui: false,
+            quantidade: [
+                {
+                    sinal: '+',
+                    buff: 2,
+                    recursoAfetado: ['Salt'],
+                }   
+            ]         
+        },
         {
             idNumber: '',
             idName: 'dinoEggTrophy',
@@ -367,6 +501,24 @@ let collectibles = {
                     sinal: '+',
                     buff: 2,
                     recursoAfetado: ['crustacean'],
+                }   
+            ]         
+        },
+        {
+            idNumber: '',
+            idName: 'flamingoChicken',
+            name: 'Flamingo Chicken',
+            preco: '',
+            descricao: {
+                portugues: '-2,5% no tempo de sono das galinhas',
+                ingles: '-2.5% Chicken Sleep Time'
+            },
+            possui: false,
+            tempo: [
+                {
+                    sinal: 'x',
+                    buff: 0.975,
+                    recursoAfetado: ['galinha'],
                 }   
             ]         
         },
@@ -2738,7 +2890,7 @@ let wearables = {
                 {
                     sinal: '+',
                     buff: 5,
-                    recursoAfetado: ['salt'],
+                    recursoAfetado: ['Salt'],
                 }   
             ]         
         },
