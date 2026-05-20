@@ -355,6 +355,10 @@ window.onload = function () {
     renderNFTs(fertilizantes.sproutMix,     'sproutMix-container', './fertilizantes');
     renderNFTs(fertilizantes.rapidRoot,     'rapidRoot-container', './fertilizantes');
     renderNFTs(fertilizantes.fruitfulBlend, 'fruitfulBlend-container', './fertilizantes');
+    renderNFTs(fertilizantes.sproutrootSurprise,     'sproutrootSurprise-container', './fertilizantes');
+    renderNFTs(fertilizantes.turbofruitMix,     'turbofruitMix-container', './fertilizantes');
+    renderNFTs(fertilizantes.greenhouseGlow,     'greenhouseGlow-container', './fertilizantes');
+    renderNFTs(fertilizantes.greenhouseGoodie,     'greenhouseGoodie-container', './fertilizantes');
 
     //chamando funções
     valoresDasGems();

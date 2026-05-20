@@ -197,6 +197,7 @@ function buffsAdicionadosCrops() {
             totems,
             fertilizantes.rapidRoot,
             fertilizantes.sproutMix,
+            fertilizantes.sproutrootSurprise,
             budsFiltrados
         ]);
 
@@ -336,6 +337,7 @@ function buffsAdicionadosFrutas() {
             totems,
             shrines,
             fertilizantes.fruitfulBlend,
+            fertilizantes.turbofruitMix,
             budsFiltrados
         ]);
 
@@ -416,6 +418,8 @@ function buffsAdicionadosGreenhouse() {
             wearables.greenhouse,
             totems,
             shrines,
+            fertilizantes.greenhouseGlow,
+            fertilizantes.greenhouseGoodie,
             budsFiltrados
         ]);
 

@@ -132,7 +132,10 @@ function mudarIdioma() {
     document.getElementById('tab-sprout-mix').innerHTML = `* ${opcaoDeIdiomas.avisoSproutMix}`;
     document.getElementById('tab-rapid-root').innerHTML = `* ${opcaoDeIdiomas.avisoRapidRoot}`;
     document.getElementById('tab-fruitful-blend').innerHTML = `* ${opcaoDeIdiomas.avisoFruitfulBlend}`;
-    //document.getElementById('aviso-crop-to-coins').innerHTML = `${opcaoDeIdiomas.avisoCropToCoins}`;
+    document.getElementById('tab-sproutroot-surprise').innerHTML = `* ${opcaoDeIdiomas.avisoSproutrootSurprise}`;
+    document.getElementById('tab-turbofruit-mix').innerHTML = `* ${opcaoDeIdiomas.avisoTurbofruitMix}`;
+    document.getElementById('tab-greenhouse-glow').innerHTML = `* ${opcaoDeIdiomas.avisoGreenhouseGlow}`;
+    document.getElementById('tab-greenhouse-goodie').innerHTML = `* ${opcaoDeIdiomas.avisoGreenhouseGoodie}`;
     document.getElementById('buds-não-marcam-automaticamente').innerHTML = `* ${opcaoDeIdiomas.avisoDeBuds}`;
 
     //Resultado Total do combo montado
@@ -144,12 +147,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.1.0`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV106}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV107}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV108}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV109}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV110}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.1.1`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV107}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV108}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV109}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV110}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV111}`;
 
 
     pontosGastosEmSkills();
@@ -282,6 +285,10 @@ const idiomaEscolhido = {
         avisoSproutMix: 'Ao selecionar qualquer crop, ela ganhará +0.2 por plot, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
         avisoRapidRoot: 'Ao selecionar qualquer crop, ela terá seu tempo reduzido pela metade, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
         avisoFruitfulBlend: 'Ao selecionar qualquer fruta, ela ganhará +0.1 por coleta, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da fruta escolhida, então selecione com cuidado para não obter resultados irreais!',
+        avisoSproutrootSurprise: 'Ao selecionar qualquer crop, ela ganhará +0.2 por plot e redução de 50% no tempo, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
+        avisoTurbofruitMix: 'Ao selecionar qualquer fruta, ela ganhará +0.1 por coleta e redução de 20% no tempo, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da fruta escolhida, então selecione com cuidado para não obter resultados irreais!',
+        avisoGreenhouseGlow: 'Ao selecionar qualquer crop/fruta da Greenhouse, ela terá seu tempo reduzido em 20%, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
+        avisoGreenhouseGoodie: 'Ao selecionar qualquer crop/fruta da Greenhouse, ela ganhará +0.2 por plot, mas lembre-se de que fertilizantes são buffs temporários e você usa um por semente. Ao selecionar, o sistema vai assumir que você usará o fertilizante em todas as sementes da crop escolhida, então selecione com cuidado para não obter resultados irreais!',
         avisoDeBuds: 'Selecione os Buds que você possui ou deseja possuir, pois no momento eles ainda não são marcados automaticamente ao preencher sua farm! Suas seleções ficam salvas ao recarregar ou acessar o site novamente!',
 
     },
@@ -404,6 +411,10 @@ const idiomaEscolhido = {
         avisoSproutMix: 'When selecting any crop, it will gain +0.2 per plot, but remember that fertilizers are temporary buffs and you use one per seed. When you select it, the system will assume you’ll use the fertilizer on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
         avisoRapidRoot: 'When selecting any crop, its time will be reduced by half, but remember that fertilizers are temporary buffs and you use one per seed. When you select it, the system will assume you’re using it on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
         avisoFruitfulBlend: 'When selecting any fruit, it will gain +0.1 per harvest, but keep in mind that fertilizers are temporary buffs and you use one per fruit patch. Once selected, the system will assume you are using the fertilizer on all fruit patches of the chosen fruit, so choose carefully to avoid unrealistic results!',
+        avisoSproutrootSurprise: 'When selecting any crop, it will gain +0.2 per plot and a 50% time reduction. However, keep in mind that fertilizers are temporary buffs and you use one per seed. Once selected, the system will assume you will use the fertilizer on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
+        avisoTurbofruitMix: 'When selecting any fruit, it will gain +0.1 per harvest and a 20% time reduction. However, keep in mind that fertilizers are temporary buffs and you use one per seed. Once selected, the system will assume you will use the fertilizer on every seed of the chosen fruit, so choose carefully to avoid unrealistic results!',
+        avisoGreenhouseGlow: 'When selecting any Greenhouse crop/fruit, its growth time will be reduced by 20%. However, keep in mind that fertilizers are temporary buffs and you use one per seed. Once selected, the system will assume you will use the fertilizer on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
+        avisoGreenhouseGoodie: 'When selecting any Greenhouse crop/fruit, it will gain +0.2 per plot. However, keep in mind that fertilizers are temporary buffs and you use one per seed. Once selected, the system will assume you will use the fertilizer on every seed of the chosen crop, so choose carefully to avoid unrealistic results!',
         avisoDeBuds: 'Select the Buds you own or wish to own, as they are not automatically selected when filling in your farm at the moment! Your selections will be saved when you refresh or revisit the site!',
 
     }
@@ -603,7 +614,10 @@ const idiomaDasAtualizacoes = {
             • Flamingo Chicken adicionada aos Collectibles da Season 14.<br><br>
             • Shrines e Totems agora serão desmarcados automaticamente ao puxar a API caso estejam expirados na farm.<br><br>
             • Adicionado o buff temporário do fertilizante de frutas Fruitful Blend.<br><br>
-            • Adicionadas as traduções em português das descrições das Skills Aging que ainda estavam faltando.`      
+            • Adicionadas as traduções em português das descrições das Skills Aging que ainda estavam faltando.`,
+        
+        atualizacaoV111: `v1.1.1 – Atualizado em 20/05/2026<br><br>
+            • Adicionado novos buffs temporários: Sproutroot Surprise, Turbofruit Mix, Greenhouse Glow e Greenhouse Goodie.<br><br>`
         
     },
     ingles: {
@@ -798,7 +812,10 @@ const idiomaDasAtualizacoes = {
             • Flamingo Chicken added to the Season 14 Collectibles.<br><br>
             • Shrines and Totems will now automatically uncheck when loading the API if they have expired on your farm.<br><br>
             • Added the temporary buff from the Fruitful Blend fruit fertilizer.<br><br>
-            • Added the missing Portuguese translations for the Aging Skills descriptions.`
+            • Added the missing Portuguese translations for the Aging Skills descriptions.`,
+
+        atualizacaoV111: `v1.1.1 – Updated on 20/05/2026<br><br>
+            • Added new temporary buffs: Sproutroot Surprise, Turbofruit Mix, Greenhouse Glow, and Greenhouse Goodie.<br><br>`
 
     }
 };

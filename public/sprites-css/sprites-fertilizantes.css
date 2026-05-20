@@ -1,12 +1,12 @@
 /* =========================================
    SPRITES - Fertilizantes
-   Version: 1.0.1
+   Version: 1.0.2
 ========================================= */
 
 .sprite-fertilizantes {
     width: 25px;
     height: 25px;
-    background-image: url('../Imagens/fertilizantes.png?v=1.0.1');
+    background-image: url('../Imagens/fertilizantes.png?v=1.0.2');
 }
 
 /* Fruitful Blend */
@@ -16,53 +16,96 @@
 .bg-fruitfulBlend_lemon       { background-position: -55px -55px; }
 .bg-fruitfulBlend_orange      { background-position: -100px -10px; }
 .bg-fruitfulBlend_tomato      { background-position: -100px -55px; }
-
+ 
+/* Greenhouse Glow */
+.bg-greenhouseGlow_olive      { background-position: -10px -100px; }
+.bg-greenhouseGlow_rice       { background-position: -55px -100px; }
+.bg-greenhouseGlow_grape      { background-position: -100px -100px; }
+ 
+/* Greenhouse Goodie */
+.bg-greenhouseGoodie_grape    { background-position: -145px -10px; }
+.bg-greenhouseGoodie_olive    { background-position: -145px -55px; }
+.bg-greenhouseGoodie_rice     { background-position: -55px -145px; }
+ 
 /* Rapid Root */
-.bg-rapidRoot_artichoke       { background-position: -10px -100px; }
-.bg-rapidRoot_barley          { background-position: -55px -100px; }
-.bg-rapidRoot_beetroot        { background-position: -100px -100px; }
-.bg-rapidRoot_carrot          { background-position: -145px -10px; }
-.bg-rapidRoot_cabbage         { background-position: -145px -55px; }
-.bg-rapidRoot_cauliflower     { background-position: -145px -100px; }
-.bg-rapidRoot_broccoli        { background-position: -10px -145px; }
-.bg-rapidRoot_kale            { background-position: -55px -145px; }
-.bg-rapidRoot_parsnip         { background-position: -100px -145px; }
-.bg-rapidRoot_eggplant        { background-position: -145px -145px; }
-.bg-rapidRoot_corn            { background-position: -190px -10px; }
-.bg-rapidRoot_onion           { background-position: -190px -55px; }
-.bg-rapidRoot_pepper          { background-position: -190px -100px; }
-.bg-rapidRoot_rhubarb         { background-position: -190px -145px; }
-.bg-rapidRoot_potato          { background-position: -10px -190px; }
-.bg-rapidRoot_pumpkin         { background-position: -55px -190px; }
-.bg-rapidRoot_sunflower       { background-position: -145px -190px; }
-.bg-rapidRoot_wheat           { background-position: -190px -190px; }
-.bg-rapidRoot_radish          { background-position: -235px -10px; }
-.bg-rapidRoot_turnip          { background-position: -235px -100px; }
-.bg-rapidRoot_zucchini        { background-position: -10px -235px; }
-.bg-rapidRoot_soybean         { background-position: -280px -10px; }
-.bg-rapidRoot_yam             { background-position: -280px -190px; }
-
+.bg-rapidRoot_artichoke       { background-position: -145px -100px; }
+.bg-rapidRoot_barley          { background-position: -10px -145px; }
+.bg-rapidRoot_broccoli        { background-position: -100px -145px; }
+.bg-rapidRoot_cabbage         { background-position: -145px -145px; }
+.bg-rapidRoot_beetroot        { background-position: -190px -10px; }
+.bg-rapidRoot_cauliflower     { background-position: -190px -55px; }
+.bg-rapidRoot_carrot          { background-position: -190px -100px; }
+.bg-rapidRoot_corn            { background-position: -190px -145px; }
+.bg-rapidRoot_kale            { background-position: -10px -190px; }
+.bg-rapidRoot_eggplant        { background-position: -55px -190px; }
+.bg-rapidRoot_onion           { background-position: -100px -190px; }
+.bg-rapidRoot_parsnip         { background-position: -145px -190px; }
+.bg-rapidRoot_pumpkin         { background-position: -190px -190px; }
+.bg-rapidRoot_potato          { background-position: -235px -10px; }
+.bg-rapidRoot_pepper          { background-position: -235px -55px; }
+.bg-rapidRoot_radish          { background-position: -235px -100px; }
+.bg-rapidRoot_soybean         { background-position: -235px -145px; }
+.bg-rapidRoot_sunflower       { background-position: -235px -190px; }
+.bg-rapidRoot_wheat           { background-position: -10px -235px; }
+.bg-rapidRoot_yam             { background-position: -55px -235px; }
+.bg-rapidRoot_turnip          { background-position: -100px -235px; }
+.bg-rapidRoot_zucchini        { background-position: -145px -235px; }
+.bg-rapidRoot_rhubarb         { background-position: -190px -235px; }
+ 
 /* Sprout Mix */
-.bg-sproutMix_artichoke       { background-position: -100px -190px; }
-.bg-sproutMix_barley          { background-position: -235px -55px; }
-.bg-sproutMix_cabbage         { background-position: -235px -145px; }
-.bg-sproutMix_cauliflower     { background-position: -235px -190px; }
-.bg-sproutMix_onion           { background-position: -55px -235px; }
-.bg-sproutMix_potato          { background-position: -100px -235px; }
-.bg-sproutMix_eggplant        { background-position: -145px -235px; }
-.bg-sproutMix_beetroot        { background-position: -190px -235px; }
-.bg-sproutMix_corn            { background-position: -235px -235px; }
-.bg-sproutMix_radish          { background-position: -280px -55px; }
-.bg-sproutMix_pepper          { background-position: -280px -100px; }
-.bg-sproutMix_sunflower       { background-position: -280px -145px; }
-.bg-sproutMix_carrot          { background-position: -280px -235px; }
-.bg-sproutMix_yam             { background-position: -10px -280px; }
-.bg-sproutMix_broccoli        { background-position: -55px -280px; }
-.bg-sproutMix_pumpkin         { background-position: -100px -280px; }
-.bg-sproutMix_wheat           { background-position: -145px -280px; }
-.bg-sproutMix_kale            { background-position: -190px -280px; }
-.bg-sproutMix_rhubarb         { background-position: -235px -280px; }
-.bg-sproutMix_parsnip         { background-position: -280px -280px; }
-.bg-sproutMix_zucchini        { background-position: -325px -10px; }
+.bg-sproutMix_beetroot        { background-position: -235px -235px; }
+.bg-sproutMix_artichoke       { background-position: -280px -10px; }
+.bg-sproutMix_broccoli        { background-position: -280px -55px; }
+.bg-sproutMix_barley          { background-position: -280px -100px; }
+.bg-sproutMix_cabbage         { background-position: -280px -145px; }
+.bg-sproutMix_cauliflower     { background-position: -280px -190px; }
+.bg-sproutMix_pepper          { background-position: -280px -235px; }
+.bg-sproutMix_carrot          { background-position: -10px -280px; }
+.bg-sproutMix_kale            { background-position: -55px -280px; }
+.bg-sproutMix_onion           { background-position: -100px -280px; }
+.bg-sproutMix_corn            { background-position: -145px -280px; }
+.bg-sproutMix_parsnip         { background-position: -190px -280px; }
+.bg-sproutMix_eggplant        { background-position: -235px -280px; }
+.bg-sproutMix_radish          { background-position: -280px -280px; }
+.bg-sproutMix_potato          { background-position: -325px -10px; }
 .bg-sproutMix_soybean         { background-position: -325px -55px; }
-.bg-sproutMix_turnip          { background-position: -325px -100px; }
+.bg-sproutMix_rhubarb         { background-position: -325px -100px; }
+.bg-sproutMix_yam             { background-position: -325px -145px; }
+.bg-sproutMix_turnip          { background-position: -325px -190px; }
+.bg-sproutMix_sunflower       { background-position: -325px -235px; }
+.bg-sproutMix_pumpkin         { background-position: -325px -280px; }
+.bg-sproutMix_zucchini        { background-position: -10px -325px; }
+.bg-sproutMix_wheat           { background-position: -55px -325px; }
+ 
+/* Sproutroot Surprise */
+.bg-sproutrootSurprise_cauliflower { background-position: -100px -325px; }
+.bg-sproutrootSurprise_broccoli    { background-position: -145px -325px; }
+.bg-sproutrootSurprise_barley      { background-position: -190px -325px; }
+.bg-sproutrootSurprise_eggplant    { background-position: -235px -325px; }
+.bg-sproutrootSurprise_cabbage     { background-position: -280px -325px; }
+.bg-sproutrootSurprise_beetroot    { background-position: -325px -325px; }
+.bg-sproutrootSurprise_onion       { background-position: -370px -10px; }
+.bg-sproutrootSurprise_kale        { background-position: -370px -55px; }
+.bg-sproutrootSurprise_corn        { background-position: -370px -100px; }
+.bg-sproutrootSurprise_potato      { background-position: -370px -145px; }
+.bg-sproutrootSurprise_parsnip     { background-position: -370px -190px; }
+.bg-sproutrootSurprise_carrot      { background-position: -370px -235px; }
+.bg-sproutrootSurprise_pepper      { background-position: -370px -280px; }
+.bg-sproutrootSurprise_artichoke   { background-position: -370px -325px; }
+.bg-sproutrootSurprise_radish      { background-position: -10px -370px; }
+.bg-sproutrootSurprise_pumpkin     { background-position: -55px -370px; }
+.bg-sproutrootSurprise_rhubarb     { background-position: -100px -370px; }
+.bg-sproutrootSurprise_soybean     { background-position: -145px -370px; }
+.bg-sproutrootSurprise_sunflower   { background-position: -190px -370px; }
+.bg-sproutrootSurprise_wheat       { background-position: -235px -370px; }
+.bg-sproutrootSurprise_zucchini    { background-position: -280px -370px; }
+.bg-sproutrootSurprise_yam         { background-position: -325px -370px; }
+.bg-sproutrootSurprise_turnip      { background-position: -370px -370px; }
+ 
+/* Turbofruit Mix */
+.bg-turbofruitMix_blueberry   { background-position: -415px -10px; }
+.bg-turbofruitMix_lemon       { background-position: -415px -55px; }
+.bg-turbofruitMix_apple       { background-position: -415px -100px; }
+.bg-turbofruitMix_tomato      { background-position: -415px -145px; }
+.bg-turbofruitMix_orange      { background-position: -415px -190px; }
+.bg-turbofruitMix_banana      { background-position: -415px -235px; }

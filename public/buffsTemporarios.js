@@ -399,6 +399,72 @@ let fertilizantes = {
             }
         ]
     })),
+    sproutrootSurprise: crops.map(crop => ({
+        idName: `sproutrootSurprise_${crop.name.toLowerCase()}`,
+        name: crop.name,
+        descricao: '',
+        possui: false,
+        tempo: [
+            {
+                sinal: 'x',
+                buff: 0.5,
+                recursoAfetado: [crop.name]
+            }
+        ],
+        quantidade: [
+            {
+                sinal: '+',
+                buff: 0.2,
+                recursoAfetado: [crop.name]
+            }
+        ]
+    })),
+    turbofruitMix: fruits.map(fruit => ({
+        idName: `turbofruitMix_${fruit.name.toLowerCase()}`,
+        name: fruit.name,
+        descricao: '',
+        possui: false,
+        quantidade: [
+            {
+                sinal: '+',
+                buff: 0.1,
+                recursoAfetado: [fruit.name]
+            }
+        ],
+        tempo: [
+            {
+                sinal: 'x',
+                buff: 0.8,
+                recursoAfetado: [fruit.name]
+            }
+        ]
+    })),
+    greenhouseGlow: greenhouse.map(gh => ({
+        idName: `greenhouseGlow_${gh.name.toLowerCase()}`,
+        name: gh.name,
+        descricao: '',
+        possui: false,
+        tempo: [
+            {
+                sinal: 'x',
+                buff: 0.8,
+                recursoAfetado: [gh.name]
+            }
+        ]
+    })),
+    greenhouseGoodie: greenhouse.map(gh => ({
+        idName: `greenhouseGoodie_${gh.name.toLowerCase()}`,
+        name: gh.name,
+        descricao: '',
+        possui: false,
+        quantidade: [
+            {
+                sinal: '+',
+                buff: 0.2,
+                recursoAfetado: [gh.name]
+            }
+        ]
+    })),
 };
 
 //=============================================================================================================================================================================
@@ -407,6 +473,10 @@ let todosTemporarios = [
     ...fertilizantes.sproutMix,
     ...fertilizantes.rapidRoot,
     ...fertilizantes.fruitfulBlend,
+    ...fertilizantes.sproutrootSurprise,
+    ...fertilizantes.turbofruitMix,
+    ...fertilizantes.greenhouseGlow,
+    ...fertilizantes.greenhouseGoodie,
     ...shrines,
     ...totems
 ];
