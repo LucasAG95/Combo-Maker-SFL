@@ -718,6 +718,7 @@ function buffsAdicionadosAnimais() {
                 collectibles.temporada,
                 wearables.temporada,
                 wearables.animais,
+                fertilizantes.honeyTreat,
                 shrines,
                 totems,
             ]);
@@ -775,6 +776,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
+            fertilizantes.saltLickChickens,
             shrines,
             totems,
             budsFiltrados
@@ -791,6 +793,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
+            fertilizantes.saltLickChickens,
             shrines,
             totems,
             budsFiltrados
@@ -844,6 +847,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
+            fertilizantes.saltLickCows,
             shrines,
             totems,
             budsFiltrados
@@ -860,6 +864,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
+            fertilizantes.saltLickCows,
             shrines,
             totems,
             budsFiltrados
@@ -913,6 +918,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
+            fertilizantes.saltLickSheeps,
             shrines,
             totems,
             budsFiltrados
@@ -929,6 +935,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
+            fertilizantes.saltLickSheeps,
             shrines,
             totems,
             budsFiltrados

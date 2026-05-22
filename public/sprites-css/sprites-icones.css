@@ -12,60 +12,52 @@
     display: inline-block;
 }
 
-/* Estações */
-.bg-Spring                { background-position: -185px -150px; }
-.bg-Summer                { background-position: -150px -185px; }
-.bg-Autumn                { background-position: -10px -10px; }
-.bg-Winter                { background-position: -80px -220px; }
- 
-/* Fertilizantes */
-.bg-fruitfulBlend         { background-position: -115px -10px; }
-.bg-greenhouseGlow        { background-position: -115px -80px; }
-.bg-greenhouseGoodie      { background-position: -10px -115px; }
-.bg-rapidRoot             { background-position: -150px -10px; }
-.bg-sproutMix             { background-position: -185px -185px; }
-.bg-sproutrootSurprise    { background-position: -115px -185px; }
-.bg-turbofruitMix         { background-position: -220px -150px; }
- 
-/* Skills */
-.bg-skills                { background-position: -185px -115px; }
-.bg-skillAging            { background-position: -10px -150px; }
-.bg-skillAnimal           { background-position: -45px -150px; }
-.bg-skillBeesFlowers      { background-position: -115px -150px; }
-.bg-skillCompost          { background-position: -80px -150px; }
-.bg-skillCooking          { background-position: -150px -115px; }
-.bg-skillCrop             { background-position: -150px -150px; }
-.bg-skillFishing          { background-position: -185px -80px; }
-.bg-skillFruit            { background-position: -185px -10px; }
-.bg-skillGreenhouse       { background-position: -185px -45px; }
-.bg-skillMachinery        { background-position: -10px -185px; }
-.bg-skillMineral          { background-position: -45px -185px; }
-.bg-skillTree             { background-position: -80px -185px; }
- 
-/* Economia */
-.bg-coins                 { background-position: -45px -45px; }
-.bg-gem                   { background-position: -115px -45px; }
-.bg-usdc                  { background-position: -220px -185px; }
-.bg-xp                    { background-position: -45px -220px; }
-.bg-subirXP               { background-position: -220px -45px; }
-.bg-vip                   { background-position: -10px -220px; }
- 
-/* Fazenda */
-.bg-bountifulHarvest      { background-position: -10px -45px; }
-.bg-ciclo                 { background-position: -45px -10px; }
-.bg-cropPlot              { background-position: -80px -10px; }
-.bg-faction               { background-position: -10px -80px; }
-.bg-ferreiro              { background-position: -45px -80px; }
-.bg-flower                { background-position: -80px -80px; }
-.bg-novaTemporada         { background-position: -80px -115px; }
-.bg-reestock              { background-position: -150px -45px; }
-.bg-seeds                 { background-position: -115px -115px; }
-.bg-shrine                { background-position: -150px -80px; }
-.bg-sunshower             { background-position: -220px -80px; }
-.bg-tempo                 { background-position: -220px -10px; }
-.bg-totem                 { background-position: -220px -115px; }
- 
-/* Outros */
-.bg-default               { background-position: -80px -45px; }
-.bg-nenhum                { background-position: -45px -115px; }
- 
+.bg-Spring             { background-position: -10px -10px; }
+.bg-sproutrootSurprise { background-position: -45px -10px; }
+.bg-sproutMix          { background-position: -10px -45px; }
+.bg-subirXP            { background-position: -45px -45px; }
+.bg-sunshower          { background-position: -80px -10px; }
+.bg-tempo              { background-position: -80px -45px; }
+.bg-Summer             { background-position: -10px -80px; }
+.bg-totem              { background-position: -45px -80px; }
+.bg-turbofruitMix      { background-position: -80px -80px; }
+.bg-usdc               { background-position: -115px -10px; }
+.bg-vip                { background-position: -115px -45px; }
+.bg-Winter             { background-position: -115px -80px; }
+.bg-xp                 { background-position: -10px -115px; }
+.bg-Autumn             { background-position: -45px -115px; }
+.bg-bountifulHarvest   { background-position: -80px -115px; }
+.bg-ciclo              { background-position: -115px -115px; }
+.bg-coins              { background-position: -150px -10px; }
+.bg-cropPlot           { background-position: -150px -45px; }
+.bg-ferreiro           { background-position: -150px -80px; }
+.bg-flower             { background-position: -150px -115px; }
+.bg-fruitfulBlend      { background-position: -10px -150px; }
+.bg-default            { background-position: -45px -150px; }
+.bg-greenhouseGlow     { background-position: -80px -150px; }
+.bg-rapidRoot          { background-position: -115px -150px; }
+.bg-novaTemporada      { background-position: -150px -150px; }
+.bg-nenhum             { background-position: -185px -10px; }
+.bg-gem                { background-position: -185px -45px; }
+.bg-saltLickChickens   { background-position: -185px -80px; }
+.bg-faction            { background-position: -185px -115px; }
+.bg-greenhouseGoodie   { background-position: -185px -150px; }
+.bg-honeyTreat         { background-position: -10px -185px; }
+.bg-saltLickSheeps     { background-position: -45px -185px; }
+.bg-saltLickCows       { background-position: -80px -185px; }
+.bg-reestock           { background-position: -115px -185px; }
+.bg-seeds              { background-position: -150px -185px; }
+.bg-shrine             { background-position: -185px -185px; }
+.bg-skillAging         { background-position: -220px -10px; }
+.bg-skillAnimal        { background-position: -220px -45px; }
+.bg-skillBeesFlowers   { background-position: -220px -80px; }
+.bg-skillCompost       { background-position: -220px -115px; }
+.bg-skillCooking       { background-position: -220px -150px; }
+.bg-skillCrop          { background-position: -220px -185px; }
+.bg-skillFishing       { background-position: -10px -220px; }
+.bg-skillFruit         { background-position: -45px -220px; }
+.bg-skillMachinery     { background-position: -80px -220px; }
+.bg-skillGreenhouse    { background-position: -115px -220px; }
+.bg-skillMineral       { background-position: -150px -220px; }
+.bg-skills             { background-position: -185px -220px; }
+.bg-skillTree          { background-position: -220px -220px; }

@@ -1,111 +1,219 @@
 /* =========================================
    SPRITES - Fertilizantes
-   Version: 1.0.2
+   Version: 1.0.3
 ========================================= */
 
 .sprite-fertilizantes {
     width: 25px;
     height: 25px;
-    background-image: url('../Imagens/fertilizantes.png?v=1.0.2');
+    background-image: url('../Imagens/fertilizantes.png?v=1.0.3');
 }
 
-/* Fruitful Blend */
-.bg-fruitfulBlend_apple       { background-position: -10px -10px; }
-.bg-fruitfulBlend_banana      { background-position: -55px -10px; }
-.bg-fruitfulBlend_blueberry   { background-position: -10px -55px; }
-.bg-fruitfulBlend_lemon       { background-position: -55px -55px; }
-.bg-fruitfulBlend_orange      { background-position: -100px -10px; }
-.bg-fruitfulBlend_tomato      { background-position: -100px -55px; }
- 
-/* Greenhouse Glow */
-.bg-greenhouseGlow_olive      { background-position: -10px -100px; }
-.bg-greenhouseGlow_rice       { background-position: -55px -100px; }
-.bg-greenhouseGlow_grape      { background-position: -100px -100px; }
- 
-/* Greenhouse Goodie */
-.bg-greenhouseGoodie_grape    { background-position: -145px -10px; }
-.bg-greenhouseGoodie_olive    { background-position: -145px -55px; }
-.bg-greenhouseGoodie_rice     { background-position: -55px -145px; }
- 
 /* Rapid Root */
-.bg-rapidRoot_artichoke       { background-position: -145px -100px; }
-.bg-rapidRoot_barley          { background-position: -10px -145px; }
-.bg-rapidRoot_broccoli        { background-position: -100px -145px; }
-.bg-rapidRoot_cabbage         { background-position: -145px -145px; }
-.bg-rapidRoot_beetroot        { background-position: -190px -10px; }
-.bg-rapidRoot_cauliflower     { background-position: -190px -55px; }
-.bg-rapidRoot_carrot          { background-position: -190px -100px; }
-.bg-rapidRoot_corn            { background-position: -190px -145px; }
-.bg-rapidRoot_kale            { background-position: -10px -190px; }
-.bg-rapidRoot_eggplant        { background-position: -55px -190px; }
-.bg-rapidRoot_onion           { background-position: -100px -190px; }
-.bg-rapidRoot_parsnip         { background-position: -145px -190px; }
-.bg-rapidRoot_pumpkin         { background-position: -190px -190px; }
-.bg-rapidRoot_potato          { background-position: -235px -10px; }
-.bg-rapidRoot_pepper          { background-position: -235px -55px; }
-.bg-rapidRoot_radish          { background-position: -235px -100px; }
-.bg-rapidRoot_soybean         { background-position: -235px -145px; }
-.bg-rapidRoot_sunflower       { background-position: -235px -190px; }
-.bg-rapidRoot_wheat           { background-position: -10px -235px; }
-.bg-rapidRoot_yam             { background-position: -55px -235px; }
-.bg-rapidRoot_turnip          { background-position: -100px -235px; }
-.bg-rapidRoot_zucchini        { background-position: -145px -235px; }
-.bg-rapidRoot_rhubarb         { background-position: -190px -235px; }
- 
+.bg-rapidRoot_artichoke       { background-position: -10px -10px; }
+.bg-rapidRoot_barley          { background-position: -55px -10px; }
+.bg-rapidRoot_beetroot        { background-position: -10px -55px; }
+.bg-rapidRoot_broccoli        { background-position: -55px -55px; }
+.bg-rapidRoot_cabbage         { background-position: -100px -10px; }
+.bg-rapidRoot_carrot          { background-position: -100px -55px; }
+.bg-rapidRoot_corn            { background-position: -10px -100px; }
+.bg-rapidRoot_eggplant        { background-position: -55px -100px; }
+.bg-rapidRoot_cauliflower     { background-position: -100px -100px; }
+.bg-rapidRoot_kale            { background-position: -145px -10px; }
+.bg-rapidRoot_onion           { background-position: -145px -55px; }
+.bg-rapidRoot_parsnip         { background-position: -145px -100px; }
+.bg-rapidRoot_pepper          { background-position: -10px -145px; }
+.bg-rapidRoot_potato          { background-position: -55px -145px; }
+.bg-rapidRoot_pumpkin         { background-position: -100px -145px; }
+.bg-rapidRoot_radish          { background-position: -145px -145px; }
+.bg-rapidRoot_rhubarb         { background-position: -190px -10px; }
+.bg-rapidRoot_soybean         { background-position: -190px -55px; }
+.bg-rapidRoot_sunflower       { background-position: -190px -100px; }
+.bg-rapidRoot_turnip          { background-position: -190px -145px; }
+.bg-rapidRoot_wheat           { background-position: -10px -190px; }
+.bg-rapidRoot_yam             { background-position: -55px -190px; }
+.bg-rapidRoot_zucchini        { background-position: -100px -190px; }
+
 /* Sprout Mix */
-.bg-sproutMix_beetroot        { background-position: -235px -235px; }
-.bg-sproutMix_artichoke       { background-position: -280px -10px; }
-.bg-sproutMix_broccoli        { background-position: -280px -55px; }
-.bg-sproutMix_barley          { background-position: -280px -100px; }
-.bg-sproutMix_cabbage         { background-position: -280px -145px; }
-.bg-sproutMix_cauliflower     { background-position: -280px -190px; }
-.bg-sproutMix_pepper          { background-position: -280px -235px; }
-.bg-sproutMix_carrot          { background-position: -10px -280px; }
-.bg-sproutMix_kale            { background-position: -55px -280px; }
-.bg-sproutMix_onion           { background-position: -100px -280px; }
-.bg-sproutMix_corn            { background-position: -145px -280px; }
-.bg-sproutMix_parsnip         { background-position: -190px -280px; }
-.bg-sproutMix_eggplant        { background-position: -235px -280px; }
-.bg-sproutMix_radish          { background-position: -280px -280px; }
-.bg-sproutMix_potato          { background-position: -325px -10px; }
-.bg-sproutMix_soybean         { background-position: -325px -55px; }
-.bg-sproutMix_rhubarb         { background-position: -325px -100px; }
-.bg-sproutMix_yam             { background-position: -325px -145px; }
-.bg-sproutMix_turnip          { background-position: -325px -190px; }
-.bg-sproutMix_sunflower       { background-position: -325px -235px; }
-.bg-sproutMix_pumpkin         { background-position: -325px -280px; }
-.bg-sproutMix_zucchini        { background-position: -10px -325px; }
-.bg-sproutMix_wheat           { background-position: -55px -325px; }
- 
+.bg-sproutMix_barley          { background-position: -145px -190px; }
+.bg-sproutMix_beetroot        { background-position: -190px -190px; }
+.bg-sproutMix_artichoke       { background-position: -235px -10px; }
+.bg-sproutMix_broccoli        { background-position: -235px -55px; }
+.bg-sproutMix_cabbage         { background-position: -235px -100px; }
+.bg-sproutMix_cauliflower     { background-position: -235px -145px; }
+.bg-sproutMix_eggplant        { background-position: -235px -190px; }
+.bg-sproutMix_kale            { background-position: -10px -235px; }
+.bg-sproutMix_parsnip         { background-position: -55px -235px; }
+.bg-sproutMix_potato          { background-position: -100px -235px; }
+.bg-sproutMix_carrot          { background-position: -145px -235px; }
+.bg-sproutMix_corn            { background-position: -190px -235px; }
+.bg-sproutMix_onion           { background-position: -235px -235px; }
+.bg-sproutMix_pepper          { background-position: -280px -10px; }
+.bg-sproutMix_pumpkin         { background-position: -280px -55px; }
+.bg-sproutMix_radish          { background-position: -280px -100px; }
+.bg-sproutMix_rhubarb         { background-position: -280px -145px; }
+.bg-sproutMix_soybean         { background-position: -280px -190px; }
+.bg-sproutMix_sunflower       { background-position: -280px -235px; }
+.bg-sproutMix_turnip          { background-position: -10px -280px; }
+.bg-sproutMix_yam             { background-position: -55px -280px; }
+.bg-sproutMix_wheat           { background-position: -100px -280px; }
+.bg-sproutMix_zucchini        { background-position: -325px -190px; }
+
 /* Sproutroot Surprise */
-.bg-sproutrootSurprise_cauliflower { background-position: -100px -325px; }
-.bg-sproutrootSurprise_broccoli    { background-position: -145px -325px; }
-.bg-sproutrootSurprise_barley      { background-position: -190px -325px; }
-.bg-sproutrootSurprise_eggplant    { background-position: -235px -325px; }
-.bg-sproutrootSurprise_cabbage     { background-position: -280px -325px; }
-.bg-sproutrootSurprise_beetroot    { background-position: -325px -325px; }
-.bg-sproutrootSurprise_onion       { background-position: -370px -10px; }
-.bg-sproutrootSurprise_kale        { background-position: -370px -55px; }
-.bg-sproutrootSurprise_corn        { background-position: -370px -100px; }
-.bg-sproutrootSurprise_potato      { background-position: -370px -145px; }
-.bg-sproutrootSurprise_parsnip     { background-position: -370px -190px; }
-.bg-sproutrootSurprise_carrot      { background-position: -370px -235px; }
-.bg-sproutrootSurprise_pepper      { background-position: -370px -280px; }
-.bg-sproutrootSurprise_artichoke   { background-position: -370px -325px; }
-.bg-sproutrootSurprise_radish      { background-position: -10px -370px; }
-.bg-sproutrootSurprise_pumpkin     { background-position: -55px -370px; }
-.bg-sproutrootSurprise_rhubarb     { background-position: -100px -370px; }
-.bg-sproutrootSurprise_soybean     { background-position: -145px -370px; }
-.bg-sproutrootSurprise_sunflower   { background-position: -190px -370px; }
-.bg-sproutrootSurprise_wheat       { background-position: -235px -370px; }
-.bg-sproutrootSurprise_zucchini    { background-position: -280px -370px; }
-.bg-sproutrootSurprise_yam         { background-position: -325px -370px; }
-.bg-sproutrootSurprise_turnip      { background-position: -370px -370px; }
- 
+.bg-sproutrootSurprise_artichoke   { background-position: -145px -280px; }
+.bg-sproutrootSurprise_beetroot    { background-position: -190px -280px; }
+.bg-sproutrootSurprise_barley      { background-position: -235px -280px; }
+.bg-sproutrootSurprise_broccoli    { background-position: -280px -280px; }
+.bg-sproutrootSurprise_cauliflower { background-position: -325px -10px; }
+.bg-sproutrootSurprise_carrot      { background-position: -325px -55px; }
+.bg-sproutrootSurprise_corn        { background-position: -325px -100px; }
+.bg-sproutrootSurprise_kale        { background-position: -325px -145px; }
+.bg-sproutrootSurprise_parsnip     { background-position: -325px -235px; }
+.bg-sproutrootSurprise_pumpkin     { background-position: -325px -280px; }
+.bg-sproutrootSurprise_pepper      { background-position: -10px -325px; }
+.bg-sproutrootSurprise_turnip      { background-position: -55px -325px; }
+.bg-sproutrootSurprise_radish      { background-position: -100px -325px; }
+.bg-sproutrootSurprise_onion       { background-position: -145px -325px; }
+.bg-sproutrootSurprise_rhubarb     { background-position: -190px -325px; }
+.bg-sproutrootSurprise_potato      { background-position: -235px -325px; }
+.bg-sproutrootSurprise_sunflower   { background-position: -280px -325px; }
+.bg-sproutrootSurprise_soybean     { background-position: -325px -325px; }
+.bg-sproutrootSurprise_wheat       { background-position: -370px -55px; }
+.bg-sproutrootSurprise_cabbage     { background-position: -370px -100px; }
+.bg-sproutrootSurprise_yam         { background-position: -370px -145px; }
+.bg-sproutrootSurprise_zucchini    { background-position: -370px -190px; }
+.bg-sproutrootSurprise_eggplant    { background-position: -370px -235px; }
+
+/* Fruitful Blend */
+.bg-fruitfulBlend_apple       { background-position: -370px -10px; }
+.bg-fruitfulBlend_banana      { background-position: -370px -280px; }
+.bg-fruitfulBlend_blueberry   { background-position: -370px -325px; }
+.bg-fruitfulBlend_lemon       { background-position: -10px -370px; }
+.bg-fruitfulBlend_orange      { background-position: -55px -370px; }
+.bg-fruitfulBlend_tomato      { background-position: -100px -370px; }
+
+/* Greenhouse Glow */
+.bg-greenhouseGlow_grape      { background-position: -145px -370px; }
+.bg-greenhouseGlow_olive      { background-position: -190px -370px; }
+.bg-greenhouseGlow_rice       { background-position: -235px -370px; }
+
+/* Greenhouse Goodie */
+.bg-greenhouseGoodie_grape    { background-position: -280px -370px; }
+.bg-greenhouseGoodie_olive    { background-position: -325px -370px; }
+.bg-greenhouseGoodie_rice     { background-position: -370px -370px; }
+
+/* Honey Treat - Galinha */
+.bg-honeyTreat_galinha_lvl0   { background-position: -415px -10px; }
+.bg-honeyTreat_galinha_lvl1   { background-position: -415px -145px; }
+.bg-honeyTreat_galinha_lvl2   { background-position: -415px -55px; }
+.bg-honeyTreat_galinha_lvl3   { background-position: -415px -100px; }
+.bg-honeyTreat_galinha_lvl4   { background-position: -415px -280px; }
+.bg-honeyTreat_galinha_lvl5   { background-position: -415px -190px; }
+.bg-honeyTreat_galinha_lvl6   { background-position: -415px -235px; }
+.bg-honeyTreat_galinha_lvl7   { background-position: -415px -325px; }
+.bg-honeyTreat_galinha_lvl8   { background-position: -415px -370px; }
+.bg-honeyTreat_galinha_lvl9   { background-position: -10px -415px; }
+.bg-honeyTreat_galinha_lvl10  { background-position: -55px -415px; }
+.bg-honeyTreat_galinha_lvl11  { background-position: -100px -415px; }
+.bg-honeyTreat_galinha_lvl12  { background-position: -145px -415px; }
+.bg-honeyTreat_galinha_lvl13  { background-position: -190px -415px; }
+.bg-honeyTreat_galinha_lvl14  { background-position: -235px -415px; }
+.bg-honeyTreat_galinha_lvl15  { background-position: -280px -415px; }
+
+/* Honey Treat - Ovelha */
+.bg-honeyTreat_ovelha_lvl0    { background-position: -325px -415px; }
+.bg-honeyTreat_ovelha_lvl1    { background-position: -370px -415px; }
+.bg-honeyTreat_ovelha_lvl2    { background-position: -415px -415px; }
+.bg-honeyTreat_ovelha_lvl3    { background-position: -460px -10px; }
+.bg-honeyTreat_ovelha_lvl4    { background-position: -460px -55px; }
+.bg-honeyTreat_ovelha_lvl5    { background-position: -460px -100px; }
+.bg-honeyTreat_ovelha_lvl6    { background-position: -460px -145px; }
+.bg-honeyTreat_ovelha_lvl7    { background-position: -460px -190px; }
+.bg-honeyTreat_ovelha_lvl8    { background-position: -460px -235px; }
+.bg-honeyTreat_ovelha_lvl9    { background-position: -460px -280px; }
+.bg-honeyTreat_ovelha_lvl10   { background-position: -460px -325px; }
+.bg-honeyTreat_ovelha_lvl11   { background-position: -460px -370px; }
+.bg-honeyTreat_ovelha_lvl12   { background-position: -460px -415px; }
+.bg-honeyTreat_ovelha_lvl13   { background-position: -10px -460px; }
+.bg-honeyTreat_ovelha_lvl14   { background-position: -55px -460px; }
+.bg-honeyTreat_ovelha_lvl15   { background-position: -100px -460px; }
+
+/* Honey Treat - Vaca */
+.bg-honeyTreat_vaca_lvl0      { background-position: -145px -460px; }
+.bg-honeyTreat_vaca_lvl1      { background-position: -190px -460px; }
+.bg-honeyTreat_vaca_lvl2      { background-position: -235px -460px; }
+.bg-honeyTreat_vaca_lvl3      { background-position: -280px -460px; }
+.bg-honeyTreat_vaca_lvl4      { background-position: -325px -460px; }
+.bg-honeyTreat_vaca_lvl5      { background-position: -370px -460px; }
+.bg-honeyTreat_vaca_lvl6      { background-position: -415px -460px; }
+.bg-honeyTreat_vaca_lvl7      { background-position: -460px -460px; }
+.bg-honeyTreat_vaca_lvl8      { background-position: -505px -10px; }
+.bg-honeyTreat_vaca_lvl9      { background-position: -505px -55px; }
+.bg-honeyTreat_vaca_lvl10     { background-position: -505px -100px; }
+.bg-honeyTreat_vaca_lvl11     { background-position: -505px -145px; }
+.bg-honeyTreat_vaca_lvl12     { background-position: -505px -190px; }
+.bg-honeyTreat_vaca_lvl13     { background-position: -505px -235px; }
+.bg-honeyTreat_vaca_lvl14     { background-position: -505px -280px; }
+.bg-honeyTreat_vaca_lvl15     { background-position: -505px -325px; }
+
+/* Salt Lick Chickens */
+.bg-saltLickChickens_galinha_lvl0  { background-position: -505px -370px; }
+.bg-saltLickChickens_galinha_lvl1  { background-position: -550px -10px; }
+.bg-saltLickChickens_galinha_lvl2  { background-position: -505px -415px; }
+.bg-saltLickChickens_galinha_lvl3  { background-position: -505px -460px; }
+.bg-saltLickChickens_galinha_lvl4  { background-position: -10px -505px; }
+.bg-saltLickChickens_galinha_lvl5  { background-position: -55px -505px; }
+.bg-saltLickChickens_galinha_lvl6  { background-position: -100px -505px; }
+.bg-saltLickChickens_galinha_lvl7  { background-position: -145px -505px; }
+.bg-saltLickChickens_galinha_lvl8  { background-position: -190px -505px; }
+.bg-saltLickChickens_galinha_lvl9  { background-position: -235px -505px; }
+.bg-saltLickChickens_galinha_lvl10 { background-position: -280px -505px; }
+.bg-saltLickChickens_galinha_lvl11 { background-position: -325px -505px; }
+.bg-saltLickChickens_galinha_lvl12 { background-position: -370px -505px; }
+.bg-saltLickChickens_galinha_lvl13 { background-position: -415px -505px; }
+.bg-saltLickChickens_galinha_lvl14 { background-position: -460px -505px; }
+.bg-saltLickChickens_galinha_lvl15 { background-position: -505px -505px; }
+
+/* Salt Lick Cows */
+.bg-saltLickCows_vaca_lvl0    { background-position: -550px -55px; }
+.bg-saltLickCows_vaca_lvl1    { background-position: -550px -100px; }
+.bg-saltLickCows_vaca_lvl2    { background-position: -550px -145px; }
+.bg-saltLickCows_vaca_lvl3    { background-position: -550px -190px; }
+.bg-saltLickCows_vaca_lvl4    { background-position: -550px -370px; }
+.bg-saltLickCows_vaca_lvl5    { background-position: -550px -235px; }
+.bg-saltLickCows_vaca_lvl6    { background-position: -550px -280px; }
+.bg-saltLickCows_vaca_lvl7    { background-position: -550px -325px; }
+.bg-saltLickCows_vaca_lvl8    { background-position: -550px -415px; }
+.bg-saltLickCows_vaca_lvl9    { background-position: -550px -460px; }
+.bg-saltLickCows_vaca_lvl10   { background-position: -550px -505px; }
+.bg-saltLickCows_vaca_lvl11   { background-position: -10px -550px; }
+.bg-saltLickCows_vaca_lvl12   { background-position: -55px -550px; }
+.bg-saltLickCows_vaca_lvl13   { background-position: -100px -550px; }
+.bg-saltLickCows_vaca_lvl14   { background-position: -190px -550px; }
+.bg-saltLickCows_vaca_lvl15   { background-position: -145px -550px; }
+
+/* Salt Lick Sheeps */
+.bg-saltLickSheeps_ovelha_lvl0  { background-position: -235px -550px; }
+.bg-saltLickSheeps_ovelha_lvl1  { background-position: -280px -550px; }
+.bg-saltLickSheeps_ovelha_lvl2  { background-position: -325px -550px; }
+.bg-saltLickSheeps_ovelha_lvl3  { background-position: -370px -550px; }
+.bg-saltLickSheeps_ovelha_lvl4  { background-position: -415px -550px; }
+.bg-saltLickSheeps_ovelha_lvl5  { background-position: -460px -550px; }
+.bg-saltLickSheeps_ovelha_lvl6  { background-position: -550px -550px; }
+.bg-saltLickSheeps_ovelha_lvl7  { background-position: -505px -550px; }
+.bg-saltLickSheeps_ovelha_lvl8  { background-position: -595px -10px; }
+.bg-saltLickSheeps_ovelha_lvl9  { background-position: -595px -55px; }
+.bg-saltLickSheeps_ovelha_lvl10 { background-position: -595px -100px; }
+.bg-saltLickSheeps_ovelha_lvl11 { background-position: -595px -145px; }
+.bg-saltLickSheeps_ovelha_lvl12 { background-position: -595px -190px; }
+.bg-saltLickSheeps_ovelha_lvl13 { background-position: -595px -235px; }
+.bg-saltLickSheeps_ovelha_lvl14 { background-position: -595px -280px; }
+.bg-saltLickSheeps_ovelha_lvl15 { background-position: -595px -325px; }
+
 /* Turbofruit Mix */
-.bg-turbofruitMix_blueberry   { background-position: -415px -10px; }
-.bg-turbofruitMix_lemon       { background-position: -415px -55px; }
-.bg-turbofruitMix_apple       { background-position: -415px -100px; }
-.bg-turbofruitMix_tomato      { background-position: -415px -145px; }
-.bg-turbofruitMix_orange      { background-position: -415px -190px; }
-.bg-turbofruitMix_banana      { background-position: -415px -235px; }
+.bg-turbofruitMix_apple       { background-position: -595px -370px; }
+.bg-turbofruitMix_banana      { background-position: -595px -415px; }
+.bg-turbofruitMix_blueberry   { background-position: -595px -460px; }
+.bg-turbofruitMix_lemon       { background-position: -595px -505px; }
+.bg-turbofruitMix_tomato      { background-position: -595px -550px; }
+.bg-turbofruitMix_orange      { background-position: -10px -595px; }

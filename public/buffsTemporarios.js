@@ -465,6 +465,74 @@ let fertilizantes = {
             }
         ]
     })),
+    //boa parte feita no Claude.
+    honeyTreat: todosAnimais.map(animal => ({ 
+        idName: `honeyTreat_${animal.name.toLowerCase()}_lvl${animal.levelAnterior}`,
+        name: `${animal.name.charAt(0).toUpperCase() + animal.name.slice(1)}<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
+        descricao: '',
+        possui: false,
+        quantidade: [
+            {
+                sinal: 'x-',
+                buff: 0.75,
+                recursoAfetado: [animal.name]
+            }
+        ]
+    })),
+    saltLickChickens: animais.galinhas.map(animal => ({ 
+        idName: `saltLickChickens_${animal.name.toLowerCase()}_lvl${animal.levelAnterior}`,
+        name: `${animal.name.charAt(0).toUpperCase() + animal.name.slice(1)}<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
+        descricao: '',
+        possui: false,
+        quantidade: [
+            {
+                sinal: 'x',
+                buff: 1.05,
+                recursoAfetado: ['egg']
+            },
+            {
+                sinal: 'x',
+                buff: 1.05,
+                recursoAfetado: ['feather']
+            }
+        ]
+    })),
+    saltLickCows: animais.vacas.map(animal => ({ 
+        idName: `saltLickCows_${animal.name.toLowerCase()}_lvl${animal.levelAnterior}`,
+        name: `${animal.name.charAt(0).toUpperCase() + animal.name.slice(1)}<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
+        descricao: '',
+        possui: false,
+        quantidade: [
+            {
+                sinal: 'x',
+                buff: 1.05,
+                recursoAfetado: ['milk']
+            },
+            {
+                sinal: 'x',
+                buff: 1.05,
+                recursoAfetado: ['leather']
+            }
+        ]
+    })),
+    saltLickSheeps: animais.ovelhas.map(animal => ({ 
+        idName: `saltLickSheeps_${animal.name.toLowerCase()}_lvl${animal.levelAnterior}`,
+        name: `${animal.name.charAt(0).toUpperCase() + animal.name.slice(1)}<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
+        descricao: '',
+        possui: false,
+        quantidade: [
+            {
+                sinal: 'x',
+                buff: 1.05,
+                recursoAfetado: ['wool']
+            },
+            {
+                sinal: 'x',
+                buff: 1.05,
+                recursoAfetado: ['merinoWool']
+            }
+        ]
+    })),
 };
 
 //=============================================================================================================================================================================
@@ -477,6 +545,10 @@ let todosTemporarios = [
     ...fertilizantes.turbofruitMix,
     ...fertilizantes.greenhouseGlow,
     ...fertilizantes.greenhouseGoodie,
+    ...fertilizantes.honeyTreat,
+    ...fertilizantes.saltLickChickens,
+    ...fertilizantes.saltLickCows,
+    ...fertilizantes.saltLickSheeps,
     ...shrines,
     ...totems
 ];
