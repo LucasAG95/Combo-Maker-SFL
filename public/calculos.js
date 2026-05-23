@@ -718,7 +718,7 @@ function buffsAdicionadosAnimais() {
                 collectibles.temporada,
                 wearables.temporada,
                 wearables.animais,
-                fertilizantes.honeyTreat,
+                //fertilizantes.honeyTreat,
                 shrines,
                 totems,
             ]);
@@ -776,7 +776,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
-            fertilizantes.saltLickChickens,
+            //fertilizantes.saltLickChickens,
             shrines,
             totems,
             budsFiltrados
@@ -793,7 +793,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
-            fertilizantes.saltLickChickens,
+            //fertilizantes.saltLickChickens,
             shrines,
             totems,
             budsFiltrados
@@ -847,7 +847,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
-            fertilizantes.saltLickCows,
+            //fertilizantes.saltLickCows,
             shrines,
             totems,
             budsFiltrados
@@ -864,7 +864,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
-            fertilizantes.saltLickCows,
+            //fertilizantes.saltLickCows,
             shrines,
             totems,
             budsFiltrados
@@ -918,7 +918,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
-            fertilizantes.saltLickSheeps,
+            //fertilizantes.saltLickSheeps,
             shrines,
             totems,
             budsFiltrados
@@ -935,7 +935,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
-            fertilizantes.saltLickSheeps,
+            //fertilizantes.saltLickSheeps,
             shrines,
             totems,
             budsFiltrados

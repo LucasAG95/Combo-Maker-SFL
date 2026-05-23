@@ -466,7 +466,7 @@ let fertilizantes = {
         ]
     })),
     //boa parte feita no Claude.
-    honeyTreat: todosAnimais.map(animal => ({ 
+    /*honeyTreat: todosAnimais.map(animal => ({ 
         idName: `honeyTreat_${animal.name.toLowerCase()}_lvl${animal.levelAnterior}`,
         name: `${animal.name.charAt(0).toUpperCase() + animal.name.slice(1)}<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
         descricao: '',
@@ -532,7 +532,7 @@ let fertilizantes = {
                 recursoAfetado: ['merinoWool']
             }
         ]
-    })),
+    })),*/
 };
 
 //=============================================================================================================================================================================
@@ -545,10 +545,10 @@ let todosTemporarios = [
     ...fertilizantes.turbofruitMix,
     ...fertilizantes.greenhouseGlow,
     ...fertilizantes.greenhouseGoodie,
-    ...fertilizantes.honeyTreat,
-    ...fertilizantes.saltLickChickens,
-    ...fertilizantes.saltLickCows,
-    ...fertilizantes.saltLickSheeps,
+    //...fertilizantes.honeyTreat,
+    //...fertilizantes.saltLickChickens,
+    //...fertilizantes.saltLickCows,
+    //...fertilizantes.saltLickSheeps,
     ...shrines,
     ...totems
 ];
