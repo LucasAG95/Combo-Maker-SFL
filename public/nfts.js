@@ -1405,7 +1405,7 @@ let collectibles = {
     ],
     fruits: [
         {
-            idNumber: '',
+            idNumber: 2301,
             idName: 'fruitTuneBox',
             name: 'Fruit Tune Box',
             preco: '',
@@ -1972,7 +1972,7 @@ let collectibles = {
             ]
         },
         {
-            idNumber: '',
+            idNumber: 2828,
             idName: 'crimstoneClam',
             name: 'Crimstone Clam',
             preco: '',
@@ -2053,7 +2053,7 @@ let collectibles = {
             ]
         },
         {
-            idNumber: '',
+            idNumber: 2715,
             idName: 'magmaStone',
             name: 'Magma Stone',
             preco: '',
@@ -2645,7 +2645,7 @@ let collectibles = {
             ],
         },
         {
-            idNumber: '',
+            idNumber: 2532,
             idName: 'astronautSheep',
             name: 'Astronaut Sheep',
             preco: '',
@@ -3046,7 +3046,7 @@ let wearables = {
             ]
         },
         {
-            idNumber: [72, 73], //dps ver se isso da certo
+            idNumber: 72 || 73, //dps ver se isso da certo
             idName: 'devilOrAngelWings',
             name: ['Devil Wings - Angel Wings'], //dps ver se isso da certo
             angel: 'Angel Wings',
@@ -3481,7 +3481,7 @@ let wearables = {
     ],
     minerals: [
         {
-            idNumber: '',
+            idNumber: 257,
             idName: 'pickaxeShark',
             name: 'Pickaxe Shark',
             preco: '',
@@ -3906,7 +3906,7 @@ let wearables = {
             ]
         },
         {
-            idNumber: '',
+            idNumber: 501,
             idName: 'trainingWhistle',
             name: 'Training Whistle',
             preco: '',

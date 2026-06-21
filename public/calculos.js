@@ -47,13 +47,18 @@ function calcularBuff(recurso, listasDeBuffs) {
             if (nftOuSkill.estacao && !nftOuSkill.estacao.includes(estacao)) return;
             
             // Identifica o nome do recurso (objeto com .name ou string direta)
-            const nomeRecurso = recurso.name || recurso;
+            const nomeRecurso = recurso.levelAnterior || recurso.name || recurso;
+
+            //isso foi colocado por conta dos buffs temporarios, mas não altera o funcionamento dos demais buffs, só mudei aonde afeta quantidade, os demais funcionaram ainda com nomeRecurso
+            const nomeGenerico  = recurso.name  ?? recurso;
+            const nomeEspecifico = recurso.levelAnterior ?? null;
+
             
             //=============================================================================================================================================================
             //Adiciona os buffs que afetam a quantidade de recursos 
             if (nftOuSkill.quantidade) {
                 nftOuSkill.quantidade.forEach(qtd => {
-                    if (qtd.recursoAfetado?.includes(nomeRecurso)) {
+                    if (qtd.recursoAfetado?.includes(nomeGenerico) || (nomeEspecifico && qtd.recursoAfetado?.includes(nomeEspecifico))) {
                         if (qtd.sinal === 'x') qtdMulti *= qtd.buff;
                         if (qtd.sinal === '+') qtdSoma += qtd.buff;
                         if (qtd.sinal === '-') qtdSubtrai += qtd.buff;
@@ -69,7 +74,7 @@ function calcularBuff(recurso, listasDeBuffs) {
             //Adiciona os buffs que afetam a quantidade de recursos 
             if (nftOuSkill.quantidade2) {
                 nftOuSkill.quantidade2.forEach(qtd => {
-                    if (qtd.recursoAfetado?.includes(nomeRecurso)) {
+                    if (qtd.recursoAfetado?.includes(nomeGenerico) || (nomeEspecifico && qtd.recursoAfetado?.includes(nomeEspecifico))) {
                         if (qtd.sinal === 'x') qtdMulti *= qtd.buff;
                         if (qtd.sinal === '+') qtdSoma += qtd.buff;
                         if (qtd.sinal === '-') qtdSubtrai += qtd.buff;
@@ -718,7 +723,7 @@ function buffsAdicionadosAnimais() {
                 collectibles.temporada,
                 wearables.temporada,
                 wearables.animais,
-                //fertilizantes.honeyTreat,
+                fertilizantes.honeyTreat,
                 shrines,
                 totems,
             ]);
@@ -766,7 +771,7 @@ function buffsAdicionadosRecursosAnimais() {
 
 
         // Calcula buffs para egg
-        const buffsEgg = calcularBuff('egg', [
+        const buffsEgg = calcularBuff({ name: 'egg', levelAnterior: `egg_lvl${galinha.levelAnterior}` }, [
             skillsLegacy,
             skillsAnimais.tier1,
             skillsAnimais.tier2,
@@ -776,14 +781,14 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
-            //fertilizantes.saltLickChickens,
+            fertilizantes.saltLickChickens,
             shrines,
             totems,
             budsFiltrados
         ]);
         
         // Calcula buffs para feather
-        const buffsFeather = calcularBuff('feather', [
+        const buffsFeather = calcularBuff({ name: 'feather', levelAnterior: `feather_lvl${galinha.levelAnterior}` }, [
             skillsLegacy,
             skillsAnimais.tier1,
             skillsAnimais.tier2,
@@ -793,7 +798,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
-            //fertilizantes.saltLickChickens,
+            fertilizantes.saltLickChickens,
             shrines,
             totems,
             budsFiltrados
@@ -836,8 +841,8 @@ function buffsAdicionadosRecursosAnimais() {
         contadorVacas += 1;
 
 
-        // Calcula buffs para egg
-        const buffsMilk = calcularBuff('milk', [
+        // Calcula buffs para milk
+        const buffsMilk = calcularBuff({ name: 'milk', levelAnterior: `milk_lvl${vaca.levelAnterior}`}, [
             skillsLegacy,
             skillsAnimais.tier1,
             skillsAnimais.tier2,
@@ -847,14 +852,14 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
-            //fertilizantes.saltLickCows,
+            fertilizantes.saltLickCows,
             shrines,
             totems,
             budsFiltrados
         ]);
         
-        // Calcula buffs para feather
-        const buffsLeather = calcularBuff('leather', [
+        // Calcula buffs para leather
+        const buffsLeather = calcularBuff({ name: 'leather', levelAnterior: `leather_lvl${vaca.levelAnterior}` }, [
             skillsLegacy,
             skillsAnimais.tier1,
             skillsAnimais.tier2,
@@ -864,7 +869,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
-            //fertilizantes.saltLickCows,
+            fertilizantes.saltLickCows,
             shrines,
             totems,
             budsFiltrados
@@ -907,8 +912,8 @@ function buffsAdicionadosRecursosAnimais() {
         contadorOvelhas += 1;
 
 
-        // Calcula buffs para egg
-        const buffsWool = calcularBuff('wool', [
+        // Calcula buffs para wool
+        const buffsWool = calcularBuff({ name: 'wool', levelAnterior: `wool_lvl${ovelha.levelAnterior}`}, [
             skillsLegacy,
             skillsAnimais.tier1,
             skillsAnimais.tier2,
@@ -918,14 +923,14 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
-            //fertilizantes.saltLickSheeps,
+            fertilizantes.saltLickSheeps,
             shrines,
             totems,
             budsFiltrados
         ]);
         
-        // Calcula buffs para feather
-        const buffsMerino = calcularBuff('merinoWool', [
+        // Calcula buffs para merino wool
+        const buffsMerino = calcularBuff({ name: 'merinoWool', levelAnterior: `merinoWool_lvl${ovelha.levelAnterior}` }, [
             skillsLegacy,
             skillsAnimais.tier1,
             skillsAnimais.tier2,
@@ -935,7 +940,7 @@ function buffsAdicionadosRecursosAnimais() {
             collectibles.temporada,
             wearables.temporada,
             wearables.animais,
-            //fertilizantes.saltLickSheeps,
+            fertilizantes.saltLickSheeps,
             shrines,
             totems,
             budsFiltrados

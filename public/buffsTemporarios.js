@@ -466,7 +466,7 @@ let fertilizantes = {
         ]
     })),
     //boa parte feita no Claude.
-    /*honeyTreat: todosAnimais.map(animal => ({ 
+    honeyTreat: todosAnimais.map(animal => ({ 
         idName: `honeyTreat_${animal.name.toLowerCase()}_lvl${animal.levelAnterior}`,
         name: `${animal.name.charAt(0).toUpperCase() + animal.name.slice(1)}<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
         descricao: '',
@@ -475,7 +475,7 @@ let fertilizantes = {
             {
                 sinal: 'x-',
                 buff: 0.75,
-                recursoAfetado: [animal.name]
+                recursoAfetado: [animal.levelAnterior || animal.name]
             }
         ]
     })),
@@ -488,12 +488,12 @@ let fertilizantes = {
             {
                 sinal: 'x',
                 buff: 1.05,
-                recursoAfetado: ['egg']
+                recursoAfetado: [`egg_lvl${animal.levelAnterior}`]  // chave única por level
             },
             {
                 sinal: 'x',
                 buff: 1.05,
-                recursoAfetado: ['feather']
+                recursoAfetado: [`feather_lvl${animal.levelAnterior}`]  // chave única por level
             }
         ]
     })),
@@ -506,12 +506,12 @@ let fertilizantes = {
             {
                 sinal: 'x',
                 buff: 1.05,
-                recursoAfetado: ['milk']
+                recursoAfetado: [`milk_lvl${animal.levelAnterior}`]
             },
             {
                 sinal: 'x',
                 buff: 1.05,
-                recursoAfetado: ['leather']
+                recursoAfetado: [`leather_lvl${animal.levelAnterior}`]
             }
         ]
     })),
@@ -524,15 +524,15 @@ let fertilizantes = {
             {
                 sinal: 'x',
                 buff: 1.05,
-                recursoAfetado: ['wool']
+                recursoAfetado: [`wool_lvl${animal.levelAnterior}`]
             },
             {
                 sinal: 'x',
                 buff: 1.05,
-                recursoAfetado: ['merinoWool']
+                recursoAfetado: [`merinoWool_lvl${animal.levelAnterior}`]
             }
         ]
-    })),*/
+    })),
 };
 
 //=============================================================================================================================================================================
@@ -545,10 +545,10 @@ let todosTemporarios = [
     ...fertilizantes.turbofruitMix,
     ...fertilizantes.greenhouseGlow,
     ...fertilizantes.greenhouseGoodie,
-    //...fertilizantes.honeyTreat,
-    //...fertilizantes.saltLickChickens,
-    //...fertilizantes.saltLickCows,
-    //...fertilizantes.saltLickSheeps,
+    ...fertilizantes.honeyTreat,
+    ...fertilizantes.saltLickChickens,
+    ...fertilizantes.saltLickCows,
+    ...fertilizantes.saltLickSheeps,
     ...shrines,
     ...totems
 ];
