@@ -1006,3 +1006,67 @@ const SaveManagerC2C = {
 })();
 
 window.SaveManagerC2C = SaveManagerC2C;
+
+// ============================================================================
+// SALVAR RECURSOS COMPRADOS NO MARKET (Minerios)
+// ============================================================================
+
+const RECURSOS_COMPRADOS_KEY = 'sfl_recursos_comprados_market';
+
+const idsRecursosComprados = [
+    'wood-comprada',
+    'stone-comprada',
+    'iron-comprada',
+    'gold-comprada',
+    'crimstone-comprada'
+];
+
+function salvarRecursosComprados() {
+    try {
+        const estado = {};
+        idsRecursosComprados.forEach(id => {
+            const checkbox = document.getElementById(id);
+            if (checkbox) estado[id] = checkbox.checked;
+        });
+        localStorage.setItem(RECURSOS_COMPRADOS_KEY, JSON.stringify(estado));
+        console.log('✅ Recursos comprados salvos:', estado);
+    } catch (error) {
+        console.error('❌ Erro ao salvar recursos comprados:', error);
+    }
+}
+
+function restaurarRecursosComprados() {
+    try {
+        const salvo = JSON.parse(localStorage.getItem(RECURSOS_COMPRADOS_KEY) || '{}');
+
+        idsRecursosComprados.forEach(id => {
+            const checkbox = document.getElementById(id);
+            if (checkbox && salvo[id] !== undefined) {
+                checkbox.checked = salvo[id];
+                // dispara o change para qualquer cálculo que dependa desse checkbox reagir
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        });
+
+        console.log('📂 Recursos comprados restaurados:', salvo);
+    } catch (error) {
+        console.error('❌ Erro ao restaurar recursos comprados:', error);
+    }
+}
+
+function configurarListenersRecursosComprados() {
+    idsRecursosComprados.forEach(id => {
+        const checkbox = document.getElementById(id);
+        if (checkbox) {
+            checkbox.addEventListener('change', salvarRecursosComprados);
+        }
+    });
+}
+
+// ============================================================================
+// INICIALIZAÇÃO
+// ============================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    restaurarRecursosComprados();
+    configurarListenersRecursosComprados();
+});

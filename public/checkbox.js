@@ -350,19 +350,21 @@ window.onload = function () {
     renderBuds(buds.beach, 'buds-beach-container', './buds');
 
     //Shrines, Totems e buffs temporarios
-    renderNFTs(shrines, 'shrines-container', './shrines');
-    renderNFTs(totems, 'totems-container', './shrines');
-    renderNFTs(fertilizantes.sproutMix,     'sproutMix-container', './fertilizantes');
-    renderNFTs(fertilizantes.rapidRoot,     'rapidRoot-container', './fertilizantes');
-    renderNFTs(fertilizantes.fruitfulBlend, 'fruitfulBlend-container', './fertilizantes');
-    renderNFTs(fertilizantes.sproutrootSurprise,     'sproutrootSurprise-container', './fertilizantes');
-    renderNFTs(fertilizantes.turbofruitMix,     'turbofruitMix-container', './fertilizantes');
-    renderNFTs(fertilizantes.greenhouseGlow,     'greenhouseGlow-container', './fertilizantes');
-    renderNFTs(fertilizantes.greenhouseGoodie,     'greenhouseGoodie-container', './fertilizantes');
-    renderNFTs(fertilizantes.honeyTreat,     'honeyTreat-container', './fertilizantes');
-    renderNFTs(fertilizantes.saltLickChickens,     'saltLickChickens-container', './fertilizantes');
-    renderNFTs(fertilizantes.saltLickCows,     'saltLickCows-container', './fertilizantes');
-    renderNFTs(fertilizantes.saltLickSheeps,     'saltLickSheeps-container', './fertilizantes');
+    renderNFTs(shrines,                           'shrines-container', './shrines');
+    renderNFTs(totems,                            'totems-container', './shrines');
+    renderNFTs(fertilizantes.sproutMix,           'sproutMix-container', './fertilizantes');
+    renderNFTs(fertilizantes.rapidRoot,           'rapidRoot-container', './fertilizantes');
+    renderNFTs(fertilizantes.fruitfulBlend,       'fruitfulBlend-container', './fertilizantes');
+    renderNFTs(fertilizantes.sproutrootSurprise,  'sproutrootSurprise-container', './fertilizantes');
+    renderNFTs(fertilizantes.turbofruitMix,       'turbofruitMix-container', './fertilizantes');
+    renderNFTs(fertilizantes.greenhouseGlow,      'greenhouseGlow-container', './fertilizantes');
+    renderNFTs(fertilizantes.greenhouseGoodie,    'greenhouseGoodie-container', './fertilizantes');
+    renderNFTs(fertilizantes.honeyTreatChickens,  'honeyTreatChickens-container', './fertilizantes');
+    renderNFTs(fertilizantes.honeyTreatCows,      'honeyTreatCows-container', './fertilizantes');
+    renderNFTs(fertilizantes.honeyTreatSheeps,    'honeyTreatSheeps-container', './fertilizantes');
+    renderNFTs(fertilizantes.saltLickChickens,    'saltLickChickens-container', './fertilizantes');
+    renderNFTs(fertilizantes.saltLickCows,        'saltLickCows-container', './fertilizantes');
+    renderNFTs(fertilizantes.saltLickSheeps,      'saltLickSheeps-container', './fertilizantes');
 
     //chamando funções
     valoresDasGems();

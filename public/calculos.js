@@ -47,7 +47,7 @@ function calcularBuff(recurso, listasDeBuffs) {
             if (nftOuSkill.estacao && !nftOuSkill.estacao.includes(estacao)) return;
             
             // Identifica o nome do recurso (objeto com .name ou string direta)
-            const nomeRecurso = recurso.levelAnterior || recurso.name || recurso;
+            const nomeRecurso = recurso.name || recurso.levelAnterior || recurso;
 
             //isso foi colocado por conta dos buffs temporarios, mas não altera o funcionamento dos demais buffs, só mudei aonde afeta quantidade, os demais funcionaram ainda com nomeRecurso
             const nomeGenerico  = recurso.name  ?? recurso;
@@ -723,7 +723,9 @@ function buffsAdicionadosAnimais() {
                 collectibles.temporada,
                 wearables.temporada,
                 wearables.animais,
-                fertilizantes.honeyTreat,
+                fertilizantes.honeyTreatChickens,
+                fertilizantes.honeyTreatCows,
+                fertilizantes.honeyTreatSheeps,
                 shrines,
                 totems,
             ]);

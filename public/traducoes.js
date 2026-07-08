@@ -136,7 +136,9 @@ function mudarIdioma() {
     document.getElementById('tab-turbofruit-mix').innerHTML = `* ${opcaoDeIdiomas.avisoTurbofruitMix}`;
     document.getElementById('tab-greenhouse-glow').innerHTML = `* ${opcaoDeIdiomas.avisoGreenhouseGlow}`;
     document.getElementById('tab-greenhouse-goodie').innerHTML = `* ${opcaoDeIdiomas.avisoGreenhouseGoodie}`;
-    document.getElementById('tab-honey-treat').innerHTML = `* ${opcaoDeIdiomas.avisoHoneyTreat}`;
+    document.getElementById('tab-honey-treat-chickens').innerHTML = `* ${opcaoDeIdiomas.avisoHoneyTreat}`;
+    document.getElementById('tab-honey-treat-cows').innerHTML = `* ${opcaoDeIdiomas.avisoHoneyTreat}`;
+    document.getElementById('tab-honey-treat-sheeps').innerHTML = `* ${opcaoDeIdiomas.avisoHoneyTreat}`;
     document.getElementById('tab-salt-lick-chickens').innerHTML = `* ${opcaoDeIdiomas.avisoSaltLickChickens}`;
     document.getElementById('tab-salt-lick-cows').innerHTML = `* ${opcaoDeIdiomas.avisoSaltLickCows}`;
     document.getElementById('tab-salt-lick-sheeps').innerHTML = `* ${opcaoDeIdiomas.avisoSaltLickSheeps}`;
@@ -151,12 +153,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.1.3`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV109}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV110}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV111}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV112}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV113}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.1.4`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV110}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV111}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV112}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV113}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV114}`;
 
 
     pontosGastosEmSkills();
@@ -646,7 +648,13 @@ const idiomaDasAtualizacoes = {
         atualizacaoV113: `v1.1.3 – Atualizado em 21/06/2026<br><br>
             • Corrigido um problema nos buffs temporários Honey Treat e Salt Lick. Ao serem selecionados, os buffs estavam sendo aplicados a todos os níveis dos animais, 
                 quando deveriam afetar apenas o nível específico escolhido. O comportamento foi ajustado e agora funciona corretamente.<br><br>
-            • Adicionados os preços das NFTs Fruit Tune Box, Crimstone Clam, Magma Stone, Astronaut Sheep, Pickaxe Shark e Training Whistle.<br><br>`
+            • Adicionados os preços das NFTs Fruit Tune Box, Crimstone Clam, Magma Stone, Astronaut Sheep, Pickaxe Shark e Training Whistle.<br><br>`,
+        
+        atualizacaoV114: `v1.1.4 – Atualizado em 08/07/2026<br><br>
+            • Corrigido um problema no cálculo do lucro dos animais. NFTs que reduziam o tempo de produção não estavam impactando o lucro corretamente. O cálculo foi ajustado e agora funciona normalmente.<br><br>
+            • Os recursos minerais selecionados para compra agora são salvos automaticamente e permanecerão selecionados ao abrir o site novamente.<br><br>
+            • O buff temporário Honey Treat foi separado por tipo de animal, permitindo a seleção individual para cada um deles.`
+
         
     },
     ingles: {
@@ -852,7 +860,12 @@ const idiomaDasAtualizacoes = {
         atualizacaoV113: `v1.1.3 – Updated on 06/21/2026<br><br>
             • Fixed an issue with the Honey Treat and Salt Lick temporary buffs. When selected, the buffs were being applied to all animal levels, when they should only affect the specific
                 level chosen. This behavior has been corrected and now works as intended.<br><br>
-            • Added pricing data for the Fruit Tune Box, Crimstone Clam, Magma Stone, Astronaut Sheep, Pickaxe Shark, and Training Whistle NFTs.<br><br>`
+            • Added pricing data for the Fruit Tune Box, Crimstone Clam, Magma Stone, Astronaut Sheep, Pickaxe Shark, and Training Whistle NFTs.<br><br>`,
+
+        atualizacaoV114: `v1.1.4 – Updated on 08/07/2026<br><br>
+            • Fixed an issue where Animal Time NFTs were not correctly affecting animal profit calculations. The calculation has been adjusted and now works as intended.<br><br>
+            • Selected mineral resources to purchase are now saved automatically and will remain selected the next time you open the site.<br><br>
+            • The Honey Treat temporary buff has been separated by animal type, allowing it to be selected individually for each animal.`
 
     }
 };

@@ -1,22 +1,22 @@
 let animais = {
 
     galinhas: [
-        { name: 'galinha', levelAnterior: 0,  xpTotalAnterior: 0,    level: 1,  xpTotalDoLevel: 60,   xpNecessario: 60,  idComida: 'kernelBlend', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 1, feather: 0, },
-        { name: 'galinha', levelAnterior: 1,  xpTotalAnterior: 60,   level: 2,  xpTotalDoLevel: 120,  xpNecessario: 60,  idComida: 'kernelBlend', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 1, feather: 0, },
-        { name: 'galinha', levelAnterior: 2,  xpTotalAnterior: 120,  level: 3,  xpTotalDoLevel: 240,  xpNecessario: 120, idComida: 'kernelBlend', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 1, feather: 1, },
-        { name: 'galinha', levelAnterior: 3,  xpTotalAnterior: 240,  level: 4,  xpTotalDoLevel: 360,  xpNecessario: 120, idComida: 'hay',         xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 2, feather: 1, },
-        { name: 'galinha', levelAnterior: 4,  xpTotalAnterior: 360,  level: 5,  xpTotalDoLevel: 480,  xpNecessario: 120, idComida: 'hay',         xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 2, feather: 1, },
-        { name: 'galinha', levelAnterior: 5,  xpTotalAnterior: 480,  level: 6,  xpTotalDoLevel: 660,  xpNecessario: 180, idComida: 'hay',         xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 2, feather: 1, },
-        { name: 'galinha', levelAnterior: 6,  xpTotalAnterior: 660,  level: 7,  xpTotalDoLevel: 840,  xpNecessario: 180, idComida: 'nutriBarley', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 2, feather: 1, },
-        { name: 'galinha', levelAnterior: 7,  xpTotalAnterior: 840,  level: 8,  xpTotalDoLevel: 1020, xpNecessario: 180, idComida: 'nutriBarley', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 3, feather: 1, },
-        { name: 'galinha', levelAnterior: 8,  xpTotalAnterior: 1020, level: 9,  xpTotalDoLevel: 1200, xpNecessario: 180, idComida: 'nutriBarley', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 3, feather: 2, },
-        { name: 'galinha', levelAnterior: 9,  xpTotalAnterior: 1200, level: 10, xpTotalDoLevel: 1440, xpNecessario: 240, idComida: 'nutriBarley', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 3, feather: 2, },
-        { name: 'galinha', levelAnterior: 10, xpTotalAnterior: 1440, level: 11, xpTotalDoLevel: 1680, xpNecessario: 240, idComida: 'mixedGrain',  xpDaComidaPadrao: 80, qtdComidaPadrao: 1, egg: 3, feather: 2, },
-        { name: 'galinha', levelAnterior: 11, xpTotalAnterior: 1680, level: 12, xpTotalDoLevel: 1920, xpNecessario: 240, idComida: 'mixedGrain',  xpDaComidaPadrao: 80, qtdComidaPadrao: 1, egg: 3, feather: 1, },
-        { name: 'galinha', levelAnterior: 12, xpTotalAnterior: 1920, level: 13, xpTotalDoLevel: 2160, xpNecessario: 240, idComida: 'mixedGrain',  xpDaComidaPadrao: 80, qtdComidaPadrao: 1, egg: 4, feather: 2, },
-        { name: 'galinha', levelAnterior: 13, xpTotalAnterior: 2160, level: 14, xpTotalDoLevel: 2400, xpNecessario: 240, idComida: 'mixedGrain',  xpDaComidaPadrao: 80, qtdComidaPadrao: 1, egg: 4, feather: 2, },
-        { name: 'galinha', levelAnterior: 14, xpTotalAnterior: 2400, level: 15, xpTotalDoLevel: 2720, xpNecessario: 320, idComida: 'mixedGrain',  xpDaComidaPadrao: 80, qtdComidaPadrao: 1, egg: 5, feather: 3, },
-        { name: 'galinha', levelAnterior: 15, xpTotalAnterior: 2400, level: 15, xpTotalDoLevel: 2720, xpNecessario: 320, idComida: 'mixedGrain',  xpDaComidaPadrao: 80, qtdComidaPadrao: 1, egg: 5, feather: 3, }
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 0,  xpTotalAnterior: 0,    level: 1,  xpTotalDoLevel: 60,   xpNecessario: 60,  idComida: 'kernelBlend', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 1, feather: 0, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 1,  xpTotalAnterior: 60,   level: 2,  xpTotalDoLevel: 120,  xpNecessario: 60,  idComida: 'kernelBlend', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 1, feather: 0, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 2,  xpTotalAnterior: 120,  level: 3,  xpTotalDoLevel: 240,  xpNecessario: 120, idComida: 'kernelBlend', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 1, feather: 1, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 3,  xpTotalAnterior: 240,  level: 4,  xpTotalDoLevel: 360,  xpNecessario: 120, idComida: 'hay',         xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 2, feather: 1, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 4,  xpTotalAnterior: 360,  level: 5,  xpTotalDoLevel: 480,  xpNecessario: 120, idComida: 'hay',         xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 2, feather: 1, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 5,  xpTotalAnterior: 480,  level: 6,  xpTotalDoLevel: 660,  xpNecessario: 180, idComida: 'hay',         xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 2, feather: 1, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 6,  xpTotalAnterior: 660,  level: 7,  xpTotalDoLevel: 840,  xpNecessario: 180, idComida: 'nutriBarley', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 2, feather: 1, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 7,  xpTotalAnterior: 840,  level: 8,  xpTotalDoLevel: 1020, xpNecessario: 180, idComida: 'nutriBarley', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 3, feather: 1, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 8,  xpTotalAnterior: 1020, level: 9,  xpTotalDoLevel: 1200, xpNecessario: 180, idComida: 'nutriBarley', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 3, feather: 2, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 9,  xpTotalAnterior: 1200, level: 10, xpTotalDoLevel: 1440, xpNecessario: 240, idComida: 'nutriBarley', xpDaComidaPadrao: 60, qtdComidaPadrao: 1, egg: 3, feather: 2, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 10, xpTotalAnterior: 1440, level: 11, xpTotalDoLevel: 1680, xpNecessario: 240, idComida: 'mixedGrain',  xpDaComidaPadrao: 80, qtdComidaPadrao: 1, egg: 3, feather: 2, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 11, xpTotalAnterior: 1680, level: 12, xpTotalDoLevel: 1920, xpNecessario: 240, idComida: 'mixedGrain',  xpDaComidaPadrao: 80, qtdComidaPadrao: 1, egg: 3, feather: 1, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 12, xpTotalAnterior: 1920, level: 13, xpTotalDoLevel: 2160, xpNecessario: 240, idComida: 'mixedGrain',  xpDaComidaPadrao: 80, qtdComidaPadrao: 1, egg: 4, feather: 2, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 13, xpTotalAnterior: 2160, level: 14, xpTotalDoLevel: 2400, xpNecessario: 240, idComida: 'mixedGrain',  xpDaComidaPadrao: 80, qtdComidaPadrao: 1, egg: 4, feather: 2, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 14, xpTotalAnterior: 2400, level: 15, xpTotalDoLevel: 2720, xpNecessario: 320, idComida: 'mixedGrain',  xpDaComidaPadrao: 80, qtdComidaPadrao: 1, egg: 5, feather: 3, },
+        { name: 'galinha', nameportugues: 'Galinha', nameingles: 'Chicken', levelAnterior: 15, xpTotalAnterior: 2400, level: 15, xpTotalDoLevel: 2720, xpNecessario: 320, idComida: 'mixedGrain',  xpDaComidaPadrao: 80, qtdComidaPadrao: 1, egg: 5, feather: 3, }
     ],
 
     vacas: [

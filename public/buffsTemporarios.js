@@ -466,22 +466,48 @@ let fertilizantes = {
         ]
     })),
     //boa parte feita no Claude.
-    honeyTreat: todosAnimais.map(animal => ({ 
+    honeyTreatChickens: animais.galinhas.map(animal => ({ 
         idName: `honeyTreat_${animal.name.toLowerCase()}_lvl${animal.levelAnterior}`,
-        name: `${animal.name.charAt(0).toUpperCase() + animal.name.slice(1)}<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
+        name: `Chicken - Galinha<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
         descricao: '',
         possui: false,
         quantidade: [
             {
                 sinal: 'x-',
                 buff: 0.75,
-                recursoAfetado: [animal.levelAnterior || animal.name]
+                recursoAfetado: [animal.levelAnterior]
+            }
+        ]
+    })),
+    honeyTreatCows: animais.vacas.map(animal => ({ 
+        idName: `honeyTreat_${animal.name.toLowerCase()}_lvl${animal.levelAnterior}`,
+        name: `Cow - Vaca<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
+        descricao: '',
+        possui: false,
+        quantidade: [
+            {
+                sinal: 'x-',
+                buff: 0.75,
+                recursoAfetado: [animal.levelAnterior]
+            }
+        ]
+    })),
+    honeyTreatSheeps: animais.ovelhas.map(animal => ({ 
+        idName: `honeyTreat_${animal.name.toLowerCase()}_lvl${animal.levelAnterior}`,
+        name: `Sheep - Ovelha<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
+        descricao: '',
+        possui: false,
+        quantidade: [
+            {
+                sinal: 'x-',
+                buff: 0.75,
+                recursoAfetado: [animal.levelAnterior]
             }
         ]
     })),
     saltLickChickens: animais.galinhas.map(animal => ({ 
         idName: `saltLickChickens_${animal.name.toLowerCase()}_lvl${animal.levelAnterior}`,
-        name: `${animal.name.charAt(0).toUpperCase() + animal.name.slice(1)}<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
+        name: `Chicken - Galinha<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
         descricao: '',
         possui: false,
         quantidade: [
@@ -499,7 +525,7 @@ let fertilizantes = {
     })),
     saltLickCows: animais.vacas.map(animal => ({ 
         idName: `saltLickCows_${animal.name.toLowerCase()}_lvl${animal.levelAnterior}`,
-        name: `${animal.name.charAt(0).toUpperCase() + animal.name.slice(1)}<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
+        name: `Cow - Vaca<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
         descricao: '',
         possui: false,
         quantidade: [
@@ -517,7 +543,7 @@ let fertilizantes = {
     })),
     saltLickSheeps: animais.ovelhas.map(animal => ({ 
         idName: `saltLickSheeps_${animal.name.toLowerCase()}_lvl${animal.levelAnterior}`,
-        name: `${animal.name.charAt(0).toUpperCase() + animal.name.slice(1)}<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
+        name: `Sheep - Ovelha<br>Level: ${animal.levelAnterior} ➜ ${animal.level}`,
         descricao: '',
         possui: false,
         quantidade: [
@@ -545,7 +571,9 @@ let todosTemporarios = [
     ...fertilizantes.turbofruitMix,
     ...fertilizantes.greenhouseGlow,
     ...fertilizantes.greenhouseGoodie,
-    ...fertilizantes.honeyTreat,
+    ...fertilizantes.honeyTreatChickens,
+    ...fertilizantes.honeyTreatCows,
+    ...fertilizantes.honeyTreatSheeps,
     ...fertilizantes.saltLickChickens,
     ...fertilizantes.saltLickCows,
     ...fertilizantes.saltLickSheeps,
