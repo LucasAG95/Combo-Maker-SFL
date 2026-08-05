@@ -153,12 +153,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.1.4`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV110}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV111}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV112}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV113}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV114}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.1.5`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV111}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV112}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV113}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV114}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV115}`;
 
 
     pontosGastosEmSkills();
@@ -653,8 +653,11 @@ const idiomaDasAtualizacoes = {
         atualizacaoV114: `v1.1.4 – Atualizado em 08/07/2026<br><br>
             • Corrigido um problema no cálculo do lucro dos animais. NFTs que reduziam o tempo de produção não estavam impactando o lucro corretamente. O cálculo foi ajustado e agora funciona normalmente.<br><br>
             • Os recursos minerais selecionados para compra agora são salvos automaticamente e permanecerão selecionados ao abrir o site novamente.<br><br>
-            • O buff temporário Honey Treat foi separado por tipo de animal, permitindo a seleção individual para cada um deles.`
+            • O buff temporário Honey Treat foi separado por tipo de animal, permitindo a seleção individual para cada um deles.`,
 
+        atualizacaoV115: `v1.1.5 – Atualizado em 05/08/2026<br><br>
+            • Corrigido um problema que ocorria com jogadores que já haviam passado da Ilha Vulcano. O site não reconhecia a nova ilha e acabava apresentando erro. A Ilha Swamp já foi adicionada e, posteriormente, adicionarei as próximas ilhas.<br><br>
+            • Sobre as novas skills e NFTs, vou atualizá-las assim que possível. Como não sou programador, ainda preciso descobrir a melhor forma de adicionar os novos tiers às skills, então essa atualização pode levar um pouco mais de tempo.`,
         
     },
     ingles: {
@@ -865,7 +868,12 @@ const idiomaDasAtualizacoes = {
         atualizacaoV114: `v1.1.4 – Updated on 08/07/2026<br><br>
             • Fixed an issue where Animal Time NFTs were not correctly affecting animal profit calculations. The calculation has been adjusted and now works as intended.<br><br>
             • Selected mineral resources to purchase are now saved automatically and will remain selected the next time you open the site.<br><br>
-            • The Honey Treat temporary buff has been separated by animal type, allowing it to be selected individually for each animal.`
+            • The Honey Treat temporary buff has been separated by animal type, allowing it to be selected individually for each animal.`,
+        
+        atualizacaoV115: `v1.1.5 – Updated on 05/08/2026<br><br>
+            • Fixed an issue affecting players who had already progressed past Volcano Island. The site wasn't recognizing the new island and would display an error. Swamp Island has now been added, and I'll add the remaining islands later.<br><br>
+            • Regarding the new skills and NFTs, I'll update them as soon as possible. Since I'm not a programmer, I still need to figure out the best way to add the new skill tiers, so this update may take a little longer.`,
+        
 
     }
 };

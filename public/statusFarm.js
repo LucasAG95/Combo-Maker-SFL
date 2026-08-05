@@ -99,6 +99,8 @@ function ilhaPrestigioAtual() { // Função central que lê o <select>, calcula 
         taxa = 0.2;
     } else if (ilha === 'volcano') {
         taxa = 0.15;
+    } else if (ilha === 'swamp') {
+        taxa = 0.15;
     };
 
     vip = document.getElementById('vipSelect').value;
