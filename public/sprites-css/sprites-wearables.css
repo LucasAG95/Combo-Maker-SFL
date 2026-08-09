@@ -1,81 +1,87 @@
 /* =========================================
    SPRITES - Wearables
-   Version: 1.0.0
+   Version: 1.0.1
 ========================================= */
-
 
 .sprite-wearables {
     width: 25px;
     height: 25px;
-    background-image: url('../Imagens/wearables.png?v=1.0.0');
+    background-image: url('../Imagens/wearables.png?v=1.0.1');
+    background-repeat: no-repeat;
+    display: inline-block;
 }
 
-/* Costumes individuais */
-.bg-ancientRod { background-position: -10px -10px; }
-.bg-ancientShovel { background-position: -55px -10px; }
-.bg-autumnsEmbrace { background-position: -10px -55px; }
-.bg-bananaAmulet { background-position: -55px -55px; }
-.bg-bananaOnesie { background-position: -100px -10px; }
-.bg-beetrootAmulet { background-position: -100px -55px; }
-.bg-blossomWard { background-position: -10px -100px; }
-.bg-broccoliHat { background-position: -55px -100px; }
-.bg-camelOnesie { background-position: -100px -100px; }
-.bg-cattlegrim { background-position: -145px -10px; }
-.bg-carrotAmulet { background-position: -145px -55px; }
-.bg-chickenSuit { background-position: -145px -100px; }
-.bg-cornOnesie { background-position: -10px -145px; }
-.bg-crimstoneAmulet { background-position: -55px -145px; }
-.bg-crimstoneArmor { background-position: -100px -145px; }
-.bg-crimstoneHammer { background-position: -145px -145px; }
-.bg-devilOrAngelWings { background-position: -190px -10px; }
-.bg-devWrench { background-position: -190px -55px; }
-.bg-factionQuiver { background-position: -190px -100px; }
-.bg-eggplantOnesie { background-position: -190px -145px; }
-.bg-factionCrown { background-position: -10px -190px; }
-.bg-factionMedallion { background-position: -55px -190px; }
-.bg-factionShield { background-position: -100px -190px; }
-.bg-frozenHeart { background-position: -145px -190px; }
-.bg-grapePants { background-position: -190px -190px; }
-.bg-fruitPickerApron { background-position: -235px -10px; }
-.bg-greenAmulet { background-position: -235px -55px; }
-.bg-infernalBullwhip { background-position: -235px -100px; }
-.bg-infernalDrill { background-position: -235px -145px; }
-.bg-infernalPitchfork { background-position: -235px -190px; }
-.bg-medicApron { background-position: -10px -235px; }
-.bg-ladybugSuit { background-position: -55px -235px; }
-.bg-nonLaHat { background-position: -100px -235px; }
-.bg-lavaSwimwear { background-position: -145px -235px; }
-.bg-obsidianNecklace { background-position: -190px -235px; }
-.bg-lemonShield { background-position: -235px -235px; }
-.bg-milkApron { background-position: -280px -10px; }
-.bg-oilCan { background-position: -280px -55px; }
-.bg-oilGallon { background-position: -280px -100px; }
-.bg-oliveRoyaltyShirt { background-position: -280px -145px; }
-.bg-parsnip { background-position: -280px -190px; }
-.bg-oliveShield { background-position: -280px -235px; }
-.bg-oilOveralls { background-position: -10px -280px; }
-.bg-sickle { background-position: -55px -280px; }
-.bg-oracleSyringe { background-position: -100px -280px; }
-.bg-beastShoes { background-position: -145px -280px; }
-.bg-sunflowerAmulet { background-position: -190px -280px; }
-.bg-blackSheepOnesie { background-position: -235px -280px; }
-.bg-solflareAegis { background-position: -280px -280px; }
-.bg-redPepperOnesie { background-position: -325px -10px; }
-.bg-tofuMask { background-position: -325px -55px; }
-.bg-bubbleAura { background-position: -325px -100px; }
-.bg-cowbellNecklace { background-position: -325px -145px; }
-.bg-sunflowerShield { background-position: -325px -190px; }
-.bg-dreamScarf { background-position: -325px -235px; }
-.bg-deepSeaSaltCaveBackground { background-position: -325px -280px; }
-.bg-crimstoneSpikesHair { background-position: -10px -325px; }
-.bg-trainingWhistle { background-position: -55px -325px; }
-.bg-pawAura { background-position: -100px -325px; }
-.bg-merinoJumper { background-position: -145px -325px; }
-.bg-walrusOnesie { background-position: -190px -325px; }
-.bg-pistolShrimp { background-position: -235px -325px; }
-.bg-pickaxeShark { background-position: -280px -325px; }
-.bg-architectRuler { background-position: -325px -325px; }
-.bg-whiteSheepOnesie { background-position: -370px -10px; }
-.bg-cornSilkHair { background-position: -370px -55px; }
-.bg-victoriasApron { background-position: -370px -100px; }
-.bg-download { background-position: -370px -145px; }
+/* Wearables individuais */
+
+.bg-alchemistApron                  { background-position: -10px -10px; }
+.bg-ancientRod                      { background-position: -55px -10px; }
+.bg-architectRuler                  { background-position: -10px -55px; }
+.bg-ancientShovel                   { background-position: -55px -55px; }
+.bg-autumnsEmbrace                  { background-position: -100px -10px; }
+.bg-bananaAmulet                    { background-position: -100px -55px; }
+.bg-bananaOnesie                    { background-position: -10px -100px; }
+.bg-beastShoes                      { background-position: -55px -100px; }
+.bg-beetrootAmulet                  { background-position: -100px -100px; }
+.bg-blackSheepOnesie                { background-position: -145px -10px; }
+.bg-blossomWard                     { background-position: -145px -55px; }
+.bg-broccoliHat                     { background-position: -145px -100px; }
+.bg-bubbleAura                      { background-position: -10px -145px; }
+.bg-camelOnesie                     { background-position: -55px -145px; }
+.bg-carrotAmulet                    { background-position: -100px -145px; }
+.bg-cattlegrim                      { background-position: -145px -145px; }
+.bg-chickenSuit                     { background-position: -190px -10px; }
+.bg-cornOnesie                      { background-position: -190px -55px; }
+.bg-cornSilkHair                    { background-position: -190px -100px; }
+.bg-cowbellNecklace                 { background-position: -190px -145px; }
+.bg-crimstoneAmulet                 { background-position: -10px -190px; }
+.bg-crimstoneArmor                  { background-position: -55px -190px; }
+.bg-crimstoneHammer                 { background-position: -100px -190px; }
+.bg-crimstoneSpikesHair             { background-position: -145px -190px; }
+.bg-deepSeaSaltCaveBackground       { background-position: -190px -190px; }
+.bg-devilOrAngelWings               { background-position: -235px -10px; }
+.bg-devWrench                       { background-position: -235px -55px; }
+.bg-eggplantOnesie                  { background-position: -235px -100px; }
+.bg-dreamScarf                      { background-position: -235px -145px; }
+.bg-factionCrown                    { background-position: -235px -190px; }
+.bg-factionMedallion                { background-position: -10px -235px; }
+.bg-factionQuiver                   { background-position: -55px -235px; }
+.bg-factionShield                   { background-position: -100px -235px; }
+.bg-frozenHeart                     { background-position: -145px -235px; }
+.bg-fruitPickerApron                { background-position: -190px -235px; }
+.bg-grapePants                      { background-position: -235px -235px; }
+.bg-greenAmulet                     { background-position: -280px -10px; }
+.bg-infernalBullwhip                { background-position: -280px -55px; }
+.bg-infernalDrill                   { background-position: -280px -100px; }
+.bg-ladybugSuit                     { background-position: -280px -145px; }
+.bg-lavaSwimwear                    { background-position: -280px -190px; }
+.bg-infernalPitchfork               { background-position: -280px -235px; }
+.bg-lemonShield                     { background-position: -10px -280px; }
+.bg-merinoJumper                    { background-position: -55px -280px; }
+.bg-medicApron                      { background-position: -100px -280px; }
+.bg-milkApron                       { background-position: -145px -280px; }
+.bg-moonHair                        { background-position: -190px -280px; }
+.bg-nonLaHat                        { background-position: -235px -280px; }
+.bg-oilCan                          { background-position: -280px -280px; }
+.bg-oilGallon                       { background-position: -325px -10px; }
+.bg-oilOveralls                     { background-position: -325px -55px; }
+.bg-oliveRoyaltyShirt               { background-position: -325px -100px; }
+.bg-oliveShield                     { background-position: -325px -145px; }
+.bg-obsidianNecklace                { background-position: -325px -190px; }
+.bg-oracleSyringe                   { background-position: -325px -235px; }
+.bg-parsnip                         { background-position: -325px -280px; }
+.bg-pawAura                         { background-position: -10px -325px; }
+.bg-pickaxeShark                    { background-position: -55px -325px; }
+.bg-pistolShrimp                    { background-position: -100px -325px; }
+.bg-redPepperOnesie                 { background-position: -145px -325px; }
+.bg-riceShirt                       { background-position: -190px -325px; }
+.bg-saltBottleOnesie                { background-position: -235px -325px; }
+.bg-sickle                          { background-position: -280px -325px; }
+.bg-solflareAegis                   { background-position: -325px -325px; }
+.bg-sunflowerAmulet                 { background-position: -370px -10px; }
+.bg-sunflowerShield                 { background-position: -370px -55px; }
+.bg-surferHair                      { background-position: -370px -100px; }
+.bg-tofuMask                        { background-position: -370px -145px; }
+.bg-trainingWhistle                 { background-position: -370px -190px; }
+.bg-victoriasApron                  { background-position: -370px -235px; }
+.bg-walrusOnesie                    { background-position: -370px -280px; }
+.bg-whiteSheepOnesie                { background-position: -370px -325px; }

@@ -153,12 +153,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.1.5`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV111}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV112}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV113}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV114}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV115}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.1.6`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV112}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV113}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV114}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV115}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV116}`;
 
 
     pontosGastosEmSkills();
@@ -659,6 +659,9 @@ const idiomaDasAtualizacoes = {
             • Corrigido um problema que ocorria com jogadores que já haviam passado da Ilha Vulcano. O site não reconhecia a nova ilha e acabava apresentando erro. A Ilha Swamp já foi adicionada e, posteriormente, adicionarei as próximas ilhas.<br><br>
             • Sobre as novas skills e NFTs, vou atualizá-las assim que possível. Como não sou programador, ainda preciso descobrir a melhor forma de adicionar os novos tiers às skills, então essa atualização pode levar um pouco mais de tempo.`,
         
+        atualizacaoV116: `v1.1.6 – Atualizado em 08/08/2026<br><br>
+            • Adicionados os novos Collectibles e Wearables da nova temporada.<br><br>
+            • A implementação das skills exige mudanças complexas na lógica dos meus cálculos e na seleção por checkboxes, então levará um tempo maior para serem atualizadas.`
     },
     ingles: {
         nomeDaAbaAtualizacao: 'Updates Made',
@@ -874,6 +877,9 @@ const idiomaDasAtualizacoes = {
             • Fixed an issue affecting players who had already progressed past Volcano Island. The site wasn't recognizing the new island and would display an error. Swamp Island has now been added, and I'll add the remaining islands later.<br><br>
             • Regarding the new skills and NFTs, I'll update them as soon as possible. Since I'm not a programmer, I still need to figure out the best way to add the new skill tiers, so this update may take a little longer.`,
         
+        atualizacaoV116: `v1.1.6 – Updated on 08/08/2026<br><br>
+            • Added the new season's Collectibles and Wearables.<br><br>
+            • Implementing skills requires complex changes to the calculation logic and checkbox selection, so it will take longer to be updated.`
 
     }
 };

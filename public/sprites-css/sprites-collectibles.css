@@ -1,189 +1,175 @@
 /* =========================================
    SPRITES - Collectibles
-   Version: 1.0.1
+   Version: 1.0.2
 ========================================= */
 
 .sprite-collectibles {
     width: 25px;
     height: 25px;
-    background-image: url('../Imagens/collectibles.png?v=1.0.1');
+    background-image: url('../Imagens/collectibles.png?v=1.0.2');
     background-repeat: no-repeat;
     display: inline-block;
 }
 
-.bg-apprenticeBeaver         { background-position: -10px -10px; }
-.bg-autumnGuardian           { background-position: -55px -10px; }
-.bg-bale                     { background-position: -10px -55px; }
-.bg-basicScarecrow           { background-position: -55px -55px; }
-.bg-cabbageBoy               { background-position: -100px -10px; }
-.bg-easterBunny              { background-position: -100px -55px; }
-
-.bg-emeraldTurtle            { background-position: -10px -100px; }
-.bg-cabbageGirl              { background-position: -55px -100px; }
-.bg-foliant                  { background-position: -100px -100px; }
-.bg-freyaFox                 { background-position: -145px -10px; }
-.bg-foremanBeaver            { background-position: -145px -55px; }
-.bg-giantKale                { background-position: -145px -100px; }
-
-.bg-giantOnion               { background-position: -10px -145px; }
-.bg-giantTurnip              { background-position: -55px -145px; }
-.bg-giantZucchini            { background-position: -100px -145px; }
-.bg-giantYam                 { background-position: -145px -145px; }
-.bg-gnome                    { background-position: -190px -10px; }
-.bg-goldenCauliflower        { background-position: -190px -55px; }
-
-.bg-hoot                     { background-position: -190px -100px; }
-.bg-knightChicken            { background-position: -190px -145px; }
-.bg-karkinos                 { background-position: -10px -190px; }
-.bg-labGrownCarrot           { background-position: -55px -190px; }
-.bg-kuebiko                  { background-position: -100px -190px; }
-.bg-labGrownPumpkin          { background-position: -145px -190px; }
-
-.bg-labGrownRadish           { background-position: -190px -190px; }
-.bg-laurieTheChuckleCrow     { background-position: -235px -10px; }
-.bg-mysteriousParsnip        { background-position: -235px -55px; }
-.bg-obie                     { background-position: -235px -100px; }
-.bg-poppy                    { background-position: -235px -145px; }
-.bg-nancy                    { background-position: -235px -190px; }
-
-.bg-peeledPotato             { background-position: -10px -235px; }
-.bg-potentPotato             { background-position: -55px -235px; }
-.bg-maximus                  { background-position: -100px -235px; }
-.bg-quarry                   { background-position: -145px -235px; }
-.bg-pabloTheBunny            { background-position: -190px -235px; }
-.bg-radicalRadish            { background-position: -235px -235px; }
-
-.bg-scaryMike                { background-position: -280px -10px; }
-.bg-scarecrow                { background-position: -280px -55px; }
-.bg-sheafOfPlenty            { background-position: -280px -100px; }
-.bg-soybliss                 { background-position: -280px -145px; }
-.bg-toolshed                 { background-position: -280px -190px; }
-.bg-rockyTheMole             { background-position: -280px -235px; }
-
-.bg-kernaldo                 { background-position: -10px -280px; }
-.bg-springGuardian           { background-position: -55px -280px; }
-.bg-stellarSunflower         { background-position: -100px -280px; }
-.bg-tinTurtle                { background-position: -145px -280px; }
-.bg-woodNymphWendy           { background-position: -190px -280px; }
-.bg-squirrel                 { background-position: -235px -280px; }
-
-.bg-victoriaSisters          { background-position: -280px -280px; }
-.bg-stoneBeetle              { background-position: -325px -10px; }
-.bg-volcanoGnome             { background-position: -325px -55px; }
-.bg-alienChicken             { background-position: -325px -100px; }
-.bg-anemoneFlower            { background-position: -325px -145px; }
-.bg-woodyTheBeaver           { background-position: -325px -190px; }
-
-.bg-babyCow                  { background-position: -325px -235px; }
-.bg-blackBearry              { background-position: -325px -280px; }
-.bg-bananaChicken            { background-position: -10px -325px; }
-.bg-cannonball               { background-position: -55px -325px; }
-.bg-queenCornelia            { background-position: -100px -325px; }
-.bg-battleFish               { background-position: -145px -325px; }
-
-.bg-tunnelMole               { background-position: -190px -325px; }
-.bg-ironIdol                 { background-position: -235px -325px; }
-.bg-lunarCalendar            { background-position: -280px -325px; }
-.bg-tikiTotem                { background-position: -325px -325px; }
-.bg-sirGoldensnout           { background-position: -370px -10px; }
-.bg-winterGuardian           { background-position: -370px -55px; }
-
-.bg-ayamCemani               { background-position: -370px -100px; }
-.bg-summerGuardian           { background-position: -370px -145px; }
-.bg-astronautSheep           { background-position: -370px -190px; }
-.bg-purpleTrail              { background-position: -370px -235px; }
-.bg-barnBlueprint            { background-position: -370px -280px; }
-.bg-chickenCoop              { background-position: -370px -325px; }
-
-.bg-crabHouse                { background-position: -10px -370px; }
-.bg-cluckulator              { background-position: -55px -370px; }
-.bg-crimPeckster             { background-position: -100px -370px; }
-.bg-crimstoneClam            { background-position: -145px -370px; }
-.bg-crimsonCarp              { background-position: -190px -370px; }
-.bg-dinoEggTrophy            { background-position: -235px -370px; }
-
-.bg-deepSeaSlug              { background-position: -280px -370px; }
-.bg-crystalAltar             { background-position: -325px -370px; }
-.bg-drCow                    { background-position: -370px -370px; }
-.bg-farmDog                  { background-position: -415px -10px; }
-.bg-elPolloVeloz             { background-position: -415px -55px; }
-.bg-fatChicken               { background-position: -415px -100px; }
-
-.bg-flamingoChicken          { background-position: -415px -145px; }
-.bg-frozenCow                { background-position: -415px -190px; }
-.bg-fruitTuneBox             { background-position: -415px -235px; }
-.bg-frozenSheep              { background-position: -415px -280px; }
-.bg-goldBeetle               { background-position: -415px -325px; }
-.bg-giantArtichoke           { background-position: -415px -370px; }
-
-.bg-goldEgg                  { background-position: -10px -415px; }
-.bg-gildedSwordfish          { background-position: -55px -415px; }
-.bg-goldenSheep              { background-position: -100px -415px; }
-.bg-goldenCow                { background-position: -145px -415px; }
-.bg-grapeGranny              { background-position: -190px -415px; }
-.bg-groovyGramophone         { background-position: -235px -415px; }
-
-.bg-ironBeetle               { background-position: -280px -415px; }
-.bg-immortalPear             { background-position: -325px -415px; }
-.bg-ladyBug                  { background-position: -370px -415px; }
-.bg-janitorChicken           { background-position: -415px -415px; }
-.bg-lemonFrog                { background-position: -460px -10px; }
-.bg-lemonShark               { background-position: -460px -55px; }
-
-.bg-lemonTeaBath             { background-position: -460px -100px; }
-.bg-longhornCowfish          { background-position: -460px -145px; }
-.bg-macaw                    { background-position: -460px -190px; }
-.bg-magmaStone               { background-position: -460px -235px; }
-.bg-mammoth                  { background-position: -460px -280px; }
-.bg-meerkat                  { background-position: -460px -325px; }
-
-.bg-mermaidSheep             { background-position: -460px -370px; }
-.bg-mootant                  { background-position: -460px -415px; }
-.bg-moover                   { background-position: -10px -460px; }
-.bg-nana                     { background-position: -55px -460px; }
-.bg-nautilus                 { background-position: -100px -460px; }
-.bg-navigationTable          { background-position: -145px -460px; }
-
-.bg-nugget                   { background-position: -190px -460px; }
-.bg-nurseSheep               { background-position: -235px -460px; }
-.bg-oaken                    { background-position: -280px -460px; }
-.bg-obsidianTurtle           { background-position: -325px -460px; }
-.bg-pharaohGnome             { background-position: -370px -460px; }
-.bg-poseidonsThrone          { background-position: -415px -460px; }
-
-.bg-radiantRay               { background-position: -460px -460px; }
-.bg-reelmastersChair         { background-position: -505px -10px; }
-.bg-revelingLemon            { background-position: -505px -55px; }
-.bg-ricePanda                { background-position: -505px -100px; }
-.bg-richChicken              { background-position: -505px -145px; }
-.bg-rockGolem                { background-position: -505px -190px; }
-
-.bg-rooster                  { background-position: -505px -235px; }
-.bg-royalCrabPot             { background-position: -505px -280px; }
-.bg-saltAwakeningBanner      { background-position: -505px -325px; }
-.bg-saltCrystalFlower        { background-position: -505px -370px; }
-.bg-saltSculpture1           { background-position: -505px -415px; }
-.bg-saltSculpture2           { background-position: -505px -460px; }
-
-.bg-saltSculpture3           { background-position: -10px -505px; }
-.bg-saltSculpture4           { background-position: -55px -505px; }
-.bg-saltSculpture5           { background-position: -100px -505px; }
-.bg-saltSculpture6           { background-position: -145px -505px; }
-.bg-sleepyChicken            { background-position: -190px -505px; }
-.bg-spaCow                   { background-position: -235px -505px; }
-
-.bg-spaSheep                 { background-position: -280px -505px; }
-.bg-speedChicken             { background-position: -325px -505px; }
-.bg-speedTrap                { background-position: -370px -505px; }
-.bg-squidChicken             { background-position: -415px -505px; }
-.bg-squirrelMonkey           { background-position: -460px -505px; }
-.bg-summerChicken            { background-position: -505px -505px; }
-
-.bg-tomatoBombard            { background-position: -550px -10px; }
-.bg-tomatoClown              { background-position: -550px -55px; }
-.bg-toxicTuft                { background-position: -550px -100px; }
-.bg-turboSprout              { background-position: -550px -145px; }
-.bg-undeadRooster            { background-position: -550px -190px; }
-.bg-vinny                    { background-position: -550px -235px; }
-
-.bg-warehouse                { background-position: -550px -280px; }
+.bg-alienChicken                { background-position: -10px -10px; }
+.bg-apprenticeBeaver            { background-position: -55px -10px; }
+.bg-ayamCemani                  { background-position: -10px -55px; }
+.bg-autumnGuardian              { background-position: -55px -55px; }
+.bg-bale                        { background-position: -100px -10px; }
+.bg-bananaChicken               { background-position: -100px -55px; }
+.bg-babyCow                     { background-position: -10px -100px; }
+.bg-basicScarecrow              { background-position: -55px -100px; }
+.bg-blackBearry                 { background-position: -100px -100px; }
+.bg-battleFish                  { background-position: -145px -10px; }
+.bg-cabbageBoy                  { background-position: -145px -55px; }
+.bg-cannonball                  { background-position: -145px -100px; }
+.bg-chickenCoop                 { background-position: -10px -145px; }
+.bg-cabbageGirl                 { background-position: -55px -145px; }
+.bg-cluckulator                 { background-position: -100px -145px; }
+.bg-crimPeckster                { background-position: -145px -145px; }
+.bg-easterBunny                 { background-position: -190px -10px; }
+.bg-elPolloVeloz                { background-position: -190px -55px; }
+.bg-crimsonCarp                 { background-position: -190px -100px; }
+.bg-emeraldTurtle               { background-position: -190px -145px; }
+.bg-foliant                     { background-position: -10px -190px; }
+.bg-fatChicken                  { background-position: -55px -190px; }
+.bg-foremanBeaver               { background-position: -100px -190px; }
+.bg-freyaFox                    { background-position: -145px -190px; }
+.bg-giantKale                   { background-position: -190px -190px; }
+.bg-giantArtichoke              { background-position: -235px -10px; }
+.bg-giantTurnip                 { background-position: -235px -55px; }
+.bg-fruitTuneBox                { background-position: -235px -100px; }
+.bg-giantOnion                  { background-position: -235px -145px; }
+.bg-gildedSwordfish             { background-position: -235px -190px; }
+.bg-gnome                       { background-position: -10px -235px; }
+.bg-giantYam                    { background-position: -55px -235px; }
+.bg-giantZucchini               { background-position: -100px -235px; }
+.bg-goldBeetle                  { background-position: -145px -235px; }
+.bg-goldEgg                     { background-position: -190px -235px; }
+.bg-goldenCauliflower           { background-position: -235px -235px; }
+.bg-grapeGranny                 { background-position: -280px -10px; }
+.bg-hoot                        { background-position: -280px -55px; }
+.bg-groovyGramophone            { background-position: -280px -100px; }
+.bg-immortalPear                { background-position: -280px -145px; }
+.bg-janitorChicken              { background-position: -280px -190px; }
+.bg-ironBeetle                  { background-position: -280px -235px; }
+.bg-kernaldo                    { background-position: -10px -280px; }
+.bg-ironIdol                    { background-position: -55px -280px; }
+.bg-kuebiko                     { background-position: -100px -280px; }
+.bg-knightChicken               { background-position: -145px -280px; }
+.bg-labGrownCarrot              { background-position: -190px -280px; }
+.bg-karkinos                    { background-position: -235px -280px; }
+.bg-labGrownRadish              { background-position: -280px -280px; }
+.bg-labGrownPumpkin             { background-position: -325px -10px; }
+.bg-laurieTheChuckleCrow        { background-position: -325px -55px; }
+.bg-ladyBug                     { background-position: -325px -100px; }
+.bg-lemonFrog                   { background-position: -325px -145px; }
+.bg-lemonShark                  { background-position: -325px -190px; }
+.bg-lunarCalendar               { background-position: -325px -235px; }
+.bg-macaw                       { background-position: -325px -280px; }
+.bg-lemonTeaBath                { background-position: -10px -325px; }
+.bg-nana                        { background-position: -55px -325px; }
+.bg-mysteriousParsnip           { background-position: -100px -325px; }
+.bg-maximus                     { background-position: -145px -325px; }
+.bg-nancy                       { background-position: -190px -325px; }
+.bg-nugget                      { background-position: -235px -325px; }
+.bg-obie                        { background-position: -280px -325px; }
+.bg-obsidianTurtle              { background-position: -325px -325px; }
+.bg-pabloTheBunny               { background-position: -370px -10px; }
+.bg-peeledPotato                { background-position: -370px -55px; }
+.bg-poppy                       { background-position: -370px -100px; }
+.bg-purpleTrail                 { background-position: -370px -145px; }
+.bg-quarry                      { background-position: -370px -190px; }
+.bg-queenCornelia               { background-position: -370px -235px; }
+.bg-pharaohGnome                { background-position: -370px -280px; }
+.bg-radicalRadish               { background-position: -370px -325px; }
+.bg-potentPotato                { background-position: -10px -370px; }
+.bg-reelmastersChair            { background-position: -55px -370px; }
+.bg-ricePanda                   { background-position: -100px -370px; }
+.bg-radiantRay                  { background-position: -145px -370px; }
+.bg-richChicken                 { background-position: -190px -370px; }
+.bg-rockGolem                   { background-position: -235px -370px; }
+.bg-rockyTheMole                { background-position: -280px -370px; }
+.bg-revelingLemon               { background-position: -325px -370px; }
+.bg-scarecrow                   { background-position: -370px -370px; }
+.bg-scaryMike                   { background-position: -415px -10px; }
+.bg-sheafOfPlenty               { background-position: -415px -55px; }
+.bg-rooster                     { background-position: -415px -100px; }
+.bg-sleepyChicken               { background-position: -415px -145px; }
+.bg-sirGoldensnout              { background-position: -415px -190px; }
+.bg-speedChicken                { background-position: -415px -235px; }
+.bg-squirrel                    { background-position: -415px -280px; }
+.bg-soybliss                    { background-position: -415px -325px; }
+.bg-springGuardian              { background-position: -415px -370px; }
+.bg-stoneBeetle                 { background-position: -10px -415px; }
+.bg-summerGuardian              { background-position: -55px -415px; }
+.bg-summerChicken               { background-position: -100px -415px; }
+.bg-stellarSunflower            { background-position: -145px -415px; }
+.bg-squirrelMonkey              { background-position: -190px -415px; }
+.bg-tikiTotem                   { background-position: -235px -415px; }
+.bg-tinTurtle                   { background-position: -280px -415px; }
+.bg-tomatoBombard               { background-position: -325px -415px; }
+.bg-tomatoClown                 { background-position: -370px -415px; }
+.bg-toolshed                    { background-position: -415px -415px; }
+.bg-tunnelMole                  { background-position: -460px -10px; }
+.bg-turboSprout                 { background-position: -460px -55px; }
+.bg-undeadRooster               { background-position: -460px -100px; }
+.bg-victoriaSisters             { background-position: -460px -145px; }
+.bg-vinny                       { background-position: -460px -190px; }
+.bg-volcanoGnome                { background-position: -460px -235px; }
+.bg-warehouse                   { background-position: -460px -280px; }
+.bg-winterGuardian              { background-position: -460px -325px; }
+.bg-woodNymphWendy              { background-position: -460px -370px; }
+.bg-woodyTheBeaver              { background-position: -460px -415px; }
+.bg-anemoneFlower               { background-position: -10px -460px; }
+.bg-ascendedChicken             { background-position: -55px -460px; }
+.bg-ascendedCow                 { background-position: -100px -460px; }
+.bg-ascendedIdol                { background-position: -145px -460px; }
+.bg-ascendedSheep               { background-position: -190px -460px; }
+.bg-ascensionMonument           { background-position: -235px -460px; }
+.bg-astrolabe                   { background-position: -280px -460px; }
+.bg-astronautSheep              { background-position: -325px -460px; }
+.bg-barnBlueprint               { background-position: -370px -460px; }
+.bg-crabHouse                   { background-position: -415px -460px; }
+.bg-crimstoneClam               { background-position: -460px -460px; }
+.bg-crystalAltar                { background-position: -505px -10px; }
+.bg-deepSeaSlug                 { background-position: -505px -55px; }
+.bg-dinoEggTrophy               { background-position: -505px -100px; }
+.bg-drCow                       { background-position: -505px -145px; }
+.bg-dumboOctopus                { background-position: -505px -190px; }
+.bg-farmDog                     { background-position: -505px -235px; }
+.bg-flamingoChicken             { background-position: -505px -280px; }
+.bg-frozenCow                   { background-position: -505px -325px; }
+.bg-frozenSheep                 { background-position: -505px -370px; }
+.bg-goldenCow                   { background-position: -505px -415px; }
+.bg-goldenSheep                 { background-position: -505px -460px; }
+.bg-longhornCowfish             { background-position: -10px -505px; }
+.bg-magmaStone                  { background-position: -55px -505px; }
+.bg-mammoth                     { background-position: -100px -505px; }
+.bg-meerkat                     { background-position: -145px -505px; }
+.bg-mermaidSheep                { background-position: -190px -505px; }
+.bg-mootant                     { background-position: -235px -505px; }
+.bg-moover                      { background-position: -280px -505px; }
+.bg-nautilus                    { background-position: -325px -505px; }
+.bg-navigationTable             { background-position: -370px -505px; }
+.bg-nurseSheep                  { background-position: -415px -505px; }
+.bg-oaken                       { background-position: -460px -505px; }
+.bg-ottyTheOtter                { background-position: -505px -505px; }
+.bg-poseidonsThrone             { background-position: -550px -10px; }
+.bg-royalCrabPot                { background-position: -550px -55px; }
+.bg-ruinsFlower                 { background-position: -550px -100px; }
+.bg-saltCrystalFlower           { background-position: -550px -145px; }
+.bg-saltSculpture1              { background-position: -550px -190px; }
+.bg-saltSculpture2              { background-position: -550px -235px; }
+.bg-saltSculpture3              { background-position: -550px -280px; }
+.bg-saltSculpture4              { background-position: -550px -325px; }
+.bg-saltSculpture5              { background-position: -550px -370px; }
+.bg-saltSculpture6              { background-position: -550px -415px; }
+.bg-saltWorkerGnome             { background-position: -550px -460px; }
+.bg-spaCow                      { background-position: -550px -505px; }
+.bg-spaSheep                    { background-position: -10px -550px; }
+.bg-speedTrap                   { background-position: -55px -550px; }
+.bg-squidChicken                { background-position: -100px -550px; }
+.bg-toxicTuft                   { background-position: -145px -550px; }
+.bg-vibraphone                  { background-position: -190px -550px; }
+.bg-wingedVase                  { background-position: -235px -550px; }
