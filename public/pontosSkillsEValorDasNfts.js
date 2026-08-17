@@ -21,6 +21,10 @@ function pontosGastosEmSkills() {
         let levelAtivo = skill.level > 0 ? skill.level : (skill.possui ? 1 : 0);
         if (levelAtivo === 0) return; // Se não tem a skill, não soma nada
 
+        // Blindagem: nunca soma além do maxLevel, mesmo que skill.level
+        // esteja corrompido/desatualizado em algum save antigo.
+        if (skill.maxLevel) levelAtivo = Math.min(levelAtivo, skill.maxLevel);
+
         if (skill.niveis && skill.niveis.length > 0) {
             // Soma todos os níveis adquiridos até o level atual
             for (let i = 0; i < levelAtivo; i++) {
@@ -40,9 +44,10 @@ function pontosGastosEmSkills() {
         }
     };
 
-    // Percorre todas as listas de skills que você tem
+    // Percorre apenas as skills do sistema novo (árvores com tier).
+    // skillsLegacy NÃO consome pontos do pool de Skill Points e por isso
+    // fica de fora dessa soma — contá-las aqui gerava pontos "fantasma".
     if (typeof todasSkillsComTier !== 'undefined') todasSkillsComTier.forEach(somarCustos);
-    if (typeof skillsLegacy !== 'undefined') skillsLegacy.forEach(somarCustos);
 
     // Atualiza o HTML lá no topo da página
     const tituloSkills = document.getElementById('total-pontos-gastos-em-skills');

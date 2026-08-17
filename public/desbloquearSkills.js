@@ -131,30 +131,54 @@ function gerenciarBloqueios(tier1, tier2, tier3, ptsT2, ptsT3, idArvore, titulo)
     tier3.forEach(s => bloquearSkillSeFaltarPontos(s, desbloqueio1 + desbloqueio2, ptsT3));
     
     // ==============================================================
-    // REGRAS DE REBAIXAMENTO (DOWNGRADE) DE NÍVEL DE SKILL
+    // REGRAS DE REBAIXAMENTO E DESMARCAÇÃO INTELIGENTE
     // ==============================================================
     
-    // Regra Tier 1: Se Tier 2 não está liberado, skills do Tier 1 não passam do nível 1
-    if (!tier2Liberado) {
-        tier1.forEach(s => {
-            if (s.level > 1) {
-                s.level = 1;
-                s.possui = 1;
-                if (typeof atualizarVisualSkill === 'function') atualizarVisualSkill(s.idName, 1, s.maxLevel || 1);
-            }
-        });
-    }
+    const aplicarRegraDeNivel = (s, nivelMaximoPermitido) => {
+        // Cria a memória do nível anterior se for a primeira vez rodando
+        if (s.nivelAnterior === undefined) s.nivelAnterior = s.level;
 
-    // Regra Tier 2: Se Tier 3 não está liberado, skills do Tier 2 não passam do nível 1
-    if (!tier3Liberado) {
-        tier2.forEach(s => {
-            if (s.level > 1) {
-                s.level = 1;
-                s.possui = 1;
-                if (typeof atualizarVisualSkill === 'function') atualizarVisualSkill(s.idName, 1, s.maxLevel || 1);
+        if (s.level > nivelMaximoPermitido) {
+            
+            if (s.level > s.nivelAnterior) {
+                // A) Usuário CLICOU para subir, mas está bloqueado -> Desmarca a skill (ciclo)
+                s.level = 0;
+                s.possui = 0;
+            } else {
+                // B) Usuário desmarcou outra skill, perdendo os requisitos -> Rebaixa pro máximo permitido
+                s.level = nivelMaximoPermitido;
+                s.possui = (nivelMaximoPermitido > 0) ? 1 : 0;
             }
-        });
-    }
+            
+            if (typeof atualizarVisualSkill === 'function') {
+                atualizarVisualSkill(s.idName, s.level, s.maxLevel || 1);
+            }
+        }
+        
+        // Salva o nível atual para ser a memória da próxima vez que você clicar em algo
+        s.nivelAnterior = s.level;
+    };
+
+    // Regras Tier 1
+    tier1.forEach(s => {
+        let maxPermitido = s.maxLevel;
+        if (!tier3Liberado) maxPermitido = Math.min(maxPermitido, 2); // Exige Tier 3 pra chegar no lvl 3
+        if (!tier2Liberado) maxPermitido = Math.min(maxPermitido, 1); // Exige Tier 2 pra chegar no lvl 2
+        aplicarRegraDeNivel(s, maxPermitido);
+    });
+
+    // Regras Tier 2
+    tier2.forEach(s => {
+        let maxPermitido = s.maxLevel;
+        if (!tier3Liberado) maxPermitido = Math.min(maxPermitido, 1); // Exige Tier 3 pra passar do lvl 1
+        aplicarRegraDeNivel(s, maxPermitido);
+    });
+    
+    // Atualiza a memória das skills Tier 3 também
+    tier3.forEach(s => {
+        if (s.nivelAnterior === undefined) s.nivelAnterior = s.level;
+        s.nivelAnterior = s.level;
+    });
 
     // 3. AGORA SIM, soma TODOS os pontos gastos (inclusive níveis 2 e 3 dentro da skill) para o contador
     let pontos1 = tier1.reduce((acc, s) => acc + calcularPontosDaSkill(s), 0);

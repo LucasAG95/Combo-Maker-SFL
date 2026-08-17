@@ -552,14 +552,12 @@ function mostrarInfoCard(item, idName, categoria) {
     // ==========================================
     const getSpBadge = (total) => {
         if (!total || total <= 0) return '';
-        // Estrela removida e adicionado o espaço antes e depois da barra
         return `<span style="display: inline-flex; align-items: center; justify-content: center; background-color: #1c1812; border: 1px solid #d0a25a; color: #ffe2aa; padding: 2px 6px; border-radius: 6px; font-size: 11px; margin-right: 6px; box-shadow: inset 1px 1px 3px rgba(0,0,0,0.5);">0 / ${total} SP</span>`;
     };
 
     const getShardBadge = (total, nivel) => {
         if (nivel === 1) return ''; // Regra: Nível 1 das skills NÃO possui Shard
         if (!total || total <= 0) return '';
-        // Utilizando o Sprite do CSS e com espaço antes e depois da barra
         return `<span style="display: inline-flex; align-items: center; justify-content: center; background-color: #0b1a2e; border: 1px solid #4a90e2; color: #a4cfff; padding: 2px 6px; border-radius: 6px; font-size: 11px; margin-right: 6px; box-shadow: inset 1px 1px 3px rgba(0,0,0,0.5);">${iconeShard}0 / ${total}</span>`;
     };
 
@@ -579,14 +577,23 @@ function mostrarInfoCard(item, idName, categoria) {
 
     const getCadeado = (nivelDoCard) => {
         let cadeadoHTML = "";
-        if (infoSkill.tier === 1 && nivelDoCard >= 2 && tier2Locked) {
-            let txt = idioma === 'ingles' ? `${iconeCadeado}Requires Tier 2` : `${iconeCadeado}Requer Tier 2`;
+        
+        // NOVA REGRA: Tier 1, Nível 3 requer Tier 3
+        if (infoSkill.tier === 1 && nivelDoCard === 3 && tier3Locked) {
+            let txt = idioma === 'ingles' ? `${iconeCadeado}Requires Tier 3` : `${iconeCadeado}Requer Tier 3`;
             cadeadoHTML = `<span style="color: #ff4444; font-size: 11px; margin-left: 8px; font-weight: normal; display: inline-flex; align-items: center; justify-content: center;">${txt}</span>`;
         } 
+        // REGRA: Tier 1, Nível 2 requer Tier 2
+        else if (infoSkill.tier === 1 && nivelDoCard === 2 && tier2Locked) {
+            let txt = idioma === 'ingles' ? `${iconeCadeado}Requires Tier 2` : `${iconeCadeado}Requer Tier 2`;
+            cadeadoHTML = `<span style="color: #ff4444; font-size: 11px; margin-left: 8px; font-weight: normal; display: inline-flex; align-items: center; justify-content: center;">${txt}</span>`;
+        }
+        // REGRA: Tier 2, Níveis 2 e 3 requerem Tier 3
         else if (infoSkill.tier === 2 && nivelDoCard >= 2 && tier3Locked) {
             let txt = idioma === 'ingles' ? `${iconeCadeado}Requires Tier 3` : `${iconeCadeado}Requer Tier 3`;
             cadeadoHTML = `<span style="color: #ff4444; font-size: 11px; margin-left: 8px; font-weight: normal; display: inline-flex; align-items: center; justify-content: center;">${txt}</span>`;
         }
+        
         return cadeadoHTML;
     };
     // ==========================================
@@ -606,7 +613,6 @@ function mostrarInfoCard(item, idName, categoria) {
                 let totalPts = parseInt(n.pontosNecessarios, 10) || 0;
                 let totalShards = parseInt(n.shards, 10) || 0;
                 
-                // Mostrar os custos alinhados ao centro
                 linhas.push(`<div style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; text-align: center;"><span style="color: ${cor}; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center;">${lvlLabel}${cadeado}</span><div style="margin-top: 4px; margin-bottom: 4px; display: flex; justify-content: center; align-items: center;">${getSpBadge(totalPts)}${getShardBadge(totalShards, n.nivel)}</div><span style="font-size: 13px;">${n.descricao[idioma]}</span></div>`);
             });
             textoDescricao = linhas.join('');
@@ -617,7 +623,6 @@ function mostrarInfoCard(item, idName, categoria) {
             let nAtual = item.niveis[lvl - 1];
             let descAtual = nAtual.descricao[idioma];
             
-            // NÍVEL ATUAL SELECIONADO: Some completamente com as caixinhas de custo!
             textoDescricao = `<div style="margin-bottom: 12px; display: flex; flex-direction: column; align-items: center; text-align: center;"><span style="color: ${corAtual}; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center;">${txtAtual}</span><div style="margin-top: 4px; margin-bottom: 4px;"></div><span style="font-size: 13px;">${descAtual}</span></div>`;
 
             if (lvl < item.maxLevel) {
@@ -630,7 +635,6 @@ function mostrarInfoCard(item, idName, categoria) {
                 let totalShardsProx = parseInt(nProximo.shards, 10) || 0;
                 let descProximo = nProximo.descricao[idioma];
                 
-                // PRÓXIMO NÍVEL: O próximo ainda não foi selecionado, então mostra as caixinhas centralizadas!
                 textoDescricao += `<div style="margin-bottom: 8px; border-top: 1px dashed #506152; padding-top: 10px; display: flex; flex-direction: column; align-items: center; text-align: center;"><span style="color: ${corProximo}; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center;">${txtProximo}${cadeado}</span><div style="margin-top: 4px; margin-bottom: 4px; display: flex; justify-content: center; align-items: center;">${getSpBadge(totalPtsProx)}${getShardBadge(totalShardsProx, nProximo.nivel)}</div><span style="font-size: 13px;">${descProximo}</span></div>`;
             } else {
                 let txtMax = idioma === 'ingles' ? `(Max Level)` : `(Nível Máximo)`;
@@ -638,22 +642,35 @@ function mostrarInfoCard(item, idName, categoria) {
             }
         }
     } else {
-        // Lógica adaptada para as Skills Antigas (Legacy) ou NFTs
-        textoDescricao = item.descricao ? (item.descricao[idioma] || "") : "";
+        // =========================================================================
+        // ATUALIZAÇÃO: Funciona para NFTs, Skills Legacy e Novas Skills de Nível 1
+        // =========================================================================
         
-        if (item.pontosNecessarios || item.shards) {
-            let costStr = idioma === 'ingles' ? 'Cost' : 'Custo';
-            let totalPts = parseInt(item.pontosNecessarios, 10) || 0;
-            let totalShards = parseInt(item.shards, 10) || (item.niveis && item.niveis[0] ? parseInt(item.niveis[0].shards, 10) : 0);
+        // Pega descrição direto na raiz (NFTs/Legacy) ou no niveis[0] (Novas skills lvl 1)
+        textoDescricao = item.descricao ? (item.descricao[idioma] || "") : 
+                         (item.niveis && item.niveis[0] && item.niveis[0].descricao ? (item.niveis[0].descricao[idioma] || "") : "");
+        
+        // Pega os custos na raiz ou no niveis[0]
+        let ptsItem = item.pontosNecessarios || (item.niveis && item.niveis[0] ? item.niveis[0].pontosNecessarios : 0);
+        let shardsItem = item.shards || (item.niveis && item.niveis[0] ? item.niveis[0].shards : 0);
+
+        if (ptsItem || shardsItem) {
+            let totalPts = parseInt(ptsItem, 10) || 0;
+            let totalShards = parseInt(shardsItem, 10) || 0;
             
-            // Sumir as caixinhas se já possuir
+            // Se já possui a skill/NFT, apenas mostra a descrição e some com o custo
             if (item.level > 0 || item.possui) {
                 textoDescricao = `<span style="font-size: 13px;">${textoDescricao}</span>`;
             } else {
-                let badgesUnicos = `${getSpBadge(totalPts)}${getShardBadge(totalShards, 2)}`; // Nível 2 forçado apenas para garantir que a Badge apareça, se o item usar shard
+                // Se for uma skill de 1 nível (tem item.niveis), dizemos que é Nível 1 para o getShardBadge ocultar o Shard.
+                // Se for um NFT/Legacy (não tem item.niveis), usamos Nível 2 para garantir que o Shard apareça caso exista custo nele.
+                let nivelDoItem = (item.niveis && item.niveis.length === 1) ? 1 : 2;
+                
+                let badgesUnicos = `${getSpBadge(totalPts)}${getShardBadge(totalShards, nivelDoItem)}`; 
                 
                 if (badgesUnicos.trim() !== "") {
-                    textoDescricao = `<div style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; text-align: center;"><span style="color: #3ca527; font-weight: bold; font-size: 15px;">${costStr}:</span><div style="margin-top: 4px; margin-bottom: 4px; display: flex; justify-content: center; align-items: center;">${badgesUnicos}</div></div><span style="font-size: 13px;">${textoDescricao}</span>`;
+                    // Removido o texto "Cost/Custo" - exibindo apenas a caixinha de SP (e shard se for NFT)
+                    textoDescricao = `<div style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; text-align: center;"><div style="margin-top: 4px; margin-bottom: 4px; display: flex; justify-content: center; align-items: center;">${badgesUnicos}</div></div><span style="font-size: 13px;">${textoDescricao}</span>`;
                 } else {
                     textoDescricao = `<span style="font-size: 13px;">${textoDescricao}</span>`;
                 }

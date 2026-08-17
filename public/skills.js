@@ -761,14 +761,12 @@ let skillsTrees = {
             maxLevel: 1,
             niveis: [
                 { nivel: 1, pontosNecessarios: 1, shards: 1, descricao: { portugues: 'Uma única batida nas árvores', ingles: 'A single hit on trees.' } },
-                { nivel: 2, pontosNecessarios: 1, shards: 1, descricao: { portugues: 'Uma única batida nas árvores', ingles: 'A single hit on trees.' } },
-                { nivel: 3, pontosNecessarios: 1, shards: 1, descricao: { portugues: 'Uma única batida nas árvores', ingles: 'A single hit on trees.' } },
             ],
             conforto: [
                 {
                     sinal: '',
                     recursoAfetado: [''],
-                    buff: ['', '', ''],
+                    buff: [''],
                 },
             ],
         },
@@ -1313,8 +1311,8 @@ let skillsMachinery = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 2, shards: 2, descricao: { portugues: '-20% no tempo de crescimento da CM, +40% no consumo de Oil.', ingles: '-20% in CM growth time, +40% in Oil consumption.' } },
-                { nivel: 2, pontosNecessarios: 6, shards: 2, descricao: { portugues: '-30% no tempo de crescimento da CM, +50% no consumo de Oil.', ingles: '-30% in CM growth time, +50% in Oil consumption.' } },
-                { nivel: 3, pontosNecessarios: 6, shards: 2, descricao: { portugues: '-40% no tempo de crescimento da CM, +60% no consumo de Oil.', ingles: '-40% in CM growth time, +60% in Oil consumption.' } },
+                { nivel: 2, pontosNecessarios: 3, shards: 2, descricao: { portugues: '-30% no tempo de crescimento da CM, +50% no consumo de Oil.', ingles: '-30% in CM growth time, +50% in Oil consumption.' } },
+                { nivel: 3, pontosNecessarios: 3, shards: 2, descricao: { portugues: '-40% no tempo de crescimento da CM, +60% no consumo de Oil.', ingles: '-40% in CM growth time, +60% in Oil consumption.' } },
             ],
             tempo: [
                 {
@@ -1338,8 +1336,8 @@ let skillsMachinery = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 2, shards: 2, descricao: { portugues: '-20% no tempo de reabastecimento do Oil.', ingles: '-20% in Oil refilling time.' } },
-                { nivel: 2, pontosNecessarios: 6, shards: 2, descricao: { portugues: '-30% no tempo de reabastecimento do Oil.', ingles: '-30% in Oil refilling time.' } },
-                { nivel: 3, pontosNecessarios: 6, shards: 2, descricao: { portugues: '-40% no tempo de reabastecimento do Oil.', ingles: '-40% in Oil refilling time.' } },
+                { nivel: 2, pontosNecessarios: 3, shards: 2, descricao: { portugues: '-30% no tempo de reabastecimento do Oil.', ingles: '-30% in Oil refilling time.' } },
+                { nivel: 3, pontosNecessarios: 3, shards: 2, descricao: { portugues: '-40% no tempo de reabastecimento do Oil.', ingles: '-40% in Oil refilling time.' } },
             ],
             tempo: [
                 {
@@ -1356,8 +1354,8 @@ let skillsMachinery = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 2, shards: 2, descricao: { portugues: 'A broca de petróleo requer 20 lãs em vez de couro para ser fabricada', ingles: 'Oil Drill requires 20 Wool instead of Leather to craft' } },
-                { nivel: 2, pontosNecessarios: 6, shards: 2, descricao: { portugues: 'A broca de petróleo requer 15 lãs em vez de couro para ser fabricada', ingles: 'Oil Drill requires 15 Wool instead of Leather to craft' } },
-                { nivel: 3, pontosNecessarios: 6, shards: 2, descricao: { portugues: 'A broca de petróleo requer 10 lãs em vez de couro para ser fabricada', ingles: 'Oil Drill requires 10 Wool instead of Leather to craft' } },
+                { nivel: 2, pontosNecessarios: 3, shards: 2, descricao: { portugues: 'A broca de petróleo requer 15 lãs em vez de couro para ser fabricada', ingles: 'Oil Drill requires 15 Wool instead of Leather to craft' } },
+                { nivel: 3, pontosNecessarios: 3, shards: 2, descricao: { portugues: 'A broca de petróleo requer 10 lãs em vez de couro para ser fabricada', ingles: 'Oil Drill requires 10 Wool instead of Leather to craft' } },
             ],
             troca: [
                 {
@@ -2007,8 +2005,8 @@ let skillsAnimais = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 3, shards: 3, descricao: { portugues: '2x de experiência animal a partir da alimentação, +50% de ração para alimentar todos os animais.', ingles: '2x animal experience from feeding, +50% feed required to feed all animals.' } },
-                { nivel: 2, pontosNecessarios: 3, shards: 3, descricao: { portugues: '2.5x de experiência animal a partir da alimentação, +75% de ração para alimentar todos os animais.', ingles: '2.5x animal experience from feeding, +75% feed required to feed all animals.' } },
-                { nivel: 3, pontosNecessarios: 3, shards: 3, descricao: { portugues: '3x de experiência animal a partir da alimentação, +100% de ração para alimentar todos os animais.', ingles: '3x animal experience from feeding, +100% feed required to feed all animals.' } },
+                { nivel: 2, pontosNecessarios: 6, shards: 3, descricao: { portugues: '2.5x de experiência animal a partir da alimentação, +75% de ração para alimentar todos os animais.', ingles: '2.5x animal experience from feeding, +75% feed required to feed all animals.' } },
+                { nivel: 3, pontosNecessarios: 6, shards: 3, descricao: { portugues: '3x de experiência animal a partir da alimentação, +100% de ração para alimentar todos os animais.', ingles: '3x animal experience from feeding, +100% feed required to feed all animals.' } },
             ],
             quantidade: [
                 {
@@ -2030,8 +2028,8 @@ let skillsAnimais = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 3, shards: 3, descricao: { portugues: '+0,35 rendimento de Couro, -0,1 rendimento de Pena & Lã Merino.', ingles: '+0.35 leather yield, -0.1 feather & merino wool yield.' } },
-                { nivel: 2, pontosNecessarios: 3, shards: 3, descricao: { portugues: '+0,6 rendimento de Couro, -0,15 rendimento de Pena & Lã Merino.', ingles: '+0.6 leather yield, -0.15 feather & merino wool yield.' } },
-                { nivel: 3, pontosNecessarios: 3, shards: 3, descricao: { portugues: '+0,8 rendimento de Couro, -0,2 rendimento de Pena & Lã Merino.', ingles: '+0.8 leather yield, -0.2 feather & merino wool yield.' } },
+                { nivel: 2, pontosNecessarios: 6, shards: 3, descricao: { portugues: '+0,6 rendimento de Couro, -0,15 rendimento de Pena & Lã Merino.', ingles: '+0.6 leather yield, -0.15 feather & merino wool yield.' } },
+                { nivel: 3, pontosNecessarios: 6, shards: 3, descricao: { portugues: '+0,8 rendimento de Couro, -0,2 rendimento de Pena & Lã Merino.', ingles: '+0.8 leather yield, -0.2 feather & merino wool yield.' } },
             ],
             quantidade: [
                 {
@@ -2053,8 +2051,8 @@ let skillsAnimais = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 3, shards: 3, descricao: { portugues: 'Acorda instantaneamente todos os animais (Recarga: 5d).', ingles: 'Instantly wakes up all animals (5d Cooldown)' } },
-                { nivel: 2, pontosNecessarios: 3, shards: 3, descricao: { portugues: 'Acorda instantaneamente todos os animais (Recarga: 4d).', ingles: 'Instantly wakes up all animals (4d Cooldown)' } },
-                { nivel: 3, pontosNecessarios: 3, shards: 3, descricao: { portugues: 'Acorda instantaneamente todos os animais (Recarga: 3d 12h).', ingles: 'Instantly wakes up all animals (3d 12h Cooldown)' } },
+                { nivel: 2, pontosNecessarios: 6, shards: 3, descricao: { portugues: 'Acorda instantaneamente todos os animais (Recarga: 4d).', ingles: 'Instantly wakes up all animals (4d Cooldown)' } },
+                { nivel: 3, pontosNecessarios: 6, shards: 3, descricao: { portugues: 'Acorda instantaneamente todos os animais (Recarga: 3d 12h).', ingles: 'Instantly wakes up all animals (3d 12h Cooldown)' } },
             ],
             insta: [
                 {
@@ -2244,8 +2242,8 @@ let skillsFishing = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 3, shards: 3, descricao: { portugues: '+20% de XP do Bumpkin em peixes.', ingles: '+20% Bumpkin XP from Fish' } },
-                { nivel: 2, pontosNecessarios: 3, shards: 3, descricao: { portugues: '+30% de XP do Bumpkin em peixes.', ingles: '+30% Bumpkin XP from Fish' } },
-                { nivel: 3, pontosNecessarios: 3, shards: 3, descricao: { portugues: '+40% de XP do Bumpkin em peixes.', ingles: '+40% Bumpkin XP from Fish' } },
+                { nivel: 2, pontosNecessarios: 6, shards: 3, descricao: { portugues: '+30% de XP do Bumpkin em peixes.', ingles: '+30% Bumpkin XP from Fish' } },
+                { nivel: 3, pontosNecessarios: 6, shards: 3, descricao: { portugues: '+40% de XP do Bumpkin em peixes.', ingles: '+40% Bumpkin XP from Fish' } },
             ],
             quantidade: [
                 {
@@ -2397,8 +2395,8 @@ let skillsCooking = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 2, shards: 2, descricao: { portugues: '+15% de XP do Bumpkin ao preparar no Deli.', ingles: '+15% Bumpkin XP from Deli' } },
-                { nivel: 2, pontosNecessarios: 2, shards: 2, descricao: { portugues: '+20% de XP do Bumpkin ao preparar no Deli.', ingles: '+20% Bumpkin XP from Deli' } },
-                { nivel: 3, pontosNecessarios: 2, shards: 2, descricao: { portugues: '+25% de XP do Bumpkin ao preparar no Deli.', ingles: '+25% Bumpkin XP from Deli' } },
+                { nivel: 2, pontosNecessarios: 3, shards: 2, descricao: { portugues: '+20% de XP do Bumpkin ao preparar no Deli.', ingles: '+20% Bumpkin XP from Deli' } },
+                { nivel: 3, pontosNecessarios: 3, shards: 2, descricao: { portugues: '+25% de XP do Bumpkin ao preparar no Deli.', ingles: '+25% Bumpkin XP from Deli' } },
             ],
             xp: [
                 {
@@ -2458,8 +2456,8 @@ let skillsCooking = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 3, shards: 3, descricao: { portugues: '20% de chance de obter +1 comida no Fire Pit.', ingles: '+20% Chance of +1 food from Firepit' } },
-                { nivel: 2, pontosNecessarios: 3, shards: 3, descricao: { portugues: '35% de chance de obter +1 comida no Fire Pit.', ingles: '+35% Chance of +1 food from Firepit' } },
-                { nivel: 3, pontosNecessarios: 3, shards: 3, descricao: { portugues: '50% de chance de obter +1 comida no Fire Pit.', ingles: '+50% Chance of +1 food from Firepit' } },
+                { nivel: 2, pontosNecessarios: 6, shards: 3, descricao: { portugues: '35% de chance de obter +1 comida no Fire Pit.', ingles: '+35% Chance of +1 food from Firepit' } },
+                { nivel: 3, pontosNecessarios: 6, shards: 3, descricao: { portugues: '50% de chance de obter +1 comida no Fire Pit.', ingles: '+50% Chance of +1 food from Firepit' } },
             ],
             quantidade: [
                 {
@@ -2476,8 +2474,8 @@ let skillsCooking = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 3, shards: 3, descricao: { portugues: '-60% no tempo de preparo no Deli usando óleo.', ingles: '-60% Deli cooking time with oil' } },
-                { nivel: 2, pontosNecessarios: 3, shards: 3, descricao: { portugues: '-65% no tempo de preparo no Deli usando óleo.', ingles: '-65% Deli cooking time with oil' } },
-                { nivel: 3, pontosNecessarios: 3, shards: 3, descricao: { portugues: '-70% no tempo de preparo no Deli usando óleo.', ingles: '-70% Deli cooking time with oil' } },
+                { nivel: 2, pontosNecessarios: 6, shards: 3, descricao: { portugues: '-65% no tempo de preparo no Deli usando óleo.', ingles: '-65% Deli cooking time with oil' } },
+                { nivel: 3, pontosNecessarios: 6, shards: 3, descricao: { portugues: '-70% no tempo de preparo no Deli usando óleo.', ingles: '-70% Deli cooking time with oil' } },
             ],
             tempo: [
                 {
@@ -2555,8 +2553,6 @@ let skillsCompost = {
             maxLevel: 1,
             niveis: [
                 { nivel: 1, pontosNecessarios: 1, shards: 1, descricao: { portugues: 'Use penas em vez de ovos para acelerar composteiras | 2x penas para acelerar composteiras', ingles: 'Use feathers instead of eggs to boost composters | 2x feathers to boost composters' } },
-                { nivel: 1, pontosNecessarios: 1, shards: 1, descricao: { portugues: 'Use penas em vez de ovos para acelerar composteiras | 1.5x penas para acelerar composteiras', ingles: 'Use feathers instead of eggs to boost composters | 1.5x feathers to boost composters' } },
-                { nivel: 1, pontosNecessarios: 1, shards: 1, descricao: { portugues: 'Use penas em vez de ovos para acelerar composteiras', ingles: 'Use feathers instead of eggs to boost composters' } },
             ],
             quantidade: [
                 {
@@ -2631,9 +2627,9 @@ let skillsCompost = {
             nivelAtual: 0,
             maxLevel: 3,
             niveis: [
-                { nivel: 1, pontosNecessarios: 2, shards: 2, descricao: { portugues: '', ingles: '2x Fruitful Blend\'s Effect' } },
-                { nivel: 2, pontosNecessarios: 3, shards: 2, descricao: { portugues: '', ingles: '3x Fruitful Blend\'s Effect' } },
-                { nivel: 3, pontosNecessarios: 3, shards: 2, descricao: { portugues: '', ingles: '4x Fruitful Blend\'s Effect' } },
+                { nivel: 1, pontosNecessarios: 2, shards: 2, descricao: { portugues: 'Efeito 2x do Fruitful Blend', ingles: '2x Fruitful Blend\'s Effect' } },
+                { nivel: 2, pontosNecessarios: 3, shards: 2, descricao: { portugues: 'Efeito 3x do Fruitful Blend', ingles: '3x Fruitful Blend\'s Effect' } },
+                { nivel: 3, pontosNecessarios: 3, shards: 2, descricao: { portugues: 'Efeito 4x do Fruitful Blend', ingles: '4x Fruitful Blend\'s Effect' } },
             ],
             quantidade: [
                 {
@@ -2667,9 +2663,9 @@ let skillsCompost = {
             nivelAtual: 0,
             maxLevel: 3,
             niveis: [
-                { nivel: 1, pontosNecessarios: 2, shards: 2, descricao: { portugues: '', ingles: 'Speed up composters by an additional ih when boosting, 2x resources to boost composters' } },
-                { nivel: 2, pontosNecessarios: 3, shards: 2, descricao: { portugues: '', ingles: 'Speed up composters by an additional 1h 30m when boosting, 2x resources to boost composters' } },
-                { nivel: 3, pontosNecessarios: 3, shards: 2, descricao: { portugues: '', ingles: 'Speed up composters by an additional 2h when boosting, 2x resources to boost composters' } },
+                { nivel: 1, pontosNecessarios: 2, shards: 2, descricao: { portugues: 'Acelera as composteiras em 1h adicional ao impulsionar, requer 2x recursos para o boost', ingles: 'Speed up composters by an additional 1h when boosting, 2x resources to boost composters' } },
+                { nivel: 2, pontosNecessarios: 3, shards: 2, descricao: { portugues: 'Acelera as composteiras em 1h 30m adicionais ao impulsionar, requer 2x recursos para o boost', ingles: 'Speed up composters by an additional 1h 30m when boosting, 2x resources to boost composters' } },
+                { nivel: 3, pontosNecessarios: 3, shards: 2, descricao: { portugues: 'Acelera as composteiras em 2h adicionais ao impulsionar, requer 2x recursos para o boost', ingles: 'Speed up composters by an additional 2h when boosting, 2x resources to boost composters' } },
             ],
             tempo: [
                 {
@@ -2959,8 +2955,8 @@ let skillsBeesFlowers = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 3, shards: 3, descricao: { portugues: 'Habilidade de tornar todas as flores em crescimento prontas para colheita (Recarga: 4d).', ingles: 'Ability to make all flowers currently growing ready to be harvested (4d Cooldown)' } },
-                { nivel: 2, pontosNecessarios: 3, shards: 3, descricao: { portugues: 'Habilidade de tornar todas as flores em crescimento prontas para colheita (Recarga: 3d 12h).', ingles: 'Ability to make all flowers currently growing ready to be harvested (3d 12h Cooldown)' } },
-                { nivel: 3, pontosNecessarios: 3, shards: 3, descricao: { portugues: 'Habilidade de tornar todas as flores em crescimento prontas para colheita (Recarga: 3d).', ingles: 'Ability to make all flowers currently growing ready to be harvested (3d Cooldown)' } },
+                { nivel: 2, pontosNecessarios: 6, shards: 3, descricao: { portugues: 'Habilidade de tornar todas as flores em crescimento prontas para colheita (Recarga: 3d 12h).', ingles: 'Ability to make all flowers currently growing ready to be harvested (3d 12h Cooldown)' } },
+                { nivel: 3, pontosNecessarios: 6, shards: 3, descricao: { portugues: 'Habilidade de tornar todas as flores em crescimento prontas para colheita (Recarga: 3d).', ingles: 'Ability to make all flowers currently growing ready to be harvested (3d Cooldown)' } },
             ],
             quantidade: [
                 {
@@ -3112,8 +3108,8 @@ let skillsAging = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 2, shards: 2, descricao: { portugues: '5% de chance de restaurar 1 carga em 4 nodes de sal ao coletar.', ingles: '5% chance to restore 1 charge to 4 Salt nodes on harvest.' } },
-                { nivel: 2, pontosNecessarios: 2, shards: 2, descricao: { portugues: '6.5% de chance de restaurar 1 carga em 4 nodes de sal ao coletar.', ingles: '6.5% chance to restore 1 charge to 4 Salt nodes on harvest.' } },
-                { nivel: 3, pontosNecessarios: 2, shards: 2, descricao: { portugues: '8% de chance de restaurar 1 carga em 4 nodes de sal ao coletar.', ingles: '8% chance to restore 1 charge to 4 Salt nodes on harvest.' } },
+                { nivel: 2, pontosNecessarios: 3, shards: 2, descricao: { portugues: '6.5% de chance de restaurar 1 carga em 4 nodes de sal ao coletar.', ingles: '6.5% chance to restore 1 charge to 4 Salt nodes on harvest.' } },
+                { nivel: 3, pontosNecessarios: 3, shards: 2, descricao: { portugues: '8% de chance de restaurar 1 carga em 4 nodes de sal ao coletar.', ingles: '8% chance to restore 1 charge to 4 Salt nodes on harvest.' } },
             ],
             quantidade: [
                 {
@@ -3132,8 +3128,8 @@ let skillsAging = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 3, shards: 3, descricao: { portugues: '2x produção nos racks do Aging Shed | 2x consumo de ingredientes, peixes e sal.', ingles: '2x output from Aging Shed Racks | 2x Aging Shed inputs (ingredients, fish & salt).' } },
-                { nivel: 2, pontosNecessarios: 3, shards: 3, descricao: { portugues: '3x produção nos racks do Aging Shed | 3x consumo de ingredientes, peixes e sal.', ingles: '3x output from Aging Shed Racks | 3x Aging Shed inputs (ingredients, fish & salt).' } },
-                { nivel: 3, pontosNecessarios: 3, shards: 3, descricao: { portugues: '4x produção nos racks do Aging Shed | 4x consumo de ingredientes, peixes e sal.', ingles: '4x output from Aging Shed Racks | 4x Aging Shed inputs (ingredients, fish & salt).' } },
+                { nivel: 2, pontosNecessarios: 6, shards: 3, descricao: { portugues: '3x produção nos racks do Aging Shed | 3x consumo de ingredientes, peixes e sal.', ingles: '3x output from Aging Shed Racks | 3x Aging Shed inputs (ingredients, fish & salt).' } },
+                { nivel: 3, pontosNecessarios: 6, shards: 3, descricao: { portugues: '4x produção nos racks do Aging Shed | 4x consumo de ingredientes, peixes e sal.', ingles: '4x output from Aging Shed Racks | 4x Aging Shed inputs (ingredients, fish & salt).' } },
             ],
             quantidade: [
                 {
@@ -3150,8 +3146,8 @@ let skillsAging = {
             maxLevel: 3,
             niveis: [
                 { nivel: 1, pontosNecessarios: 3, shards: 3, descricao: { portugues: 'Habilidade de recarregar todos os nodes de sal ao máximo (Recarga: 3d).', ingles: 'Ability to recharge all Salt nodes to max (3d Cooldown).' } },
-                { nivel: 2, pontosNecessarios: 3, shards: 3, descricao: { portugues: 'Habilidade de recarregar todos os nodes de sal ao máximo (Recarga: 2d 12h).', ingles: 'Ability to recharge all Salt nodes to max (2d 12h Cooldown).' } },
-                { nivel: 3, pontosNecessarios: 3, shards: 3, descricao: { portugues: 'Habilidade de recarregar todos os nodes de sal ao máximo (Recarga: 2d).', ingles: 'Ability to recharge all Salt nodes to max (2d Cooldown).' } },
+                { nivel: 2, pontosNecessarios: 6, shards: 3, descricao: { portugues: 'Habilidade de recarregar todos os nodes de sal ao máximo (Recarga: 2d 12h).', ingles: 'Ability to recharge all Salt nodes to max (2d 12h Cooldown).' } },
+                { nivel: 3, pontosNecessarios: 6, shards: 3, descricao: { portugues: 'Habilidade de recarregar todos os nodes de sal ao máximo (Recarga: 2d).', ingles: 'Ability to recharge all Salt nodes to max (2d Cooldown).' } },
             ],
             insta: [
                 {
