@@ -56,7 +56,7 @@ let collectibles = {
                     buffBase: 0.8,
                     condicionalSkill: {
                         dependeDe: 'chonkyScarecrow',
-                        novoBuff: 0.7,
+                        novoBuff: [0.9, 0.9, 0.9],
                     },
                     buff: 0.8,
                     recursoAfetado: [''],
@@ -79,7 +79,7 @@ let collectibles = {
                     buffBase: 0.2 * 9,
                     condicionalSkill: {
                         dependeDe: 'horrorMike',
-                        novoBuff: 0.3 * 49,
+                        novoBuff: [0.3 * 49, 0.35 * 64, 0.4 * 81],
                     },
                     buff: 0.2 * 9,
                     recursoAfetado: ['Carrot', 'Yam', 'Cabbage', 'Broccoli', 'Soybean', 'Pepper', 'Beetroot', 'Cauliflower', 'Parsnip']
@@ -102,7 +102,7 @@ let collectibles = {
                     buffBase: 0.2 * 9,
                     condicionalSkill: {
                         dependeDe: 'lauriesGains',
-                        novoBuff: 0.3 * 49,
+                        novoBuff: [0.3 * 49, 0.35 * 64, 0.4 * 81],
                     },
                     buff: 0.2 * 9,
                     recursoAfetado: ['Eggplant', 'Corn', 'Onion', 'Turnip', 'Radish', 'Wheat', 'Kale', 'Artichoke', 'Barley']
@@ -126,7 +126,7 @@ let collectibles = {
                     buffBase: 1,
                     condicionalSkill: {
                         dependeDe: 'pearTurbocharge',
-                        novoBuff: 2,
+                        novoBuff: [2, 3, 4],
                     },
                     buff: 1,
                     recursoAfetado: ['Tomato', 'Lemon', 'Blueberry', 'Orange', 'Apple', 'Banana']
@@ -139,8 +139,8 @@ let collectibles = {
             name: 'Macaw',
             preco: '',
             descricao: {
-                portugues: '+0.1 Fruta (menos frutas da GH)',
-                ingles: 'Fruit trees last +1 round'
+                portugues: '+0.2 Fruta (menos frutas da GH)',
+                ingles: '+0.2 Fruit Patch Vield'
             },
             possui: false,
             quantidade: [
@@ -149,7 +149,7 @@ let collectibles = {
                     buffBase: 0.1,
                     condicionalSkill: {
                         dependeDe: 'loyalMacaw',
-                        novoBuff: 0.2,
+                        novoBuff: [0.2, 0.25, 0.3],
                     },
                     buff: 0.1,
                     recursoAfetado: ['Tomato', 'Lemon', 'Blueberry', 'Orange', 'Apple', 'Banana']
@@ -248,7 +248,7 @@ let collectibles = {
                     recursoAfetadoBase: ['egg'],
                     condicionalSkill: {
                         dependeDe: 'doubleBale',
-                        novoBuff: 0.2,
+                        novoBuff: [0.2, 0.25, 0.3],
                         
                     },
                     condicionalSkill2: {

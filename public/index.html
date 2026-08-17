@@ -24,8 +24,6 @@
   
   <header class="header-bar">
 
-
-
     <!-- ESQUERDA: Título + Select de idioma -->
     <div class="header-left">
       <h1 class="title-bar"><img src="/Imagens/logo.png" alt="SFL Hub Logo" class="logo-header">SFLHub<span style="font-size: 1.6rem;color: white;">.xyz</span></h1>
@@ -39,26 +37,49 @@
           <option value="ingles">English</option>
           <option value="portugues">Português</option>
         </select>
-
       </div>
-      <h4 class="title-bar"> &nbsp v1.1.6</h4>
+      <h4 class="title-bar"> &nbsp v1.2.0</h4>
     </div>
 
-    <!-- CENTRO: Informações do Criador -->
-    <div class="header-center">
-      Created by: <strong>LucasAG</strong> 
-      <a href="https://sunflower-land.com/play/#/visit/3661" target="_blank">
-        🏡 Farm 3661
-      </a><br>
+    <!-- CENTRO: Informações do Criador + Yakkamon Separado -->
+    <div class="header-center" style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+      
+      <!-- Bloco Esquerdo: Criador e Wallet -->
+      <div style="text-align: left;">
+        Created by: <strong>LucasAG</strong> 
+        <a href="https://sunflower-land.com/play/#/visit/3661" target="_blank">
+          🏡 Farm 3661
+        </a><br>
+        
+        <!-- Texto de Apoio à Farm (Agora com a mesma cor e tamanho do texto principal) -->
+        <span id="texto-apoie-farm" style="display: inline-block; margin-bottom: 4px; margin-top: 2px;">
+          Apoie a farm com 🚀 e ❤️
+        </span><br>
 
-      Wallet: <strong id="wallet-address">0x9fc95d6Bdc18C3015D3e6403aAe2A24bcbb1F022</strong>
-      <button id="copy-wallet" class="copy-btn" title="Copiar wallet">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-        </svg>
-      </button>
-      <span id="copy-tooltip" class="copy-tooltip">Copied!</span>
+        Wallet Donated: <strong id="wallet-address"></strong>
+        <button id="copy-wallet" class="copy-btn" title="Copiar wallet">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none" width="14" height="14">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+        <span id="copy-tooltip" class="copy-tooltip">Copied!</span>
+      </div>
+
+      <!-- Bloco Direito: Link do Yakkamon com Botão -->
+      <div style="border-left: 2px solid #555; padding-left: 20px; text-align: center;">
+        
+        <!-- Texto de apoio Yakkamon (Agora com a cor e tamanho padrão do cabeçalho) -->
+        <span id="texto-apoio-yakkamon" style="display: block; margin-bottom: 8px;">
+          Apoie se cadastrando com meu link no Yakkamon!
+        </span>
+        
+        <!-- Botão Yakkamon -->
+        <a href="https://yakkamon.com/?code=5FEMJG" target="_blank" class="yakkamon-btn" title="Próximo game da equipe Sunflower Land!">
+          Pre-registration Yakkamon
+        </a>
+
+      </div>
 
     </div>
 
@@ -112,8 +133,17 @@
       </div>
 
       <!-- Skills Tab -->
+      <!-- ========================================================================================================= -->
+      <!-- ============================================= ABA DE SKILLS ============================================= -->
+      <!-- Esta aba contém os botões e os containers onde as skills de cada árvore (Crops, Animals, etc) serão renderizadas. -->
+      <!-- A função renderSkills (em checkbox.js) joga o HTML gerado dinamicamente para dentro de "skills-[area]-tier[X]-container". -->
+      <!-- Os IDs com o sufixo "-tier2" e "-tier3" servem para exibir as mensagens de bloqueio. -->
+      <!-- ========================================================================================================= -->
       <section id="skills-tab" class="tab-content active skills-block">
-        <h2 id="total-pontos-gastos-em-skills">Skills</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h2 id="total-pontos-gastos-em-skills" style="margin-bottom: 0;">Skills</h2>
+            <button id="btnLimparSkills" onclick="limparSkills()">Limpar Skills</button>
+        </div>
         
         <div class="sub-tabs-buttons-container">
           
@@ -314,8 +344,15 @@
       </section>
 
       <!-- Collectibles Tab -->
+      <!-- ========================================================================================================= -->
+      <!-- ========================================== ABA DE COLLECTIBLES ========================================== -->
+      <!-- Assim como as skills, esta aba contém vários containers vazios onde a função renderNFTs insere os itens. -->
+      <!-- ========================================================================================================= -->
       <section id="collectibles-tab" class="tab-content collectibles-block">
-        <h2 id="total-valor-em-collectibles">Collectibles</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h2 id="total-valor-em-collectibles" style="margin-bottom: 0;">Collectibles</h2>
+            <button id="btnLimparCollectibles" onclick="limparCollectibles()">Limpar Collectibles</button>
+        </div>
           
         <div class="sub-tabs-buttons-container">
           <button class="sub-tab-btn active" data-sub-tab="collectibles-ferreiro-sub">
@@ -372,8 +409,16 @@
       </section>
 
       <!-- Wearables Tab -->
+      <!-- ========================================================================================================= -->
+      <!-- =========================================== ABA DE WEARABLES ============================================ -->
+      <!-- Segue a mesma lógica dos Collectibles, carregando os dados do arquivo wearables.js -->
+      <!-- ========================================================================================================= -->
       <section id="wearables-tab" class="tab-content wearables-block">
-        <h2 id="total-valor-em-wearables">Wearables</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h2 id="total-valor-em-wearables" style="margin-bottom: 0;">Wearables</h2>
+            <button id="btnLimparWearables" onclick="limparWearables()">Limpar Wearables</button>
+        </div>
+
         <div class="sub-tabs-buttons-container">
 
           <button class="sub-tab-btn active" data-sub-tab="wearables-factions-sub">
@@ -430,9 +475,16 @@
       </section>
 
       <!-- Buds Tab -->
-      
+      <!-- ========================================================================================================= -->
+      <!-- ============================================= ABA DE BUDS =============================================== -->
+      <!-- Os Buds possuem lógica especial: além da seleção do Bud, eles exibem um sub-menu ("aura-panel") -->
+      <!-- para que o usuário escolha a raridade/multiplicador daquele Bud. -->
+      <!-- ========================================================================================================= -->
       <section id="buds-tab" class="tab-content buds-block">
-        <h4 id="buds-não-marcam-automaticamente"></h4>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h4 id="buds-não-marcam-automaticamente" style="margin-bottom: 0;"></h4>
+            <button id="btnLimparBuds" onclick="limparBuds()">Limpar Buds</button>
+        </div>
 
         <div class="sub-tabs-buttons-container">
 
@@ -511,8 +563,16 @@
       
 
       <!-- Shrines Tab -->
+      <!-- ========================================================================================================= -->
+      <!-- ======================================= ABA DE BUFFS TEMPORÁRIOS ======================================== -->
+      <!-- Inclui Totens, Shrines e todos os fertilizantes/ração do jogo que dão status por tempo limitado. -->
+      <!-- ========================================================================================================= -->
       <section id="shrinesTotems-tab" class="tab-content shrines-block">
-        <h2 id="total-valor-em-shrines">Buffs Temporários</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h2 id="total-valor-em-shrines" style="margin-bottom: 0;">Buffs Temporários</h2>
+            <button id="btnLimparTemporarios" onclick="limparTemporarios()">Limpar Buffs</button>
+        </div>
+
         <div class="sub-tabs-buttons-container">
           <button class="sub-tab-btn active" data-sub-tab="shrines-sub">
             <span class="sprite sprite-icones bg-shrine icon-btn"></span>Shrines
@@ -651,6 +711,10 @@
       </section>
 
       <!-- Atualizações Tab -->
+      <!-- ========================================================================================================= -->
+      <!-- =========================================== ABA DE LOG DE ATUALIZAÇÕES ================================== -->
+      <!-- Os textos daqui são controlados pelo traducoes.js e injetados dinamicamente com base no idioma escolhido. -->
+      <!-- ========================================================================================================= -->
       <section id="avisoDasAtualizacoes" class="tab-content atualizacoes-block">
         <h2 id="atualizacao-feita">Ultima Atualização - v0.1.8</h2>
 
@@ -670,7 +734,11 @@
 
     </div>
 
-    <!-- Card para buffs -->
+    <!-- ========================================================================================================= -->
+    <!-- ====================================== TOOLTIP INFORMATIVO (INFO CARD) ================================== -->
+    <!-- Este card flutuante ou fixo lateral exibe as informações da skill/NFT quando o mouse passa por cima.      -->
+    <!-- O Javascript (checkbox.js) preenche a imagem, título, preço de venda e descrição.                       -->
+    <!-- ========================================================================================================= -->
     <div id="info-card" class="card">
       <div class="card-img"></div>  <!-- era <img>, agora é wrapper -->
       <h3 class="card-titulo" id="titulo-buff"></h3>
@@ -685,7 +753,10 @@
   <h4 id="valor-total-em-NFTs"></h4>
 
   <!-- ========================= Status da Farm ========================= -->
-
+  <!-- ========================================================================================================= -->
+  <!-- ===================================== PAINEL DE CONTROLE GLOBAL ========================================= -->
+  <!-- As seleções abaixo (Ilha, Estação, VIP, Gems, Eventos) afetam *todos* os cálculos do site ao mesmo tempo. -->
+  <!-- ========================================================================================================= -->
   <section class="linha-selects">
 
     <div class="select-group">
@@ -753,7 +824,11 @@
   <h4 id="valor-do-flower"></h4>
 
   <!-- ======================= RESULTADO DO COMBO (ACCORDION) ======================= -->
-
+  <!-- ========================================================================================================= -->
+  <!-- ======================================= PAINEL DE RESULTADO FINAL ======================================= -->
+  <!-- O Javascript (resultadoTotalCombo.js) une as variáveis de cada tabela (Crops + Animais + Minérios) -->
+  <!-- e injeta aqui dentro para dar o panorama geral do lucro do jogador. -->
+  <!-- ========================================================================================================= -->
   <section class="accordion-combo">
 
     <button id="accordionResultadoComboCompleto" class="accordion-header-combo">
@@ -780,6 +855,7 @@
 
   <div class="tabs-secundarias">
 
+    <!-- MENU SECUNDÁRIO: Alterna entre a visualização das planilhas das atividades da Fazenda -->
     <div class="tabs-secundarias-buttons">
       <button class="tab2-btn active" data-tab2="cropsTabPrincipal">Crops / CM / Fruits / GH</button>
       <button class="tab2-btn" data-tab2="minerios-tab2">Minerals</button>
@@ -794,6 +870,7 @@
     <section id="cropsTabPrincipal" class="tab2-content active">
 
       <!-- ======================= SUBTABS DE CROPS/CM/FRUTAS ======================= -->
+      <!-- O usuário seleciona abaixo o que deseja calcular dentro do universo de agricultura -->
       <div class="subtabs-crops-buttons">
         <button class="subtab-btn active" data-subtab="crops-tab2">Crops</button>
         <button class="subtab-btn" data-subtab="cropsCM-tab2">Crop Machine</button>
@@ -840,7 +917,7 @@
           
         </section>
 
-        <!-- Área onde a tabela de crops será inserida -->
+        <!-- Área onde a tabela de crops (tabelaCrops.js) será inserida dinamicamente -->
         <div id="saida-das-crops"></div>
 
       </section>
@@ -886,7 +963,7 @@
 
         
 
-        <!-- Área onde a tabela de crops será inserida -->
+        <!-- Área onde a tabela da Crop Machine será inserida dinamicamente -->
         <div id="saida-das-crops-cm"></div>
 
       </section>
@@ -933,7 +1010,7 @@
           <button id="limparInfosFrutas" onclick="limparFrutas()">Limpar Frutas</button>
         </section>
 
-        <!-- Área onde a tabela de crops será inserida -->
+        <!-- Área onde a tabela de Frutas será inserida dinamicamente -->
         <div id="saida-das-frutas"></div>
 
       </section>
@@ -973,7 +1050,7 @@
           <button id="limparInfosGreenhouse" onclick="limparGH()">Limpar GH</button>
         </section>
 
-        <!-- Área onde a tabela de GH será inserida -->
+        <!-- Área onde a tabela de Greenhouse será inserida dinamicamente -->
         <div id="saida-da-greenhouse"></div>
 
       </section>
@@ -983,7 +1060,7 @@
     <!-- ===================================================================== -->
     <!-- ============================== MINERIOS ============================== -->
     <!-- ===================================================================== -->
-
+    <!-- O usuário insere a quantidade exata de pedras e minérios que a fazenda dele possui -->
     <section id="minerios-tab2" class="tab2-content">
 
       <!-- ======================= SELECTS DE MINERIOS ======================= -->
@@ -1109,7 +1186,7 @@
 
       </section>
 
-        <!-- ========================= TIPO DE CÁLCULO ========================= -->
+        <!-- ========================= CONTROLE DE CÁLCULO E MARKET ========================= -->
       <section class="linha-selects">
 
         <div class="select-group">
@@ -1134,6 +1211,7 @@
             Recurso comprado no Market:
           </label>
 
+          <!-- Se o usuário marcar estas caixas, o site passa a considerar o valor em Flower do Market para calcular os gastos das picaretas, em vez do custo de craft interno. -->
           <div class="checkbox-carinho-container">
 
             <label class="checkbox-carinho">
@@ -1183,7 +1261,7 @@
 
       <h3 id="aviso-de-manter-horas"></h3>
 
-      <!-- Área onde a tabela de minerios será inserida -->
+      <!-- Área onde a tabela de minerios será inserida (tabelaMinerios.js) -->
       <div id="saida-dos-minerios"></div>
 
     </section>
@@ -1201,7 +1279,7 @@
         <button id="subOvelhas" class="subtab-btn" data-subtab="ovelhas-tab2">Ovelhas</button>
       </div>
       
-      <!-- ======================= Preço das comidas ======================= -->
+      <!-- ======================= Preço das comidas (Renderizado no JS) ======================= -->
       <section class="linha-selects">
         <div class="select-group">
           <label id="precoRacao">Preço da ração:</label>
@@ -1211,6 +1289,7 @@
       <section class="linha-selects">
 
         <!-- ======================= Checkbox de Comidas ======================= -->
+        <!-- O usuário define qual ração ele dá para o animal em cada faixa de Level, para calcular o lucro com precisão -->
 
         <div class="carinhos-possuido-group">
           <label id="comida-do-level-0-ao-3" class="carinhos-possuido-titulo">Comida Até Level 3:</label>
@@ -1476,7 +1555,7 @@
           
         </section>
 
-        <!-- Área onde a tabela de crops será inserida -->
+        <!-- Área onde a tabela de Galinhas (tabelaAnimais.js) será inserida dinamicamente -->
         <div id="saida-das-galinhas"></div>
 
       </section>
@@ -1515,7 +1594,7 @@
 
         </section>
 
-        <!-- Área onde a tabela de crops será inserida -->
+        <!-- Área onde a tabela de Vacas será inserida dinamicamente -->
         <div id="saida-das-vacas"></div>
 
       </section>
@@ -1554,7 +1633,7 @@
           
         </section>
 
-        <!-- Área onde a tabela de crops será inserida -->
+        <!-- Área onde a tabela de Ovelhas será inserida dinamicamente -->
         <div id="saida-das-ovelhas"></div>
 
       </section>
@@ -1563,7 +1642,7 @@
     <!-- ===================================================================== -->
     <!-- ============================== CROP TO COINS ============================== -->
     <!-- ===================================================================== -->
-
+    <!-- Aba antiga que agora tem uma página HTML separada (Avisos mantidos por segurança) -->
     <section id="cropToCoins-tab2" class="tab2-content">
 
       <h3 id="aviso-crop-to-coins"></h3>
@@ -1574,7 +1653,8 @@
 
   </div>
 
-  <!-- Scripts -->
+  <!-- ========================= CARREGAMENTO DE SCRIPTS ========================= -->
+  <!-- A ordem de carregamento importa. Funções base devem vir antes de funções de Tabela -->
   <script src="./sprites.js"></script>
   <script src="./recursos.js"></script>
   <script src="./modalAjuda.js"></script>

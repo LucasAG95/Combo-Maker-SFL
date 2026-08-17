@@ -19,6 +19,15 @@ function mudarIdioma() {
     document.getElementById('valor-do-flower').innerHTML = `
         ${imgFlower} ${opcaoDeIdiomas.valorDoFlower}: ${imgUsdc} $${Number(precoDoFlower).toFixed(4)} | 
         ${imgGem} ${opcaoDeIdiomas.custoPorGem}: ${imgUsdc} $${Number(precoPorGem).toFixed(4)} ~ ${imgFlower} ${precoDaGemEmFlower.toFixed(4)}`
+    document.getElementById('texto-apoie-farm').innerHTML = `${opcaoDeIdiomas.apoiaFarm}`;
+    document.getElementById('texto-apoio-yakkamon').innerHTML = `${opcaoDeIdiomas.apoioYakkamon}`;
+
+    // Traduções dos novos botões de Limpar (Protegidos contra Null)
+    if (document.getElementById('btnLimparSkills')) document.getElementById('btnLimparSkills').innerHTML = opcaoDeIdiomas.botaoLimparSkills;
+    if (document.getElementById('btnLimparCollectibles')) document.getElementById('btnLimparCollectibles').innerHTML = opcaoDeIdiomas.botaoLimparCollectibles;
+    if (document.getElementById('btnLimparWearables')) document.getElementById('btnLimparWearables').innerHTML = opcaoDeIdiomas.botaoLimparWearables;
+    if (document.getElementById('btnLimparBuds')) document.getElementById('btnLimparBuds').innerHTML = opcaoDeIdiomas.botaoLimparBuds;
+    if (document.getElementById('btnLimparTemporarios')) document.getElementById('btnLimparTemporarios').innerHTML = opcaoDeIdiomas.botaoLimparTemporarios;
 
     //informações das Crops
     document.getElementById('modoDeCalcularCrops').innerHTML = `${opcaoDeIdiomas.modoDeCalcularCrops}:`; 
@@ -122,7 +131,7 @@ function mudarIdioma() {
 
     //NFTs, Skills e Buffs Temporarios
     document.getElementById('buffs-temporarios').innerHTML = `${opcaoDeIdiomas.abaBuffsTemporarios}`;
-    document.getElementById('total-valor-em-shrines').innerHTML = `${opcaoDeIdiomas.tituloDentroDaAbaBuffsTemporarios}`;
+    // document.getElementById('total-valor-em-shrines').innerHTML = `${opcaoDeIdiomas.tituloDentroDaAbaBuffsTemporarios}`; // Foi removido no HTML
 
     //evento Bonus
     document.getElementById('eventoBonus').innerHTML = `${opcaoDeIdiomas.eventoBonus}`;
@@ -142,7 +151,7 @@ function mudarIdioma() {
     document.getElementById('tab-salt-lick-chickens').innerHTML = `* ${opcaoDeIdiomas.avisoSaltLickChickens}`;
     document.getElementById('tab-salt-lick-cows').innerHTML = `* ${opcaoDeIdiomas.avisoSaltLickCows}`;
     document.getElementById('tab-salt-lick-sheeps').innerHTML = `* ${opcaoDeIdiomas.avisoSaltLickSheeps}`;
-    document.getElementById('buds-não-marcam-automaticamente').innerHTML = `* ${opcaoDeIdiomas.avisoDeBuds}`;
+    if(document.getElementById('buds-não-marcam-automaticamente')) document.getElementById('buds-não-marcam-automaticamente').innerHTML = `* ${opcaoDeIdiomas.avisoDeBuds}`;
 
     //Resultado Total do combo montado
     document.getElementById('accordionResultadoComboCompleto').innerHTML = `${opcaoDeIdiomas.tituloAccordionCombo}`
@@ -153,12 +162,12 @@ function mudarIdioma() {
     //Atualizações feitas
     const atualizacoesFeitas = idiomaDasAtualizacoes[idioma];
     document.getElementById('avisos-atualizacoes').innerHTML = `${atualizacoesFeitas.nomeDaAbaAtualizacao}`; 
-    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.1.6`;
-    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV112}`;
-    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV113}`;
-    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV114}`;
-    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV115}`;
-    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV116}`;
+    document.getElementById('atualizacao-feita').innerHTML = `${atualizacoesFeitas.ultimaAtualizacao} — v1.2.0`;
+    document.getElementById('v5').innerHTML = `${atualizacoesFeitas.atualizacaoV113}`;
+    document.getElementById('v4').innerHTML = `${atualizacoesFeitas.atualizacaoV114}`;
+    document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV115}`;
+    document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV116}`;
+    document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV120}`;
 
 
     pontosGastosEmSkills();
@@ -184,6 +193,8 @@ const idiomaEscolhido = {
         verao: 'Verão',
         outono: 'Outono',
         inverno: 'Inverno',
+        apoiaFarm: 'Apoie minha farm com Cheer 🚀',
+        apoioYakkamon: 'Apoie se cadastrando com meu link no Yakkamon!',
 
         //todos restocks
         descontarCustoRestock: 'Descontar custo',
@@ -276,6 +287,13 @@ const idiomaEscolhido = {
         abaBuffsTemporarios: 'Buffs Temporários',
         tituloDentroDaAbaBuffsTemporarios: 'Buffs Temporários', //tirar talvez
 
+        // Botões de Limpar as Abas
+        botaoLimparSkills: 'Limpar Skills',
+        botaoLimparCollectibles: 'Limpar Collectibles',
+        botaoLimparWearables: 'Limpar Wearables',
+        botaoLimparBuds: 'Limpar Buds',
+        botaoLimparTemporarios: 'Limpar Buffs',
+
         //evento Bonus
         eventoBonus: 'Evento Bonus',
         avisoDoBonus: 'Um Evento Bônus foi selecionado. Considere apenas os resultados diários e ignore os semanais.',
@@ -300,12 +318,6 @@ const idiomaEscolhido = {
         avisoSaltLickCows: 'Ao selecionar qualquer Vaca no nível desejado, ela produzirá 5% mais recursos. Lembre-se de que este é um buff temporário. Ao ativar essa opção, o sistema assumirá que o buff será utilizado em todas as vacas selecionadas, então use com cuidado para evitar resultados irreais!',
         avisoSaltLickSheeps: 'Ao selecionar qualquer Ovelha no nível desejado, ela produzirá 5% mais recursos. Lembre-se de que este é um buff temporário. Ao ativar essa opção, o sistema assumirá que o buff será utilizado em todas as ovelhas selecionadas, então use com cuidado para evitar resultados irreais!',
         avisoDeBuds: 'Selecione os Buds que você possui ou deseja possuir, pois no momento eles ainda não são marcados automaticamente ao preencher sua farm! Suas seleções ficam salvas ao recarregar ou acessar o site novamente!',
-
-        //avisoHoneyTreat: 'Retirados temporariamente, pois a fórmula estava incorreta. Qualquer opção marcada acabava afetando todos os níveis e somando os bônus de forma errada. Por esse motivo, removi a funcionalidade momentaneamente até encontrar uma solução adequada. Desculpe pelo inconveniente!',
-        //avisoSaltLickChickens: 'Retirados temporariamente, pois a fórmula estava incorreta. Qualquer opção marcada acabava afetando todos os níveis e somando os bônus de forma errada. Por esse motivo, removi a funcionalidade momentaneamente até encontrar uma solução adequada. Desculpe pelo inconveniente!',
-        //avisoSaltLickCows: 'Retirados temporariamente, pois a fórmula estava incorreta. Qualquer opção marcada acabava afetando todos os níveis e somando os bônus de forma errada. Por esse motivo, removi a funcionalidade momentaneamente até encontrar uma solução adequada. Desculpe pelo inconveniente!',
-        //avisoSaltLickSheeps: 'Retirados temporariamente, pois a fórmula estava incorreta. Qualquer opção marcada acabava afetando todos os níveis e somando os bônus de forma errada. Por esse motivo, removi a funcionalidade momentaneamente até encontrar uma solução adequada. Desculpe pelo inconveniente!',
-
     },
     ingles: {
         //dados iniciais
@@ -323,6 +335,8 @@ const idiomaEscolhido = {
         verao: 'Summer',
         outono: 'Autumn',
         inverno: 'Winter',
+        apoiaFarm: 'Suport my farm with a cheer 🚀',
+        apoioYakkamon: 'Support me by signing up with my Yakkamon link!',
 
         //todos restocks
         descontarCustoRestock: 'Deduct cost',
@@ -411,6 +425,13 @@ const idiomaEscolhido = {
         abaBuffsTemporarios: 'Temporary Buffs',
         tituloDentroDaAbaBuffsTemporarios: 'Temporary Buffs',
 
+        // Botões de Limpar as Abas
+        botaoLimparSkills: 'Clear Skills',
+        botaoLimparCollectibles: 'Clear Collectibles',
+        botaoLimparWearables: 'Clear Wearables',
+        botaoLimparBuds: 'Clear Buds',
+        botaoLimparTemporarios: 'Clear Buffs',
+
         //evento Bonus
         eventoBonus: 'Bonus Event',
         avisoDoBonus: 'A Bonus Event has been selected. Consider only the daily results and ignore the weekly ones.',
@@ -435,11 +456,6 @@ const idiomaEscolhido = {
         avisoSaltLickCows: 'When selecting any Cow at the desired level, it will produce 5% more resources. Keep in mind that this is a temporary buff. By enabling this option, the system will assume the buff is being used on all selected cows, so use it carefully to avoid unrealistic results!',
         avisoSaltLickSheeps: 'When selecting any Sheep at the desired level, it will produce 5% more resources. Keep in mind that this is a temporary buff. By enabling this option, the system will assume the buff is being used on all selected sheep, so use it carefully to avoid unrealistic results!',
         avisoDeBuds: 'Select the Buds you own or wish to own, as they are not automatically selected when filling in your farm at the moment! Your selections will be saved when you refresh or revisit the site!',
-
-        //avisoHoneyTreat: 'Temporarily removed because the formula was incorrect. Any selected option was affecting all levels and stacking the bonuses incorrectly. For this reason, I removed the feature for now until I can find a proper solution. Sorry for the inconvenience!',
-        //avisoSaltLickChickens: 'Temporarily removed because the formula was incorrect. Any selected option was affecting all levels and stacking the bonuses incorrectly. For this reason, I removed the feature for now until I can find a proper solution. Sorry for the inconvenience!',
-        //avisoSaltLickCows: 'Temporarily removed because the formula was incorrect. Any selected option was affecting all levels and stacking the bonuses incorrectly. For this reason, I removed the feature for now until I can find a proper solution. Sorry for the inconvenience!',
-        //avisoSaltLickSheeps: 'Temporarily removed because the formula was incorrect. Any selected option was affecting all levels and stacking the bonuses incorrectly. For this reason, I removed the feature for now until I can find a proper solution. Sorry for the inconvenience!',
     }
 
 
@@ -661,7 +677,16 @@ const idiomaDasAtualizacoes = {
         
         atualizacaoV116: `v1.1.6 – Atualizado em 08/08/2026<br><br>
             • Adicionados os novos Collectibles e Wearables da nova temporada.<br><br>
-            • A implementação das skills exige mudanças complexas na lógica dos meus cálculos e na seleção por checkboxes, então levará um tempo maior para serem atualizadas.`
+            • A implementação das skills exige mudanças complexas na lógica dos meus cálculos e na seleção por checkboxes, então levará um tempo maior para serem atualizadas.`,
+
+        atualizacaoV120: `v1.2.0 – Atualizado em 16/08/2026<br><br>
+            • <b>Árvores de Skills reformuladas:</b> Agora as habilidades possuem múltiplos níveis!<br><br>
+            • <b>Contador de Shards:</b> Adicionada a visualização do gasto exato de Shards em conjunto com os pontos de skill (SP).<br><br>
+            • <b>Ajuste na "Fruitful Bounty":</b> A skill agora afeta corretamente os fertilizantes (buffs temporários) de frutas.<br><br>
+            • <b>Limpeza rápida:</b> Adicionados botões para limpar facilmente todas as skills ou NFTs que você selecionou.<br><br>
+            • <b>Yakkamon:</b> Adicionado o link para você me apoiar e fazer o pré-registro no novo jogo da equipe!<br><br>
+            • <b>Outras melhorias:</b> Fiz diversos ajustes internos e otimizações. Como o sistema de skills mudou bastante, pode ser que algum bug tenha passado despercebido (espero que não!). Caso notem algo estranho, me dêem um toque lá no Discord para eu corrigir!`
+    
     },
     ingles: {
         nomeDaAbaAtualizacao: 'Updates Made',
@@ -879,7 +904,15 @@ const idiomaDasAtualizacoes = {
         
         atualizacaoV116: `v1.1.6 – Updated on 08/08/2026<br><br>
             • Added the new season's Collectibles and Wearables.<br><br>
-            • Implementing skills requires complex changes to the calculation logic and checkbox selection, so it will take longer to be updated.`
+            • Implementing skills requires complex changes to the calculation logic and checkbox selection, so it will take longer to be updated.`,
+
+        atualizacaoV120: `v1.2.0 – Updated on August 16, 2026<br><br>
+            • <b>Skill Trees Reworked:</b> Skills now have multiple levels!<br><br>
+            • <b>Shard Counter:</b> Added visualization for the exact amount of Shards spent alongside Skill Points (SP).<br><br>
+            • <b>"Fruitful Bounty" Adjustment:</b> The skill now correctly affects fruit fertilizers (temporary buffs).<br><br>
+            • <b>Quick Clear:</b> Added buttons to easily clear all selected skills or NFTs.<br><br>
+            • <b>Yakkamon:</b> Added a link for you to support me and pre-register for the team's new game!<br><br>
+            • <b>Other Improvements:</b> Made several internal adjustments and optimizations. Since the skill system changed quite a bit, a bug might have slipped through (hopefully not!). If you notice anything weird, let me know on Discord so I can fix it!`
 
     }
 };

@@ -1,157 +1,155 @@
 function calcularBuff(recurso, listasDeBuffs) { 
     
-    //variaveis que sao afetas pelos buffs de quantidade, qquantidade em Area e insta
-    let qtdMulti = 1;       //sinal === 'x'
-    let qtdSoma = 0;        //sinal === '+'
-    let qtdSubtrai = 0;     //sinal === '-'
-    let qtdArea = 0;        //sinal === '+A'
-    let qtdInsta = 1;       //sinal === 'xI'
-    let qtdSemente = 1;     //sinal === '+S'
-    let qtdMenosRacao = 1;  //sinal === 'x-'
-    let qtdMaisRacao = 1;   //sinal === 'x+'
+    // Variáveis que são afetas pelos buffs de quantidade, quantidade em Área e insta
+    let qtdMulti = 1;       // sinal === 'x'
+    let qtdSoma = 0;        // sinal === '+'
+    let qtdSubtrai = 0;     // sinal === '-'
+    let qtdArea = 0;        // sinal === '+A'
+    let qtdInsta = 1;       // sinal === 'xI'
+    let qtdSemente = 1;     // sinal === '+S'
+    let qtdMenosRacao = 1;  // sinal === 'x-'
+    let qtdMaisRacao = 1;   // sinal === 'x+'
 
-    //variaveis que sao afetadas pelos buffs de tempo
+    // Variáveis que são afetadas pelos buffs de tempo
     let tempoMulti = 1;
     let tempoCM = 1;
     let tempoSubtrai = 0;
 
-    //variaveis que são afetadas pelos buffs de coins
+    // Variáveis que são afetadas pelos buffs de coins
     let multiCusto = 1;
     let multiVenda = 1;
 
-    //variaveis que são afetadas pelos buffs de estoque
+    // Variáveis que são afetadas pelos buffs de estoque
     let estoqueMulti = 1;
     let estoqueSoma = 0;
 
-    //variaveis que afetam Oil usado na CM
+    // Variáveis que afetam Oil usado na CM e GH
     let oilMulti = 1;
     let oilAumentado = 0;
     let oilDiminuido = 0;
 
-    //evento bonus
-    let bountifulHarvest = 0; //+1 crops e frutas
-    let sunshower = 1; //redução de 50% nas crops
-    if (eventoSelecionado === 'bountifulHarvest' && (estacao === 'spring' || estacao === 'summer')) {
-        bountifulHarvest = 1;
-    }
-    if (eventoSelecionado === 'sunshower' && (estacao === 'autumn' || estacao === 'winter')) {
-        sunshower = 0.5;
+    // Eventos bônus
+    let bountifulHarvest = 0; // +1 crops e frutas
+    let sunshower = 1; // redução de 50% nas crops
+    
+    // Check de segurança (evita erros caso essas variáveis sejam carregadas depois)
+    if (typeof eventoSelecionado !== 'undefined' && typeof estacao !== 'undefined') {
+        if (eventoSelecionado === 'bountifulHarvest' && (estacao === 'spring' || estacao === 'summer')) {
+            bountifulHarvest = 1;
+        }
+        if (eventoSelecionado === 'sunshower' && (estacao === 'autumn' || estacao === 'winter')) {
+            sunshower = 0.5;
+        }
     }
 
-
-    //esse 'lista' pode ser skills e NFTs, vai percorrer todos os buffs e adicionar o valor as variaveis criadas acima de acordo com regra
+    // Esse 'lista' pode ser skills e NFTs, vai percorrer todos os buffs e adicionar o valor às variáveis
     function aplicarBuffs(lista) { 
         lista.forEach(nftOuSkill => {
-            if (!nftOuSkill.possui) return;
-
-            if (nftOuSkill.estacao && !nftOuSkill.estacao.includes(estacao)) return;
             
-            // Identifica o nome do recurso (objeto com .name ou string direta)
-            const nomeRecurso = recurso.name || recurso.levelAnterior || recurso;
+            // VERIFICAÇÃO ATUALIZADA: Confere se 'possui' ou 'level' é truthy
+            const isActive = nftOuSkill.possui || (nftOuSkill.level !== undefined && nftOuSkill.level > 0);
+            if (!isActive) return;
 
-            //isso foi colocado por conta dos buffs temporarios, mas não altera o funcionamento dos demais buffs, só mudei aonde afeta quantidade, os demais funcionaram ainda com nomeRecurso
+            if (nftOuSkill.estacao && typeof estacao !== 'undefined' && !nftOuSkill.estacao.includes(estacao)) return;
+            
+            // Identifica o nome do recurso
             const nomeGenerico  = recurso.name  ?? recurso;
             const nomeEspecifico = recurso.levelAnterior ?? null;
 
-            
-            //=============================================================================================================================================================
-            //Adiciona os buffs que afetam a quantidade de recursos 
-            if (nftOuSkill.quantidade) {
-                nftOuSkill.quantidade.forEach(qtd => {
-                    if (qtd.recursoAfetado?.includes(nomeGenerico) || (nomeEspecifico && qtd.recursoAfetado?.includes(nomeEspecifico))) {
-                        if (qtd.sinal === 'x') qtdMulti *= qtd.buff;
-                        if (qtd.sinal === '+') qtdSoma += qtd.buff;
-                        if (qtd.sinal === '-') qtdSubtrai += qtd.buff;
-                        if (qtd.sinal === '+A') qtdArea += qtd.buff;
-                        if (qtd.sinal === 'xI') qtdInsta *= qtd.buff;
-                        if (qtd.sinal === '+S') qtdSemente += qtd.buff;
-                        if (qtd.sinal === 'x-') qtdMenosRacao *= qtd.buff;
-                        if (qtd.sinal === 'x+') qtdMaisRacao *= qtd.buff;
-                    }
-                });
-            };
-            //=============================================================================================================================================================
-            //Adiciona os buffs que afetam a quantidade de recursos 
-            if (nftOuSkill.quantidade2) {
-                nftOuSkill.quantidade2.forEach(qtd => {
-                    if (qtd.recursoAfetado?.includes(nomeGenerico) || (nomeEspecifico && qtd.recursoAfetado?.includes(nomeEspecifico))) {
-                        if (qtd.sinal === 'x') qtdMulti *= qtd.buff;
-                        if (qtd.sinal === '+') qtdSoma += qtd.buff;
-                        if (qtd.sinal === '-') qtdSubtrai += qtd.buff;
-                        if (qtd.sinal === '+A') qtdArea += qtd.buff;
-                        if (qtd.sinal === 'xI') qtdInsta *= qtd.buff;
-                        if (qtd.sinal === '+S') qtdSemente += qtd.buff;
-                        if (qtd.sinal === 'x-') qtdMenosRacao *= qtd.buff;
-                        if (qtd.sinal === 'x+') qtdMaisRacao *= qtd.buff;
-                    }
-                });
-            };
-            //=============================================================================================================================================================
-            //Adiciona os buffs que afetam o tempo dos recursos 
-            if (nftOuSkill.tempo) {
-                nftOuSkill.tempo.forEach(tempo => {
-                    if (tempo.recursoAfetado?.includes(nomeRecurso)) {
-                        if (tempo.sinal === 'x') tempoMulti *= tempo.buff;
-                        if (tempo.sinal === 'xCM') tempoCM *= tempo.buff  
-                        if (tempo.sinal === '-') tempoSubtrai += tempo.buff;
-                    }
-                });
-            };
-            //=============================================================================================================================================================
-            //Adiciona os buffs que afetam o custo e venda por coins 
-            if (nftOuSkill.coins) {
-                nftOuSkill.coins.forEach(coin => {
-                    if (coin.recursoAfetado?.includes(nomeRecurso)) {
-                        if (coin.sinal === 'xV') multiVenda *= coin.buff;
-                        if (coin.sinal === 'xC') multiCusto *= coin.buff;                
-                    }
-                });
-            };
-            //=============================================================================================================================================================
-            //Adiciona os buffs que afetam o estoque
-            if (nftOuSkill.estoque) {
-                nftOuSkill.estoque.forEach(estoque => {
-                    if (estoque.recursoAfetado?.includes(nomeRecurso)) {
-                        if (estoque.sinal === 'x') estoqueMulti *= estoque.buff;
-                        if (estoque.sinal === '+') estoqueSoma += estoque.buff;                
-                    }
-                });
-            };
-            //=============================================================================================================================================================
-            //Adiciona os buffs que afetam o Oil usado na CM
-            if (nftOuSkill.oilCM) {
-                nftOuSkill.oilCM.forEach(oil => {
-                    if (oil.sinal === '+') oilAumentado += oil.buff;
-                    if (oil.sinal === '-') oilDiminuido += oil.buff;
-                })
-            };
-            //=============================================================================================================================================================
-            //Adiciona os buffs que afetam o Oil usado na GH
-            if (nftOuSkill.oilGH) {
-                nftOuSkill.oilGH.forEach(oil => {
-                    if (oil.sinal === 'x') oilMulti *= oil.buff;
-                    if (oil.sinal === '-') oilDiminuido += oil.buff;
-                })
-            };
-            //=============================================================================================================================================================
-            //Adiciona os buffs que afetam os eventos Bonus
-            if (nftOuSkill.upEvento) {
-                nftOuSkill.upEvento.forEach(evento => {
-                    if (evento.recursoAfetado.includes(estacao)) {
-                        bountifulHarvest *= 2;
-                        if (eventoSelecionado === 'sunshower') sunshower /= 2;
-                    }
-                })
-            };
-            
+            // FUNÇÃO AUXILIAR: Padroniza o acesso aos dados, resolvendo conflitos de estrutura
+            const processarEfeito = (efeitos, callback) => {
+                if (!efeitos) return;
+                
+                // Transforma objetos isolados em array para percorrer normalmente
+                const arrayDeEfeitos = Array.isArray(efeitos) ? efeitos : [efeitos];
 
+                arrayDeEfeitos.forEach(efeito => {
+                    // Normaliza chave de recursoAfetado (plural vs singular)
+                    const recursosAfetados = efeito.recursoAfetado || efeito.recursosAfetados || [];
+
+                    // Se o recurso atual estiver na lista de afetados...
+                    if (recursosAfetados.includes(nomeGenerico) || (nomeEspecifico && recursosAfetados.includes(nomeEspecifico))) {
+                        
+                        let valorBuff = efeito.buff;
+                        
+                        // LÓGICA DE NÍVEL: Se o buff for um Array, extrai o número com base no level atual da skill
+                        if (Array.isArray(valorBuff) && nftOuSkill.level > 0) {
+                            valorBuff = valorBuff[nftOuSkill.level - 1]; // Índice 0 é igual ao Nível 1
+                        }
+
+                        // Executa a operação de matemática na respectiva variável
+                        callback(efeito.sinal, valorBuff);
+                    }
+                });
+            };
+
+            // Aplica os buffs em cada categoria com a nova lógica universal
+            processarEfeito(nftOuSkill.quantidade, (sinal, buff) => {
+                if (sinal === 'x') qtdMulti *= buff;
+                if (sinal === '+') qtdSoma += buff;
+                if (sinal === '-') qtdSubtrai += buff;
+                if (sinal === '+A') qtdArea += buff;
+                if (sinal === 'xI') qtdInsta *= buff;
+                if (sinal === '+S') qtdSemente += buff;
+                if (sinal === 'x-') qtdMenosRacao *= buff;
+                if (sinal === 'x+') qtdMaisRacao *= buff;
+            });
+
+            processarEfeito(nftOuSkill.quantidade2, (sinal, buff) => {
+                if (sinal === 'x') qtdMulti *= buff;
+                if (sinal === '+') qtdSoma += buff;
+                if (sinal === '-') qtdSubtrai += buff;
+                if (sinal === '+A') qtdArea += buff;
+                if (sinal === 'xI') qtdInsta *= buff;
+                if (sinal === '+S') qtdSemente += buff;
+                if (sinal === 'x-') qtdMenosRacao *= buff;
+                if (sinal === 'x+') qtdMaisRacao *= buff;
+            });
+
+            processarEfeito(nftOuSkill.tempo, (sinal, buff) => {
+                if (sinal === 'x') tempoMulti *= buff;
+                if (sinal === 'xCM') tempoCM *= buff;  
+                if (sinal === '-') tempoSubtrai += buff;
+            });
+
+            processarEfeito(nftOuSkill.coins, (sinal, buff) => {
+                if (sinal === 'xV') multiVenda *= buff;
+                if (sinal === 'xC') multiCusto *= buff;                
+            });
+
+            processarEfeito(nftOuSkill.estoque, (sinal, buff) => {
+                if (sinal === 'x') estoqueMulti *= buff;
+                if (sinal === '+') estoqueSoma += buff;                
+            });
+
+            processarEfeito(nftOuSkill.oilCM, (sinal, buff) => {
+                if (sinal === '+') oilAumentado += buff;
+                if (sinal === '-') oilDiminuido += buff;
+            });
+
+            processarEfeito(nftOuSkill.oilGH, (sinal, buff) => {
+                if (sinal === 'x') oilMulti *= buff;
+                if (sinal === '-') oilDiminuido += buff;
+            });
+
+            // Tratamento isolado para o 'upEvento' já que lida com variáveis globais do clima
+            if (nftOuSkill.upEvento) {
+                const upEventos = Array.isArray(nftOuSkill.upEvento) ? nftOuSkill.upEvento : [nftOuSkill.upEvento];
+                upEventos.forEach(evento => {
+                    const recursosAfetados = evento.recursoAfetado || evento.recursosAfetados || [];
+                    if (typeof estacao !== 'undefined' && recursosAfetados.includes(estacao)) {
+                        bountifulHarvest *= 2;
+                        if (typeof eventoSelecionado !== 'undefined' && eventoSelecionado === 'sunshower') sunshower /= 2;
+                    }
+                });
+            }
         });
         
-    };
-    //percorre todas as listas enviadas ate eles acabarem (foi oque entendi)
+    }
+    // Percorre todas as listas enviadas até eles acabarem
     listasDeBuffs.forEach(lista => aplicarBuffs(lista));
 
-    // devolve um objeto com todos os valores calculados
+    // Devolve um objeto com todos os valores calculados
     return {
         qtdSemente,
         qtdMulti,
@@ -179,7 +177,6 @@ function calcularBuff(recurso, listasDeBuffs) {
         bountifulHarvest,
         sunshower
     };
-
 };
 
 function buffsAdicionadosCrops() {
@@ -241,6 +238,8 @@ function buffsAdicionadosCrops() {
 
     //======================================================================================================================================================================
 
+    //======================================================================================================================================================================
+
     cropMachine.forEach(cropM => {
         const budsFiltrados = filtrarBudsMaiorBuff();
 
@@ -261,26 +260,48 @@ function buffsAdicionadosCrops() {
             budsFiltrados
         ]);
 
-        //atualizar a quantidade de plots que a CM possui e quantos Oil ela gasta por hora!
-        plotsCM = mapaDeTodasSkillsComTier['fieldExtensionModule'].possui ? 15 : 10;
-        oilPorHora = (1 - buffs.oilDiminuido) * (1 + buffs.oilAumentado);
+        // ATUALIZAÇÃO: Calculando Plots da CM dinamicamente com base nos 3 Níveis
+        plotsCM = 10;
+        let skillPlotsCM = mapaDeTodasSkillsComTier['fieldExtensionModule'];
+        if (skillPlotsCM && skillPlotsCM.level > 0) {
+            plotsCM += skillPlotsCM.plotsCM[0].buff[skillPlotsCM.level - 1];
+        }
 
-        //liberar as crops com as skills
-        if (mapaDeTodasSkillsComTier['cropExtensionModuleI'].possui) {
+        // ATUALIZAÇÃO: Lendo diretamente as skills de Oil para evitar falha de compatibilidade de nome
+        let oilDim = 0;
+        let oilAum = 0;
+
+        let skillOilGadget = mapaDeTodasSkillsComTier['oilGadget'];
+        if (skillOilGadget && skillOilGadget.level > 0) oilDim += skillOilGadget.oilCM[0].buff[skillOilGadget.level - 1];
+
+        let skillEff = mapaDeTodasSkillsComTier['efficiencyExtensionModule'];
+        if (skillEff && skillEff.level > 0) oilDim += skillEff.oilCM[0].buff[skillEff.level - 1];
+
+        let skillCpu = mapaDeTodasSkillsComTier['cropProcessorUnit'];
+        if (skillCpu && skillCpu.level > 0) oilAum += skillCpu.oilCM[0].buff[skillCpu.level - 1];
+
+        let skillRapidRig = mapaDeTodasSkillsComTier['rapidRig'];
+        if (skillRapidRig && skillRapidRig.level > 0) oilAum += skillRapidRig.oilCM[0].buff[skillRapidRig.level - 1];
+
+        // Aplica o cálculo final de gasto de Oil por Hora
+        oilPorHora = (1 - oilDim) * (1 + oilAum);
+
+        // liberar as crops com as skills (agora verificando pelo .level)
+        if (mapaDeTodasSkillsComTier['cropExtensionModuleI']?.level > 0) {
             mapaDeTodasCropsEFrutas['Rhubarb'].permitido = true;
             mapaDeTodasCropsEFrutas['Zucchini'].permitido = true;
         } else {
             mapaDeTodasCropsEFrutas['Rhubarb'].permitido = false;
             mapaDeTodasCropsEFrutas['Zucchini'].permitido = false;
         }
-        if (mapaDeTodasSkillsComTier['cropExtensionModuleII'].possui) {
+        if (mapaDeTodasSkillsComTier['cropExtensionModuleII']?.level > 0) {
             mapaDeTodasCropsEFrutas['Carrot'].permitido = true;
             mapaDeTodasCropsEFrutas['Cabbage'].permitido = true;
         } else {
             mapaDeTodasCropsEFrutas['Carrot'].permitido = false;
             mapaDeTodasCropsEFrutas['Cabbage'].permitido = false;
         }
-        if (mapaDeTodasSkillsComTier['cropExtensionModuleIII'].possui) {
+        if (mapaDeTodasSkillsComTier['cropExtensionModuleIII']?.level > 0) {
             mapaDeTodasCropsEFrutas['Yam'].permitido = true;
             mapaDeTodasCropsEFrutas['Broccoli'].permitido = true;
         } else {
@@ -288,17 +309,17 @@ function buffsAdicionadosCrops() {
             mapaDeTodasCropsEFrutas['Broccoli'].permitido = false;
         }
 
-        //Estoque de crops!
+        // Estoque de crops!
         cropM.estoqueTotal = (cropM.estoque * buffs.estoqueMulti) + buffs.estoqueSoma;
 
-        //Custo da semente e valor da crop em coins!
+        // Custo da semente e valor da crop em coins!
         cropM.custoPorSemente = cropM.custoSemente * buffs.multiCusto; 
         cropM.vendaPorCrop = cropM.valorDeVenda * buffs.multiVenda;
 
-        //tempo para ficar pronta a crop!
+        // tempo para ficar pronta a crop!
         cropM.tempoFinal = cropM.tempo * buffs.tempoCM;
 
-        //quantidade de crops recebida por semente!
+        // quantidade de crops recebida por semente!
         cropM.quantidade = Number(buffs.qtdMulti + buffs.qtdSoma + buffs.bountifulHarvest - buffs.qtdSubtrai);
 
         if (modoDeCalularCropsNaCM === 'manual') {
@@ -351,17 +372,40 @@ function buffsAdicionadosFrutas() {
         if (mapaDeTodosCollectibles['immortalPear'].possui) {
             frutiferasDuram += mapaDeTodosCollectibles['immortalPear'].duracao[0].buff
         }
-
-        //ferramentas usadas para cortar a arvore
+        
+        // ====================================================================
+        // Ferramentas usadas para cortar a arvore
+        // ====================================================================
         fruta.axe = 1;
-        if (mapaDeTodasSkillsComTier['noAxeNoWorries'].possui) fruta.axe *= mapaDeTodasSkillsComTier['noAxeNoWorries'].quantidade[0].buff;
+
+        let skillNoAxe = mapaDeTodasSkillsComTier['noAxeNoWorries'];
+        if (skillNoAxe && skillNoAxe.possui) {
+            // Pega o nível atual e subtrai 1 para achar o índice correto no array (ex: Nv 1 = índice 0)
+            let indiceNivel = (skillNoAxe.level || skillNoAxe.nivelAtual) - 1;
+            fruta.axe *= skillNoAxe.quantidade[0].buff[indiceNivel];
+        }
+
+        // Itens Legacy e Collectibles continuam com a estrutura antiga (não são arrays)
         if (mapaDeTodosCollectibles['foremanBeaver'].possui)   fruta.axe *= mapaDeTodosCollectibles['foremanBeaver'].quantidade[0].buff;
         if (mapaDeTodasSkillsLegacy['logger'].possui)          fruta.axe *= mapaDeTodasSkillsLegacy['logger'].quantidade[0].buff;
 
-        //wood que vai ganhar ao quebrar as arvores
+        // ====================================================================
+        // Wood que vai ganhar ao quebrar as arvores
+        // ====================================================================
         fruta.wood = 1;
-        if (mapaDeTodasSkillsComTier['noAxeNoWorries'].possui) fruta.wood *= mapaDeTodasSkillsComTier['noAxeNoWorries'].quantidade[0].buff;
-        if (mapaDeTodasSkillsComTier['fruityWoody'].possui) fruta.wood += mapaDeTodasSkillsComTier['fruityWoody'].quantidade[0].buff;
+
+        if (skillNoAxe && skillNoAxe.possui) {
+            let indiceNivel = (skillNoAxe.level || skillNoAxe.nivelAtual) - 1;
+            // Na nova estrutura, o debuff de madeira foi para quantidade2 com o sinal de "-"
+            fruta.wood -= skillNoAxe.quantidade2[0].buff[indiceNivel];
+        }
+
+        let skillFruityWoody = mapaDeTodasSkillsComTier['fruityWoody'];
+        if (skillFruityWoody && skillFruityWoody.possui) {
+            let indiceNivel = (skillFruityWoody.level || skillFruityWoody.nivelAtual) - 1;
+            // O Fruity Woody continua somando a madeira, mas agora lendo de dentro do array
+            fruta.wood += skillFruityWoody.quantidade[0].buff[indiceNivel];
+        }
 
         //quantidade de fruta por colheita
         fruta.quantidade = ((1 * buffs.qtdMulti) + buffs.qtdSoma + buffs.bountifulHarvest - buffs.qtdSubtrai) * frutiferasDuram;
@@ -573,6 +617,7 @@ function buffsAdicionadosMinerais() {
     });
 
     //para pesca e escavação ate o momento
+    //para pesca e escavação ate o momento
     ferramentasSecundarias.forEach(ferramenta => {
         const buffs = calcularBuff(ferramenta, [
             skillsLegacy,
@@ -588,6 +633,7 @@ function buffsAdicionadosMinerais() {
             skillsAging.tier1,
             skillsAging.tier2,
             skillsAging.tier3,
+            skillsFishing.tier1, // <-- Reel Deal está aqui
             collectibles.ferreiro,
             collectibles.trees,
             collectibles.minerals,
@@ -603,6 +649,11 @@ function buffsAdicionadosMinerais() {
 
         ferramenta.quantidade = Number(ferramenta.qtdUsada * buffs.qtdMulti);
         ferramenta.estoqueFinal = Math.ceil((ferramenta.estoque * buffs.estoqueMulti) + buffs.estoqueSoma);
+
+        // 👇 ADICIONE ESTA LINHA PARA O DESCONTO (xC) FUNCIONAR NAS VARAS 👇
+        if (ferramenta.recursosNecessarios && ferramenta.recursosNecessarios.coinsOriginal !== undefined) {
+            ferramenta.recursosNecessarios.coins = ferramenta.recursosNecessarios.coinsOriginal * buffs.multiCusto;
+        }
 
     });
 
@@ -625,10 +676,23 @@ function mediaDeValorDasFerramentasEMinerais() {
 
     todasFerramentas.forEach(ferramenta => {
 
+        // =========================================================================
+        // LÓGICA ATUALIZADA DO OIL RIG (TROCA E QUANTIDADE CONFORME O NÍVEL DA SKILL)
+        // =========================================================================
         let oilLaOuCouro = 'leather';
-        if (mapaDeTodasSkillsComTier['oilRig'].possui && ferramenta.name === 'Oil Drill') {
+        let qtdMaterialSecundario = ferramenta.recursosNecessarios['leather'] ?? 0;
+
+        let skillOilRig = mapaDeTodasSkillsComTier['oilRig'];
+        
+        // Verifica se possui a skill e se a ferramenta é a Oil Drill
+        if (skillOilRig && skillOilRig.level > 0 && ferramenta.name === 'Oil Drill') {
             oilLaOuCouro = 'wool';
+            let indiceNivel = skillOilRig.level - 1; // Ex: Nível 1 = índice 0 (20 lãs)
+            
+            // Puxa a quantidade correta de Lã da skill e substitui no cálculo
+            qtdMaterialSecundario = skillOilRig.troca[0].buff[indiceNivel];
         } 
+        // =========================================================================
 
         //olhar depois, criado para calcular direito o recurso quando a pessoa possui ferramentas de farm gratis
         let gastosComFerramentas = 1;
@@ -650,7 +714,7 @@ function mediaDeValorDasFerramentasEMinerais() {
             ((ferramenta.recursosNecessarios['gold'] ?? 0) * (mapaDeMinerals['gold']?.mediaDeCustoCoins ?? 0)) +
             ((ferramenta.recursosNecessarios['crimstone'] ?? 0) * (mapaDeMinerals['crimstone']?.mediaDeCustoCoins ?? 0)) +
             ((ferramenta.recursosNecessarios['oil'] ?? 0) * (mapaDeMinerals['oil']?.mediaDeCustoCoins ?? 0)) +
-            ((ferramenta.recursosNecessarios[oilLaOuCouro] ?? 0) * (mapaDosValoresDoMarket[oilLaOuCouro]?.valor ?? 0) * flowerEmCoins)) * gastosComFerramentas;
+            (qtdMaterialSecundario * (mapaDosValoresDoMarket[oilLaOuCouro]?.valor ?? 0) * flowerEmCoins)) * gastosComFerramentas;
 
             
         //feito para mostrar os gastos com as ferramentas nos cards!
@@ -663,8 +727,10 @@ function mediaDeValorDasFerramentasEMinerais() {
 
         //essas 3 abaixo foi criado dentro de minerais, apenas com intuito de somar quanto foi gasto nas ferramentas e descontar!
         mapaDeMinerals.coinsGastas += Number((ferramenta.recursosNecessarios['coins'] ?? 0) * ferramenta.quantidade);
-        mapaDeMinerals.leatherGastas += oilLaOuCouro === 'leather' ? Number((ferramenta.recursosNecessarios['leather'] ?? 0) * ferramenta.quantidade) : 0;
-        mapaDeMinerals.woolGastas += oilLaOuCouro === 'wool' ? Number((ferramenta.recursosNecessarios['wool'] ?? 0) * ferramenta.quantidade) : 0;
+        
+        // Aqui também aplicamos a variável qtdMaterialSecundario para somar corretamente no painel final
+        mapaDeMinerals.leatherGastas += oilLaOuCouro === 'leather' ? Number(qtdMaterialSecundario * ferramenta.quantidade) : 0;
+        mapaDeMinerals.woolGastas += oilLaOuCouro === 'wool' ? Number(qtdMaterialSecundario * ferramenta.quantidade) : 0;
 
         //para calcular o custo médio que sai cada mineral
         const mineral = mapaDeMinerals[ferramenta.recursoObtido];
@@ -678,6 +744,7 @@ function mediaDeValorDasFerramentasEMinerais() {
         mineral.mediaDeCustoFlower = mineral.mediaDeCustoCoins / flowerEmCoins;
 
     });
+    
     //salvar o custo da pá de cavar para usar o valor em treasures.js
     localStorage.setItem('sandShovelCusto', JSON.stringify(mapaDeFerramentas['sandShovel'].custoEmCoins));
 
@@ -992,77 +1059,112 @@ const chavesPossiveis = [
 ];
 
 
-//função responsavel por verificar se skills/NFTs possuem algum bonus ativado por outra skill/NFT
+//função responsavel por verificar se skills/NFTs/Temporários possuem algum bonus ativado por outra skill/NFT
 function ativarBonusDasNftsESkills() {
     let mudouBuff;
+
+    // Juntamos os Collectibles e os Temporários na mesma lista para o código verificar todos!
+    const todosItensVerificaveis = [...todosCollectibles, ...todosTemporarios];
 
     do {
         mudouBuff = false;
 
-        todosCollectibles.forEach(collectibles => {
-            // Acha a chave interna (ex.: "ferreiro", "estacao", etc.)
-            const chave = chavesPossiveis.find(ch =>
-                Array.isArray(collectibles[ch])
-            );
-            if (!chave) return;
+        todosItensVerificaveis.forEach(item => {
+            
+            // Em vez de .find() que para no primeiro, usamos .forEach() para olhar TODAS as chaves (tempo, quantidade, etc)
+            chavesPossiveis.forEach(chave => {
+                if (Array.isArray(item[chave])) {
+                    
+                    // Fazemos um forEach no array interno para ler TODOS os buffs (ex: se der ovo E pena ao mesmo tempo)
+                    item[chave].forEach(data => {
+                        
+                        // ===== BASES REAIS (imutáveis) =====
+                        const buffBase = data.buffBase ?? data.buff;
+                        const recursoAfetadoBase = data.recursoAfetadoBase ?? data.recursoAfetado;
 
-            // Cada grupo sempre possui o objeto no índice 0
-            const data = collectibles[chave][0];
+                        let buffAplicado = buffBase;
+                        let recursoAplicado = recursoAfetadoBase;
 
-            // ===== BASES REAIS (imutáveis) =====
-            const buffBase = data.buffBase ?? data.buff;
-            const recursoBase = data.recursoAfetadoBase ?? data.recursoAfetado;
+                        // ===== CONDICIONAL POR NFT =====
+                        if (data.condicionalNft) {
+                            const depende = mapaDeTodosCollectibles[data.condicionalNft.dependeDe];
 
-            let buffAplicado = buffBase;
-            let recursoAplicado = recursoBase;
+                            if (depende && depende.possui) {
+                                let novoBuff = data.condicionalNft.novoBuff;
+                                
+                                if (Array.isArray(novoBuff)) {
+                                    let lvl = depende.level > 0 ? depende.level : 1;
+                                    let index = Math.min(lvl - 1, novoBuff.length - 1);
+                                    buffAplicado = novoBuff[index] ?? buffAplicado;
+                                } else {
+                                    buffAplicado = novoBuff ?? buffAplicado;
+                                }
+                                
+                                recursoAplicado = data.condicionalNft.novoRecursoAfetado ?? recursoAplicado;
+                            }
+                        }
 
-            // ===== CONDICIONAL POR NFT =====
-            if (data.condicionalNft) {
-                const depende = mapaDeTodosCollectibles[data.condicionalNft.dependeDe];
+                        // ===== CONDICIONAL POR SKILL (1) =====
+                        if (data.condicionalSkill) {
+                            const skill = (typeof mapaDeTodasSkillsComTier !== 'undefined' && mapaDeTodasSkillsComTier[data.condicionalSkill.dependeDe]) || 
+                                          (typeof mapaDeTodasSkillsLegacy !== 'undefined' && mapaDeTodasSkillsLegacy[data.condicionalSkill.dependeDe]);
 
-                if (depende?.possui) {
-                    buffAplicado = data.condicionalNft.novoBuff ?? buffAplicado;
-                    recursoAplicado = data.condicionalNft.novoRecursoAfetado ?? recursoAplicado;
+                            if (skill && (skill.level > 0 || skill.possui)) {
+                                let novoBuff = data.condicionalSkill.novoBuff;
+                                
+                                if (Array.isArray(novoBuff)) {
+                                    let lvl = skill.level > 0 ? skill.level : 1;
+                                    let index = Math.min(lvl - 1, novoBuff.length - 1);
+                                    buffAplicado = novoBuff[index] ?? buffAplicado;
+                                } else {
+                                    buffAplicado = novoBuff ?? buffAplicado;
+                                }
+                                
+                                recursoAplicado = data.condicionalSkill.novoRecursoAfetado ?? recursoAplicado;
+                            }
+                        }
+
+                        // ===== CONDICIONAL POR SKILL (2) =====
+                        if (data.condicionalSkill2) {
+                            const skill2 = (typeof mapaDeTodasSkillsComTier !== 'undefined' && mapaDeTodasSkillsComTier[data.condicionalSkill2.dependeDe]) || 
+                                           (typeof mapaDeTodasSkillsLegacy !== 'undefined' && mapaDeTodasSkillsLegacy[data.condicionalSkill2.dependeDe]);
+
+                            if (skill2 && (skill2.level > 0 || skill2.possui)) {
+                                let novoBuff2 = data.condicionalSkill2.novoBuff;
+
+                                if (Array.isArray(novoBuff2)) {
+                                    let lvl = skill2.level > 0 ? skill2.level : 1;
+                                    let index = Math.min(lvl - 1, novoBuff2.length - 1);
+                                    buffAplicado = novoBuff2[index] ?? buffAplicado;
+                                } else {
+                                    buffAplicado = novoBuff2 ?? buffAplicado;
+                                }
+                                
+                                recursoAplicado = data.condicionalSkill2.novoRecursoAfetado ?? recursoAplicado;
+                            }
+                        }
+
+                        // ===== APLICA SOMENTE SE MUDAR =====
+                        if (data.buff !== buffAplicado) {
+                            data.buff = buffAplicado;
+                            mudouBuff = true;
+                        }
+
+                        if (data.recursoAfetado !== recursoAplicado) {
+                            data.recursoAfetado = recursoAplicado;
+                            mudouBuff = true;
+                        }
+                    });
                 }
-            }
-
-            // ===== CONDICIONAL POR SKILL (1) =====
-            if (data.condicionalSkill) {
-                const skill = mapaDeTodasSkillsComTier[data.condicionalSkill.dependeDe];
-
-                if (skill?.possui) {
-                    buffAplicado = data.condicionalSkill.novoBuff ?? buffAplicado;
-                    recursoAplicado = data.condicionalSkill.novoRecursoAfetado ?? recursoAplicado;
-                }
-            }
-
-            // ===== CONDICIONAL POR SKILL (2) =====
-            if (data.condicionalSkill2) {
-                const skill2 = mapaDeTodasSkillsComTier[data.condicionalSkill2.dependeDe];
-
-                if (skill2?.possui) {
-                    buffAplicado = data.condicionalSkill2.novoBuff ?? buffAplicado;
-                    recursoAplicado = data.condicionalSkill2.novoRecursoAfetado ?? recursoAplicado;
-                }
-            }
-
-            // ===== APLICA SOMENTE SE MUDAR =====
-            if (data.buff !== buffAplicado) {
-                data.buff = buffAplicado;
-                mudouBuff = true;
-            }
-
-            if (data.recursoAfetado !== recursoAplicado) {
-                data.recursoAfetado = recursoAplicado;
-                mudouBuff = true;
-            }
+            });
         });
 
     } while (mudouBuff);
 
-    chamadorDeBuffs();
+    if (typeof chamadorDeBuffs === 'function') {
+        chamadorDeBuffs();
+    }
 }
-
 
 //==================================================================================================================================================================
 

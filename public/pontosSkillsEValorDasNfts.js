@@ -13,20 +13,49 @@ let idiomaValorDasNftsEPontosTotaisSkills = {
 
 
 function pontosGastosEmSkills() {
+    let totalSP = 0;
+    let totalShards = 0;
 
-    //soma dos pontos de skills gastos
-    let totalDePontosEmSkills = 0;
-    todasSkillsComTier.forEach(skill => {
-        let checkbox = document.getElementById(skill.idName);
+    // Função interna que lê a skill e soma os custos baseados no nível atual
+    const somarCustos = (skill) => {
+        let levelAtivo = skill.level > 0 ? skill.level : (skill.possui ? 1 : 0);
+        if (levelAtivo === 0) return; // Se não tem a skill, não soma nada
 
-        if(checkbox && checkbox.checked) {
-            totalDePontosEmSkills += Number(skill.pontosNecessarios);
-        };
-    });
+        if (skill.niveis && skill.niveis.length > 0) {
+            // Soma todos os níveis adquiridos até o level atual
+            for (let i = 0; i < levelAtivo; i++) {
+                if (skill.niveis[i]) {
+                    totalSP += Number(skill.niveis[i].pontosNecessarios || 0);
+                    
+                    // REGRA: O índice 0 equivale ao Nível 1. Só soma Shard se for maior que 0 (Níveis 2 e 3).
+                    if (i > 0) {
+                        totalShards += Number(skill.niveis[i].shards || 0);
+                    }
+                }
+            }
+        } else {
+            // Para as skills antigas (Legacy) que só tem 1 nível
+            totalSP += Number(skill.pontosNecessarios || 1);
+            // Como equivalem ao Nível 1, não somamos Shards nelas.
+        }
+    };
 
-    document.getElementById('total-pontos-gastos-em-skills').innerHTML = `Skills: ${totalDePontosEmSkills} ${idiomaValorDasNftsEPontosTotaisSkills[idioma].pontos}`;
+    // Percorre todas as listas de skills que você tem
+    if (typeof todasSkillsComTier !== 'undefined') todasSkillsComTier.forEach(somarCustos);
+    if (typeof skillsLegacy !== 'undefined') skillsLegacy.forEach(somarCustos);
 
-};
+    // Atualiza o HTML lá no topo da página
+    const tituloSkills = document.getElementById('total-pontos-gastos-em-skills');
+    
+    if (tituloSkills) {
+        // Ícone do Shard (pronto para receber seu CSS depois)
+        let iconeShard = `<span class="sprite sprite-icones bg-shard" style="display: inline-block; width: 22px; height: 22px; vertical-align: bottom; margin-bottom: 0px;"></span>`;
+        
+        // Aqui mudamos exatamente o que você pediu na imagem:
+        tituloSkills.innerHTML = `Skill Points: ${totalSP} 
+            <span style="color: #a4cfff; margin-left: 15px; font-size: 0.9em; text-shadow: 1px 1px 2px #000;">${iconeShard} ${totalShards}</span>`;
+    }
+}
 
 
 //===========================================================================================================================================================================

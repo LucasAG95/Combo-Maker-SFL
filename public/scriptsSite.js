@@ -9,6 +9,27 @@ const SaveManager = {
     debounceTimer: null,
 
     // ========================================================================
+    // ⭐ Executa uma função e devolve seu resultado, isolando falhas.
+    // Antes, salvarEstado() montava o objeto inteiro dentro de UM try/catch:
+    // se qualquer campo desse erro (ex: um array/objeto ainda não existir
+    // no momento do save), o save INTEIRO era abortado e nada era gravado
+    // — e o localStorage continuava com o save antigo pra sempre, mesmo
+    // que o usuário continuasse jogando/mudando coisas. Isso explica
+    // "sempre carrega, mas não é o último save": os saves novos estavam
+    // falhando silenciosamente. Agora cada seção é isolada: se uma falhar,
+    // só ela fica com o valor anterior/fallback, e as outras (inclusive
+    // skills) continuam sendo salvas normalmente.
+    // ========================================================================
+    _safe(label, fn, fallback) {
+        try {
+            return fn();
+        } catch (error) {
+            console.error(`❌ Erro ao coletar "${label}" para o save (seção ignorada, resto continua salvando):`, error);
+            return fallback;
+        }
+    },
+
+    // ========================================================================
     // SALVAR ESTADO COMPLETO
     // ========================================================================
     salvarEstado() {
@@ -18,42 +39,42 @@ const SaveManager = {
                 timestamp: Date.now(),
                 
                 // Configurações básicas
-                config: {
+                config: this._safe('config', () => ({
                     idioma: idioma,
                     estacao: estacao,
                     ilha: ilha,
                     vip: vip,
                     flowerEmCoins: flowerEmCoins,
                     packGems: document.getElementById('pack-gems')?.value,
-                },
+                }), {}),
 
                 // Farm info
-                farm: {
+                farm: this._safe('farm', () => ({
                     numero: document.getElementById('numeroFarm')?.value,
                     plots: plots,
                     plotsFrutas: plotsFrutas,
-                },
+                }), {}),
 
                 // Modo de cálculo
-                modoCalculo: {
+                modoCalculo: this._safe('modoCalculo', () => ({
                     crops: modoDeCalularCrops,
                     cropsCM: modoDeCalularCropsNaCM,
                     frutas: modoDeCalularCropsFruta,
                     cropsGH: modoDeCalcularGreenhouse,
                     minerios: modoDeCalcularMinerios,
-                },
+                }), {}),
 
                 // Opções de Restock
-                restock: {
+                restock: this._safe('restock', () => ({
                     crops: document.getElementById('descontar-restock-crops')?.value,
                     cropsCM: document.getElementById('descontar-restock-cm')?.value,
                     frutas: document.getElementById('descontar-restock-frutas')?.value,
                     greenhouse: document.getElementById('descontar-restock-greenhouse')?.value,
                     minerais: document.getElementById('descontar-restock-minerais')?.value,
-                },
+                }), {}),
 
                 // Minerals - quantidade de nodes
-                minerals: {
+                minerals: this._safe('minerals', () => ({
                     wood: { 
                         t1: mapaDeMinerals['wood'].qtdNodes.t1, 
                         t2: mapaDeMinerals['wood'].qtdNodes.t2, 
@@ -77,36 +98,42 @@ const SaveManager = {
                     crimstone: { t1: mapaDeMinerals['crimstone'].qtdNodes.t1 },
                     oil: { t1: mapaDeMinerals['oil'].qtdNodes.t1 },
                     salt: { t1: mapaDeMinerals['salt'].qtdNodes.t1},
-                },
+                }), {}),
 
                 // Seeds plantadas
-                seedsPlantadas: {
+                seedsPlantadas: this._safe('seedsPlantadas', () => ({
                     crops: crops.map(c => ({ name: c.name, seeds: c.seedsPlantadas })),
                     cropsCM: cropMachine.map(c => ({ name: c.name, seeds: c.seedsPlantadas })),
                     fruits: fruits.map(f => ({ name: f.name, seeds: f.seedsPlantadas })),
                     greenhouse: greenhouse.map(gh => ({ name: gh.name, seeds: gh.seedsPlantadas })),
-                },
+                }), {}),
 
                 // Ferramentas usadas
-                ferramentasUsadas: todasFerramentas.map(f => ({ id: f.id, qtd: f.qtdUsada })),
+                ferramentasUsadas: this._safe('ferramentasUsadas',
+                    () => todasFerramentas.map(f => ({ id: f.id, qtd: f.qtdUsada })), []),
 
-                // Skills Legacy
-                skillsLegacy: skillsLegacy.map(s => ({ idName: s.idName, possui: s.possui })),
+                // ⭐ Skills Legacy — seção isolada para NUNCA travar o resto do save
+                skillsLegacy: this._safe('skillsLegacy',
+                    () => skillsLegacy.map(s => ({ idName: s.idName, possui: s.possui, level: s.level })), []),
 
-                // Skills com Tier
-                skillsTier: todasSkillsComTier.map(s => ({ idName: s.idName, possui: s.possui })),
+                // ⭐ Skills com Tier — seção isolada para NUNCA travar o resto do save
+                skillsTier: this._safe('skillsTier',
+                    () => todasSkillsComTier.map(s => ({ idName: s.idName, possui: s.possui, level: s.level })), []),
 
                 // Collectibles
-                collectibles: todosCollectibles.map(c => ({ idName: c.idName, possui: c.possui })),
+                collectibles: this._safe('collectibles',
+                    () => todosCollectibles.map(c => ({ idName: c.idName, possui: c.possui })), []),
 
                 // Wearables
-                wearables: todosWearables.map(w => ({ idName: w.idName, possui: w.possui })),
+                wearables: this._safe('wearables',
+                    () => todosWearables.map(w => ({ idName: w.idName, possui: w.possui })), []),
 
                 // Buffs Temporários
-                temporarios: todosTemporarios.map(t => ({ idName: t.idName, possui: t.possui })),
+                temporarios: this._safe('temporarios',
+                    () => todosTemporarios.map(t => ({ idName: t.idName, possui: t.possui })), []),
 
                 // Buds - checkbox principal + aura selecionada
-                buds: (() => {
+                buds: this._safe('buds', () => {
                     const todasCategorias = Object.keys(buds); // plaza, woodlands, cave, etc.
                     const resultado = {};
                     todasCategorias.forEach(categoria => {
@@ -126,10 +153,10 @@ const SaveManager = {
                         }));
                     });
                     return resultado;
-                })(),
+                }, {}),
 
                 // Animais - Quantidade usada e vendida
-                animais: {
+                animais: this._safe('animais', () => ({
                     galinhas: animais.galinhas.map(g => ({ 
                         levelAnterior: g.levelAnterior, 
                         qtdUsada: g.qtdUsada, 
@@ -145,10 +172,10 @@ const SaveManager = {
                         qtdUsada: o.qtdUsada, 
                         vendida: o.vendida 
                     })),
-                },
+                }), {}),
 
                 // ⭐ Comidas dos animais (checkboxes por level - global para todos)
-                comidasAnimais: {
+                comidasAnimais: this._safe('comidasAnimais', () => ({
                     // Level 0-3
                     kernelBlend3: document.getElementById('kernelBlend3')?.checked || false,
                     hay3: document.getElementById('hay3')?.checked || false,
@@ -176,18 +203,18 @@ const SaveManager = {
                     nutriBarley15: document.getElementById('nutriBarley15')?.checked || false,
                     mixedGrain15: document.getElementById('mixedGrain15')?.checked || false,
                     omnifeed15: document.getElementById('omnifeed15')?.checked || false,
-                },
+                }), {}),
 
                 // ⭐ Ferramentas de carinho e quantidade
-                carrinhos: {
+                carrinhos: this._safe('carrinhos', () => ({
                     pettingHand: document.getElementById('pettingHand')?.checked || false,
                     brush: document.getElementById('brush')?.checked || false,
                     musicBox: document.getElementById('musicBox')?.checked || false,
                     qtdCarinhos: document.getElementById('qtd-carinho-feito')?.value || '1',
-                },
+                }), {}),
 
                 // Valores em COINS dos animais (Venda Semanal) - vindos da API
-                valoresAnimaisCoins: {
+                valoresAnimaisCoins: this._safe('valoresAnimaisCoins', () => ({
                     galinhas: animais.galinhas.map(g => ({ 
                         levelAnterior: g.levelAnterior,
                         level: g.level,
@@ -209,15 +236,17 @@ const SaveManager = {
                         coinsFinal: o.coinsFinal,
                         qtdDeAnimaisQuePodeVender: o.qtdDeAnimaisQuePodeVender
                     })),
-                },
+                }), {}),
             };
 
             localStorage.setItem(this.SAVE_KEY, JSON.stringify(estado));
-            console.log('✅ Estado salvo com sucesso!', new Date().toLocaleTimeString());
+            console.log('✅ Estado salvo com sucesso!', new Date().toLocaleTimeString(), estado);
             return true;
 
         } catch (error) {
-            console.error('❌ Erro ao salvar estado:', error);
+            // Isso só deve disparar agora em casos extremos (ex: localStorage cheio/bloqueado),
+            // já que cada seção acima se protege sozinha com _safe().
+            console.error('❌ Erro ao salvar estado (falha fora das seções protegidas):', error);
             return false;
         }
     },
@@ -380,9 +409,11 @@ const SaveManager = {
                 estado.skillsLegacy.forEach(saved => {
                     const skill = skillsLegacy.find(s => s.idName === saved.idName);
                     if (skill) {
-                        skill.possui = saved.possui;
-                        const checkbox = document.getElementById(saved.idName);
-                        if (checkbox) checkbox.checked = saved.possui;
+                        skill.level = saved.level !== undefined ? saved.level : (saved.possui ? 1 : 0);
+                        skill.possui = skill.level;
+                        if (typeof atualizarVisualSkill === 'function') {
+                            atualizarVisualSkill(skill.idName, skill.level, skill.maxLevel || 1);
+                        }
                     }
                 });
             }
@@ -392,9 +423,11 @@ const SaveManager = {
                 estado.skillsTier.forEach(saved => {
                     const skill = todasSkillsComTier.find(s => s.idName === saved.idName);
                     if (skill) {
-                        skill.possui = saved.possui;
-                        const checkbox = document.getElementById(saved.idName);
-                        if (checkbox) checkbox.checked = saved.possui;
+                        skill.level = saved.level !== undefined ? saved.level : (saved.possui ? 1 : 0);
+                        skill.possui = skill.level;
+                        if (typeof atualizarVisualSkill === 'function') {
+                            atualizarVisualSkill(skill.idName, skill.level, skill.maxLevel || 1);
+                        }
                     }
                 });
             }
@@ -791,9 +824,47 @@ const SaveManager = {
     },
 
     // ========================================================================
+    // ⭐ SKILLS — listeners diretos (change não faz bubble até o document)
+    // ========================================================================
+    // No checkbox.js, o clique numa skill dispara:
+    //     checkbox.dispatchEvent(new Event('change'))
+    // sem { bubbles: true }. Isso faz o evento não chegar no listener geral
+    // que fica no document (usado pra maioria dos inputs/checkboxes do site).
+    // Por isso o nível das skills nunca disparava o autosave. Aqui a gente
+    // escuta cada checkbox de skill diretamente, o que funciona mesmo sem
+    // bubbling (o listener roda na fase de "target").
+    configurarListenersDasSkills() {
+        const legacy = (typeof skillsLegacy !== 'undefined') ? skillsLegacy : [];
+        const comTier = (typeof todasSkillsComTier !== 'undefined') ? todasSkillsComTier : [];
+        const todasAsSkills = [...legacy, ...comTier];
+
+        let anexados = 0;
+        todasAsSkills.forEach(skill => {
+            const checkbox = document.getElementById(skill.idName);
+            if (checkbox && !checkbox.dataset.saveListenerAnexado) {
+                checkbox.addEventListener('change', () => {
+                    console.log(`🌟 Skill "${skill.idName}" alterada para nível:`, skill.level);
+                    // Salva na hora (sem debounce): clique em skill é uma ação
+                    // discreta, não faz sentido esperar/atrasar como em campos
+                    // de texto onde o usuário ainda está digitando.
+                    this.salvarEstado();
+                });
+                checkbox.dataset.saveListenerAnexado = '1'; // evita duplicar o listener
+                anexados++;
+            }
+        });
+
+        console.log(`✅ Listeners de save anexados em ${anexados} skills.`);
+        return { total: todasAsSkills.length, anexados };
+    },
+
+    // ========================================================================
     // CONFIGURAR EVENT LISTENERS ESPECÍFICOS
     // ========================================================================
     configurarEventListeners() {
+        // Skills (crops, animais, minerais, fishing, cooking, etc.)
+        this.configurarListenersDasSkills();
+
         // Event listeners para checkboxes de comida
         const comidasIds = [
             'kernelBlend3', 'hay3', 'nutriBarley3', 'mixedGrain3', 'omnifeed3',
@@ -863,6 +934,13 @@ const SaveManager = {
             this.salvarEstado();
         });
 
+        // ⭐ 'pagehide' é mais confiável que 'beforeunload' em navegadores
+        // modernos (principalmente mobile/Safari e quando a página vai pro
+        // bfcache), então usamos os dois como reforço.
+        window.addEventListener('pagehide', () => {
+            this.salvarEstado();
+        });
+
         // Salvar periodicamente (a cada 2 minutos como backup)
         setInterval(() => {
             this.salvarEstado();
@@ -875,24 +953,46 @@ const SaveManager = {
             }
         });
 
+        // ⭐ Retentativa: as skills são criadas dinamicamente pelo checkbox.js
+        // e algumas (ex: buscarTodasAPIs assíncrono) podem ainda não existir
+        // no exato momento em que inicializar() rodou. Tenta re-anexar os
+        // listeners que faltaram por mais alguns segundos.
+        let tentativasSkills = 0;
+        const intervaloSkills = setInterval(() => {
+            tentativasSkills++;
+            const resultado = this.configurarListenersDasSkills();
+            if (resultado.anexados === 0 || tentativasSkills >= 10) {
+                clearInterval(intervaloSkills);
+            }
+        }, 500);
+
         console.log('✅ SaveManager pronto! Auto-save ativado.');
     }
 };
 
 // ============================================================================
 // AUTO-INICIALIZAR — Combo Maker (index.html)
-// Só roda se existir um elemento exclusivo do Combo Maker na página
+// Só roda se existir um elemento exclusivo do Combo Maker na página.
+//
+// ⭐ IMPORTANTE: usamos o evento 'load' da window (via addEventListener, que
+// NÃO sobrescreve o "window.onload = function(){...}" do checkbox.js) em vez
+// de 'DOMContentLoaded'. O checkbox.js só cria os checkboxes das skills
+// dentro do seu window.onload (que dispara depois de tudo carregar), então
+// se a gente inicializasse no DOMContentLoaded, os checkboxes das skills
+// ainda nem existiriam no DOM e o autosave/restore delas ficaria quebrado.
 // ============================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        if (document.getElementById('chamadorDeBuffs') || typeof chamadorDeBuffs !== 'undefined') {
-            setTimeout(() => SaveManager.inicializar(), 100);
-        }
-    });
-} else {
+function inicializarSaveManagerComboMaker() {
     if (document.getElementById('chamadorDeBuffs') || typeof chamadorDeBuffs !== 'undefined') {
-        setTimeout(() => SaveManager.inicializar(), 100);
+        // pequeno delay extra pra garantir que o window.onload do checkbox.js
+        // (renderSkills + configurarCheckbox) já terminou de rodar
+        setTimeout(() => SaveManager.inicializar(), 150);
     }
+}
+
+if (document.readyState === 'complete') {
+    inicializarSaveManagerComboMaker();
+} else {
+    window.addEventListener('load', inicializarSaveManagerComboMaker);
 }
 
 // ============================================================================
@@ -902,6 +1002,18 @@ window.SaveManager = SaveManager;
 window.limparSave = () => SaveManager.limparSave();
 window.exportarSave = () => SaveManager.exportarSave();
 window.importarSave = () => SaveManager.importarSave();
+
+// ⭐ DEBUG: rode isso no console (F12) pra testar/inspecionar o save na hora
+//   salvarAgora()      -> força um save e mostra o objeto salvo no console
+//   verSaveAtual()      -> mostra o que está gravado agora no localStorage
+window.salvarAgora = () => SaveManager.salvarEstado();
+window.verSaveAtual = () => {
+    const raw = localStorage.getItem(SaveManager.SAVE_KEY);
+    if (!raw) { console.log('ℹ️ Nenhum save encontrado.'); return null; }
+    const estado = JSON.parse(raw);
+    console.log('📂 Save atual (salvo em', new Date(estado.timestamp).toLocaleString(), '):', estado);
+    return estado;
+};
 
 
 // ============================================================================

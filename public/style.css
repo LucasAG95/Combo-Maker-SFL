@@ -647,7 +647,7 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
 
 .sprite-box:hover {
   transform: scale(1.15) rotate(-3deg);
-  border-color: #ffb74d;
+  border-color: #c0c0c0;
   box-shadow: 0 4px 8px rgba(255, 183, 77, 0.5);
 }
 
@@ -1553,3 +1553,109 @@ input[type="checkbox"]:disabled + .sprite-box:hover {
   color: #ffc55e;
 }
 
+/* ====================
+   NÍVEIS DA SKILL (BORDA/GLOW/AURA) E SELOS DE NÍVEL
+======================= */
+
+/* 1. Aura Verde Escuro para Lv.1 E para Skills Únicas (Legacy) */
+.sprite-box.borda-bronze,
+.sprite-box.borda-simples,
+input[type="checkbox"]:checked + .sprite-box.borda-bronze,
+input[type="checkbox"]:checked + .sprite-box.borda-simples,
+input[type="checkbox"]:disabled + .sprite-box.borda-bronze,
+input[type="checkbox"]:disabled + .sprite-box.borda-simples {
+  border-color: #3ca527 !important;
+  background-color: #1c680dcc !important; 
+  box-shadow: 0 0 10px 2px #3ca527cc !important; 
+}
+
+/* 2. Aura Dourada para Lv.2 */
+.sprite-box.borda-prata,
+input[type="checkbox"]:checked + .sprite-box.borda-prata,
+input[type="checkbox"]:disabled + .sprite-box.borda-prata {
+  border-color: #ffd700 !important;
+  background-color: #ac9308cc !important; 
+  box-shadow: 0 0 10px 2px #ffd700cc !important; 
+}
+
+/* 3. Aura Azul para Lv.3 */
+.sprite-box.borda-gold,
+input[type="checkbox"]:checked + .sprite-box.borda-gold,
+input[type="checkbox"]:disabled + .sprite-box.borda-gold {
+  border-color: #00c3ffcc !important;
+  background-color: #096dafcc !important; 
+  box-shadow: 0 0 10px 2px #00c3ffcc !important; 
+}
+
+/* =========================================
+   SELOS DE TEXTO (Lv.1, Lv.2, Lv.3) NA BOX
+============================================ */
+
+/* Garante que o texto fique posicionado no cantinho da caixa */
+.sprite-box { position: relative; }
+
+/* Estilo visual base do selo de texto */
+.sprite-box.borda-bronze::after,
+.sprite-box.borda-prata::after,
+.sprite-box.borda-gold::after {
+  position: absolute;
+  bottom: -4px;
+  right: -6px;
+  color: #ffffff;
+  font-size: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  padding: 1px 3px;
+  border-radius: 4px;
+  text-shadow: 1px 1px 1px #000;
+  pointer-events: none; 
+  z-index: 10;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+  line-height: 1;
+}
+
+/* Aplica o texto e a cor correspondente para as Skills de Multiplos Níveis */
+.sprite-box.borda-bronze::after {
+  content: "Lv.1";
+  background-color: #1c680d;
+  border: 1px solid #3ca527;
+}
+
+.sprite-box.borda-prata::after {
+  content: "Lv.2";
+  background-color: #ac9308;
+  border: 1px solid #ffd700;
+}
+
+.sprite-box.borda-gold::after {
+  content: "Lv.3";
+  background-color: #096daf;
+  border: 1px solid #00c3ff;
+}
+
+/* ====================
+   BOTÃO YAKKAMON - HEADER
+======================= */
+.yakkamon-btn {
+    display: inline-block;
+    background: linear-gradient(180deg, #4a3219 0%, #2b1d12 100%); /* Combina com os botões do site */
+    color: #ffa726;
+    padding: 6px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    border: 1px solid #d0a25a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.yakkamon-btn:hover {
+    background: linear-gradient(180deg, #d0a25a 0%, #8c5a35 100%);
+    color: #1c1812;
+    border-color: #ffe2aa;
+    box-shadow: 0 0 10px rgba(208, 162, 90, 0.6);
+    transform: translateY(-2px);
+}

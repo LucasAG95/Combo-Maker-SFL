@@ -171,23 +171,34 @@ function numeroDaFarm() {
         skillsLegacy.forEach(legacy => {
             let checkbox = document.getElementById(legacy.idName);
             if (skillsLegacyQuePossui[legacy.name]) {
-                checkbox.checked = true;
-                legacy.possui = true;
+                if (checkbox) checkbox.checked = true;
+                legacy.level = 1;
+                legacy.possui = 1;
             } else {
-                checkbox.checked = false;
-                legacy.possui = false;
-            };      
+                if (checkbox) checkbox.checked = false;
+                legacy.level = 0;
+                legacy.possui = 0;
+            };
+            if (typeof atualizarVisualSkill === 'function') {
+                atualizarVisualSkill(legacy.idName, legacy.level, legacy.maxLevel || 1);
+            }
         });
 
         todasSkillsComTier.forEach(skill => {
             let checkbox = document.getElementById(skill.idName);
-            if (skillQuePossui[skill.name]) {
-                checkbox.checked = true;
-                skill.possui = true;
+            let apiSkillLevel = skillQuePossui[skill.name];
+            if (apiSkillLevel) {
+                if (checkbox) checkbox.checked = true;
+                skill.level = typeof apiSkillLevel === 'number' ? apiSkillLevel : 1;
+                skill.possui = skill.level;
             } else {
-                checkbox.checked = false;
-                skill.possui = false;
-            };    
+                if (checkbox) checkbox.checked = false;
+                skill.level = 0;
+                skill.possui = 0;
+            };
+            if (typeof atualizarVisualSkill === 'function') {
+                atualizarVisualSkill(skill.idName, skill.level, skill.maxLevel || 1);
+            }
         });
 
         todosCollectibles.forEach(collectibles => {

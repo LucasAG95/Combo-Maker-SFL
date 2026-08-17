@@ -394,8 +394,13 @@ let fertilizantes = {
         quantidade: [
             {
                 sinal: '+',
+                buffBase: 0.1, // O valor original do fertilizante
                 buff: 0.1,
-                recursoAfetado: [fruit.name]
+                recursoAfetado: [fruit.name],
+                condicionalSkill: {
+                    dependeDe: 'fruitfulBounty', // Puxa a sua nova Skill
+                    novoBuff: [0.2, 0.3, 0.4]    // Nível 1 (2x), Nível 2 (3x), Nível 3 (4x)
+                }
             }
         ]
     })),
@@ -427,8 +432,13 @@ let fertilizantes = {
         quantidade: [
             {
                 sinal: '+',
+                buffBase: 0.1, // Valor base para o sistema lembrar
                 buff: 0.1,
-                recursoAfetado: [fruit.name]
+                recursoAfetado: [fruit.name],
+                condicionalSkill: {
+                    dependeDe: 'fruitfulBounty', // Puxa a skill Fruitful Bounty
+                    novoBuff: [0.2, 0.3, 0.4]    // Aplica a quantidade correta dependendo do Nível da skill
+                }
             }
         ],
         tempo: [

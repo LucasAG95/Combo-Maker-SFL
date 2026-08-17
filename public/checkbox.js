@@ -1,12 +1,78 @@
+// Descobre de qual árvore e tier a skill faz parte (usado para bloqueios de níveis)
+function getSkillTreeAndTier(skillIdName) {
+    const arvores = {
+        'crops': typeof skillsCrops !== 'undefined' ? skillsCrops : null,
+        'fruit': typeof skillsFruits !== 'undefined' ? skillsFruits : null,
+        'greenhouse': typeof skillsGreenhouse !== 'undefined' ? skillsGreenhouse : null,
+        'tree': typeof skillsTrees !== 'undefined' ? skillsTrees : null,
+        'mineral': typeof skillsMinerals !== 'undefined' ? skillsMinerals : null,
+        'animal': typeof skillsAnimais !== 'undefined' ? skillsAnimais : null,
+        'machinery': typeof skillsMachinery !== 'undefined' ? skillsMachinery : null,
+        'fishing': typeof skillsFishing !== 'undefined' ? skillsFishing : null,
+        'cooking': typeof skillsCooking !== 'undefined' ? skillsCooking : null,
+        'compost': typeof skillsCompost !== 'undefined' ? skillsCompost : null,
+        'beesFlowers': typeof skillsBeesFlowers !== 'undefined' ? skillsBeesFlowers : null,
+        'aging': typeof skillsAging !== 'undefined' ? skillsAging : null
+    };
+
+    for (let treeName in arvores) {
+        let tree = arvores[treeName];
+        if (!tree) continue;
+        if (tree.tier1 && tree.tier1.find(s => s.idName === skillIdName)) return { tree: treeName, tier: 1 };
+        if (tree.tier2 && tree.tier2.find(s => s.idName === skillIdName)) return { tree: treeName, tier: 2 };
+        if (tree.tier3 && tree.tier3.find(s => s.idName === skillIdName)) return { tree: treeName, tier: 3 };
+    }
+    return { tree: null, tier: 0 };
+}
+
+function atualizarVisualSkill(skillId, level, maxLevel) {
+    const checkbox = document.getElementById(skillId);
+    if (!checkbox) return;
+    
+    const wrapper = checkbox.closest('.skill-wrapper');
+    if (!wrapper) return;
+    
+    level = parseInt(level, 10) || 0;
+    maxLevel = parseInt(maxLevel, 10) || 1;
+
+    wrapper.dataset.level = level;
+    checkbox.checked = level > 0;
+    
+    const spriteBox = wrapper.querySelector('.sprite-box');
+    if (spriteBox) {
+        // Limpamos todas as bordas primeiro
+        spriteBox.classList.remove('borda-bronze', 'borda-prata', 'borda-gold', 'borda-simples');
+        if (level > 0) {
+            if (maxLevel > 1) {
+                if (level === 1) spriteBox.classList.add('borda-bronze');
+                if (level === 2) spriteBox.classList.add('borda-prata');
+                if (level >= 3) spriteBox.classList.add('borda-gold');
+            } else {
+                // Skills de clique único ganham a borda simples
+                spriteBox.classList.add('borda-simples');
+            }
+        }
+    }
+}
+
 function configurarCheckbox() {
     skillsLegacy.forEach(skill => {
         let checkbox = document.getElementById(skill.idName);
 
         if(checkbox) {
-            skill.possui = checkbox.checked;
+            let currentLevel = skill.level || (checkbox.checked ? 1 : 0);
+            skill.level = currentLevel;
+            skill.possui = currentLevel;
 
             checkbox.addEventListener('change', function() {
-                skill.possui = checkbox.checked;
+                const wrapper = checkbox.closest('.skill-wrapper');
+                if (wrapper && wrapper.dataset.level !== undefined) {
+                    skill.level = parseInt(wrapper.dataset.level);
+                    skill.possui = skill.level;
+                } else {
+                    skill.possui = checkbox.checked ? 1 : 0;
+                    skill.level = skill.possui;
+                }
                 chamadorDeBuffs();
                 ativarBonusDasNftsESkills();
             });
@@ -17,10 +83,19 @@ function configurarCheckbox() {
         let checkbox = document.getElementById(skill.idName);
 
         if(checkbox) {
-            skill.possui = checkbox.checked;
+            let currentLevel = skill.level || (checkbox.checked ? 1 : 0);
+            skill.level = currentLevel;
+            skill.possui = currentLevel;
 
             checkbox.addEventListener('change', function() {
-                skill.possui = checkbox.checked;
+                const wrapper = checkbox.closest('.skill-wrapper');
+                if (wrapper && wrapper.dataset.level !== undefined) {
+                    skill.level = parseInt(wrapper.dataset.level);
+                    skill.possui = skill.level;
+                } else {
+                    skill.possui = checkbox.checked ? 1 : 0;
+                    skill.level = skill.possui;
+                }
                 chamadorDeBuffs();
                 chamadorDeDesbloquearSkills();
                 ativarBonusDasNftsESkills();
@@ -29,7 +104,6 @@ function configurarCheckbox() {
         };
     });
 
-    //todos buffs de collectibles
     todosCollectibles.forEach(collectibles => {
         let checkbox = document.getElementById(collectibles.idName);
 
@@ -45,7 +119,7 @@ function configurarCheckbox() {
             });
         };
     });
-    //todos buffs de wearables
+
     todosWearables.forEach(wearables => {
         let checkbox = document.getElementById(wearables.idName);
 
@@ -61,7 +135,6 @@ function configurarCheckbox() {
         };
     });
 
-    //todos buffs de buds
     todosBuds.forEach(bud => {
         bud.aura = 1;
 
@@ -82,7 +155,6 @@ function configurarCheckbox() {
                 auraPanel.style.display = 'none';
                 bud.aura = 1;
                 auraPanel.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-                // Remove cor da aura ao desmarcar
                 AURAS.forEach(a => budWrapper.classList.remove(`aura-bg-${a.id}`));
             }
 
@@ -103,7 +175,6 @@ function configurarCheckbox() {
                         if (cb !== auraCheckbox) cb.checked = false;
                     });
                     bud.aura = aura.mult;
-                    // Troca a classe de cor
                     AURAS.forEach(a => budWrapper.classList.remove(`aura-bg-${a.id}`));
                     budWrapper.classList.add(`aura-bg-${aura.id}`);
                 } else {
@@ -118,7 +189,6 @@ function configurarCheckbox() {
         });
     });
 
-    //todos buffs temporarios
     todosTemporarios.forEach(temporario => {
         let checkbox = document.getElementById(temporario.idName);
 
@@ -133,8 +203,8 @@ function configurarCheckbox() {
             });
         };
     });
-
 }
+
 //==============================================================================================================================================
 
 const categoriaSprite = {
@@ -147,22 +217,87 @@ const categoriaSprite = {
 
 function renderSkills(lista, containerId, pastaImagens) {
     const container = document.getElementById(containerId);
+    if (!container) return;
+    
     const categoria = categoriaSprite[pastaImagens] || 'skills';
 
     lista.forEach(skill => {
-
         const wrapper = document.createElement('div');
         wrapper.className = 'skill-wrapper';
+        
+        const currentLevel = skill.level || 0;
+        wrapper.dataset.level = currentLevel;
 
         const label = document.createElement('label');
-        label.setAttribute('for', skill.idName);
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.id = skill.idName;
+        checkbox.style.display = 'none'; 
+        checkbox.checked = currentLevel > 0;
+
+        const spriteBox = document.createElement('div');
+        spriteBox.className = 'sprite-box';
+        
+        let maxLevel = parseInt(skill.maxLevel || 1, 10);
+        if (currentLevel > 0) {
+            if (maxLevel > 1) {
+                if (currentLevel === 1) spriteBox.classList.add('borda-bronze');
+                if (currentLevel === 2) spriteBox.classList.add('borda-prata');
+                if (currentLevel >= 3) spriteBox.classList.add('borda-gold');
+            } else {
+                spriteBox.classList.add('borda-simples');
+            }
+        }
+
+        spriteBox.innerHTML = sprite(skill.idName, categoria);
 
         label.appendChild(checkbox);
-        label.insertAdjacentHTML('beforeend', `<div class="sprite-box">${sprite(skill.idName, categoria)}</div>`);
+        label.appendChild(spriteBox);
+
+        // Lógica de múltiplos cliques no wrapper
+        wrapper.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (checkbox.disabled) return;
+
+            let lvl = parseInt(wrapper.dataset.level || "0");
+            let max = skill.maxLevel || 1; 
+
+            let nextLvl = lvl < max ? lvl + 1 : 0;
+
+            // ==========================================
+            // BLOQUEIO INTELIGENTE DE NÍVEIS (Regras do Jogo)
+            // ==========================================
+            let infoSkill = getSkillTreeAndTier(skill.idName);
+            
+            // Regra 1: Skill do Tier 1 não pode ir pro Nível 2 se o Tier 2 da árvore estiver bloqueado
+            if (infoSkill.tier === 1 && nextLvl === 2) {
+                let avisoTier2 = document.getElementById(`tab-skill-${infoSkill.tree}-tier2`);
+                if (avisoTier2 && avisoTier2.innerHTML.trim() !== "") {
+                    nextLvl = 0; // Volta para o 0 (desmarcando a skill)
+                }
+            }
+
+            // Regra 2: Skill do Tier 2 não pode ir pro Nível 2 se o Tier 3 da árvore estiver bloqueado
+            if (infoSkill.tier === 2 && nextLvl === 2) {
+                let avisoTier3 = document.getElementById(`tab-skill-${infoSkill.tree}-tier3`);
+                if (avisoTier3 && avisoTier3.innerHTML.trim() !== "") {
+                    nextLvl = 0; // Volta para o 0 (desmarcando a skill)
+                }
+            }
+            // ==========================================
+
+            atualizarVisualSkill(skill.idName, nextLvl, max);
+            skill.level = nextLvl; 
+            skill.possui = nextLvl;
+            
+            // Disparando o change avisando ao Save Manager que foi atualizado.
+            checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+
+            // ATUALIZA O CARD IMEDIATAMENTE AO CLICAR
+            mostrarInfoCard(skill, skill.idName, categoria);
+        });
 
         wrapper.addEventListener("mouseenter", () => {
             mostrarInfoCard(skill, skill.idName, categoria);
@@ -179,6 +314,8 @@ function renderSkills(lista, containerId, pastaImagens) {
 
 function renderNFTs(lista, containerId, pastaImagens) {
     const container = document.getElementById(containerId);
+    if (!container) return;
+    
     const categoria = categoriaSprite[pastaImagens] || 'collectibles';
 
     lista.forEach(nft => {
@@ -208,9 +345,9 @@ function renderNFTs(lista, containerId, pastaImagens) {
     });
 }
 
-//=============================================================================================================================================
 function renderBuds(lista, containerId) {
     const container = document.getElementById(containerId);
+    if (!container) return;
 
     lista.forEach(bud => {
         const wrapper = document.createElement('div');
@@ -231,7 +368,6 @@ function renderBuds(lista, containerId) {
 
         wrapper.appendChild(label);
 
-        // Painel de auras
         const auraPanel = document.createElement('div');
         auraPanel.className = 'aura-panel';
         auraPanel.style.display = 'none';
@@ -260,10 +396,7 @@ function renderBuds(lista, containerId) {
     });
 }
 
-//=============================================================================================================================================
-
 window.onload = function () {
-
     // Skills Legacy
     renderSkills(skillsLegacy, 'skills-legacy-container', './skills');
     // Skills Crops
@@ -366,25 +499,19 @@ window.onload = function () {
     renderNFTs(fertilizantes.saltLickCows,        'saltLickCows-container', './fertilizantes');
     renderNFTs(fertilizantes.saltLickSheeps,      'saltLickSheeps-container', './fertilizantes');
 
-    //chamando funções
+    // 2. Prepara Eventos Básicos
     valoresDasGems();
     selecionandoIdioma();
     mudarIdioma();
     configurarCheckbox();
-    numeroDaFarm();
+    
+    // 3. Roda os motores pesados
     chamadorDeBuffs();
     chamadorDeDesbloquearSkills();
     buscarTodasAPIs();
     nftsDeTierQuePossuemBuffDoAntecessor();
     cropToCoins();
-    
-    // ❌ REMOVIDO - as 3 chamadas abaixo foram substituídas pela função buscarTodasAPIs()
-    // buscarValoresAPI();
-    // buscarValoresNFTs();
-    // buscarValorFlower();
 };
-
-//================================================================================================================================================================
 
 function mostrarInfoCard(item, idName, categoria) {
     const card = document.getElementById("info-card");
@@ -408,17 +535,143 @@ function mostrarInfoCard(item, idName, categoria) {
             ${imgUsdc} ${Number(item.precoAtual * precoDoFlower).toFixed(2)}`;
     }
 
+    const coresNivel = {
+        1: '#3ca527', // Verde
+        2: '#ffd700', // Dourado
+        3: '#00c3ff'  // Azul
+    };
+
+    // ==========================================
+    // ÍCONES DO CSS SPRITE
+    // ==========================================
+    const iconeShard = `<span class="sprite-icones bg-shard" style="margin-right: 4px;"></span>`;
+    const iconeCadeado = `<span class="sprite-icones bg-cadeado" style="margin-right: 4px;"></span>`;
+
+    // ==========================================
+    // BADGES ATUALIZADOS: Formato 0 / Total
+    // ==========================================
+    const getSpBadge = (total) => {
+        if (!total || total <= 0) return '';
+        // Estrela removida e adicionado o espaço antes e depois da barra
+        return `<span style="display: inline-flex; align-items: center; justify-content: center; background-color: #1c1812; border: 1px solid #d0a25a; color: #ffe2aa; padding: 2px 6px; border-radius: 6px; font-size: 11px; margin-right: 6px; box-shadow: inset 1px 1px 3px rgba(0,0,0,0.5);">0 / ${total} SP</span>`;
+    };
+
+    const getShardBadge = (total, nivel) => {
+        if (nivel === 1) return ''; // Regra: Nível 1 das skills NÃO possui Shard
+        if (!total || total <= 0) return '';
+        // Utilizando o Sprite do CSS e com espaço antes e depois da barra
+        return `<span style="display: inline-flex; align-items: center; justify-content: center; background-color: #0b1a2e; border: 1px solid #4a90e2; color: #a4cfff; padding: 2px 6px; border-radius: 6px; font-size: 11px; margin-right: 6px; box-shadow: inset 1px 1px 3px rgba(0,0,0,0.5);">${iconeShard}0 / ${total}</span>`;
+    };
+
+    // ==========================================
+    // LÓGICA DO CADEADO DE BLOQUEIO NO CARD
+    // ==========================================
+    let infoSkill = typeof getSkillTreeAndTier === 'function' ? getSkillTreeAndTier(idName) : { tree: null, tier: 0 };
+    let tier2Locked = false;
+    let tier3Locked = false;
+    
+    if (infoSkill && infoSkill.tree) {
+        let avisoT2 = document.getElementById(`tab-skill-${infoSkill.tree}-tier2`);
+        let avisoT3 = document.getElementById(`tab-skill-${infoSkill.tree}-tier3`);
+        if (avisoT2 && avisoT2.innerHTML.trim() !== "") tier2Locked = true;
+        if (avisoT3 && avisoT3.innerHTML.trim() !== "") tier3Locked = true;
+    }
+
+    const getCadeado = (nivelDoCard) => {
+        let cadeadoHTML = "";
+        if (infoSkill.tier === 1 && nivelDoCard >= 2 && tier2Locked) {
+            let txt = idioma === 'ingles' ? `${iconeCadeado}Requires Tier 2` : `${iconeCadeado}Requer Tier 2`;
+            cadeadoHTML = `<span style="color: #ff4444; font-size: 11px; margin-left: 8px; font-weight: normal; display: inline-flex; align-items: center; justify-content: center;">${txt}</span>`;
+        } 
+        else if (infoSkill.tier === 2 && nivelDoCard >= 2 && tier3Locked) {
+            let txt = idioma === 'ingles' ? `${iconeCadeado}Requires Tier 3` : `${iconeCadeado}Requer Tier 3`;
+            cadeadoHTML = `<span style="color: #ff4444; font-size: 11px; margin-left: 8px; font-weight: normal; display: inline-flex; align-items: center; justify-content: center;">${txt}</span>`;
+        }
+        return cadeadoHTML;
+    };
+    // ==========================================
+
+    let textoDescricao = "";
+
+    if (item.niveis && item.maxLevel > 1) {
+        let lvl = parseInt(item.level || 0, 10); 
+
+        if (lvl === 0) {
+            let linhas = [];
+            item.niveis.forEach(n => {
+                let lvlLabel = idioma === 'ingles' ? `Level ${n.nivel}` : `Nível ${n.nivel}`;
+                let cadeado = getCadeado(n.nivel);
+                let cor = coresNivel[n.nivel] || '#ffa726';
+                
+                let totalPts = parseInt(n.pontosNecessarios, 10) || 0;
+                let totalShards = parseInt(n.shards, 10) || 0;
+                
+                // Mostrar os custos alinhados ao centro
+                linhas.push(`<div style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; text-align: center;"><span style="color: ${cor}; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center;">${lvlLabel}${cadeado}</span><div style="margin-top: 4px; margin-bottom: 4px; display: flex; justify-content: center; align-items: center;">${getSpBadge(totalPts)}${getShardBadge(totalShards, n.nivel)}</div><span style="font-size: 13px;">${n.descricao[idioma]}</span></div>`);
+            });
+            textoDescricao = linhas.join('');
+
+        } else {
+            let txtAtual = idioma === 'ingles' ? `Current Level (Lv. ${lvl})` : `Nível Atual (Nv. ${lvl})`;
+            let corAtual = coresNivel[lvl] || '#4caf50';
+            let nAtual = item.niveis[lvl - 1];
+            let descAtual = nAtual.descricao[idioma];
+            
+            // NÍVEL ATUAL SELECIONADO: Some completamente com as caixinhas de custo!
+            textoDescricao = `<div style="margin-bottom: 12px; display: flex; flex-direction: column; align-items: center; text-align: center;"><span style="color: ${corAtual}; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center;">${txtAtual}</span><div style="margin-top: 4px; margin-bottom: 4px;"></div><span style="font-size: 13px;">${descAtual}</span></div>`;
+
+            if (lvl < item.maxLevel) {
+                let txtProximo = idioma === 'ingles' ? `Next Level (Lv. ${lvl + 1})` : `Próximo Nível (Nv. ${lvl + 1})`;
+                let cadeado = getCadeado(lvl + 1);
+                let corProximo = coresNivel[lvl + 1] || '#ffa726';
+                
+                let nProximo = item.niveis[lvl];
+                let totalPtsProx = parseInt(nProximo.pontosNecessarios, 10) || 0;
+                let totalShardsProx = parseInt(nProximo.shards, 10) || 0;
+                let descProximo = nProximo.descricao[idioma];
+                
+                // PRÓXIMO NÍVEL: O próximo ainda não foi selecionado, então mostra as caixinhas centralizadas!
+                textoDescricao += `<div style="margin-bottom: 8px; border-top: 1px dashed #506152; padding-top: 10px; display: flex; flex-direction: column; align-items: center; text-align: center;"><span style="color: ${corProximo}; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center;">${txtProximo}${cadeado}</span><div style="margin-top: 4px; margin-bottom: 4px; display: flex; justify-content: center; align-items: center;">${getSpBadge(totalPtsProx)}${getShardBadge(totalShardsProx, nProximo.nivel)}</div><span style="font-size: 13px;">${descProximo}</span></div>`;
+            } else {
+                let txtMax = idioma === 'ingles' ? `(Max Level)` : `(Nível Máximo)`;
+                textoDescricao += `<div style="margin-top: 10px; border-top: 1px dashed #506152; padding-top: 10px;"><span style="color: ${corAtual}; font-weight: bold; display: flex; align-items: center; justify-content: center;">${txtMax}</span></div>`;
+            }
+        }
+    } else {
+        // Lógica adaptada para as Skills Antigas (Legacy) ou NFTs
+        textoDescricao = item.descricao ? (item.descricao[idioma] || "") : "";
+        
+        if (item.pontosNecessarios || item.shards) {
+            let costStr = idioma === 'ingles' ? 'Cost' : 'Custo';
+            let totalPts = parseInt(item.pontosNecessarios, 10) || 0;
+            let totalShards = parseInt(item.shards, 10) || (item.niveis && item.niveis[0] ? parseInt(item.niveis[0].shards, 10) : 0);
+            
+            // Sumir as caixinhas se já possuir
+            if (item.level > 0 || item.possui) {
+                textoDescricao = `<span style="font-size: 13px;">${textoDescricao}</span>`;
+            } else {
+                let badgesUnicos = `${getSpBadge(totalPts)}${getShardBadge(totalShards, 2)}`; // Nível 2 forçado apenas para garantir que a Badge apareça, se o item usar shard
+                
+                if (badgesUnicos.trim() !== "") {
+                    textoDescricao = `<div style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; text-align: center;"><span style="color: #3ca527; font-weight: bold; font-size: 15px;">${costStr}:</span><div style="margin-top: 4px; margin-bottom: 4px; display: flex; justify-content: center; align-items: center;">${badgesUnicos}</div></div><span style="font-size: 13px;">${textoDescricao}</span>`;
+                } else {
+                    textoDescricao = `<span style="font-size: 13px;">${textoDescricao}</span>`;
+                }
+            }
+        } else {
+            textoDescricao = `<span style="font-size: 13px;">${textoDescricao}</span>`;
+        }
+    }
+
     document.querySelector(".card-img").innerHTML = sprite(idName, categoria);
     document.getElementById("titulo-buff").innerHTML = item.name;
-    document.getElementById("descricao-do-buff").innerHTML = item.descricao[idioma] || "";
+    document.getElementById("descricao-do-buff").innerHTML = textoDescricao;
     document.getElementById("preco-atual").innerHTML = precoAtual;
     document.getElementById("ultima-venda").innerHTML = ultimavenda;
 
     card.style.display = "block";
 }
 
-//como o card esta "block"(que significa que vá mostrar o tempo todo), isso n deve ser util, mas deixarei caso troque para "none"(que faz sumir quando tira o mouse de cima)
 function esconderInfoCard() {
-    const card = document.getElementById("info-card");
-    card.style.display = "block";
+    // Mantendo vazia para que o card continue travado na tela mostrando sempre a última informação
 }

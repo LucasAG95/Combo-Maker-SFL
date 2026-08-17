@@ -135,13 +135,20 @@ document.getElementById('pack-gems')?.addEventListener('change', valoresDasGems)
 
 //=============================================================================================================================================
 
-//Script para o botao de copiar a wallet do site
+// Script para o botao de copiar a wallet do site
 const copyBtn = document.getElementById('copy-wallet');
 const walletAddress = document.getElementById('wallet-address');
 const tooltip = document.getElementById('copy-tooltip');
 
+// Sua wallet inteira (será usada para a cópia real)
+const walletCompleta = '0x9fc95d6Bdc18C3015D3e6403aAe2A24bcbb1F022';
+
+// Formata e exibe apenas os 6 primeiros e 4 últimos caracteres na tela
+walletAddress.textContent = walletCompleta.substring(0, 6) + '...' + walletCompleta.substring(walletCompleta.length - 4);
+
 copyBtn.addEventListener('click', () => {
-    navigator.clipboard.writeText(walletAddress.textContent);
+    // Copia a string COMPLETA para a área de transferência
+    navigator.clipboard.writeText(walletCompleta);
 
     // mostra o aviso
     tooltip.classList.add('show');
@@ -151,5 +158,3 @@ copyBtn.addEventListener('click', () => {
       tooltip.classList.remove('show');
     }, 1500);
 });
-
-

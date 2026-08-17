@@ -195,3 +195,122 @@ function limparOvelhas() {
 
     buffsAdicionadosAnimais();
 };
+
+//================================================================================================================================================================================
+// FUNÇÕES PARA LIMPAR OS CHECKBOXES DAS ABAS
+//================================================================================================================================================================================
+
+// Limpar todas as Skills
+function limparSkills() {
+    skillsLegacy.forEach(skill => {
+        skill.level = 0;
+        skill.possui = 0;
+        let checkbox = document.getElementById(skill.idName);
+        if (checkbox) {
+            checkbox.checked = false;
+            const wrapper = checkbox.closest('.skill-wrapper');
+            if (wrapper) wrapper.dataset.level = 0;
+            if (typeof atualizarVisualSkill === 'function') {
+                atualizarVisualSkill(skill.idName, 0, skill.maxLevel || 1);
+            }
+        }
+    });
+
+    todasSkillsComTier.forEach(skill => {
+        skill.level = 0;
+        skill.possui = 0;
+        let checkbox = document.getElementById(skill.idName);
+        if (checkbox) {
+            checkbox.checked = false;
+            const wrapper = checkbox.closest('.skill-wrapper');
+            if (wrapper) wrapper.dataset.level = 0;
+            if (typeof atualizarVisualSkill === 'function') {
+                atualizarVisualSkill(skill.idName, 0, skill.maxLevel || 1);
+            }
+        }
+    });
+
+    chamadorDeBuffs();
+    chamadorDeDesbloquearSkills();
+    ativarBonusDasNftsESkills();
+    pontosGastosEmSkills();
+
+    if (typeof SaveManager !== 'undefined') SaveManager.salvarEstado();
+}
+
+// Limpar Collectibles
+function limparCollectibles() {
+    todosCollectibles.forEach(collectible => {
+        collectible.possui = false;
+        let checkbox = document.getElementById(collectible.idName);
+        if (checkbox) checkbox.checked = false;
+    });
+
+    chamadorDeBuffs();
+    ativarBonusDasNftsESkills();
+    nftsDeTierQuePossuemBuffDoAntecessor();
+    valorTotalEmNfts();
+
+    if (typeof SaveManager !== 'undefined') SaveManager.salvarEstado();
+}
+
+// Limpar Wearables
+function limparWearables() {
+    todosWearables.forEach(wearable => {
+        wearable.possui = false;
+        let checkbox = document.getElementById(wearable.idName);
+        if (checkbox) checkbox.checked = false;
+    });
+
+    chamadorDeBuffs();
+    ativarBonusDasNftsESkills();
+    valorTotalEmNfts();
+
+    if (typeof SaveManager !== 'undefined') SaveManager.salvarEstado();
+}
+
+// Limpar Buds e Auras
+function limparBuds() {
+    todosBuds.forEach(bud => {
+        bud.possui = false;
+        bud.aura = 1;
+        
+        let checkbox = document.getElementById(bud.idName);
+        if (checkbox) {
+            checkbox.checked = false;
+            const budWrapper = checkbox.closest('.bud-wrapper');
+            const auraPanel = budWrapper?.querySelector('.aura-panel');
+            
+            // Ocultar painel de auras e desmarcar auras
+            if (auraPanel) {
+                auraPanel.style.display = 'none';
+                auraPanel.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            }
+            
+            // Remover a classe de fundo do aura
+            if (budWrapper && typeof AURAS !== 'undefined') {
+                AURAS.forEach(a => budWrapper.classList.remove(`aura-bg-${a.id}`));
+            }
+        }
+    });
+
+    chamadorDeBuffs();
+    ativarBonusDasNftsESkills();
+
+    if (typeof SaveManager !== 'undefined') SaveManager.salvarEstado();
+}
+
+// Limpar Buffs Temporários (Shrines, Totems, Fertilizantes)
+function limparTemporarios() {
+    todosTemporarios.forEach(temporario => {
+        temporario.possui = false;
+        let checkbox = document.getElementById(temporario.idName);
+        if (checkbox) checkbox.checked = false;
+    });
+
+    chamadorDeBuffs();
+    ativarBonusDasNftsESkills();
+    ilhaPrestigioAtual();
+
+    if (typeof SaveManager !== 'undefined') SaveManager.salvarEstado();
+}
