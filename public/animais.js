@@ -221,11 +221,16 @@ function xpCarinhoXpComidaValores() {
         };
 
         let xpDaComidaPrincipal = 60;
-        //Se possuir essa skill, todo xp deve ser dobrado
-        if (mapaDeTodasSkillsComTier['chonkyFeed'].possui) {
-            animal.xpDaComidaPadrao *= 2;
-            xpDaComidaPrincipal *= 2;
-        };
+        
+        // Se possuir essa skill, o XP multiplica conforme o nível atual da skill (2x, 2.5x ou 3x)
+        let skillChonky = mapaDeTodasSkillsComTier['chonkyFeed'];
+        if (skillChonky && skillChonky.level > 0) {
+            // Pega o multiplicador correto no array da skill (ex: Nível 1 puxa o índice 0)
+            let multiplicadorXP = skillChonky.quantidade[0].buff[skillChonky.level - 1];
+            
+            animal.xpDaComidaPadrao *= multiplicadorXP;
+            xpDaComidaPrincipal *= multiplicadorXP;
+        }
         
     });
     calculoDeXpExcedenteDosAnimais();
@@ -260,30 +265,54 @@ function calculoDeXpExcedenteDosAnimais() {
             xpRestanteParaProximoLevel = 0;
         }
 
-        animal.xpExcedente = xpRestanteParaProximoLevel;
-
-        let qtdDeVezesQueIraAlimentar = Math.max(0, Math.ceil(
-            (animal.xpNecessario - (animal.xpExcedente + animal.xpAdquiridoComCarinho)) /
-            animal.xpDaComidaPadrao
-        ));
-
-        if (animal.xpExcedente + animal.xpAdquiridoComCarinho >= animal.xpNecessario) {
-            animal.comidaNecessaria = 0;
+        // =========================================================================
+        // LÓGICA SEPARADA PARA O LEVEL MÁXIMO (Ex: 15 -> 15)
+        // =========================================================================
+        if (animal.levelAnterior === animal.level) {
+            
+            // Descobre exatamente quanto XP precisa ser coberto por comida
+            let xpFaltantePorCiclo = animal.xpNecessario - animal.xpAdquiridoComCarinho;
+            xpFaltantePorCiclo = Math.max(0, xpFaltantePorCiclo);
+            
+            // Calcula a Média Exata (fracionada) para precisão absoluta a longo prazo
+            let mediaDeAlimentacao = xpFaltantePorCiclo / animal.xpDaComidaPadrao;
+            
+            animal.comidaNecessaria = mediaDeAlimentacao * animal.qtdComidaPadrao;
+            animal.xpGanhoComendo = Number(xpFaltantePorCiclo.toFixed(2));
+            
+            // Texto dinâmico: 'Avg.' para inglês, 'Média' para português
+            animal.xpExcedente = idioma === 'ingles' ? 'Avg.' : 'Média'; 
+            
         } else {
-            animal.comidaNecessaria = qtdDeVezesQueIraAlimentar * animal.qtdComidaPadrao;
-            animal.xpGanhoComendo = qtdDeVezesQueIraAlimentar * animal.xpDaComidaPadrao;
+            // =========================================================================
+            // LÓGICA NORMAL (Do Level 1 até o Level Máximo)
+            // =========================================================================
+            animal.xpExcedente = Math.floor(xpRestanteParaProximoLevel);
+
+            let qtdDeVezesQueIraAlimentar = Math.max(0, Math.ceil(
+                (animal.xpNecessario - (animal.xpExcedente + animal.xpAdquiridoComCarinho)) /
+                animal.xpDaComidaPadrao
+            ));
+
+            if (animal.xpExcedente + animal.xpAdquiridoComCarinho >= animal.xpNecessario) {
+                animal.comidaNecessaria = 0;
+                animal.xpGanhoComendo = 0;
+            } else {
+                animal.comidaNecessaria = qtdDeVezesQueIraAlimentar * animal.qtdComidaPadrao;
+                animal.xpGanhoComendo = qtdDeVezesQueIraAlimentar * animal.xpDaComidaPadrao;
+            }
+
+            // Atualiza o XP excedente herdado para o PRÓXIMO level
+            xpRestanteParaProximoLevel =
+                xpRestanteParaProximoLevel +
+                animal.xpGanhoComendo +
+                animal.xpAdquiridoComCarinho -
+                animal.xpNecessario;
+
+            xpRestanteParaProximoLevel = Math.max(0, xpRestanteParaProximoLevel);
         }
 
-        // Atualiza o XP excedente para o próximo animal do mesmo tipo
-        xpRestanteParaProximoLevel =
-            xpRestanteParaProximoLevel +
-            (qtdDeVezesQueIraAlimentar * animal.xpDaComidaPadrao) +
-            animal.xpAdquiridoComCarinho -
-            animal.xpNecessario;
-
-        xpRestanteParaProximoLevel = Math.max(0, xpRestanteParaProximoLevel);
-
-        console.log(`[${animal.name}] sobrou ${xpRestanteParaProximoLevel} XP para o próximo level`);
+        console.log(`[${animal.name}] ${animal.levelAnterior}->${animal.level} | Excedente: ${animal.xpExcedente} | Comida: ${animal.comidaNecessaria}`);
     });
 
     buffsAdicionadosRecursosAnimais();
