@@ -76,12 +76,24 @@ let collectibles = {
             quantidade: [
                 {
                     sinal: '+A',
-                    buffBase: 0.2 * 9,
+                    // O 'get' puxa o valor atualizado de 'plots' no momento do cálculo
+                    get buffBase() { 
+                        return 0.2 * Math.min(typeof plots !== 'undefined' ? plots : 9, 9); 
+                    },
                     condicionalSkill: {
                         dependeDe: 'horrorMike',
-                        novoBuff: [0.3 * 49, 0.35 * 64, 0.4 * 81],
+                        // O 'get' gera o array na hora, calculando os limites corretamente
+                        get novoBuff() { 
+                            return [
+                                0.3 * Math.min(typeof plots !== 'undefined' ? plots : 49, 49),
+                                0.35 * Math.min(typeof plots !== 'undefined' ? plots : 64, 64),
+                                0.4 * Math.min(typeof plots !== 'undefined' ? plots : 81, 81)
+                            ]; 
+                        },
                     },
-                    buff: 0.2 * 9,
+                    // Pode deixar como 0, a sua função "ativarBonusDasNftsESkills" vai sobrescrever isso 
+                    // automaticamente com o buffBase ou o novoBuff na primeira rodada
+                    buff: 0, 
                     recursoAfetado: ['Carrot', 'Yam', 'Cabbage', 'Broccoli', 'Soybean', 'Pepper', 'Beetroot', 'Cauliflower', 'Parsnip']
                 }   
             ],   
@@ -99,12 +111,23 @@ let collectibles = {
             quantidade: [
                 {
                     sinal: '+A',
-                    buffBase: 0.2 * 9,
+                    // Getter para calcular o buff base em tempo real limitando a 9 plots
+                    get buffBase() { 
+                        return 0.2 * Math.min(typeof plots !== 'undefined' ? plots : 9, 9); 
+                    },
                     condicionalSkill: {
                         dependeDe: 'lauriesGains',
-                        novoBuff: [0.3 * 49, 0.35 * 64, 0.4 * 81],
+                        // Getter para calcular os buffs das skills em tempo real limitando a 49, 64 e 81 plots
+                        get novoBuff() { 
+                            return [
+                                0.3 * Math.min(typeof plots !== 'undefined' ? plots : 49, 49),
+                                0.35 * Math.min(typeof plots !== 'undefined' ? plots : 64, 64),
+                                0.4 * Math.min(typeof plots !== 'undefined' ? plots : 81, 81)
+                            ]; 
+                        },
                     },
-                    buff: 0.2 * 9,
+                    // Inicializado zerado; a função de bônus vai sobrescrever com o valor correto
+                    buff: 0, 
                     recursoAfetado: ['Eggplant', 'Corn', 'Onion', 'Turnip', 'Radish', 'Wheat', 'Kale', 'Artichoke', 'Barley']
                 }
             ],
