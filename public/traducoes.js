@@ -96,12 +96,25 @@ function mudarIdioma() {
     document.getElementById('subGalinhas').innerHTML = `${opcaoDeIdiomas.galinhas}`;
     document.getElementById('subVacas').innerHTML = `${opcaoDeIdiomas.vacas}`;
     document.getElementById('subOvelhas').innerHTML = `${opcaoDeIdiomas.ovelhas}`;
+    
+    // Verifica o nível da skill Kale Mix para saber se vai multiplicar por 3, 2.5 ou 2
+    let qtdKaleParaExibir = 3; 
+    let skillKaleDisplay = typeof mapaDeTodasSkillsComTier !== 'undefined' ? mapaDeTodasSkillsComTier['kaleMix2'] : null;
+
+    if (skillKaleDisplay && skillKaleDisplay.level > 0) {
+        let custoKalePorNivel = [3, 2.5, 2];
+        qtdKaleParaExibir = custoKalePorNivel[skillKaleDisplay.level - 1];
+    }
+
+    let precoKaleMixExibicao = mapaDosValoresDoMarket['kale'].valor * qtdKaleParaExibir;
+
     document.getElementById('precoRacao').innerHTML = `${opcaoDeIdiomas.precoRacao} ➜ ${imgKernelBlend} ${Number(mapaDosValoresDoMarket['corn'].valor).toFixed(4)} | 
         ${imgHay} ${Number(mapaDosValoresDoMarket['wheat'].valor).toFixed(4)} | 
         ${imgNutriBarley} ${Number(mapaDosValoresDoMarket['barley'].valor).toFixed(4)} | 
         ${imgMixedGrain} ${Number(mapaDosValoresDoMarket['corn'].valor + mapaDosValoresDoMarket['wheat'].valor + mapaDosValoresDoMarket['barley'].valor).toFixed(4)} |
-        ${imgKaleMix} ${Number(mapaDosValoresDoMarket['kale'].valor * 3).toFixed(4)} |
+        ${imgKaleMix} ${Number(precoKaleMixExibicao).toFixed(4)} |
         ${imgOmnifeed} ${Number(precoDaGemEmFlower).toFixed(4)}`
+        
     document.getElementById('comida-do-level-0-ao-3').innerHTML = `${opcaoDeIdiomas.comidaUsadaAteLevel3}:`;
     document.getElementById('comida-do-level-4-ao-6').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel4ao6}:`;
     document.getElementById('comida-do-level-7-ao-10').innerHTML = `${opcaoDeIdiomas.comidaUsadaDoLevel7ao10}:`;
@@ -168,7 +181,6 @@ function mudarIdioma() {
     document.getElementById('v3').innerHTML = `${atualizacoesFeitas.atualizacaoV115}`;
     document.getElementById('v2').innerHTML = `${atualizacoesFeitas.atualizacaoV116}`;
     document.getElementById('v1').innerHTML = `${atualizacoesFeitas.atualizacaoV120}`;
-
 
     pontosGastosEmSkills();
     chamadorDeDesbloquearSkills();

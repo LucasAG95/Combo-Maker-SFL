@@ -129,12 +129,11 @@ function xpCarinhoXpComidaValores() {
 
     //definir a imagem da comida Mixed Grain
     document.querySelectorAll('.bg-mixedGrain, .bg-kaleMix').forEach(span => {
-
-        const possuiSkill = mapaDeTodasSkillsComTier['kaleMix2'].possui;
+        const skillKaleMix = mapaDeTodasSkillsComTier['kaleMix2'];
+        const possuiSkill = skillKaleMix && skillKaleMix.level > 0;
 
         span.classList.remove('bg-mixedGrain', 'bg-kaleMix');
         span.classList.add(`bg-${possuiSkill ? 'kaleMix' : 'mixedGrain'}`);
-
     });
 
     //definir se possuo ou não a ferramenta de carinho!
@@ -194,38 +193,43 @@ function xpCarinhoXpComidaValores() {
 
         // Definir valor de cada unidade da comida (checkbox)
         if (animal.idComida.includes('kernelBlend')) {
-        animal.custoDaComida = mapaDosValoresDoMarket['corn'].valor;
+            animal.custoDaComida = mapaDosValoresDoMarket['corn'].valor;
         }
 
         if (animal.idComida.includes('hay')) {
-        animal.custoDaComida = mapaDosValoresDoMarket['wheat'].valor;
+            animal.custoDaComida = mapaDosValoresDoMarket['wheat'].valor;
         }
 
         if (animal.idComida.includes('nutriBarley')) {
-        animal.custoDaComida = mapaDosValoresDoMarket['barley'].valor;
+            animal.custoDaComida = mapaDosValoresDoMarket['barley'].valor;
         }
 
         if (animal.idComida.includes('mixedGrain')) {
-        if (mapaDeTodasSkillsComTier['kaleMix2'].possui) {
-            animal.custoDaComida = mapaDosValoresDoMarket['kale'].valor * 3;
-        } else {
-            animal.custoDaComida =
-            mapaDosValoresDoMarket['corn'].valor +
-            mapaDosValoresDoMarket['wheat'].valor +
-            mapaDosValoresDoMarket['barley'].valor;
+            let skillKaleMix = mapaDeTodasSkillsComTier['kaleMix2'];
+            
+            // Verifica o nível da skill e aplica o custo correto (3, 2.5 ou 2)
+            if (skillKaleMix && skillKaleMix.level > 0) {
+                let custoKalePorNivel = [3, 2.5, 2];
+                let qtdKale = custoKalePorNivel[skillKaleMix.level - 1];
+                
+                animal.custoDaComida = mapaDosValoresDoMarket['kale'].valor * qtdKale;
+            } else {
+                animal.custoDaComida =
+                    mapaDosValoresDoMarket['corn'].valor +
+                    mapaDosValoresDoMarket['wheat'].valor +
+                    mapaDosValoresDoMarket['barley'].valor;
+            }
         }
-        };
 
         if (animal.idComida.includes('omnifeed')) {
-        animal.custoDaComida = precoDaGemEmFlower;
-        };
+            animal.custoDaComida = precoDaGemEmFlower;
+        }
 
         let xpDaComidaPrincipal = 60;
         
         // Se possuir essa skill, o XP multiplica conforme o nível atual da skill (2x, 2.5x ou 3x)
         let skillChonky = mapaDeTodasSkillsComTier['chonkyFeed'];
         if (skillChonky && skillChonky.level > 0) {
-            // Pega o multiplicador correto no array da skill (ex: Nível 1 puxa o índice 0)
             let multiplicadorXP = skillChonky.quantidade[0].buff[skillChonky.level - 1];
             
             animal.xpDaComidaPadrao *= multiplicadorXP;
@@ -234,7 +238,7 @@ function xpCarinhoXpComidaValores() {
         
     });
     calculoDeXpExcedenteDosAnimais();
-};
+}
 
 document.getElementById('pettingHand').addEventListener('change', xpCarinhoXpComidaValores);
 document.getElementById('brush').addEventListener('change', xpCarinhoXpComidaValores);
