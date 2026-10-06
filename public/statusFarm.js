@@ -101,7 +101,11 @@ function ilhaPrestigioAtual() { // Função central que lê o <select>, calcula 
         taxa = 0.15;
     } else if (ilha === 'swamp') {
         taxa = 0.15;
-    };
+    } else {
+        ilha = 'swamp';
+        taxa = 0.15;
+        document.getElementById('ilhaSelect').value = 'swamp'; // sincroniza o select
+    }
 
     vip = document.getElementById('vipSelect').value;
     if (vip === 'Sim') taxa *= 0.5;
